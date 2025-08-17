@@ -392,7 +392,8 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
 .actions.two .btn:last-child{background:#000}
 
 /* Themed premium/download buttons */
-.btn.premium,.btn.download{background:#414866 !important}
+.btn.premium{background:#414866 !important}
+.btn.download{background:#0f874b !important}
 .btn.premium::after,.btn.download::after{content:"";position:absolute;top:-50%;left:-30%;width:30%;height:200%;
   background:linear-gradient(120deg, rgba(255,255,255,.25), rgba(255,255,255,0));
   transform:skewX(-20deg);animation:btn-shine 2.6s infinite;pointer-events:none}
