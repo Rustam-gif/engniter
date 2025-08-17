@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Engniter · Ignite your English</title>
+  <meta name="description" content="Learn English through engaging lessons and interactive content.">
+
+  <link rel="icon" href="assets/favicon.png" />
+  <link rel="stylesheet" href="assets/styles.css" />
+
+  <meta property="og:title" content="Engniter · Ignite your English" />
+  <meta property="og:description" content="Learn English through engaging lessons and interactive content." />
+  <meta property="og:image" content="assets/logo.png" />
+  <meta name="theme-color" content="#f06736" />
+
+  <!-- Schema -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "name":"Engniter",
+    "url":"https://engniter.com",
+    "logo":"assets/logo.png"
+  }
+  </script>
+
+  <!-- Netlify Identity widget -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <!-- GoTrue.js for custom authentication -->
+  <script src="https://unpkg.com/@supabase/gotrue-js@2.62.0/dist/umd/gotrue.js"></script>
+  <script src="assets/auth.js"></script>
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+
+<header class="nav" role="banner">
+  <div class="container inner">
+    <a class="brand" href="index.html" aria-label="Engniter home">
+      <img src="assets/logo.png" alt="Engniter logo" />
+      <span>ENGNITER</span>
+    </a>
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="lessons.html">Lessons</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="account.html" id="account-nav" class="hidden">Account</a></li>
+        <li><a class="cta" href="login.html" id="signin-nav">Sign In</a></li>
+        <li><a href="#" id="pay-now-nav" class="pay-now-nav hidden">Pay Now — €6.99</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="content" class="container">
+  <section class="hero">
+    <div>
+      <span class="badge">Learn English</span>
+      <h1>Ignite your English</h1>
+      <p>Master English through engaging lessons, interactive content, and real-world practice.</p>
+      <div class="hero-actions">
+        <a href="lessons.html" class="btn">Start Learning</a>
+        <a href="pricing.html" class="btn" style="background: var(--muted);">View Pricing</a>
+      </div>
+    </div>
+    <div class="art"><img src="assets/logo.png" alt="Engniter mascot"></div>
+  </section>
+
+  <section class="grid gap-24">
+    <article class="card">
+      <h2 class="h3" style="margin-top:0">Why Choose Engniter?</h2>
+      <p>Our platform combines cutting-edge technology with proven learning methodologies to make English learning engaging and effective.</p>
+      <ul class="feature-list">
+        <li>Interactive lessons with real-time feedback</li>
+        <li>Personalized learning paths</li>
+        <li>Native speaker audio</li>
+        <li>Progress tracking and analytics</li>
+      </ul>
+    </article>
+
+    <article class="card">
+      <h2 class="h3" style="margin-top:0">Get Started Today</h2>
+      <p>Join thousands of learners who have already improved their English with Engniter.</p>
+      <div class="stack">
+        <a href="lessons.html" class="btn">Browse Lessons</a>
+        <a href="pricing.html" class="btn" style="background: var(--muted);">View Plans</a>
+        <a class="btn pay-now pay-now-btn" href="#">Pay Now — €6.99</a>
+      </div>
+    </article>
+  </section>
+</main>
+
+<footer class="footer" role="contentinfo">
+  <div class="container inner">
+    <div>© 2025 Engniter • Ignite your English</div>
+    <div><a href="account.html">Account</a> · <a href="about.html#faq">FAQ</a></div>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  Auth.init();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,443 @@
+:root{
+  --bg:#fbf7f1;--ink:#142a2f;--muted:#2b4b51;--accent:#f06736;
+  --card:#fffdf9;--line:rgba(20,42,47,.08);
+  --ink-soft: color-mix(in oklab, var(--ink) 70%, white 30%);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.6 Inter,ui-sans-serif,system-ui,Segoe UI,Roboto,Helvetica,Arial}
+img{max-width:100%;display:block}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+
+.container{max-width:1080px;margin:0 auto;padding:24px}
+.skip{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+.skip:focus{position:static;width:auto;height:auto;background:#fff;padding:8px;border-radius:8px}
+
+.nav{position:sticky;top:0;background:color-mix(in oklab, var(--bg) 85%, white 15%);
+  border-bottom:1px solid var(--line);backdrop-filter:saturate(180%) blur(10px);z-index:10}
+.nav .inner{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.5px}
+.brand img{height:34px;width:34px;border-radius:8px}
+nav ul{display:flex;gap:16px;list-style:none;margin:0;padding:0}
+nav a{font-weight:600;color:var(--muted)}
+nav .cta{background:var(--accent);color:#fff;padding:8px 14px;border-radius:10px}
+nav .pay-now-nav{background:#0ea5e9;color:#fff;padding:8px 14px;border-radius:10px;font-weight:700}
+nav .pay-now-nav:hover{filter:brightness(.97);text-decoration:none}
+
+.hero{display:grid;grid-template-columns:1.2fr 1fr;align-items:center;gap:24px;padding:36px 0}
+.hero h1{font-size:48px;line-height:1.05;margin:.2em 0}
+.hero p{font-size:18px;opacity:.9}
+.hero .art{text-align:center}
+
+.badge{background:#ffe5d8;color:#8a3a1f;padding:2px 10px;border-radius:999px;font-weight:700;font-size:12px}
+
+.grid{display:grid;gap:16px;grid-template-columns:repeat(3,1fr)}
+.gap-24{gap:24px}
+
+.card{background:var(--card);border:1px solid var(--line);padding:18px;border-radius:16px;
+  box-shadow:0 2px 0 rgba(0,0,0,.03)}
+.card .h3 + .meta-row + .desc{min-height:48px}
+.card{display:flex;flex-direction:column}
+.card .actions{margin-top:auto}
+.h3{font-size:22px;margin:6px 0}
+
+.btn{display:inline-grid;grid-auto-flow:column;align-items:center;gap:10px;
+  background:var(--accent);color:#fff;padding:12px 16px;border-radius:12px;font-weight:700;
+  text-decoration:none;border:none;cursor:pointer}
+.btn.pay-now{background:#0ea5e9}
+.btn.pay-now:hover{filter:brightness(.97)}
+.btn:hover{filter:brightness(.97)}
+.btn:focus-visible{outline:2px solid #000;outline-offset:2px}
+
+.id-actions{display:grid;gap:10px;grid-template-columns:1fr}
+.id-btn{justify-content:center}
+.id-btn.dark{background:#142a2f}
+.id-btn.google{background:#3e7fe6}
+.id-btn svg{width:18px;height:18px}
+
+.muted{color:var(--ink-soft)}
+.fine{font-size:13px;color:var(--ink-soft);margin:6px 0 0}
+
+.stack{display:grid;gap:12px;max-width:560px}
+/* utility for two equal columns */
+.stack.two{grid-template-columns:1fr 1fr}
+input,textarea,select{width:100%;padding:12px;border:1px solid rgba(20,42,47,.2);
+  border-radius:10px;background:#fff}
+label{display:grid;gap:6px;font-weight:600;color:var(--muted)}
+.hidden{display:none}
+
+section+section{margin-top:28px}
+.footer{border-top:1px solid var(--line);margin-top:40px}
+.footer .inner{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;
+  padding:28px 0;font-size:14px;opacity:.85}
+
+table{width:100%;border-collapse:collapse;background:var(--card);
+  border:1px solid var(--line);border-radius:16px;overflow:hidden}
+th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
+
+.pricing{display:grid;gap:16px;grid-template-columns:repeat(3,1fr)}
+.price{font-size:36px;margin:8px 0}
+.price-link{color:var(--accent); text-decoration:none}
+.price-link:hover{text-decoration:underline}
+
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr}
+  .grid{grid-template-columns:1fr 1fr}
+  .pricing{grid-template-columns:1fr}
+  nav ul{gap:10px}
+}
+@media (max-width:600px){
+  .grid{grid-template-columns:1fr}
+  .hero h1{font-size:36px}
+}
+
+/* Account page specific styles */
+.account-section {
+  margin-bottom: 32px;
+}
+
+.account-section h2 {
+  margin-bottom: 20px;
+}
+
+.readonly-input {
+  background-color: #f8f9fa;
+  color: #6c757d;
+}
+
+.readonly-input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.account-actions .btn {
+  margin-top: 12px;
+}
+
+.delete-account {
+  background: #dc3545 !important;
+  color: white !important;
+  font-weight: 600;
+  padding: 12px 24px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.delete-account:hover {
+  background: #c82333 !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
+}
+
+.delete-account:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(220, 53, 69, 0.3);
+}
+
+/* Button link style */
+.btn-link {
+  background: none;
+  border: none;
+  color: var(--accent);
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: inherit;
+  padding: 0;
+  margin: 0;
+}
+
+.btn-link:hover {
+  color: var(--muted);
+}
+
+/* Auth message styling */
+.auth-message {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.auth-message p {
+  font-size: 18px;
+  margin-bottom: 24px;
+  color: var(--muted);
+}
+
+/* User info display */
+.user-info {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 20px;
+  margin: 20px 0;
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.info-item:last-child {
+  border-bottom: none;
+}
+
+.info-item strong {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+/* Form toggle functionality */
+.form-toggle {
+  margin-top: 16px;
+  text-align: center;
+}
+
+.form-toggle .btn-link {
+  background: none;
+  border: none;
+  color: var(--accent);
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: inherit;
+  padding: 0;
+  margin: 0;
+}
+
+.form-toggle .btn-link:hover {
+  color: var(--muted);
+}
+
+/* Login page specific styles */
+.login-page .hero {
+  text-align: center;
+}
+
+.login-page .hero h1 {
+  margin-bottom: 16px;
+}
+
+.login-page .hero p {
+  font-size: 18px;
+  margin-bottom: 24px;
+}
+
+.login-page .card {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.login-page .stack {
+  margin-top: 20px;
+}
+
+.login-page .btn-link {
+  color: var(--accent);
+  text-decoration: underline;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: inherit;
+  padding: 0;
+  margin: 0;
+}
+
+.login-page .btn-link:hover {
+  color: var(--muted);
+}
+
+/* Navigation account button styling */
+#account-nav {
+  background: var(--accent);
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+#account-nav:hover {
+  filter: brightness(.97);
+  text-decoration: none;
+}
+
+/* Error message styling */
+.error-message {
+  color: #dc3545;
+  font-weight: 600;
+  text-align: center;
+  padding: 8px;
+  background: #f8d7da;
+  border: 1px solid #f5c6cb;
+  border-radius: 8px;
+  margin: 8px 0;
+}
+
+/* Google Sign-In button styling */
+#g_id_onload {
+  margin-bottom: 12px;
+}
+
+.g_id_signin {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+/* Ensure Google button fits well in the card */
+.id-actions {
+  text-align: center;
+}
+
+/* Hero actions styling */
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+/* Feature list styling */
+.feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0;
+}
+
+.feature-list li {
+  position: relative;
+  padding-left: 24px;
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+.feature-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: bold;
+  font-size: 16px;
+}
+
+/* Pricing styles */
+.price {
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 16px 0 8px 0;
+  line-height: 1;
+}
+
+.period {
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.featured {
+  border: 2px solid var(--accent);
+  transform: scale(1.05);
+  position: relative;
+}
+
+.featured::before {
+  content: "Most Popular";
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--accent);
+  color: white;
+  padding: 4px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* FAQ styling */
+.faq-item {
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--line);
+}
+
+/* Lessons: pills, chips, meta rows */
+.pill{display:inline-block;padding:6px 12px;border-radius:999px;background:color-mix(in oklab, var(--bg) 70%, white 30%);border:1px solid var(--line);font-weight:700;font-size:13px;color:var(--muted)}
+.pill.level{background:#eaf5ff;border-color:#cfe8ff;color:#0b5cab}
+.pill.topic{background:#fef3e7;border-color:#f9dcc2;color:#8a3a1f}
+.pill.grammar{background:#f1f5f9;border-color:#e2e8f0;color:#334155}
+.meta-row{display:flex;flex-wrap:wrap;gap:10px;margin:8px 0 12px}
+.desc{color:var(--ink-soft);margin-top:8px}
+
+.chip{padding:8px 12px;border:1px solid var(--line);border-radius:999px;background:var(--card);cursor:pointer;font-weight:600}
+.chip.active,.filter-button.active{background:var(--accent);color:#fff;border-color:transparent}
+.filters-bar{display:flex;justify-content:space-between;align-items:center;margin:8px 0 12px}
+.filters-card .group-title{font-weight:800;color:var(--muted);margin:0 0 8px}
+.filters-grid{display:grid;gap:8px;grid-template-columns:repeat(6,minmax(0,1fr))}
+
+/* Styled select */
+.select{position:relative}
+.select select{appearance:none;-webkit-appearance:none;-moz-appearance:none;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 40px 10px 12px;font-weight:600;color:var(--muted);min-width:220px}
+.select::after{content:"\25BC";position:absolute;right:12px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none}
+
+.actions.two{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:none}
+.actions.two .btn{width:100%;justify-content:center}
+.actions.two .btn:last-child{background:#000}
+
+/* Fallback for older two-column stacks in lessons */
+.stack[style*="grid-template-columns:1fr 1fr"] .btn{width:100%;justify-content:center}
+.stack[style*="grid-template-columns:1fr 1fr"] .btn:last-child{background:#000}
+
+.faq-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.faq-item h3 {
+  margin-bottom: 8px;
+  color: var(--accent);
+}
+
+.faq-item p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .hero-actions .btn {
+    text-align: center;
+  }
+  
+  .featured {
+    transform: none;
+  }
+  
+  .price {
+    font-size: 36px;
+  }
+  
+  /* Ensure Google button is properly sized on mobile */
+  .g_id_signin {
+    transform: scale(0.9);
+  }
+  
+  /* Make logout button more prominent on mobile */
+  .delete-account {
+    width: 100%;
+    padding: 16px 24px;
+    font-size: 18px;
+  }
+}

@@ -1,0 +1,530 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Lessons · Engniter</title>
+  <meta name="description" content="Browse our comprehensive collection of English lessons designed for all skill levels.">
+
+  <link rel="icon" href="assets/favicon.png" />
+  <link rel="stylesheet" href="assets/styles.css" />
+
+  <meta property="og:title" content="Lessons · Engniter" />
+  <meta property="og:description" content="Browse our comprehensive collection of English lessons designed for all skill levels." />
+  <meta property="og:image" content="assets/logo.png" />
+  <meta name="theme-color" content="#f06736" />
+
+  <!-- Schema -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "name":"Engniter",
+    "url":"https://engniter.com",
+    "logo":"assets/logo.png"
+  }
+  </script>
+
+  <!-- Netlify Identity widget -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <!-- GoTrue.js for custom authentication -->
+  <script src="https://unpkg.com/@supabase/gotrue-js@2.62.0/dist/umd/gotrue.js"></script>
+  <script src="assets/auth.js"></script>
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+
+<header class="nav" role="banner">
+  <div class="container inner">
+    <a class="brand" href="index.html" aria-label="Engniter home">
+      <img src="assets/logo.png" alt="Engniter logo" />
+      <span>ENGNITER</span>
+    </a>
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="lessons.html">Lessons</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="account.html" id="account-nav" class="hidden">Account</a></li>
+        <li><a class="cta" href="login.html" id="signin-nav">Sign In</a></li>
+        <li><a href="#" id="pay-now-nav" class="pay-now-nav hidden">Pay Now — €6.99</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="content" class="container">
+  <section class="hero">
+    <div>
+      <span class="badge">Lesson Library</span>
+      <h1>Teaching Materials for English Teachers</h1>
+      <p>Ready‑to‑use worksheets, readings, and activities to support every classroom level and teaching style.</p>
+    </div>
+    <div class="art"><img src="assets/logo.png" alt="Engniter mascot"></div>
+  </section>
+
+  <section class="grid gap-24">
+    <article class="card filters-card" style="grid-column: 1 / -1">
+      <div class="filters-bar" style="gap:16px;flex-wrap:wrap">
+        <div class="group">
+          <div class="group-title">Level</div>
+          <div class="select">
+            <select id="pdf-filter-level" aria-label="Filter by level">
+              <option value="all" selected>All levels</option>
+              <option value="A1">A1</option>
+              <option value="A2">A2</option>
+              <option value="B1">B1</option>
+              <option value="B2">B2</option>
+              <option value="C1">C1</option>
+            </select>
+          </div>
+        </div>
+        <div class="group">
+          <div class="group-title">Topic</div>
+          <div class="select">
+            <select id="pdf-filter-topic" aria-label="Filter by topic">
+              <option value="all" selected>All topics</option>
+              <option value="science">Science</option>
+              <option value="history">History</option>
+              <option value="culture">Culture</option>
+              <option value="health">Health</option>
+              <option value="technology">Technology</option>
+              <option value="travel">Travel</option>
+              <option value="nature">Nature</option>
+              <option value="psychology">Psychology</option>
+              <option value="law">Law</option>
+              <option value="careers">Careers</option>
+              <option value="legends">Legends</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <section class="grid gap-24" id="pdf-library">
+    <article class="card" style="grid-column: 1 / -1">
+      <h2 class="h3" style="margin-top:0">Downloadable Lesson PDFs</h2>
+      <p class="muted">Browse our collection of PDF lessons. Use <strong>Preview</strong> to view in the browser or <strong>Download</strong> to save a copy.</p>
+    </article>
+
+    <article class="card">
+      <img src="pdf_pictures/accidental-discoveries-that-changed-the-world.png" alt="Accidental Discoveries That Changed the World thumbnail">
+      <h3 class="h3">Accidental Discoveries That Changed the World</h3>
+      <div class="meta-row">
+        <span class="pill level">Level: B2</span>
+        <span class="pill topic">Inventions</span>
+        <span class="pill grammar">Grammar: Past Simple review</span>
+      </div>
+      <p class="desc">Famous inventions created by mistake — vocab, reading, discussion.</p>
+      <div class="actions two">
+        <button class="btn" data-premium-file="accidental-discoveries-that-changed-the-world.pdf">Premium</button>
+        <a class="btn" href="pdfs/accidental-discoveries-that-changed-the-world.pdf" target="_blank" rel="noopener">Preview</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <img src="pdf_pictures/bizarre-laws-around-the-world.png" alt="Bizarre Laws Around the World thumbnail">
+      <h3 class="h3">Bizarre Laws Around the World</h3>
+      <div class="meta-row">
+        <span class="pill level">Level: B2</span>
+        <span class="pill topic">Laws</span>
+        <span class="pill grammar">Grammar: Obligation modals</span>
+      </div>
+      <p class="desc">Fun legal oddities with vocab, reading & grammar review.</p>
+      <div class="actions two">
+        <button class="btn" data-premium-file="bizarre-laws-around-the-world.pdf">Premium</button>
+        <a class="btn" href="pdfs/bizarre-laws-around-the-world.pdf" target="_blank" rel="noopener">Preview</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <img src="pdf_pictures/caffeine-crash.png" alt="Caffeine Crash thumbnail">
+      <h3 class="h3">Caffeine Crash</h3>
+      <div class="meta-row">
+        <span class="pill level">Level: C1</span>
+        <span class="pill topic">Health</span>
+        <span class="pill grammar">Grammar: Causatives</span>
+      </div>
+      <p class="desc">High‑level reading on caffeine & crashes with tasks.</p>
+      <div class="actions two">
+        <button class="btn" data-premium-file="caffeine-crash.pdf">Premium</button>
+        <a class="btn" href="pdfs/caffeine-crash.pdf" target="_blank" rel="noopener">Preview</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <img src="pdf_pictures/conspiracy-theories-people-actually-believed.png" alt="Conspiracy Theories People Actually Believed thumbnail">
+      <h3 class="h3">Conspiracy Theories People Actually Believed</h3>
+      <div class="meta-row">
+        <span class="pill level">Level: B2</span>
+        <span class="pill topic">Culture</span>
+        <span class="pill grammar">Grammar: Reported speech</span>
+      </div>
+      <p class="desc">Skeptical reading on famous conspiracies with vocabulary and discussion prompts.</p>
+      <div class="actions two">
+        <button class="btn" data-premium-file="conspiracy-theories-people-actually-believed.pdf">Premium</button>
+        <a class="btn" href="pdfs/conspiracy-theories-people-actually-believed.pdf" target="_blank" rel="noopener">Preview</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <img src="pdf_pictures/environment-climate-change.png" alt="Environment Climate Change thumbnail">
+      <h3 class="h3">Environment: Climate Change</h3>
+      <div class="meta-row">
+        <span class="pill level">Level: B2</span>
+        <span class="pill topic">Nature</span>
+        <span class="pill grammar">Grammar: Cause & effect</span>
+      </div>
+      <p class="desc">Reading and tasks about climate change with language for causes and results.</p>
+      <div class="actions two">
+        <button class="btn" data-premium-file="environment-climate-change.pdf">Premium</button>
+        <a class="btn" href="pdfs/environment-climate-change.pdf" target="_blank" rel="noopener">Preview</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <img src="pdf_pictures/everyday-items-with-a-dark-history.png" alt="Everyday Items With a Dark History thumbnail">
+      <h3 class="h3">Everyday Items With a Dark History</h3>
+      <div class="meta-row">
+        <span class="pill level">Level: B1</span>
+        <span class="pill topic">History</span>
+        <span class="pill grammar">Grammar: Passive voice</span>
+      </div>
+      <p class="desc">Strange backstories behind common objects. Reading, vocabulary and speaking.</p>
+      <div class="actions two">
+        <button class="btn" data-premium-file="everyday-items-with-a-dark-history.pdf">Premium</button>
+        <a class="btn" href="pdfs/everyday-items-with-a-dark-history.pdf" target="_blank" rel="noopener">Preview</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <img src="pdf_pictures/everyday-things-that-were-invented-by-accident.png" alt="Everyday Things That Were Invented by Accident thumbnail">
+      <h3 class="h3">Everyday Things That Were Invented by Accident</h3>
+      <div class="meta-row">
+        <span class="pill level">Level: B1</span>
+        <span class="pill topic">Inventions</span>
+        <span class="pill grammar">Grammar: Past tenses</span>
+      </div>
+      <p class="desc">How accidental discoveries became products. Past tenses and discussion tasks.</p>
+      <div class="actions two">
+        <button class="btn" data-premium-file="everyday-things-that-were-invented-by-accident.pdf">Premium</button>
+        <a class="btn" href="pdfs/everyday-things-that-were-invented-by-accident.pdf" target="_blank" rel="noopener">Preview</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <img src="pdf_pictures/future-jobs-that-dont-exist-yet.png" alt="Future Jobs That Don't Exist Yet thumbnail">
+      <h3 class="h3">Future Jobs That Don't Exist Yet</h3>
+      <div class="meta-row">
+        <span class="pill level">Level: B2</span>
+        <span class="pill topic">Careers</span>
+        <span class="pill grammar">Grammar: Future forms</span>
+      </div>
+      <p class="desc">Speculative reading on emerging careers with future grammar practice.</p>
+      <div class="actions two">
+        <button class="btn" data-premium-file="future-jobs-that-dont-exist-yet.pdf">Premium</button>
+        <a class="btn" href="pdfs/future-jobs-that-dont-exist-yet.pdf" target="_blank" rel="noopener">Preview</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <img src="pdf_pictures/health-and-fitness.png" alt="Health and Fitness thumbnail">
+      <h3 class="h3">Health and Fitness</h3>
+      <div class="meta-row">
+        <span class="pill level">Level: B1</span>
+        <span class="pill topic">Health</span>
+        <span class="pill grammar">Grammar: Modals of advice</span>
+      </div>
+      <p class="desc">Practical tips on exercise and habits with language for giving advice.</p>
+      <div class="actions two">
+        <button class="btn" data-premium-file="health-and-fitness.pdf">Premium</button>
+        <a class="btn" href="pdfs/health-and-fitness.pdf" target="_blank" rel="noopener">Preview</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <img src="pdf_pictures/lost-civilizations-forgotten-technologies.png" alt="Lost Civilizations Forgotten Technologies thumbnail">
+      <h3 class="h3">Lost Civilizations & Forgotten Technologies</h3>
+      <div class="meta-row">
+        <span class="pill level">Level: C1</span>
+        <span class="pill topic">History</span>
+        <span class="pill grammar">Grammar: Speculation modals</span>
+      </div>
+      <p class="desc">Investigate ancient mysteries and practice speculation and deduction language.</p>
+      <div class="actions two">
+        <button class="btn" data-premium-file="lost-civilizations-forgotten-technologies.pdf">Premium</button>
+        <a class="btn" href="pdfs/lost-civilizations-forgotten-technologies.pdf" target="_blank" rel="noopener">Preview</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <img src="pdf_pictures/objects-that-tell-a-story.png" alt="Objects That Tell a Story thumbnail">
+      <h3 class="h3">Objects That Tell a Story</h3>
+      <div class="meta-row">
+        <span class="pill level">Level: B1</span>
+        <span class="pill topic">Culture</span>
+        <span class="pill grammar">Grammar: Descriptive language</span>
+      </div>
+      <p class="desc">Tell stories through personal items; adjectives, narrative phrases and speaking.</p>
+      <div class="actions two">
+        <button class="btn" data-premium-file="objects-that-tell-a-story.pdf">Premium</button>
+        <a class="btn" href="pdfs/objects-that-tell-a-story.pdf" target="_blank" rel="noopener">Preview</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <img src="pdf_pictures/technology.png" alt="Technology thumbnail">
+      <h3 class="h3">Technology</h3>
+      <div class="meta-row">
+        <span class="pill level">Level: B2</span>
+        <span class="pill topic">Technology</span>
+        <span class="pill grammar">Grammar: Relative clauses</span>
+      </div>
+      <p class="desc">Modern tech trends with vocabulary and reading; practice defining clauses.</p>
+      <div class="actions two">
+        <button class="btn" data-premium-file="technology.pdf">Premium</button>
+        <a class="btn" href="pdfs/technology.pdf" target="_blank" rel="noopener">Preview</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <img src="pdf_pictures/the-psychology-of-fear.png" alt="The Psychology of Fear thumbnail">
+      <h3 class="h3">The Psychology of Fear</h3>
+      <div class="meta-row">
+        <span class="pill level">Level: C1</span>
+        <span class="pill topic">Psychology</span>
+        <span class="pill grammar">Grammar: Abstract nouns</span>
+      </div>
+      <p class="desc">Explore why we feel fear; reading with vocabulary and speaking activities.</p>
+      <div class="actions two">
+        <button class="btn" data-premium-file="the-psychology-of-fear.pdf">Premium</button>
+        <a class="btn" href="pdfs/the-psychology-of-fear.pdf" target="_blank" rel="noopener">Preview</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <img src="pdf_pictures/the-science-of-luck.png" alt="The Science of Luck thumbnail">
+      <h3 class="h3">The Science of Luck</h3>
+      <div class="meta-row">
+        <span class="pill level">Level: B2</span>
+        <span class="pill topic">Science</span>
+        <span class="pill grammar">Grammar: Probability modals</span>
+      </div>
+      <p class="desc">Is luck real? Read and discuss, practicing language of probability.</p>
+      <div class="actions two">
+        <button class="btn" data-premium-file="the-science-of-luck.pdf">Premium</button>
+        <a class="btn" href="pdfs/the-science-of-luck.pdf" target="_blank" rel="noopener">Preview</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <img src="pdf_pictures/things-humans-can-not-do.png" alt="Things Humans Can Not Do thumbnail">
+      <h3 class="h3">Things Humans Can Not Do</h3>
+      <div class="meta-row">
+        <span class="pill level">Level: B1</span>
+        <span class="pill topic">Science</span>
+        <span class="pill grammar">Grammar: Can / can't</span>
+      </div>
+      <p class="desc">Fun science of human limits with modal verbs and vocabulary tasks.</p>
+      <div class="actions two">
+        <button class="btn" data-premium-file="things-humans-can-not-do.pdf">Premium</button>
+        <a class="btn" href="pdfs/things-humans-can-not-do.pdf" target="_blank" rel="noopener">Preview</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <img src="pdf_pictures/travel.png" alt="Travel thumbnail">
+      <h3 class="h3">Travel</h3>
+      <div class="meta-row">
+        <span class="pill level">Level: A2</span>
+        <span class="pill topic">Travel</span>
+        <span class="pill grammar">Grammar: Past Simple</span>
+      </div>
+      <p class="desc">Tourism vocabulary and travel stories with simple past practice.</p>
+      <div class="actions two">
+        <button class="btn" data-premium-file="travel.pdf">Premium</button>
+        <a class="btn" href="pdfs/travel.pdf" target="_blank" rel="noopener">Preview</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <img src="pdf_pictures/urban-legends-in-different-countries.png" alt="Urban Legends in Different Countries thumbnail">
+      <h3 class="h3">Urban Legends in Different Countries</h3>
+      <div class="meta-row">
+        <span class="pill level">Level: B2</span>
+        <span class="pill topic">Legends</span>
+        <span class="pill grammar">Grammar: Narrative tenses</span>
+      </div>
+      <p class="desc">Folklore from around the world with storytelling tasks and vocabulary.</p>
+      <div class="actions two">
+        <button class="btn" data-premium-file="urban-legends-in-different-countries.pdf">Premium</button>
+        <a class="btn" href="pdfs/urban-legends-in-different-countries.pdf" target="_blank" rel="noopener">Preview</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <img src="pdf_pictures/what-if-alternate-history.png" alt="What If Alternate History thumbnail">
+      <h3 class="h3">What If: Alternate History</h3>
+      <div class="meta-row">
+        <span class="pill level">Level: C1</span>
+        <span class="pill topic">History</span>
+        <span class="pill grammar">Grammar: Conditionals</span>
+      </div>
+      <p class="desc">Speculate on alternate timelines using conditional structures.</p>
+      <div class="actions two">
+        <button class="btn" data-premium-file="what-if-alternate-history.pdf">Premium</button>
+        <a class="btn" href="pdfs/what-if-alternate-history.pdf" target="_blank" rel="noopener">Preview</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <img src="pdf_pictures/when-animals-outsmart-humans.png" alt="When Animals Outsmart Humans thumbnail">
+      <h3 class="h3">When Animals Outsmart Humans</h3>
+      <div class="meta-row">
+        <span class="pill level">Level: B2</span>
+        <span class="pill topic">Nature</span>
+        <span class="pill grammar">Grammar: Comparatives</span>
+      </div>
+      <p class="desc">Surprising animal intelligence stories; vocabulary and comparative forms.</p>
+      <div class="actions two">
+        <button class="btn" data-premium-file="when-animals-outsmart-humans.pdf">Premium</button>
+        <a class="btn" href="pdfs/when-animals-outsmart-humans.pdf" target="_blank" rel="noopener">Preview</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <img src="pdf_pictures/when-nature-breaks-the-rules.png" alt="When Nature Breaks the Rules thumbnail">
+      <h3 class="h3">When Nature Breaks the Rules</h3>
+      <div class="meta-row">
+        <span class="pill level">Level: B2</span>
+        <span class="pill topic">Nature</span>
+        <span class="pill grammar">Grammar: Passive voice</span>
+      </div>
+      <p class="desc">Nature’s odd exceptions with reading tasks and passive practice.</p>
+      <div class="actions two">
+        <button class="btn" data-premium-file="when-nature-breaks-the-rules.pdf">Premium</button>
+        <a class="btn" href="pdfs/when-nature-breaks-the-rules.pdf" target="_blank" rel="noopener">Preview</a>
+      </div>
+    </article>
+  </section>
+
+  <section class="grid gap-24">
+    <article class="card">
+      <h2 class="h3" style="margin-top:0">Specialized Topics</h2>
+      <p>Explore lessons tailored to specific interests and needs:</p>
+      <ul class="feature-list">
+        <li>Business English and corporate communication</li>
+        <li>Travel and tourism vocabulary</li>
+        <li>Academic English for students</li>
+        <li>Medical and healthcare terminology</li>
+        <li>Technology and IT vocabulary</li>
+        <li>Creative writing and storytelling</li>
+      </ul>
+    </article>
+
+    <article class="card">
+      <h2 class="h3" style="margin-top:0">Interactive Features</h2>
+      <p>Our lessons include engaging elements to enhance your learning:</p>
+      <ul class="feature-list">
+        <li>Real-time feedback and corrections</li>
+        <li>Audio recordings by native speakers</li>
+        <li>Interactive exercises and quizzes</li>
+        <li>Progress tracking and analytics</li>
+        <li>Mobile-responsive design</li>
+        <li>Offline lesson downloads</li>
+      </ul>
+    </article>
+  </section>
+</main>
+
+<footer class="footer" role="contentinfo">
+  <div class="container inner">
+    <div>© 2025 Engniter • Ignite your English</div>
+    <div><a href="account.html">Account</a> · <a href="about.html#faq">FAQ</a></div>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  Auth.init();
+  // Late-load filter logic after DOM and pills are present
+  const s = document.createElement('script');
+  s.src = 'assets/app.js';
+  document.body.appendChild(s);
+
+  // Remove all Preview buttons and make single-column action rows
+  (function(){
+    var previews = document.querySelectorAll('#pdf-library .actions.two a[href*="pdfs/"]');
+    previews.forEach(function(a){ a.remove(); });
+    var rows = document.querySelectorAll('#pdf-library .actions.two');
+    rows.forEach(function(r){ r.style.gridTemplateColumns = '1fr'; });
+  })();
+
+  // Premium gating for all PDF Download buttons using data-premium-file
+  (function(){
+    const PRICING_URL = 'pricing.html';
+    const FN_URL = '/.netlify/functions/secure-download';
+
+    function currentUser(){
+      return window.netlifyIdentity && typeof window.netlifyIdentity.currentUser === 'function'
+        ? window.netlifyIdentity.currentUser() : null;
+    }
+    function isPaid(user){
+      if (!user) return false;
+      const roles = (user.app_metadata && user.app_metadata.roles) || [];
+      return roles.includes('paid');
+    }
+    function setPremium(btn){ btn.textContent = 'Premium'; }
+    function setDownload(btn){ btn.textContent = 'Download'; }
+
+    async function handleClick(e){
+      const btn = e.currentTarget;
+      const file = btn.getAttribute('data-premium-file');
+      if (!file) return;
+
+      const user = currentUser();
+      if (!user){
+        if (window.netlifyIdentity) window.netlifyIdentity.open('login');
+        return;
+      }
+      if (!isPaid(user)){
+        window.location.href = PRICING_URL;
+        return;
+      }
+
+      try{
+        const token = await user.jwt();
+        const res = await fetch(FN_URL + '?file=' + encodeURIComponent(file), {
+          headers: { Authorization: 'Bearer ' + token }
+        });
+        if (!res.ok){ alert('Download failed: ' + res.status); return; }
+        const blob = await res.blob();
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url; a.download = file; document.body.appendChild(a); a.click(); a.remove();
+        URL.revokeObjectURL(url);
+      }catch(err){ alert('Download failed'); }
+    }
+
+    function refresh(){
+      const user = currentUser();
+      const paid = isPaid(user);
+      document.querySelectorAll('[data-premium-file]').forEach(btn => {
+        if (!btn._bound){ btn.addEventListener('click', handleClick); btn._bound = true; }
+        if (paid) setDownload(btn); else setPremium(btn);
+      });
+    }
+
+    if (window.netlifyIdentity){
+      window.netlifyIdentity.on('init', refresh);
+      window.netlifyIdentity.on('login', function(){ refresh(); window.netlifyIdentity.close(); });
+      window.netlifyIdentity.on('logout', refresh);
+      window.netlifyIdentity.init();
+    }
+    refresh();
+  })();
+});
+</script>
+</body>
+</html>

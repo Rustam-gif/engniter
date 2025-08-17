@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sign In · Engniter</title>
+  <meta name="description" content="Sign in to your Engniter account with Google.">
+
+  <link rel="icon" href="assets/favicon.png" />
+  <link rel="stylesheet" href="assets/styles.css" />
+
+  <meta property="og:title" content="Sign In · Engniter" />
+  <meta property="og:description" content="Sign in to your Engniter account with Google." />
+  <meta property="og:image" content="assets/logo.png" />
+  <meta name="theme-color" content="#f06736" />
+
+  <!-- Schema -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "name":"Engniter",
+    "url":"https://engniter.com",
+    "logo":"assets/logo.png"
+  }
+  </script>
+
+  <!-- Netlify Identity widget -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <!-- GoTrue.js for custom authentication -->
+  <script src="https://unpkg.com/@supabase/gotrue-js@2.62.0/dist/umd/gotrue.js"></script>
+  <script src="assets/auth.js"></script>
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+
+<header class="nav" role="banner">
+  <div class="container inner">
+    <a class="brand" href="index.html" aria-label="Engniter home">
+      <img src="assets/logo.png" alt="Engniter logo" />
+      <span>ENGNITER</span>
+    </a>
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="lessons.html">Lessons</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="account.html" id="account-nav" class="hidden">Account</a></li>
+        <li><a class="cta" href="login.html" id="signin-nav">Sign In</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="content" class="container login-page">
+  <!-- Content for non-logged-in users -->
+  <div id="auth-content">
+    <section class="hero">
+      <div>
+        <span class="badge">Welcome Back</span>
+        <h1>Sign In to Engniter</h1>
+        <p>Access your account and continue learning English with our interactive lessons.</p>
+      </div>
+      <div class="art"><img src="assets/logo.png" alt="Engniter mascot"></div>
+    </section>
+
+    <section class="grid gap-24">
+      <!-- Auth Card -->
+      <article class="card">
+        <h2 class="h3" style="margin-top:0">Sign In</h2>
+        <p class="muted">Use Google or your email and password.</p>
+
+        <div class="stack">
+          <button id="google-btn" class="btn" type="button">Continue with Google</button>
+          <div id="google-msg" class="hidden"><p class="muted">Redirecting to Google…</p></div>
+          <div id="google-err" class="hidden"><p class="error-message">Google sign-in failed. Please try again.</p></div>
+        </div>
+
+        <hr style="margin:16px 0; opacity:.2">
+
+        <form id="email-login" class="stack" aria-label="Email login">
+          <label>Email
+            <input id="login-email" type="email" autocomplete="email" required placeholder="you@example.com" />
+          </label>
+          <label>Password
+            <input id="login-password" type="password" autocomplete="current-password" required placeholder="Your password" />
+          </label>
+          <button class="btn" type="submit">Sign In</button>
+          <div id="login-success" class="hidden"><p class="success-message">Signed in. Redirecting…</p></div>
+          <div id="login-error" class="hidden"><p class="error-message"></p></div>
+        </form>
+
+        <hr style="margin:16px 0; opacity:.2">
+
+        <form id="email-signup" class="stack" aria-label="Email signup">
+          <label>Full name
+            <input id="signup-name" autocomplete="name" placeholder="Your name" />
+          </label>
+          <label>Email
+            <input id="signup-email" type="email" autocomplete="email" required placeholder="you@example.com" />
+          </label>
+          <label>Password
+            <input id="signup-password" type="password" autocomplete="new-password" required placeholder="Create a password" />
+          </label>
+          <button class="btn" type="submit">Create account</button>
+          <div id="signup-success" class="hidden"><p class="success-message">Check your email to confirm your account.</p></div>
+          <div id="signup-error" class="hidden"><p class="error-message"></p></div>
+        </form>
+      </article>
+
+      <!-- Additional info -->
+      <article class="card">
+        <h2 class="h3" style="margin-top:0">Why Google Sign-In?</h2>
+        <p class="muted">We use Google's secure authentication to provide you with:</p>
+        <ul class="feature-list">
+          <li>One-click sign-in with your existing Google account</li>
+          <li>Secure authentication without remembering passwords</li>
+          <li>Automatic account creation on first sign-in</li>
+          <li>Quick access to all your learning progress</li>
+        </ul>
+      </article>
+    </section>
+  </div>
+
+  <!-- Content for logged-in users -->
+  <div id="logged-in-content" class="hidden">
+    <section class="hero">
+      <div>
+        <span class="badge">Welcome Back</span>
+        <h1>You're signed in!</h1>
+        <p>Ready to continue learning? Access your account or browse our lessons.</p>
+        
+        <div style="display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap;">
+          <a href="account.html" class="btn">My Account</a>
+          <a href="lessons.html" class="btn" style="background: var(--muted);">Browse Lessons</a>
+          <button id="logout-btn" class="btn delete-account">Log Out</button>
+        </div>
+      </div>
+      <div class="art"><img src="assets/logo.png" alt="Engniter mascot"></div>
+    </section>
+  </div>
+</main>
+
+<footer class="footer" role="contentinfo">
+  <div class="container inner">
+    <div>© 2025 Engniter • Ignite your English</div>
+    <div><a href="account.html">Account</a> · <a href="about.html#faq">FAQ</a></div>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  Auth.init();
+
+  const authContent = document.getElementById('auth-content');
+  const loggedInContent = document.getElementById('logged-in-content');
+
+  function showLoggedIn(){
+    authContent.classList.add('hidden');
+    loggedInContent.classList.remove('hidden');
+  }
+  function showAuth(){
+    authContent.classList.remove('hidden');
+    loggedInContent.classList.add('hidden');
+  }
+
+  // Handle OAuth callbacks (Google or email confirmation)
+  Auth.handleOAuthCallback({ redirectToAccount: true });
+
+  // If already logged in, show logged-in block
+  const current = Auth.getCurrentUser();
+  if (current){ showLoggedIn(); } else { showAuth(); }
+
+  // Google button
+  const googleBtn = document.getElementById('google-btn');
+  const gMsg = document.getElementById('google-msg');
+  const gErr = document.getElementById('google-err');
+  if (googleBtn){
+    googleBtn.addEventListener('click', function(){
+      gErr.classList.add('hidden');
+      gMsg.classList.remove('hidden');
+      try { Auth.loginWithGoogle(); } catch(e){
+        gMsg.classList.add('hidden');
+        gErr.classList.remove('hidden');
+      }
+    });
+  }
+
+  // Email login
+  const loginForm = document.getElementById('email-login');
+  const loginSuccess = document.getElementById('login-success');
+  const loginErrorWrap = document.getElementById('login-error');
+  const loginError = loginErrorWrap ? loginErrorWrap.querySelector('.error-message') : null;
+  if (loginForm){
+    loginForm.addEventListener('submit', async function(e){
+      e.preventDefault();
+      loginSuccess.classList.add('hidden');
+      loginErrorWrap.classList.add('hidden');
+      const email = document.getElementById('login-email').value.trim();
+      const password = document.getElementById('login-password').value;
+      try {
+        const user = await Auth.login(email, password);
+        if (!Auth.isEmailConfirmed(user)){
+          await Auth.logout();
+          if (loginError){ loginError.textContent = 'Please confirm your email before logging in.'; }
+          loginErrorWrap.classList.remove('hidden');
+          return;
+        }
+        loginSuccess.classList.remove('hidden');
+        setTimeout(function(){ window.location.href = 'account.html'; }, 600);
+      } catch(err){
+        if (loginError){ loginError.textContent = (err && err.message) || 'Sign in failed.'; }
+        loginErrorWrap.classList.remove('hidden');
+      }
+    });
+  }
+
+  // Email signup
+  const signupForm = document.getElementById('email-signup');
+  const signupSuccess = document.getElementById('signup-success');
+  const signupErrorWrap = document.getElementById('signup-error');
+  const signupError = signupErrorWrap ? signupErrorWrap.querySelector('.error-message') : null;
+  if (signupForm){
+    signupForm.addEventListener('submit', async function(e){
+      e.preventDefault();
+      signupSuccess.classList.add('hidden');
+      signupErrorWrap.classList.add('hidden');
+      const name = document.getElementById('signup-name').value.trim();
+      const email = document.getElementById('signup-email').value.trim();
+      const password = document.getElementById('signup-password').value;
+      try {
+        await Auth.signup(email, password, name);
+        signupSuccess.classList.remove('hidden');
+      } catch(err){
+        if (signupError){ signupError.textContent = (err && err.message) || 'Signup failed.'; }
+        signupErrorWrap.classList.remove('hidden');
+      }
+    });
+  }
+});
+</script>
+</body>
+</html>

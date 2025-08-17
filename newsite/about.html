@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>About · Engniter</title>
+  <meta name="description" content="Learn more about Engniter and our mission to make English learning engaging and effective.">
+
+  <link rel="icon" href="assets/favicon.png" />
+  <link rel="stylesheet" href="assets/styles.css" />
+
+  <meta property="og:title" content="About · Engniter" />
+  <meta property="og:description" content="Learn more about Engniter and our mission to make English learning engaging and effective." />
+  <meta property="og:image" content="assets/logo.png" />
+  <meta name="theme-color" content="#f06736" />
+
+  <!-- Schema -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "name":"Engniter",
+    "url":"https://engniter.com",
+    "logo":"assets/logo.png"
+  }
+  </script>
+
+  <!-- Netlify Identity widget -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <!-- GoTrue.js for custom authentication -->
+  <script src="https://unpkg.com/@supabase/gotrue-js@2.62.0/dist/umd/gotrue.js"></script>
+  <script src="assets/auth.js"></script>
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+
+<header class="nav" role="banner">
+  <div class="container inner">
+    <a class="brand" href="index.html" aria-label="Engniter home">
+      <img src="assets/logo.png" alt="Engniter logo" />
+      <span>ENGNITER</span>
+    </a>
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="lessons.html">Lessons</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="account.html" id="account-nav" class="hidden">Account</a></li>
+        <li><a class="cta" href="login.html" id="signin-nav">Sign In</a></li>
+        <li><a href="#" id="pay-now-nav" class="pay-now-nav hidden">Pay Now — €6.99</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="content" class="container">
+  <section class="hero">
+    <div>
+      <span class="badge">About Us</span>
+      <h1>Our Mission</h1>
+      <p>We're passionate about making English learning accessible, engaging, and effective for everyone.</p>
+    </div>
+    <div class="art"><img src="assets/logo.png" alt="Engniter mascot"></div>
+  </section>
+
+  <section class="grid gap-24">
+    <article class="card">
+      <h2 class="h3" style="margin-top:0">Who We Are</h2>
+      <p>Engniter is a team of educators, technologists, and language enthusiasts dedicated to revolutionizing how people learn English.</p>
+      <p>We believe that learning should be engaging, interactive, and tailored to individual needs.</p>
+    </article>
+
+    <article class="card">
+      <h2 class="h3" style="margin-top:0">Our Approach</h2>
+      <p>We combine cutting-edge technology with proven pedagogical methods to create an immersive learning experience.</p>
+      <ul class="feature-list">
+        <li>Interactive lessons with real-time feedback</li>
+        <li>Personalized learning paths</li>
+        <li>Native speaker audio and pronunciation guides</li>
+        <li>Comprehensive progress tracking</li>
+      </ul>
+    </article>
+
+    <article class="card" id="faq">
+      <h2 class="h3" style="margin-top:0">Frequently Asked Questions</h2>
+      
+      <div class="faq-item">
+        <h3 class="h4">What levels do you support?</h3>
+        <p>We support all levels from beginner (A1) to advanced (C1) according to the Common European Framework of Reference for Languages.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3 class="h4">Do you offer business English?</h3>
+        <p>Yes! We have specialized content for business communication, including emails, presentations, and meetings.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3 class="h4">Can I track my progress?</h3>
+        <p>Absolutely! Our platform provides detailed analytics and progress tracking to help you monitor your improvement.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3 class="h4">Is there a free trial?</h3>
+        <p>Yes, we offer a free trial so you can experience our platform before committing to a subscription.</p>
+      </div>
+    </article>
+  </section>
+</main>
+
+<footer class="footer" role="contentinfo">
+  <div class="container inner">
+    <div>© 2025 Engniter • Ignite your English</div>
+    <div><a href="account.html">Account</a> · <a href="about.html#faq">FAQ</a></div>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  Auth.init();
+});
+</script>
+</body>
+</html>

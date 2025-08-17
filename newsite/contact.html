@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contact · Engniter</title>
+  <meta name="description" content="Get in touch with the Engniter team.">
+
+  <link rel="icon" href="assets/favicon.png" />
+  <link rel="stylesheet" href="assets/styles.css" />
+
+  <meta property="og:title" content="Contact · Engniter" />
+  <meta property="og:description" content="Get in touch with the Engniter team." />
+  <meta property="og:image" content="assets/logo.png" />
+  <meta name="theme-color" content="#f06736" />
+
+  <!-- Schema -->
+  <!-- Netlify Identity widget -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <!-- GoTrue.js for custom authentication -->
+  <script src="https://unpkg.com/@supabase/gotrue-js@2.62.0/dist/umd/gotrue.js"></script>
+  <script src="assets/auth.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "name":"Engniter",
+    "url":"https://example.com",
+    "logo":"assets/logo.png"
+  }
+  </script>
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+
+<header class="nav" role="banner">
+  <div class="container inner">
+    <a class="brand" href="index.html" aria-label="Engniter home">
+      <img src="assets/logo.png" alt="Engniter logo" />
+      <span>ENGNITER</span>
+    </a>
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="lessons.html">Lessons</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="account.html" id="account-nav" class="hidden">Account</a></li>
+        <li><a class="cta" href="login.html" id="signin-nav">Sign In</a></li>
+        <li><a href="#" id="pay-now-nav" class="pay-now-nav hidden">Pay Now — €6.99</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="content" class="container">
+  <section class="hero">
+    <div>
+      <span class="badge">Get in Touch</span>
+      <h1>Contact Us</h1>
+      <p>Have questions, suggestions, or partnership ideas? We'd love to hear from you.</p>
+      <p><a href="login.html" class="btn">Sign In to Your Account</a></p>
+    </div>
+    <div class="art"><img src="assets/logo.png" alt="Engniter mascot"></div>
+  </section>
+
+  <section class="grid gap-24">
+    <!-- Contact form (Netlify Forms) -->
+    <article class="card">
+      <h2 class="h3" style="margin-top:0">Send us a message</h2>
+      <p class="muted">Fill out the form below and we'll get back to you within 1-2 business days.</p>
+
+      <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks.html" aria-label="Contact form" class="stack">
+        <!-- Required hidden input -->
+        <input type="hidden" name="form-name" value="contact" />
+        <!-- Honeypot -->
+        <p class="hidden">
+          <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+        </p>
+
+        <label>Full name
+          <input name="name" required autocomplete="name" placeholder="Your name" />
+        </label>
+
+        <label>Email
+          <input name="email" type="email" required autocomplete="email" placeholder="you@example.com" />
+        </label>
+
+        <label>Message
+          <textarea name="message" rows="6" placeholder="Tell us what you teach and what you need"></textarea>
+        </label>
+
+        <!-- Optional Netlify reCAPTCHA (uncomment after enabling in site settings) -->
+        <!-- <div data-netlify-recaptcha="true"></div> -->
+
+        <button class="btn" type="submit">Send message</button>
+        <p class="fine">We'll reply within 1‑2 business days.</p>
+      </form>
+    </article>
+
+    <!-- Account access info -->
+    <article class="card">
+      <h2 class="h3" style="margin-top:0">Account Access</h2>
+      <p class="muted">Need to access your Engniter account?</p>
+      
+      <div class="stack">
+        <a href="login.html" class="btn">Sign In</a>
+        <p class="fine">Don't have an account? Contact us above and we'll help you get started.</p>
+      </div>
+    </article>
+  </section>
+</main>
+
+<footer class="footer" role="contentinfo">
+  <div class="container inner">
+    <div>© 2025 Engniter • Ignite your English</div>
+    <div><a href="contact.html">Contact</a> · <a href="about.html#faq">FAQ</a></div>
+  </div>
+</footer>
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  Auth.init();
+});
+</script>
+</body></html>

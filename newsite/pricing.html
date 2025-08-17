@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pricing · Engniter</title>
+  <meta name="description" content="Choose the perfect plan for your English learning journey with Engniter.">
+
+  <link rel="icon" href="assets/favicon.png" />
+  <link rel="stylesheet" href="assets/styles.css" />
+
+  <meta property="og:title" content="Pricing · Engniter" />
+  <meta property="og:description" content="Choose the perfect plan for your English learning journey with Engniter." />
+  <meta property="og:image" content="assets/logo.png" />
+  <meta name="theme-color" content="#f06736" />
+
+  <!-- Schema -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "name":"Engniter",
+    "url":"https://engniter.com",
+    "logo":"assets/logo.png"
+  }
+  </script>
+
+  <!-- Netlify Identity widget -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <!-- GoTrue.js for custom authentication -->
+  <script src="https://unpkg.com/@supabase/gotrue-js@2.62.0/dist/umd/gotrue.js"></script>
+  <script src="assets/auth.js"></script>
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+
+<header class="nav" role="banner">
+  <div class="container inner">
+    <a class="brand" href="index.html" aria-label="Engniter home">
+      <img src="assets/logo.png" alt="Engniter logo" />
+      <span>ENGNITER</span>
+    </a>
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="lessons.html">Lessons</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="account.html" id="account-nav" class="hidden">Account</a></li>
+        <li><a class="cta" href="login.html" id="signin-nav">Sign In</a></li>
+        <li><a href="#" id="pay-now-nav" class="pay-now-nav hidden">Pay Now — €6.99</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="content" class="container">
+  <section class="hero">
+    <div>
+      <span class="badge">Pricing</span>
+      <h1>Choose Your Plan</h1>
+      <p>Flexible pricing options designed to fit your learning needs and budget.</p>
+    </div>
+    <div class="art"><img src="assets/logo.png" alt="Engniter mascot"></div>
+  </section>
+
+  <section class="grid gap-24">
+    <article class="card">
+      <h2 class="h3" style="margin-top:0">Free Trial</h2>
+      <p class="price">$0</p>
+      <p class="muted">Perfect for getting started</p>
+      <ul class="feature-list">
+        <li>Access to 5 basic lessons</li>
+        <li>Basic progress tracking</li>
+        <li>Community support</li>
+        <li>7-day trial period</li>
+      </ul>
+      <div class="stack">
+        <a href="login.html" class="btn">Start Free Trial</a>
+      </div>
+    </article>
+
+    <article class="card featured">
+      <h2 class="h3" style="margin-top:0">Monthly Plan</h2>
+      <p class="price"><a class="price-link pay-now-price pay-now-btn" href="#">€6.99</a><span class="period">/lesson</span></p>
+      <p class="muted">Most popular choice</p>
+      <ul class="feature-list">
+        <li>Access to all lessons</li>
+        <li>Advanced progress tracking</li>
+        <li>Priority support</li>
+        <li>Cancel anytime</li>
+        <li>Mobile app access</li>
+      </ul>
+      <div class="stack">
+        <a href="#" class="btn pay-now pay-now-btn">Pay Now — €6.99</a>
+      </div>
+    </article>
+  </section>
+
+  <section class="grid gap-24">
+    <article class="card">
+      <h2 class="h3" style="margin-top:0">What's Included</h2>
+      <p>All plans include our core features designed to accelerate your English learning:</p>
+      <ul class="feature-list">
+        <li>Interactive lessons with real-time feedback</li>
+        <li>Personalized learning paths</li>
+        <li>Native speaker audio and pronunciation guides</li>
+        <li>Comprehensive progress tracking</li>
+        <li>Mobile-responsive design</li>
+        <li>Regular content updates</li>
+      </ul>
+    </article>
+
+    <article class="card">
+      <h2 class="h3" style="margin-top:0">Money-Back Guarantee</h2>
+      <p>We're confident you'll love our platform. If you're not satisfied within 30 days, we'll give you a full refund.</p>
+      <p class="fine">No questions asked. Your success is our priority.</p>
+    </article>
+  </section>
+
+  <section class="grid gap-24">
+    <article class="card">
+      <h2 class="h3" style="margin-top:0">Purchase Lesson Access</h2>
+      <p class="muted">Unlock the lesson instantly for <strong>€6.99</strong>.</p>
+      <div class="stack">
+        <a class="btn pay-now pay-now-btn" href="#">Pay Now — €6.99</a>
+        <p class="fine">You’ll be redirected to our secure payment page.</p>
+      </div>
+    </article>
+  </section>
+</main>
+
+<footer class="footer" role="contentinfo">
+  <div class="container inner">
+    <div>© 2025 Engniter • Ignite your English</div>
+    <div><a href="account.html">Account</a> · <a href="about.html#faq">FAQ</a></div>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  Auth.init();
+});
+</script>
+</body>
+</html>
