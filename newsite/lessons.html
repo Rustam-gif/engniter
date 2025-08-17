@@ -475,8 +475,16 @@ document.addEventListener('DOMContentLoaded', function(){
       const roles = (user.app_metadata && user.app_metadata.roles) || [];
       return roles.includes('paid');
     }
-    function setPremium(btn){ btn.textContent = 'Premium'; }
-    function setDownload(btn){ btn.textContent = 'Download'; }
+    function setPremium(btn){
+      btn.textContent = 'Premium';
+      btn.classList.remove('download');
+      btn.classList.add('premium');
+    }
+    function setDownload(btn){
+      btn.textContent = 'Download';
+      btn.classList.remove('premium');
+      btn.classList.add('download');
+    }
 
     async function handleClick(e){
       const btn = e.currentTarget;
