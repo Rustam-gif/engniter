@@ -45,10 +45,11 @@ nav .pay-now-nav:hover{filter:brightness(.97);text-decoration:none}
 
 .btn{display:inline-grid;grid-auto-flow:column;align-items:center;gap:10px;
   background:var(--accent);color:#fff;padding:12px 16px;border-radius:12px;font-weight:700;
-  text-decoration:none;border:none;cursor:pointer}
+  text-decoration:none;border:none;cursor:pointer;position:relative;overflow:hidden;
+  transition:transform .2s ease, box-shadow .2s ease, filter .2s ease}
 .btn.pay-now{background:#0ea5e9}
 .btn.pay-now:hover{filter:brightness(.97)}
-.btn:hover{filter:brightness(.97)}
+.btn:hover{filter:brightness(.97);transform:translateY(-1px);box-shadow:0 10px 20px rgba(0,0,0,.08)}
 .btn:focus-visible{outline:2px solid #000;outline-offset:2px}
 
 .id-actions{display:grid;gap:10px;grid-template-columns:1fr}
@@ -389,6 +390,13 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
 .actions.two{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:none}
 .actions.two .btn{width:100%;justify-content:center}
 .actions.two .btn:last-child{background:#000}
+
+/* Themed premium/download buttons */
+.btn.premium,.btn.download{background:#414866 !important}
+.btn.premium::after,.btn.download::after{content:"";position:absolute;top:-50%;left:-30%;width:30%;height:200%;
+  background:linear-gradient(120deg, rgba(255,255,255,.25), rgba(255,255,255,0));
+  transform:skewX(-20deg);animation:btn-shine 2.6s infinite;pointer-events:none}
+@keyframes btn-shine{0%{left:-30%}100%{left:130%}}
 
 /* Fallback for older two-column stacks in lessons */
 .stack[style*="grid-template-columns:1fr 1fr"] .btn{width:100%;justify-content:center}
