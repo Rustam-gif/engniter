@@ -115,7 +115,9 @@
     const thumb = document.createElement('div'); thumb.className='thumb'; thumb.style.left='50%'; thumb.setAttribute('role','slider'); thumb.setAttribute('aria-valuemin','0'); thumb.setAttribute('aria-valuemax','5'); thumb.setAttribute('tabindex','0'); rail.appendChild(thumb);
     const badge = document.createElement('div'); badge.className='badge'; badge.textContent='All Levels'; rail.appendChild(badge);
     const labels = document.createElement('div'); labels.className='labels';
-    const labelBtns = ['Beginner','Intermediate','Advanced','Proficient'].map((txt,i)=>{ const b=document.createElement('button'); b.type='button'; b.className='label'; b.textContent=txt; const positions=[6,50,75,94]; b.style.left=positions[i]+'%'; labels.appendChild(b); return b; });
+    const positions=[6,50,75,94];
+    const names=['Beginner','Intermediate','Advanced','Proficient'];
+    const labelBtns = names.map((txt,i)=>{ const b=document.createElement('button'); b.type='button'; b.className='label'; b.textContent=txt; b.style.left=positions[i]+'%'; labels.appendChild(b); return b; });
     railRoot.appendChild(labels);
 
     // Match the tick positions exactly (in percentages)
@@ -127,7 +129,8 @@
       tickEls.forEach(el=>el.classList.remove('active'));
       const map = { 'A1':0,'A2':1,'B1':2,'B2':3,'C1':4 };
       if (l!=='ALL' && map[l]!=null) tickEls[map[l]].classList.add('active');
-      labelBtns.forEach((b,i)=>{ b.classList.toggle('active', ['A1','A2','B1','B2','C1'][i]===l); });
+      const seq = ['A1','A2','B1','B2','C1'];
+      labelBtns.forEach((b,i)=>{ b.classList.toggle('active', seq[i]===l); });
       thumb.setAttribute('aria-valuenow', l==='ALL'? '0' : String(['A1','A2','B1','B2','C1'].indexOf(l)+1));
       render();
     }
