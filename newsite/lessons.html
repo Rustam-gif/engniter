@@ -610,6 +610,13 @@ document.addEventListener('DOMContentLoaded', function(){
   (function(){
     const PRICING_URL = 'pricing.html';
     const FN_URL = '/.netlify/functions/secure-download';
+    const FREE_FILES = new Set([
+      'travel.pdf',
+      'the-science-of-luck.pdf',
+      'objects-that-tell-a-story.pdf',
+      'The-Power-of-Networking(B1-B2).pdf',
+      'Brand.pdf'
+    ]);
 
     function currentUser(){
       return window.netlifyIdentity && typeof window.netlifyIdentity.currentUser === 'function'
@@ -620,6 +627,7 @@ document.addEventListener('DOMContentLoaded', function(){
       const roles = (user.app_metadata && user.app_metadata.roles) || [];
       return roles.includes('paid');
     }
+    function isFreeFile(file){ return FREE_FILES.has(file); }
     function setPremium(btn){
       btn.textContent = 'Premium';
       btn.classList.remove('download');
@@ -637,6 +645,22 @@ document.addEventListener('DOMContentLoaded', function(){
       if (!file) return;
 
       const user = currentUser();
+
+      // Free files: allow anonymous download without login/token
+      if (isFreeFile(file)){
+        try{
+          const res = await fetch(FN_URL + '?file=' + encodeURIComponent(file));
+          if (!res.ok){ alert('Download failed: ' + res.status); return; }
+          const blob = await res.blob();
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url; a.download = file; document.body.appendChild(a); a.click(); a.remove();
+          URL.revokeObjectURL(url);
+        }catch(err){ alert('Download failed'); }
+        return;
+      }
+
+      // Premium files: require login and paid role
       if (!user){
         if (window.netlifyIdentity) window.netlifyIdentity.open('login');
         return;
@@ -665,7 +689,8 @@ document.addEventListener('DOMContentLoaded', function(){
       const paid = isPaid(user);
       document.querySelectorAll('[data-premium-file]').forEach(btn => {
         if (!btn._bound){ btn.addEventListener('click', handleClick); btn._bound = true; }
-        if (paid) setDownload(btn); else setPremium(btn);
+        const file = btn.getAttribute('data-premium-file');
+        if (isFreeFile(file) || paid) setDownload(btn); else setPremium(btn);
       });
     }
 
