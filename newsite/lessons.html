@@ -653,35 +653,20 @@ document.addEventListener('DOMContentLoaded', function(){
 
       const user = currentUser();
 
-      // Free files: allow anonymous download without login/token
-      if (isFreeFile(file)){
-        try{
-          const res = await fetch(FN_URL + '?file=' + encodeURIComponent(file));
-          if (!res.ok){ alert('Download failed: ' + res.status); return; }
-          const blob = await res.blob();
-          const url = URL.createObjectURL(blob);
-          const a = document.createElement('a');
-          a.href = url; a.download = file; document.body.appendChild(a); a.click(); a.remove();
-          URL.revokeObjectURL(url);
-        }catch(err){ alert('Download failed'); }
-        return;
-      }
-
-      // Premium files: require login and paid role
+      // Require login for all downloads (including free ones)
       if (!user){
         if (window.netlifyIdentity) window.netlifyIdentity.open('login');
         return;
       }
-      if (!isPaid(user)){
+      // If not paid and not free, gate to pricing
+      if (!isFreeFile(file) && !isPaid(user)){
         window.location.href = PRICING_URL;
         return;
       }
 
       try{
         const token = await user.jwt();
-        const res = await fetch(FN_URL + '?file=' + encodeURIComponent(file), {
-          headers: { Authorization: 'Bearer ' + token }
-        });
+        const res = await fetch(FN_URL + '?file=' + encodeURIComponent(file), { headers: { Authorization: 'Bearer ' + token } });
         if (!res.ok){ alert('Download failed: ' + res.status); return; }
         const blob = await res.blob();
         const url = URL.createObjectURL(blob);
