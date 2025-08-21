@@ -39,6 +39,8 @@
   const topicChips = document.getElementById('pdf-topic-chips');
   const freeOnly = document.getElementById('pdf-filter-free');
   const freeSwitch = document.getElementById('pdf-free-switch');
+  const allToggle = document.getElementById('pdf-all-toggle');
+  const allSwitch = document.getElementById('pdf-all-switch');
   const railRoot = document.getElementById('pdf-level-rail');
   if (!levelSelect || !topicSelect) return;
 
@@ -83,15 +85,15 @@
 
   // Populate topic controls
   if (topicSelect){
-    topicSelect.innerHTML = '';
-    const optAllT = document.createElement('option');
-    optAllT.value = 'all'; optAllT.textContent = 'All topics';
-    topicSelect.appendChild(optAllT);
-    Array.from(topicMap.entries()).sort((a,b)=>a[1].localeCompare(b[1])).forEach(([value,label])=>{
-      const opt = document.createElement('option');
-      opt.value = value; opt.textContent = label;
-      topicSelect.appendChild(opt);
-    });
+  topicSelect.innerHTML = '';
+  const optAllT = document.createElement('option');
+  optAllT.value = 'all'; optAllT.textContent = 'All topics';
+  topicSelect.appendChild(optAllT);
+  Array.from(topicMap.entries()).sort((a,b)=>a[1].localeCompare(b[1])).forEach(([value,label])=>{
+    const opt = document.createElement('option');
+    opt.value = value; opt.textContent = label;
+    topicSelect.appendChild(opt);
+  });
   }
   if (topicChips){
     topicChips.querySelectorAll('[data-topic]').forEach(btn=>{
@@ -129,6 +131,9 @@
       badge.style.left = badgePos+'%';
       levelSelect.value = l==='ALL' ? 'all' : l; badge.textContent = (l==='ALL' ? 'All Levels' : l);
       badge.classList.toggle('all', l==='ALL');
+      if (allToggle){ allToggle.checked = (l==='ALL'); }
+      if (allSwitch){ allSwitch.classList.toggle('on', l==='ALL'); }
+      rail.classList.toggle('all-on', l==='ALL');
       // visual states
       tickEls.forEach(el=>el.classList.remove('active'));
       const map = { 'A1':0,'A2':1,'B1':2,'B2':3,'C1':4 };
@@ -227,6 +232,17 @@
   if (freeSwitch){
     freeSwitch.addEventListener('click', ()=>{ freeOnly.checked = !freeOnly.checked; freeSwitch.classList.toggle('on', freeOnly.checked); render(); });
     freeSwitch.classList.toggle('on', !!freeOnly.checked);
+  }
+
+  // All-levels toggle sync
+  if (allSwitch){
+    allSwitch.addEventListener('click', ()=>{
+      const on = !(allToggle && allToggle.checked);
+      if (allToggle) allToggle.checked = on;
+      allSwitch.classList.toggle('on', on);
+      setLevel(on ? 'ALL' : (levelSelect.value==='all' ? 'A1' : levelSelect.value));
+    });
+    allSwitch.classList.toggle('on', !!(allToggle && allToggle.checked));
   }
   // If URL has ?free=1, pre-enable the free-only filter
   try{
