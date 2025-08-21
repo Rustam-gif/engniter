@@ -115,7 +115,8 @@
     const ticks = [6,25,50,75,94];
     const tickEls = ticks.map(p=>{ const t=document.createElement('div'); t.className='tick'; t.style.left=p+'%'; rail.appendChild(t); return t; });
     const thumb = document.createElement('div'); thumb.className='thumb'; thumb.style.left='50%'; thumb.setAttribute('role','slider'); thumb.setAttribute('aria-valuemin','0'); thumb.setAttribute('aria-valuemax','5'); thumb.setAttribute('tabindex','0'); rail.appendChild(thumb);
-    const badge = document.createElement('div'); badge.className='badge'; badge.textContent='All Levels'; rail.appendChild(badge);
+    const badge = document.createElement('div'); badge.className='badge'; rail.appendChild(badge);
+    const allBadge = document.createElement('div'); allBadge.className='all-badge'; allBadge.textContent='All Levels Selected'; rail.appendChild(allBadge);
     const labels = document.createElement('div'); labels.className='labels';
     const names=['Beginner','Intermediate','Advanced','Proficient'];
     const labelBtns = names.map((txt)=>{ const b=document.createElement('button'); b.type='button'; b.className='label'; b.textContent=txt; labels.appendChild(b); return b; });
@@ -126,11 +127,16 @@
     function setLevel(l){
       const base = levelPositions[l] ?? 50;
       const thumbPos = (l==='ALL') ? 6 : base;
-      const badgePos = (l==='ALL') ? 50 : thumbPos;
+      const badgePos = thumbPos;
       thumb.style.left = thumbPos+'%';
       badge.style.left = badgePos+'%';
-      levelSelect.value = l==='ALL' ? 'all' : l; badge.textContent = (l==='ALL' ? 'All Levels' : l);
-      badge.classList.toggle('all', l==='ALL');
+      levelSelect.value = l==='ALL' ? 'all' : l;
+      // Show badge only for specific levels
+      if (l==='ALL'){
+        badge.style.display = 'none';
+      } else {
+        badge.textContent = l; badge.style.display = 'block';
+      }
       if (allToggle){ allToggle.checked = (l==='ALL'); }
       if (allSwitch){ allSwitch.classList.toggle('on', l==='ALL'); }
       rail.classList.toggle('all-on', l==='ALL');
@@ -151,6 +157,8 @@
       const entries = Object.entries(levelPositions);
       let best = 'ALL', bestd = 1e9;
       entries.forEach(([lvl, p])=>{ const d = Math.abs(p/100 - pct); if (d <= bestd){ bestd=d; best=lvl; } });
+      // If we are in ALL mode, clicking should switch to nearest specific
+      if (best==='ALL') best = 'A1';
       setLevel(best);
     });
 
@@ -177,7 +185,7 @@
       entries.forEach(([lvl, p])=>{ const d = Math.abs(p/100 - pct); if (d <= bestd){ bestd=d; best=lvl; } });
       return best;
     }
-    function onMove(ev){ if (!dragging) return; const rect=rail.getBoundingClientRect(); const clientX = ev.touches? ev.touches[0].clientX : ev.clientX; const x=(clientX-rect.left)/rect.width; const pct=Math.max(0,Math.min(1,x)); setLevel(positionToLevel(pct)); }
+    function onMove(ev){ if (!dragging) return; const rect=rail.getBoundingClientRect(); const clientX = ev.touches? ev.touches[0].clientX : ev.clientX; const x=(clientX-rect.left)/rect.width; const pct=Math.max(0,Math.min(1,x)); const lvl = positionToLevel(pct); if (lvl==='ALL') return; setLevel(lvl); }
     function startDrag(e){ dragging=true; railRoot.classList.add('dragging'); onMove(e); }
     function endDrag(){ dragging=false; railRoot.classList.remove('dragging'); }
     rail.addEventListener('mousedown', e=>{ startDrag(e); document.addEventListener('mousemove', onMove); document.addEventListener('mouseup', ()=>{ document.removeEventListener('mousemove', onMove); endDrag(); }, { once:true }); });
