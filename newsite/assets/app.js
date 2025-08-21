@@ -36,6 +36,7 @@
 (function(){
   const levelSelect = document.getElementById('pdf-filter-level');
   const topicSelect = document.getElementById('pdf-filter-topic');
+  const freeOnly = document.getElementById('pdf-filter-free');
   if (!levelSelect || !topicSelect) return;
 
   const cards = Array.from(document.querySelectorAll('#pdf-library > article.card'))
@@ -44,6 +45,15 @@
 
   const slug = (s)=> (s||'').toLowerCase().trim().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
   const titleCase = (s)=> (s||'').replace(/\w\S*/g, t=>t.charAt(0).toUpperCase()+t.slice(1).toLowerCase());
+
+  // Free files set (lowercased)
+  const FREE_FILES = new Set([
+    'travel.pdf',
+    'the-science-of-luck.pdf',
+    'objects-that-tell-a-story.pdf',
+    'the-power-of-networking(b1-b2).pdf',
+    'brand.pdf'
+  ]);
 
   // Annotate and collect options
   const topicMap = new Map(); // slug -> display label
@@ -60,6 +70,12 @@
     const level = match ? match[0].toUpperCase() : 'ALL';
     card.dataset.level = level;
     levelSet.add(level);
+
+    // Mark whether this card represents a free file
+    const btn = card.querySelector('[data-premium-file]');
+    const fname = (btn && btn.getAttribute('data-premium-file')) || '';
+    const isFree = FREE_FILES.has((fname||'').toLowerCase());
+    card.dataset.free = isFree ? 'true' : 'false';
   });
 
   // Populate topic dropdown dynamically
@@ -86,14 +102,17 @@
     const activeTopic = topicSelect.value;
     const rawLevel = levelSelect.value;
     const activeLevel = rawLevel && rawLevel !== 'all' ? rawLevel.toUpperCase() : 'ALL';
+    const onlyFree = !!(freeOnly && freeOnly.checked);
     cards.forEach(card=>{
       const topicOk = (activeTopic==='all' || card.dataset.topic===activeTopic);
       const levelOk = (activeLevel==='ALL' || card.dataset.level===activeLevel);
-      card.style.display = (topicOk && levelOk) ? '' : 'none';
+      const freeOk = (!onlyFree || card.dataset.free === 'true');
+      card.style.display = (topicOk && levelOk && freeOk) ? '' : 'none';
     });
   }
 
   levelSelect.addEventListener('change', render);
   topicSelect.addEventListener('change', render);
+  freeOnly && freeOnly.addEventListener('change', render);
   render();
 })();
