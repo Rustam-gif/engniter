@@ -97,7 +97,9 @@
   if (railRoot){
     railRoot.innerHTML = '';
     const rail = document.createElement('div'); rail.className = 'rail'; railRoot.appendChild(rail);
-    const ticks = [5,25,50,75,95];
+    // Positions must align perfectly with visual circles on the rail
+    // Use slight padding to avoid clipping at edges
+    const ticks = [6,25,50,75,94];
     const tickEls = ticks.map(p=>{ const t=document.createElement('div'); t.className='tick'; t.style.left=p+'%'; rail.appendChild(t); return t; });
     const thumb = document.createElement('div'); thumb.className='thumb'; thumb.style.left='50%'; thumb.setAttribute('role','slider'); thumb.setAttribute('aria-valuemin','0'); thumb.setAttribute('aria-valuemax','5'); thumb.setAttribute('tabindex','0'); rail.appendChild(thumb);
     const badge = document.createElement('div'); badge.className='badge'; badge.textContent='All Levels'; rail.appendChild(badge);
@@ -105,7 +107,8 @@
     const labelBtns = ['Beginner','Intermediate','Advanced','Proficient'].map(txt=>{ const b=document.createElement('button'); b.type='button'; b.textContent=txt; labels.appendChild(b); return b; });
     railRoot.appendChild(labels);
 
-    const levelPositions = { 'ALL':50, 'A1':5, 'A2':20, 'B1':40, 'B2':65, 'C1':90 };
+    // Match the tick positions exactly (in percentages)
+    const levelPositions = { 'ALL':50, 'A1':6, 'A2':25, 'B1':50, 'B2':75, 'C1':94 };
     function setLevel(l){
       const pos = levelPositions[l] ?? 50; thumb.style.left = pos+'%'; badge.style.left = pos+'%';
       levelSelect.value = l==='ALL' ? 'all' : l; badge.textContent = (l==='ALL' ? 'All Levels' : l);
@@ -152,10 +155,12 @@
       return best;
     }
     function onMove(ev){ if (!dragging) return; const rect=rail.getBoundingClientRect(); const clientX = ev.touches? ev.touches[0].clientX : ev.clientX; const x=(clientX-rect.left)/rect.width; const pct=Math.max(0,Math.min(1,x)); setLevel(positionToLevel(pct)); }
-    rail.addEventListener('mousedown', e=>{ dragging=true; onMove(e); document.addEventListener('mousemove', onMove); document.addEventListener('mouseup', ()=>{ dragging=false; document.removeEventListener('mousemove', onMove); }, { once:true }); });
-    rail.addEventListener('touchstart', e=>{ dragging=true; onMove(e); document.addEventListener('touchmove', onMove,{passive:false}); document.addEventListener('touchend', ()=>{ dragging=false; document.removeEventListener('touchmove', onMove); }, { once:true }); },{passive:false});
-    thumb.addEventListener('mousedown', e=>{ e.stopPropagation(); dragging=true; document.addEventListener('mousemove', onMove); document.addEventListener('mouseup', ()=>{ dragging=false; document.removeEventListener('mousemove', onMove); }, { once:true }); });
-    thumb.addEventListener('touchstart', e=>{ e.stopPropagation(); dragging=true; document.addEventListener('touchmove', onMove,{passive:false}); document.addEventListener('touchend', ()=>{ dragging=false; document.removeEventListener('touchmove', onMove); }, { once:true }); },{passive:false});
+    function startDrag(e){ dragging=true; railRoot.classList.add('dragging'); onMove(e); }
+    function endDrag(){ dragging=false; railRoot.classList.remove('dragging'); }
+    rail.addEventListener('mousedown', e=>{ startDrag(e); document.addEventListener('mousemove', onMove); document.addEventListener('mouseup', ()=>{ document.removeEventListener('mousemove', onMove); endDrag(); }, { once:true }); });
+    rail.addEventListener('touchstart', e=>{ startDrag(e); document.addEventListener('touchmove', onMove,{passive:false}); document.addEventListener('touchend', ()=>{ document.removeEventListener('touchmove', onMove); endDrag(); }, { once:true }); },{passive:false});
+    thumb.addEventListener('mousedown', e=>{ e.stopPropagation(); startDrag(e); document.addEventListener('mousemove', onMove); document.addEventListener('mouseup', ()=>{ document.removeEventListener('mousemove', onMove); endDrag(); }, { once:true }); });
+    thumb.addEventListener('touchstart', e=>{ e.stopPropagation(); startDrag(e); document.addEventListener('touchmove', onMove,{passive:false}); document.addEventListener('touchend', ()=>{ document.removeEventListener('touchmove', onMove); endDrag(); }, { once:true }); },{passive:false});
 
     // Clickable labels
     const seq = ['A1','A2','B1','B2','C1'];
