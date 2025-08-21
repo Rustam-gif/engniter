@@ -115,9 +115,8 @@
     const thumb = document.createElement('div'); thumb.className='thumb'; thumb.style.left='50%'; thumb.setAttribute('role','slider'); thumb.setAttribute('aria-valuemin','0'); thumb.setAttribute('aria-valuemax','5'); thumb.setAttribute('tabindex','0'); rail.appendChild(thumb);
     const badge = document.createElement('div'); badge.className='badge'; badge.textContent='All Levels'; rail.appendChild(badge);
     const labels = document.createElement('div'); labels.className='labels';
-    const positions=[6,50,75,94];
     const names=['Beginner','Intermediate','Advanced','Proficient'];
-    const labelBtns = names.map((txt,i)=>{ const b=document.createElement('button'); b.type='button'; b.className='label'; b.textContent=txt; b.style.left=positions[i]+'%'; labels.appendChild(b); return b; });
+    const labelBtns = names.map((txt)=>{ const b=document.createElement('button'); b.type='button'; b.className='label'; b.textContent=txt; labels.appendChild(b); return b; });
     railRoot.appendChild(labels);
 
     // Match the tick positions exactly (in percentages)
