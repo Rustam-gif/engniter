@@ -108,7 +108,7 @@
     railRoot.appendChild(labels);
 
     // Match the tick positions exactly (in percentages)
-    const levelPositions = { 'ALL':50, 'A1':6, 'A2':25, 'B1':50, 'B2':75, 'C1':94 };
+    const levelPositions = { 'ALL':2, 'A1':6, 'A2':25, 'B1':50, 'B2':75, 'C1':94 };
     function setLevel(l){
       const pos = levelPositions[l] ?? 50; thumb.style.left = pos+'%'; badge.style.left = pos+'%';
       levelSelect.value = l==='ALL' ? 'all' : l; badge.textContent = (l==='ALL' ? 'All Levels' : l);
