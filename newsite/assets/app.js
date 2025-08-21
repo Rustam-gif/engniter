@@ -37,6 +37,7 @@
   const levelSelect = document.getElementById('pdf-filter-level');
   const topicSelect = document.getElementById('pdf-filter-topic');
   const freeOnly = document.getElementById('pdf-filter-free');
+  const railRoot = document.getElementById('pdf-level-rail');
   if (!levelSelect || !topicSelect) return;
 
   const cards = Array.from(document.querySelectorAll('#pdf-library > article.card'))
@@ -89,14 +90,57 @@
     topicSelect.appendChild(opt);
   });
 
-  // Populate level dropdown dynamically
+  // Build custom level rail (Beginner A1 → Proficient C1)
   const order = ['ALL','A1','A2','B1','B2','C1'];
   levelSelect.innerHTML = '';
-  order.filter(l=>levelSet.has(l)).forEach(l=>{
-    const opt = document.createElement('option');
-    opt.value = l==='ALL' ? 'all' : l; opt.textContent = l==='ALL' ? 'All levels' : l;
-    levelSelect.appendChild(opt);
-  });
+  order.forEach(l=>{ const opt=document.createElement('option'); opt.value = l==='ALL'?'all':l; opt.textContent = l; levelSelect.appendChild(opt); });
+  if (railRoot){
+    railRoot.innerHTML = '';
+    const rail = document.createElement('div'); rail.className = 'rail'; railRoot.appendChild(rail);
+    const ticks = [0,25,50,75,100];
+    ticks.forEach(p=>{ const t=document.createElement('div'); t.className='tick'; t.style.left=p+'%'; rail.appendChild(t); });
+    const thumb = document.createElement('div'); thumb.className='thumb'; thumb.style.left='50%'; rail.appendChild(thumb);
+    const badge = document.createElement('div'); badge.className='badge'; badge.textContent='All Levels'; rail.appendChild(badge);
+    const labels = document.createElement('div'); labels.className='labels'; labels.innerHTML = '<span>Beginner</span><span>Intermediate</span><span>Advanced</span><span>Proficient</span>'; railRoot.appendChild(labels);
+
+    const levelPositions = { 'ALL':50, 'A1':5, 'A2':20, 'B1':40, 'B2':65, 'C1':90 };
+    function setLevel(l){
+      const pos = levelPositions[l] ?? 50; thumb.style.left = pos+'%'; badge.style.left = pos+'%';
+      levelSelect.value = l==='ALL' ? 'all' : l; badge.textContent = (l==='ALL' ? 'All Levels' : l);
+      render();
+    }
+    rail.addEventListener('click', function(ev){
+      const rect = rail.getBoundingClientRect();
+      const x = (ev.clientX - rect.left) / rect.width;
+      const pct = Math.max(0, Math.min(1, x));
+      // snap to closest defined level
+      const entries = Object.entries(levelPositions);
+      let best = 'ALL', bestd = 1e9;
+      entries.forEach(([lvl, p])=>{ const d = Math.abs(p/100 - pct); if (d < bestd){ bestd=d; best=lvl; } });
+      setLevel(best);
+    });
+
+    // expose for keyboard a11y
+    rail.setAttribute('tabindex','0');
+    rail.addEventListener('keydown', function(e){
+      const seq = ['A1','A2','B1','B2','C1'];
+      const current = (levelSelect.value==='all' ? 'ALL' : levelSelect.value);
+      if (e.key==='ArrowRight' || e.key==='ArrowUp'){
+        e.preventDefault();
+        const idx = seq.indexOf(current==='ALL' ? 'A1' : current);
+        setLevel(seq[Math.min(seq.length-1, Math.max(0, idx+1))]);
+      } else if (e.key==='ArrowLeft' || e.key==='ArrowDown'){
+        e.preventDefault();
+        const idx = seq.indexOf(current==='ALL' ? 'A1' : current);
+        setLevel(idx<=0 ? 'ALL' : seq[idx-1]);
+      } else if (e.key==='Home'){ setLevel('ALL'); }
+    });
+
+    // initialize from URL or default
+    const params = new URLSearchParams(window.location.search);
+    const urlLevel = (params.get('level')||'').toUpperCase();
+    if (order.includes(urlLevel)) setLevel(urlLevel); else setLevel('ALL');
+  }
 
   function render(){
     const activeTopic = topicSelect.value;
