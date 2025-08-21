@@ -114,5 +114,12 @@
   levelSelect.addEventListener('change', render);
   topicSelect.addEventListener('change', render);
   freeOnly && freeOnly.addEventListener('change', render);
+  // If URL has ?free=1, pre-enable the free-only filter
+  try{
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('free') === '1' && freeOnly){
+      freeOnly.checked = true;
+    }
+  }catch(e){}
   render();
 })();
