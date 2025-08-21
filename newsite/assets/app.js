@@ -122,8 +122,13 @@
     // Match the tick positions exactly (in percentages)
     const levelPositions = { 'ALL':2, 'A1':6, 'A2':25, 'B1':50, 'B2':75, 'C1':94 };
     function setLevel(l){
-      const pos = levelPositions[l] ?? 50; thumb.style.left = pos+'%'; badge.style.left = pos+'%';
+      const base = levelPositions[l] ?? 50;
+      const thumbPos = (l==='ALL') ? 6 : base;
+      const badgePos = (l==='ALL') ? 50 : thumbPos;
+      thumb.style.left = thumbPos+'%';
+      badge.style.left = badgePos+'%';
       levelSelect.value = l==='ALL' ? 'all' : l; badge.textContent = (l==='ALL' ? 'All Levels' : l);
+      badge.classList.toggle('all', l==='ALL');
       // visual states
       tickEls.forEach(el=>el.classList.remove('active'));
       const map = { 'A1':0,'A2':1,'B1':2,'B2':3,'C1':4 };
