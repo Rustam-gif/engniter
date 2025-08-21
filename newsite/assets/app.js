@@ -133,9 +133,9 @@
       levelSelect.value = l==='ALL' ? 'all' : l;
       // Show badge only for specific levels
       if (l==='ALL'){
-        badge.style.display = 'none';
+        badge.classList.remove('show');
       } else {
-        badge.textContent = l; badge.style.display = 'block';
+        badge.textContent = l; badge.classList.add('show');
       }
       if (allToggle){ allToggle.checked = (l==='ALL'); }
       if (allSwitch){ allSwitch.classList.toggle('on', l==='ALL'); }
