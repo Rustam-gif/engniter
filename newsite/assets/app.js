@@ -98,15 +98,23 @@
     railRoot.innerHTML = '';
     const rail = document.createElement('div'); rail.className = 'rail'; railRoot.appendChild(rail);
     const ticks = [5,25,50,75,95];
-    ticks.forEach(p=>{ const t=document.createElement('div'); t.className='tick'; t.style.left=p+'%'; rail.appendChild(t); });
-    const thumb = document.createElement('div'); thumb.className='thumb'; thumb.style.left='50%'; rail.appendChild(thumb);
+    const tickEls = ticks.map(p=>{ const t=document.createElement('div'); t.className='tick'; t.style.left=p+'%'; rail.appendChild(t); return t; });
+    const thumb = document.createElement('div'); thumb.className='thumb'; thumb.style.left='50%'; thumb.setAttribute('role','slider'); thumb.setAttribute('aria-valuemin','0'); thumb.setAttribute('aria-valuemax','5'); thumb.setAttribute('tabindex','0'); rail.appendChild(thumb);
     const badge = document.createElement('div'); badge.className='badge'; badge.textContent='All Levels'; rail.appendChild(badge);
-    const labels = document.createElement('div'); labels.className='labels'; labels.innerHTML = '<span>Beginner</span><span>Intermediate</span><span>Advanced</span><span>Proficient</span>'; railRoot.appendChild(labels);
+    const labels = document.createElement('div'); labels.className='labels';
+    const labelBtns = ['Beginner','Intermediate','Advanced','Proficient'].map(txt=>{ const b=document.createElement('button'); b.type='button'; b.textContent=txt; labels.appendChild(b); return b; });
+    railRoot.appendChild(labels);
 
     const levelPositions = { 'ALL':50, 'A1':5, 'A2':20, 'B1':40, 'B2':65, 'C1':90 };
     function setLevel(l){
       const pos = levelPositions[l] ?? 50; thumb.style.left = pos+'%'; badge.style.left = pos+'%';
       levelSelect.value = l==='ALL' ? 'all' : l; badge.textContent = (l==='ALL' ? 'All Levels' : l);
+      // visual states
+      tickEls.forEach(el=>el.classList.remove('active'));
+      const map = { 'A1':0,'A2':1,'B1':2,'B2':3,'C1':4 };
+      if (l!=='ALL' && map[l]!=null) tickEls[map[l]].classList.add('active');
+      labelBtns.forEach((b,i)=>{ b.classList.toggle('active', ['A1','A2','B1','B2','C1'][i]===l); });
+      thumb.setAttribute('aria-valuenow', l==='ALL'? '0' : String(['A1','A2','B1','B2','C1'].indexOf(l)+1));
       render();
     }
     rail.addEventListener('click', function(ev){
@@ -121,7 +129,6 @@
     });
 
     // expose for keyboard a11y
-    rail.setAttribute('tabindex','0');
     rail.addEventListener('keydown', function(e){
       const seq = ['A1','A2','B1','B2','C1'];
       const current = (levelSelect.value==='all' ? 'ALL' : levelSelect.value);
@@ -135,6 +142,24 @@
         setLevel(idx<=0 ? 'ALL' : seq[idx-1]);
       } else if (e.key==='Home'){ setLevel('ALL'); }
     });
+
+    // Dragging
+    let dragging = false;
+    function positionToLevel(pct){
+      const entries = Object.entries(levelPositions);
+      let best = 'ALL', bestd = 1e9;
+      entries.forEach(([lvl, p])=>{ const d = Math.abs(p/100 - pct); if (d <= bestd){ bestd=d; best=lvl; } });
+      return best;
+    }
+    function onMove(ev){ if (!dragging) return; const rect=rail.getBoundingClientRect(); const clientX = ev.touches? ev.touches[0].clientX : ev.clientX; const x=(clientX-rect.left)/rect.width; const pct=Math.max(0,Math.min(1,x)); setLevel(positionToLevel(pct)); }
+    rail.addEventListener('mousedown', e=>{ dragging=true; onMove(e); document.addEventListener('mousemove', onMove); document.addEventListener('mouseup', ()=>{ dragging=false; document.removeEventListener('mousemove', onMove); }, { once:true }); });
+    rail.addEventListener('touchstart', e=>{ dragging=true; onMove(e); document.addEventListener('touchmove', onMove,{passive:false}); document.addEventListener('touchend', ()=>{ dragging=false; document.removeEventListener('touchmove', onMove); }, { once:true }); },{passive:false});
+    thumb.addEventListener('mousedown', e=>{ e.stopPropagation(); dragging=true; document.addEventListener('mousemove', onMove); document.addEventListener('mouseup', ()=>{ dragging=false; document.removeEventListener('mousemove', onMove); }, { once:true }); });
+    thumb.addEventListener('touchstart', e=>{ e.stopPropagation(); dragging=true; document.addEventListener('touchmove', onMove,{passive:false}); document.addEventListener('touchend', ()=>{ dragging=false; document.removeEventListener('touchmove', onMove); }, { once:true }); },{passive:false});
+
+    // Clickable labels
+    const seq = ['A1','A2','B1','B2','C1'];
+    labelBtns.forEach((b,i)=> b.addEventListener('click', ()=> setLevel(seq[i])) );
 
     // initialize from URL or default
     const params = new URLSearchParams(window.location.search);
