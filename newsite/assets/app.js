@@ -139,7 +139,7 @@
       }
       if (allToggle){ allToggle.checked = (l==='ALL'); }
       if (allSwitch){ allSwitch.classList.toggle('on', l==='ALL'); }
-      rail.classList.toggle('all-on', l==='ALL');
+      railRoot.classList.toggle('all-on', l==='ALL');
       // visual states
       tickEls.forEach(el=>el.classList.remove('active'));
       const map = { 'A1':0,'A2':1,'B1':2,'B2':3,'C1':4 };
