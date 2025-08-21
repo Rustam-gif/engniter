@@ -431,8 +431,6 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
 .switch .knob{position:absolute;top:4px;left:4px;width:22px;height:22px;border-radius:50%;background:#fff;transition:left .25s ease, background .25s ease;box-shadow:0 2px 6px rgba(0,0,0,.15)}
 .switch.on{background:#d1fae5}
 .switch.on .knob{left:30px;background:#0f874b}
-.switch.dimmed{background:#e5e7eb !important; opacity:.7}
-.switch.dimmed .knob{background:#cbd5e1}
 
 /* PDF tag */
 .pdf-tag{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:#8a3a1f;background:#fff7ed;border:1px solid #ffedd5;border-radius:999px;padding:4px 8px}

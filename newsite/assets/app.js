@@ -138,7 +138,7 @@
         badge.textContent = l; badge.classList.add('show');
       }
       if (allToggle){ allToggle.checked = (l==='ALL'); }
-      if (allSwitch){ allSwitch.classList.toggle('on', l==='ALL'); allSwitch.classList.toggle('dimmed', l==='ALL'); }
+      if (allSwitch){ allSwitch.classList.toggle('on', l==='ALL'); }
       rail.classList.toggle('all-on', l==='ALL');
       // visual states
       tickEls.forEach(el=>el.classList.remove('active'));
@@ -248,11 +248,9 @@
       const on = !(allToggle && allToggle.checked);
       if (allToggle) allToggle.checked = on;
       allSwitch.classList.toggle('on', on);
-      allSwitch.classList.toggle('dimmed', on);
       setLevel(on ? 'ALL' : (levelSelect.value==='all' ? 'A1' : levelSelect.value));
     });
     allSwitch.classList.toggle('on', !!(allToggle && allToggle.checked));
-    allSwitch.classList.toggle('dimmed', !!(allToggle && allToggle.checked));
   }
   // If URL has ?free=1, pre-enable the free-only filter
   try{
