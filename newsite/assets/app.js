@@ -36,7 +36,9 @@
 (function(){
   const levelSelect = document.getElementById('pdf-filter-level');
   const topicSelect = document.getElementById('pdf-filter-topic');
+  const topicChips = document.getElementById('pdf-topic-chips');
   const freeOnly = document.getElementById('pdf-filter-free');
+  const freeSwitch = document.getElementById('pdf-free-switch');
   const railRoot = document.getElementById('pdf-level-rail');
   if (!levelSelect || !topicSelect) return;
 
@@ -79,16 +81,25 @@
     card.dataset.free = isFree ? 'true' : 'false';
   });
 
-  // Populate topic dropdown dynamically
-  topicSelect.innerHTML = '';
-  const optAllT = document.createElement('option');
-  optAllT.value = 'all'; optAllT.textContent = 'All topics';
-  topicSelect.appendChild(optAllT);
-  Array.from(topicMap.entries()).sort((a,b)=>a[1].localeCompare(b[1])).forEach(([value,label])=>{
-    const opt = document.createElement('option');
-    opt.value = value; opt.textContent = label;
-    topicSelect.appendChild(opt);
-  });
+  // Populate topic controls
+  if (topicSelect){
+    topicSelect.innerHTML = '';
+    const optAllT = document.createElement('option');
+    optAllT.value = 'all'; optAllT.textContent = 'All topics';
+    topicSelect.appendChild(optAllT);
+    Array.from(topicMap.entries()).sort((a,b)=>a[1].localeCompare(b[1])).forEach(([value,label])=>{
+      const opt = document.createElement('option');
+      opt.value = value; opt.textContent = label;
+      topicSelect.appendChild(opt);
+    });
+  }
+  if (topicChips){
+    topicChips.querySelectorAll('[data-topic]').forEach(btn=>{
+      const t = btn.getAttribute('data-topic');
+      // Hide chips that aren't in the dataset to avoid dead filters
+      if (t!=='all' && !topicMap.has(t)) btn.style.display = 'none';
+    });
+  }
 
   // Build custom level rail (Beginner A1 → Proficient C1)
   const order = ['ALL','A1','A2','B1','B2','C1'];
@@ -104,7 +115,7 @@
     const thumb = document.createElement('div'); thumb.className='thumb'; thumb.style.left='50%'; thumb.setAttribute('role','slider'); thumb.setAttribute('aria-valuemin','0'); thumb.setAttribute('aria-valuemax','5'); thumb.setAttribute('tabindex','0'); rail.appendChild(thumb);
     const badge = document.createElement('div'); badge.className='badge'; badge.textContent='All Levels'; rail.appendChild(badge);
     const labels = document.createElement('div'); labels.className='labels';
-    const labelBtns = ['Beginner','Intermediate','Advanced','Proficient'].map(txt=>{ const b=document.createElement('button'); b.type='button'; b.textContent=txt; labels.appendChild(b); return b; });
+    const labelBtns = ['Beginner','Intermediate','Advanced','Proficient'].map((txt,i)=>{ const b=document.createElement('button'); b.type='button'; b.className='label'; b.textContent=txt; const positions=[6,50,75,94]; b.style.left=positions[i]+'%'; labels.appendChild(b); return b; });
     railRoot.appendChild(labels);
 
     // Match the tick positions exactly (in percentages)
@@ -172,8 +183,16 @@
     if (order.includes(urlLevel)) setLevel(urlLevel); else setLevel('ALL');
   }
 
+  function activeTopicValue(){
+    if (topicChips){
+      const activeChip = topicChips.querySelector('.chipbtn.active');
+      if (activeChip) return activeChip.getAttribute('data-topic') || 'all';
+    }
+    return topicSelect.value;
+  }
+
   function render(){
-    const activeTopic = topicSelect.value;
+    const activeTopic = activeTopicValue();
     const rawLevel = levelSelect.value;
     const activeLevel = rawLevel && rawLevel !== 'all' ? rawLevel.toUpperCase() : 'ALL';
     const onlyFree = !!(freeOnly && freeOnly.checked);
@@ -186,8 +205,22 @@
   }
 
   levelSelect.addEventListener('change', render);
-  topicSelect.addEventListener('change', render);
-  freeOnly && freeOnly.addEventListener('change', render);
+  topicSelect && topicSelect.addEventListener('change', render);
+  if (topicChips){
+    topicChips.querySelectorAll('.chipbtn').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        topicChips.querySelectorAll('.chipbtn').forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        render();
+      });
+    });
+    const first = topicChips.querySelector('[data-topic="all"]'); if (first) first.classList.add('active');
+  }
+  freeOnly && freeOnly.addEventListener('change', ()=>{ if (freeSwitch) freeSwitch.classList.toggle('on', freeOnly.checked); render(); });
+  if (freeSwitch){
+    freeSwitch.addEventListener('click', ()=>{ freeOnly.checked = !freeOnly.checked; freeSwitch.classList.toggle('on', freeOnly.checked); render(); });
+    freeSwitch.classList.toggle('on', !!freeOnly.checked);
+  }
   // If URL has ?free=1, pre-enable the free-only filter
   try{
     const params = new URLSearchParams(window.location.search);

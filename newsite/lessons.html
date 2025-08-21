@@ -76,30 +76,35 @@
           <div id="pdf-level-rail" class="level-rail" aria-label="Filter by English level"></div>
         </div>
         <div class="group">
-          <div class="group-title">Topic</div>
-          <div class="select">
+          <div class="group-title">Topics</div>
+          <div class="chipbar" id="pdf-topic-chips" aria-label="Filter by topic">
+            <button class="chipbtn" data-topic="all">All</button>
+            <button class="chipbtn" data-topic="science">⚗️ Science</button>
+            <button class="chipbtn" data-topic="history">🏛️ History</button>
+            <button class="chipbtn" data-topic="culture">🎭 Culture</button>
+            <button class="chipbtn" data-topic="health">💪 Health</button>
+            <button class="chipbtn" data-topic="technology">💡 Tech</button>
+            <button class="chipbtn" data-topic="travel">🌍 Travel</button>
+            <button class="chipbtn" data-topic="nature">🌿 Nature</button>
+            <button class="chipbtn" data-topic="psychology">🧠 Psychology</button>
+            <button class="chipbtn" data-topic="law">⚖️ Law</button>
+            <button class="chipbtn" data-topic="careers">💼 Business</button>
+            <button class="chipbtn" data-topic="legends">👻 Legends</button>
+          </div>
+          <div class="select hidden">
             <select id="pdf-filter-topic" aria-label="Filter by topic">
               <option value="all" selected>All topics</option>
-              <option value="science">Science</option>
-              <option value="history">History</option>
-              <option value="culture">Culture</option>
-              <option value="health">Health</option>
-              <option value="technology">Technology</option>
-              <option value="travel">Travel</option>
-              <option value="nature">Nature</option>
-              <option value="psychology">Psychology</option>
-              <option value="law">Law</option>
-              <option value="careers">Careers</option>
-              <option value="legends">Legends</option>
             </select>
           </div>
         </div>
         <div class="group">
           <div class="group-title">Access</div>
-          <label>
-            <input type="checkbox" id="pdf-filter-free" />
-            <span>Free only</span>
-          </label>
+          <div class="toggle">
+            <span>All</span>
+            <div class="switch" id="pdf-free-switch"><div class="knob"></div></div>
+            <span>Free</span>
+          </div>
+          <input type="checkbox" id="pdf-filter-free" class="hidden" />
         </div>
       </div>
     </article>
@@ -107,8 +112,11 @@
 
   <section class="grid gap-24" id="pdf-library">
     <article class="card" style="grid-column: 1 / -1">
-      <h2 class="h3" style="margin-top:0">Downloadable Lesson PDFs</h2>
-      <p class="muted">Browse our collection of PDF lessons. Use <strong>Preview</strong> to view in the browser or <strong>Download</strong> to save a copy.</p>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+        <h2 class="h3" style="margin-top:0">Explore Lesson Packs</h2>
+        <span class="pdf-tag" aria-label="All files are PDFs"></span>
+      </div>
+      <p class="muted">Browse our collection of lesson packs. Use Download to save a PDF for offline use.</p>
     </article>
 
     <article class="card">
