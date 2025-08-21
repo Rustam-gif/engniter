@@ -97,7 +97,7 @@
   if (railRoot){
     railRoot.innerHTML = '';
     const rail = document.createElement('div'); rail.className = 'rail'; railRoot.appendChild(rail);
-    const ticks = [0,25,50,75,100];
+    const ticks = [5,25,50,75,95];
     ticks.forEach(p=>{ const t=document.createElement('div'); t.className='tick'; t.style.left=p+'%'; rail.appendChild(t); });
     const thumb = document.createElement('div'); thumb.className='thumb'; thumb.style.left='50%'; rail.appendChild(thumb);
     const badge = document.createElement('div'); badge.className='badge'; badge.textContent='All Levels'; rail.appendChild(badge);
@@ -116,7 +116,7 @@
       // snap to closest defined level
       const entries = Object.entries(levelPositions);
       let best = 'ALL', bestd = 1e9;
-      entries.forEach(([lvl, p])=>{ const d = Math.abs(p/100 - pct); if (d < bestd){ bestd=d; best=lvl; } });
+      entries.forEach(([lvl, p])=>{ const d = Math.abs(p/100 - pct); if (d <= bestd){ bestd=d; best=lvl; } });
       setLevel(best);
     });
 
