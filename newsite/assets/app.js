@@ -33,7 +33,10 @@
 })();
 
 // Lightweight button filters for the PDF library
-(function(){
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('DOM is loaded, JavaScript is running...');
+  alert('DOM is loaded - testing if this works');
+  
   const topicSelect = document.getElementById('pdf-filter-topic');
   const topicChips = document.getElementById('pdf-topic-chips');
   const freeOnly = document.getElementById('pdf-filter-free');
@@ -44,8 +47,22 @@
   
   // Check if we're on the right page
   if (!levelChips) {
+    console.error('Level chips element not found!');
     return;
   }
+  
+  console.log('Elements found:', {
+    levelChips: levelChips,
+    topicChips: topicChips,
+    multiToggleBtn: multiToggleBtn
+  });
+  
+  // Test if we can find the elements by different methods
+  console.log('Testing element selection methods:');
+  console.log('By ID level-chips:', document.getElementById('level-chips'));
+  console.log('By ID pdf-topic-chips:', document.getElementById('pdf-topic-chips'));
+  console.log('By class level-chip:', document.querySelectorAll('.level-chip').length);
+  console.log('By class chipbtn:', document.querySelectorAll('.chipbtn').length);
 
   const cards = Array.from(document.querySelectorAll('article.card'))
     .filter(card => {
@@ -210,10 +227,18 @@
   
   // Level chip event listeners
   if (levelChips) {
+    console.log('Setting up level chip event listeners...');
     const levelChipElements = levelChips.querySelectorAll('.level-chip');
+    console.log('Found level chip elements:', levelChipElements.length);
     
-    levelChipElements.forEach((chip) => {
+    levelChipElements.forEach((chip, index) => {
+      console.log(`Setting up level chip ${index}:`, chip.textContent);
+      
+      // Add a simple test click handler first
       chip.addEventListener('click', (e) => {
+        alert('Level chip clicked: ' + chip.getAttribute('data-level'));
+        console.log('Level chip clicked:', chip.getAttribute('data-level'));
+        
         const level = chip.getAttribute('data-level');
         const isShiftClick = e.shiftKey;
         const isMetaClick = e.metaKey || e.ctrlKey;
@@ -252,10 +277,18 @@
 
   // Topic chip event listeners
   if (topicChips){
+    console.log('Setting up topic chip event listeners...');
     const topicChipElements = topicChips.querySelectorAll('.chipbtn');
+    console.log('Found topic chip elements:', topicChipElements.length);
     
-    topicChipElements.forEach((btn) => {
+    topicChipElements.forEach((btn, index) => {
+      console.log(`Setting up topic chip ${index}:`, btn.textContent);
+      
+      // Add a simple test click handler first
       btn.addEventListener('click',()=>{
+        alert('Topic chip clicked: ' + btn.getAttribute('data-topic'));
+        console.log('Topic chip clicked:', btn.getAttribute('data-topic'));
+        
         // Remove active class from all topic chips
         topicChips.querySelectorAll('.chipbtn').forEach(b=>b.classList.remove('active'));
         // Add active class to clicked chip
@@ -321,4 +354,4 @@
   }
   
   render();
-})();
+});
