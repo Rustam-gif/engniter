@@ -426,8 +426,8 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
 /* Level badge that follows the thumb */
 .level-badge {
   position: absolute;
-  background: #e8f5e8;
-  color: #0f874b;
+  background: #dcfce7;
+  color: #15803d;
   border-radius: 999px;
   padding: 6px 12px;
   font-size: 13px;
@@ -486,7 +486,7 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
   top: 0;
   left: 0;
   height: 100%;
-  background: linear-gradient(90deg, #22c55e 0%, #84cc16 33.33%, #eab308 66.66%);
+  background: linear-gradient(90deg, #22c55e 0%, #16a34a 33.33%, #15803d 66.66%);
   border-radius: 999px;
   width: 0%;
   transition: width 0.2s ease;
@@ -527,9 +527,8 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
 }
 
 .slider-marker.active {
-  border-color: #0f874b;
-  background: #0f874b;
-  box-shadow: 0 0 0 2px rgba(15, 135, 75, 0.3);
+  border-color: #22c55e;
+  background: #22c55e;
 }
 
 .slider-labels {
@@ -552,12 +551,12 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
 }
 
 .slider-label.active {
-  color: #0f874b;
+  color: #22c55e;
   transform: scale(1.05);
 }
 
 .slider-label:hover {
-  color: #0f874b;
+  color: #22c55e;
 }
 
 .slider-label:focus {
