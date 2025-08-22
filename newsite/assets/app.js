@@ -33,27 +33,7 @@
 })();
 
 // Lightweight button filters for the PDF library
-
-// Global function for testing
-window.testFilters = function() {
-  console.log('Testing filters...');
-  console.log('Level chips found:', document.querySelectorAll('.level-chip').length);
-  console.log('Topic chips found:', document.querySelectorAll('.chipbtn').length);
-  
-  // Try to add a simple click handler to test
-  const testChip = document.querySelector('.level-chip');
-  if (testChip) {
-    testChip.addEventListener('click', function() {
-      alert('Test click handler works!');
-    });
-    console.log('Added test click handler to first level chip');
-  }
-};
-
-// Function to initialize filters
-function initializeFilters() {
-  console.log('Initializing filters...');
-  
+(function(){
   const topicSelect = document.getElementById('pdf-filter-topic');
   const topicChips = document.getElementById('pdf-topic-chips');
   const freeOnly = document.getElementById('pdf-filter-free');
@@ -62,51 +42,8 @@ function initializeFilters() {
   const multiToggleBtn = document.getElementById('multi-toggle-btn');
   const levelCount = document.getElementById('level-count');
   
-  console.log('Elements found:', {
-    levelChips: levelChips,
-    topicChips: topicChips,
-    multiToggleBtn: multiToggleBtn
-  });
-  
   // Check if we're on the right page
-  if (!levelChips) {
-    console.error('Level chips element not found!');
-    return;
-  }
-  
-  // Test if we can find the elements by different methods
-  console.log('Testing element selection methods:');
-  console.log('By ID level-chips:', document.getElementById('level-chips'));
-  console.log('By ID pdf-topic-chips:', document.getElementById('pdf-topic-chips'));
-  console.log('By class level-chip:', document.querySelectorAll('.level-chip').length);
-  console.log('By class chipbtn:', document.querySelectorAll('.chipbtn').length);
-    
-    const topicSelect = document.getElementById('pdf-filter-topic');
-    const topicChips = document.getElementById('pdf-topic-chips');
-    const freeOnly = document.getElementById('pdf-filter-free');
-    const freeSwitch = document.getElementById('pdf-free-switch');
-    const levelChips = document.getElementById('level-chips');
-    const multiToggleBtn = document.getElementById('multi-toggle-btn');
-    const levelCount = document.getElementById('level-count');
-    
-    console.log('Elements found:', {
-      levelChips: levelChips,
-      topicChips: topicChips,
-      multiToggleBtn: multiToggleBtn
-    });
-    
-    // Check if we're on the right page
-    if (!levelChips) {
-      console.error('Level chips element not found!');
-      return;
-    }
-    
-    // Test if we can find the elements by different methods
-    console.log('Testing element selection methods:');
-    console.log('By ID level-chips:', document.getElementById('level-chips'));
-    console.log('By ID pdf-topic-chips:', document.getElementById('pdf-topic-chips'));
-    console.log('By class level-chip:', document.querySelectorAll('.level-chip').length);
-    console.log('By class chipbtn:', document.querySelectorAll('.chipbtn').length);
+  if (!levelChips) return;
 
   const cards = Array.from(document.querySelectorAll('article.card'))
     .filter(card => {
@@ -150,7 +87,7 @@ function initializeFilters() {
     card.dataset.free = isFree ? 'true' : 'false';
   });
 
-  // Populate topic controls (simplified)
+  // Populate topic controls
   if (topicSelect){
     topicSelect.innerHTML = '';
     const optAllT = document.createElement('option');
@@ -235,19 +172,6 @@ function initializeFilters() {
     updateLevelChips();
   }
 
-
-
-    
-
-
-
-
-
-
-
-
-  }
-
   function activeTopicValue(){
     if (topicChips){
       const activeChip = topicChips.querySelector('.chipbtn.active');
@@ -271,18 +195,8 @@ function initializeFilters() {
   
   // Level chip event listeners
   if (levelChips) {
-    console.log('Setting up level chip event listeners...');
-    const levelChipElements = levelChips.querySelectorAll('.level-chip');
-    console.log('Found level chip elements:', levelChipElements.length);
-    
-    levelChipElements.forEach((chip, index) => {
-      console.log(`Setting up level chip ${index}:`, chip.textContent);
-      
-      // Add a simple test click handler first
+    levelChips.querySelectorAll('.level-chip').forEach(chip => {
       chip.addEventListener('click', (e) => {
-        alert('Level chip clicked: ' + chip.getAttribute('data-level'));
-        console.log('Level chip clicked:', chip.getAttribute('data-level'));
-        
         const level = chip.getAttribute('data-level');
         const isShiftClick = e.shiftKey;
         const isMetaClick = e.metaKey || e.ctrlKey;
@@ -321,18 +235,8 @@ function initializeFilters() {
 
   // Topic chip event listeners
   if (topicChips){
-    console.log('Setting up topic chip event listeners...');
-    const topicChipElements = topicChips.querySelectorAll('.chipbtn');
-    console.log('Found topic chip elements:', topicChipElements.length);
-    
-    topicChipElements.forEach((btn, index) => {
-      console.log(`Setting up topic chip ${index}:`, btn.textContent);
-      
-      // Add a simple test click handler first
+    topicChips.querySelectorAll('.chipbtn').forEach(btn=>{
       btn.addEventListener('click',()=>{
-        alert('Topic chip clicked: ' + btn.getAttribute('data-topic'));
-        console.log('Topic chip clicked:', btn.getAttribute('data-topic'));
-        
         // Remove active class from all topic chips
         topicChips.querySelectorAll('.chipbtn').forEach(b=>b.classList.remove('active'));
         // Add active class to clicked chip
@@ -344,12 +248,12 @@ function initializeFilters() {
     const first = topicChips.querySelector('[data-topic="all"]'); 
     if (first) first.classList.add('active');
   }
+
   freeOnly && freeOnly.addEventListener('change', ()=>{ if (freeSwitch) freeSwitch.classList.toggle('on', freeOnly.checked); render(); });
   if (freeSwitch){
     freeSwitch.addEventListener('click', ()=>{ freeOnly.checked = !freeOnly.checked; freeSwitch.classList.toggle('on', freeOnly.checked); render(); });
     freeSwitch.classList.toggle('on', !!freeOnly.checked);
   }
-
 
   // If URL has ?free=1, pre-enable the free-only filter
   try{
@@ -359,54 +263,7 @@ function initializeFilters() {
     }
   }catch(e){}
   
-  // Initialize level chips and ensure they're clickable
-  if (levelChips) {
-    updateLevelChips();
-    
-    // Double-check that all level chips have event listeners
-    levelChips.querySelectorAll('.level-chip').forEach(chip => {
-      // Remove any existing listeners to avoid duplicates
-      chip.replaceWith(chip.cloneNode(true));
-    });
-    
-    // Re-attach event listeners
-    levelChips.querySelectorAll('.level-chip').forEach(chip => {
-      chip.addEventListener('click', (e) => {
-        const level = chip.getAttribute('data-level');
-        const isShiftClick = e.shiftKey;
-        const isMetaClick = e.metaKey || e.ctrlKey;
-        selectLevel(level, isShiftClick, isMetaClick);
-      });
-
-      // Keyboard navigation
-      chip.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          const level = chip.getAttribute('data-level');
-          selectLevel(level);
-        } else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-          e.preventDefault();
-          const nextChip = chip.nextElementSibling || levelChips.firstElementChild;
-          if (nextChip) nextChip.focus();
-        } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-          e.preventDefault();
-          const prevChip = chip.previousElementSibling || levelChips.lastElementChild;
-          if (prevChip) prevChip.focus();
-        }
-      });
-    });
-  }
-  
+  // Initialize level chips
+  updateLevelChips();
   render();
-}
-
-// Make the function globally available
-window.initializeFilters = initializeFilters;
-
-// Try to initialize immediately if DOM is ready
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initializeFilters);
-} else {
-  // DOM is already loaded
-  initializeFilters();
-}
+})();
