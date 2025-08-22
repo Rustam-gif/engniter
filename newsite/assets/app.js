@@ -129,6 +129,7 @@
       const thumbPos = (l==='ALL') ? 6 : base;
       const badgePos = thumbPos;
       thumb.style.left = thumbPos+'%';
+      rail.style.setProperty('--progress', thumbPos+'%');
       badge.style.left = badgePos+'%';
       levelSelect.value = l==='ALL' ? 'all' : l;
       // Show badge only for specific levels
@@ -197,6 +198,7 @@
       lastPct = pct;
       const pos = pct*100;
       thumb.style.left = pos+'%';
+      rail.style.setProperty('--progress', pos+'%');
       const nearest = positionToLevel(pct);
       if (nearest!=='ALL'){
         badge.textContent = nearest;
