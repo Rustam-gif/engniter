@@ -402,7 +402,7 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
 .level-rail.all-on .tick{opacity:.4}
 .level-rail .thumb:focus{outline:3px solid #000;outline-offset:2px}
 .level-rail .labels{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:8px;width:100%}
-.level-rail .label{position:static;text-align:center;font-weight:800;font-size:14px;color:var(--muted)}
+.level-rail .label{position:static;text-align:center;font-weight:700;font-size:14px;color:var(--muted);font-family:inherit;line-height:1.2}
 .level-rail .labels button{background:none;border:none;color:inherit;cursor:pointer;font-weight:inherit;padding:0 4px;border-radius:8px}
 .level-rail .labels button:hover{background:rgba(0,0,0,.04)}
 .level-rail .labels button.active{color:#0f874b}
