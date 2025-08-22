@@ -415,8 +415,7 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
 .level-rail .badge{background:#eef8f1;color:#0f874b;border-radius:999px;padding:8px 14px;position:absolute;transform:translate(-50%,-130%);font-size:14px;font-weight:800;white-space:nowrap;transition:left .2s ease, transform .2s ease, background .2s ease, color .2s ease, opacity .2s ease;box-shadow:0 6px 18px rgba(16, 185, 129, .15);z-index:1;pointer-events:none;opacity:0}
 .level-rail .badge.show{opacity:1}
 .level-rail .badge.all{background:#0f874b;color:#fff}
-.level-rail .all-badge{position:absolute;left:50%;transform:translate(-50%,-190%);background:#0f874b;color:#fff;border-radius:999px;padding:8px 14px;font-size:14px;font-weight:800;box-shadow:0 6px 18px rgba(16,185,129,.15);opacity:0;transition:opacity .25s ease, background .25s ease;z-index:1;pointer-events:none;display:none}
-.level-rail.all-on .all-badge{opacity:1;display:block}
+.level-rail .all-badge{display:none}
 .level-rail.all-on .labels{opacity:.3;transition:opacity .25s ease}
 
 /* Spacing between Level title and toggle */

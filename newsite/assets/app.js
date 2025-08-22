@@ -116,7 +116,6 @@
     const tickEls = ticks.map(p=>{ const t=document.createElement('div'); t.className='tick'; t.style.left=p+'%'; rail.appendChild(t); return t; });
     const thumb = document.createElement('div'); thumb.className='thumb'; thumb.style.left='50%'; thumb.setAttribute('role','slider'); thumb.setAttribute('aria-valuemin','0'); thumb.setAttribute('aria-valuemax','5'); thumb.setAttribute('tabindex','0'); rail.appendChild(thumb);
     const badge = document.createElement('div'); badge.className='badge'; rail.appendChild(badge);
-    const allBadge = document.createElement('div'); allBadge.className='all-badge'; allBadge.textContent='All Levels'; railRoot.appendChild(allBadge);
     const labels = document.createElement('div'); labels.className='labels';
     const names=['Beginner','Intermediate','Advanced'];
     const labelBtns = names.map((txt)=>{ const b=document.createElement('button'); b.type='button'; b.className='label'; b.textContent=txt; labels.appendChild(b); return b; });
@@ -141,8 +140,6 @@
       if (allToggle){ allToggle.checked = (l==='ALL'); }
       if (allSwitch){ allSwitch.classList.toggle('on', l==='ALL'); }
       railRoot.classList.toggle('all-on', l==='ALL');
-      // Toggle visibility for All-pill vs level badge
-      if (l==='ALL') { allBadge.style.display='block'; } else { allBadge.style.display='none'; }
       // visual states
       tickEls.forEach(el=>el.classList.remove('active'));
       const map = { 'A1':0,'A2':1,'B1':2,'B2':3,'C1':4 };
