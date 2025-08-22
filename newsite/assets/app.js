@@ -34,15 +34,11 @@
 
 // Lightweight button filters for the PDF library
 (function(){
-  const levelSelect = document.getElementById('pdf-filter-level');
   const topicSelect = document.getElementById('pdf-filter-topic');
   const topicChips = document.getElementById('pdf-topic-chips');
   const freeOnly = document.getElementById('pdf-filter-free');
   const freeSwitch = document.getElementById('pdf-free-switch');
-  const allToggle = document.getElementById('pdf-all-toggle');
-  const allSwitch = document.getElementById('pdf-all-switch');
-  const railRoot = document.getElementById('pdf-level-rail');
-  if (!levelSelect || !topicSelect) return;
+  if (!topicSelect) return;
 
   const cards = Array.from(document.querySelectorAll('#pdf-library > article.card'))
     .filter(c=>!c.querySelector('h2'));
@@ -103,168 +99,17 @@
     });
   }
 
-  // Build custom level rail (Beginner A1 → Proficient C1)
-  const order = ['ALL','A1','A2','B1','C1'];
-  levelSelect.innerHTML = '';
-  order.forEach(l=>{ const opt=document.createElement('option'); opt.value = l==='ALL'?'all':l; opt.textContent = l; levelSelect.appendChild(opt); });
-  if (railRoot){
-    // Get the new slider elements
-    const sliderTrack = railRoot.querySelector('.slider-track');
-    const sliderFill = railRoot.querySelector('.slider-fill');
-    const sliderThumb = railRoot.querySelector('.slider-thumb');
-    const sliderMarkers = railRoot.querySelectorAll('.slider-marker');
-    const sliderLabels = railRoot.querySelectorAll('.slider-label');
 
-    // Create the floating level badge
-    const levelBadge = document.createElement('div');
-    levelBadge.className = 'level-badge';
-    levelBadge.textContent = 'A1';
-    railRoot.appendChild(levelBadge);
 
-    // Level positions for the new 4-level slider (0%, 33.33%, 66.66%, 100%)
-    const levelPositions = { 'ALL': 0, 'A1': 0, 'A2': 33.33, 'B1': 66.66, 'C1': 100 };
     
-    function setLevel(l){
-      const base = levelPositions[l] ?? 0;
-      const thumbPos = (l==='ALL') ? 0 : base;
-      
-      // Update thumb position
-      sliderThumb.style.left = thumbPos+'%';
-      
-      // Update fill width
-      sliderFill.style.width = thumbPos+'%';
-      
-      // Update level badge
-      if (levelBadge) {
-        if (l === 'ALL') {
-          levelBadge.classList.remove('show');
-        } else {
-          levelBadge.textContent = l;
-          levelBadge.classList.add('show');
-          // Position badge above thumb using same left calculation
-          levelBadge.style.left = thumbPos + '%';
-        }
-      }
-      
-      // Update select value
-      levelSelect.value = l==='ALL' ? 'all' : l;
-      
-      // Update toggle states
-      if (allToggle){ allToggle.checked = (l==='ALL'); }
-      if (allSwitch){ allSwitch.classList.toggle('on', l==='ALL'); }
-      railRoot.classList.toggle('all-on', l==='ALL');
-      
-      // Update marker states
-      sliderMarkers.forEach((marker, index) => {
-        marker.classList.remove('active');
-        if (l !== 'ALL') {
-          const markerLevel = marker.getAttribute('data-level');
-          if (markerLevel === l) {
-            marker.classList.add('active');
-          }
-        }
-      });
-      
-      // Update label states
-      sliderLabels.forEach((label, index) => {
-        label.classList.remove('active');
-        if (l !== 'ALL') {
-          const labelLevel = label.getAttribute('data-level');
-          if (labelLevel === l) {
-            label.classList.add('active');
-          }
-        }
-      });
-      
-      // Update aria attributes
-      const seq = ['A1','A2','B1','C1'];
-      sliderThumb.setAttribute('aria-valuenow', l==='ALL'? '0' : String(['A1','A2','B1','C1'].indexOf(l)+1));
-      
-      // Update aria-valuetext
-      const levelTexts = { 'A1': 'Beginner (A1)', 'A2': 'Intermediate (A2)', 'B1': 'Advanced (B1)', 'C1': 'Proficient (C1)' };
-      if (l !== 'ALL') {
-        sliderTrack.setAttribute('aria-valuetext', levelTexts[l]);
-      }
-      
-      render();
-    }
-    sliderTrack.addEventListener('click', function(ev){
-      const rect = sliderTrack.getBoundingClientRect();
-      const x = (ev.clientX - rect.left) / rect.width;
-      const pct = Math.max(0, Math.min(1, x));
-      // snap to closest defined level
-      const entries = Object.entries(levelPositions);
-      let best = 'ALL', bestd = 1e9;
-      entries.forEach(([lvl, p])=>{ const d = Math.abs(p/100 - pct); if (d <= bestd){ bestd=d; best=lvl; } });
-      // If we are in ALL mode, clicking should switch to nearest specific
-      if (best==='ALL') best = 'A1';
-      setLevel(best);
-    });
 
-    // expose for keyboard a11y
-    sliderThumb.addEventListener('keydown', function(e){
-      const seq = ['A1','A2','B1','C1'];
-      const current = (levelSelect.value==='all' ? 'ALL' : levelSelect.value);
-      if (e.key==='ArrowRight' || e.key==='ArrowUp'){
-        e.preventDefault();
-        const idx = seq.indexOf(current==='ALL' ? 'A1' : current);
-        setLevel(seq[Math.min(seq.length-1, Math.max(0, idx+1))]);
-      } else if (e.key==='ArrowLeft' || e.key==='ArrowDown'){
-        e.preventDefault();
-        const idx = seq.indexOf(current==='ALL' ? 'A1' : current);
-        setLevel(idx<=0 ? 'ALL' : seq[idx-1]);
-      } else if (e.key==='Home'){ setLevel('ALL'); }
-    });
 
-    // Dragging
-    let dragging = false;
-    function positionToLevel(pct){
-      const entries = Object.entries(levelPositions);
-      let best = 'ALL', bestd = 1e9;
-      entries.forEach(([lvl, p])=>{ const d = Math.abs(p/100 - pct); if (d <= bestd){ bestd=d; best=lvl; } });
-      return best;
-    }
-    let lastPct = 0.5;
-    function onMove(ev){
-      if (!dragging) return;
-      const rect=sliderTrack.getBoundingClientRect();
-      const clientX = ev.touches? ev.touches[0].clientX : ev.clientX;
-      const x=(clientX-rect.left)/rect.width;
-      const pct=Math.max(0,Math.min(1,x));
-      lastPct = pct;
-      const pos = pct*100;
-      sliderThumb.style.left = pos+'%';
-      sliderFill.style.width = pos+'%';
-      const nearest = positionToLevel(pct);
-      if (nearest!=='ALL'){
-        if (levelBadge) {
-          levelBadge.textContent = nearest;
-          levelBadge.style.left = pos + '%';
-          levelBadge.classList.add('show');
-        }
-      }
-    }
-    function startDrag(e){ dragging=true; railRoot.classList.add('dragging'); onMove(e); }
-    function endDrag(){
-      dragging=false; railRoot.classList.remove('dragging');
-      const nearest = positionToLevel(lastPct);
-      if (nearest==='ALL'){ setLevel('A1'); } else { setLevel(nearest); }
-    }
-    sliderTrack.addEventListener('mousedown', e=>{ startDrag(e); document.addEventListener('mousemove', onMove); document.addEventListener('mouseup', ()=>{ document.removeEventListener('mousemove', onMove); endDrag(); }, { once:true }); });
-    sliderTrack.addEventListener('touchstart', e=>{ startDrag(e); document.addEventListener('touchmove', onMove,{passive:false}); document.addEventListener('touchend', ()=>{ document.removeEventListener('touchmove', onMove); endDrag(); }, { once:true }); },{passive:false});
-    sliderThumb.addEventListener('mousedown', e=>{ e.stopPropagation(); startDrag(e); document.addEventListener('mousemove', onMove); document.addEventListener('mouseup', ()=>{ document.removeEventListener('mousemove', onMove); endDrag(); }, { once:true }); });
-    sliderThumb.addEventListener('touchstart', e=>{ e.stopPropagation(); startDrag(e); document.addEventListener('touchmove', onMove,{passive:false}); document.addEventListener('touchend', ()=>{ document.removeEventListener('touchmove', onMove); endDrag(); }, { once:true }); },{passive:false});
 
-    // Clickable labels
-    const seq = ['A1','A2','B1','C1'];
-    sliderLabels.forEach((label,i)=> {
-      label.addEventListener('click', ()=> setLevel(seq[i]));
-    });
 
-    // initialize from URL or default
-    const params = new URLSearchParams(window.location.search);
-    const urlLevel = (params.get('level')||'').toUpperCase();
-    if (order.includes(urlLevel)) setLevel(urlLevel); else setLevel('ALL');
+
+
+
+
   }
 
   function activeTopicValue(){
@@ -277,18 +122,14 @@
 
   function render(){
     const activeTopic = activeTopicValue();
-    const rawLevel = levelSelect.value;
-    const activeLevel = rawLevel && rawLevel !== 'all' ? rawLevel.toUpperCase() : 'ALL';
     const onlyFree = !!(freeOnly && freeOnly.checked);
     cards.forEach(card=>{
       const topicOk = (activeTopic==='all' || card.dataset.topic===activeTopic);
-      const levelOk = (activeLevel==='ALL' || card.dataset.level===activeLevel);
       const freeOk = (!onlyFree || card.dataset.free === 'true');
-      card.style.display = (topicOk && levelOk && freeOk) ? '' : 'none';
+      card.style.display = (topicOk && freeOk) ? '' : 'none';
     });
   }
 
-  levelSelect.addEventListener('change', render);
   topicSelect && topicSelect.addEventListener('change', render);
   if (topicChips){
     topicChips.querySelectorAll('.chipbtn').forEach(btn=>{
@@ -306,16 +147,7 @@
     freeSwitch.classList.toggle('on', !!freeOnly.checked);
   }
 
-  // All-levels toggle sync
-  if (allSwitch){
-    allSwitch.addEventListener('click', ()=>{
-      const on = !(allToggle && allToggle.checked);
-      if (allToggle) allToggle.checked = on;
-      allSwitch.classList.toggle('on', on);
-      setLevel(on ? 'ALL' : (levelSelect.value==='all' ? 'A1' : levelSelect.value));
-    });
-    allSwitch.classList.toggle('on', !!(allToggle && allToggle.checked));
-  }
+
   // If URL has ?free=1, pre-enable the free-only filter
   try{
     const params = new URLSearchParams(window.location.search);
