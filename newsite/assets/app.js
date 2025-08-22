@@ -108,49 +108,70 @@
   levelSelect.innerHTML = '';
   order.forEach(l=>{ const opt=document.createElement('option'); opt.value = l==='ALL'?'all':l; opt.textContent = l; levelSelect.appendChild(opt); });
   if (railRoot){
-    railRoot.innerHTML = '';
-    const rail = document.createElement('div'); rail.className = 'rail'; railRoot.appendChild(rail);
-    const fill = document.createElement('div'); fill.className='fill'; rail.appendChild(fill);
-    // Positions must align perfectly with visual circles on the rail
-    // Use slight padding to avoid clipping at edges
-    const ticks = [6,25,50,75,94];
-    const tickEls = ticks.map(p=>{ const t=document.createElement('div'); t.className='tick'; t.style.left=p+'%'; rail.appendChild(t); return t; });
-    const thumb = document.createElement('div'); thumb.className='thumb'; thumb.style.left='50%'; thumb.setAttribute('role','slider'); thumb.setAttribute('aria-valuemin','0'); thumb.setAttribute('aria-valuemax','5'); thumb.setAttribute('tabindex','0'); rail.appendChild(thumb);
-    const badge = document.createElement('div'); badge.className='badge'; rail.appendChild(badge);
-    // Re-add level words below the slider to match reference
-    const labels = document.createElement('div'); labels.className='labels';
-    const labelBtns = ['Beginner','Intermediate','Advanced','Proficient'].map((txt)=>{ const b=document.createElement('button'); b.type='button'; b.className='label'; b.textContent=txt; labels.appendChild(b); return b; });
-    railRoot.appendChild(labels);
+    // Get the new slider elements
+    const levelBadge = railRoot.querySelector('.level-badge');
+    const sliderTrack = railRoot.querySelector('.slider-track');
+    const sliderFill = railRoot.querySelector('.slider-fill');
+    const sliderThumb = railRoot.querySelector('.slider-thumb');
+    const sliderMarkers = railRoot.querySelectorAll('.slider-marker');
+    const sliderLabels = railRoot.querySelectorAll('.slider-label');
 
-    // Match the tick positions exactly (in percentages)
-    const levelPositions = { 'ALL':2, 'A1':6, 'A2':25, 'B1':50, 'B2':75, 'C1':94 };
+    // Level positions for the new slider (0%, 25%, 50%, 75%, 100%)
+    const levelPositions = { 'ALL': 0, 'A1': 0, 'A2': 25, 'B1': 50, 'B2': 75, 'C1': 100 };
+    
     function setLevel(l){
-      const base = levelPositions[l] ?? 50;
-      const thumbPos = (l==='ALL') ? 6 : base;
-      const badgePos = thumbPos;
-      thumb.style.left = thumbPos+'%';
-      fill.style.width = thumbPos+'%';
-      badge.style.left = badgePos+'%';
-      levelSelect.value = l==='ALL' ? 'all' : l;
-      // Show badge only for specific levels
-      if (l==='ALL'){
-        badge.classList.remove('show');
-      } else {
-        badge.textContent = l; badge.classList.add('show');
+      const base = levelPositions[l] ?? 0;
+      const thumbPos = (l==='ALL') ? 0 : base;
+      
+      // Update thumb position
+      sliderThumb.style.left = thumbPos+'%';
+      
+      // Update fill width
+      sliderFill.style.width = thumbPos+'%';
+      
+      // Update level badge
+      if (levelBadge) {
+        levelBadge.textContent = l==='ALL' ? 'ALL' : l;
       }
+      
+      // Update select value
+      levelSelect.value = l==='ALL' ? 'all' : l;
+      
+      // Update toggle states
       if (allToggle){ allToggle.checked = (l==='ALL'); }
       if (allSwitch){ allSwitch.classList.toggle('on', l==='ALL'); }
       railRoot.classList.toggle('all-on', l==='ALL');
-      // visual states
-      tickEls.forEach(el=>el.classList.remove('active'));
-      const map = { 'A1':0,'A2':1,'B1':2,'B2':3,'C1':4 };
-      if (l!=='ALL' && map[l]!=null) tickEls[map[l]].classList.add('active');
+      
+      // Update marker states
+      sliderMarkers.forEach((marker, index) => {
+        marker.classList.remove('active');
+        if (l !== 'ALL') {
+          const markerLevel = marker.getAttribute('data-level');
+          if (markerLevel === l) {
+            marker.classList.add('active');
+          }
+        }
+      });
+      
+      // Update label states
+      sliderLabels.forEach((label, index) => {
+        label.classList.remove('active');
+        if (l !== 'ALL') {
+          const labelLevel = label.getAttribute('data-level');
+          if (labelLevel === l) {
+            label.classList.add('active');
+          }
+        }
+      });
+      
+      // Update aria attributes
       const seq = ['A1','A2','B1','B2','C1'];
-      thumb.setAttribute('aria-valuenow', l==='ALL'? '0' : String(['A1','A2','B1','B2','C1'].indexOf(l)+1));
+      sliderThumb.setAttribute('aria-valuenow', l==='ALL'? '0' : String(['A1','A2','B1','B2','C1'].indexOf(l)+1));
+      
       render();
     }
-    rail.addEventListener('click', function(ev){
-      const rect = rail.getBoundingClientRect();
+    sliderTrack.addEventListener('click', function(ev){
+      const rect = sliderTrack.getBoundingClientRect();
       const x = (ev.clientX - rect.left) / rect.width;
       const pct = Math.max(0, Math.min(1, x));
       // snap to closest defined level
@@ -163,7 +184,7 @@
     });
 
     // expose for keyboard a11y
-    rail.addEventListener('keydown', function(e){
+    sliderTrack.addEventListener('keydown', function(e){
       const seq = ['A1','A2','B1','B2','C1'];
       const current = (levelSelect.value==='all' ? 'ALL' : levelSelect.value);
       if (e.key==='ArrowRight' || e.key==='ArrowUp'){
@@ -188,19 +209,19 @@
     let lastPct = 0.5;
     function onMove(ev){
       if (!dragging) return;
-      const rect=rail.getBoundingClientRect();
+      const rect=sliderTrack.getBoundingClientRect();
       const clientX = ev.touches? ev.touches[0].clientX : ev.clientX;
       const x=(clientX-rect.left)/rect.width;
       const pct=Math.max(0,Math.min(1,x));
       lastPct = pct;
       const pos = pct*100;
-      thumb.style.left = pos+'%';
-      fill.style.width = pos+'%';
+      sliderThumb.style.left = pos+'%';
+      sliderFill.style.width = pos+'%';
       const nearest = positionToLevel(pct);
       if (nearest!=='ALL'){
-        badge.textContent = nearest;
-        badge.style.left = pos+'%';
-        badge.classList.add('show');
+        if (levelBadge) {
+          levelBadge.textContent = nearest;
+        }
       }
     }
     function startDrag(e){ dragging=true; railRoot.classList.add('dragging'); onMove(e); }
@@ -209,14 +230,18 @@
       const nearest = positionToLevel(lastPct);
       if (nearest==='ALL'){ setLevel('A1'); } else { setLevel(nearest); }
     }
-    rail.addEventListener('mousedown', e=>{ startDrag(e); document.addEventListener('mousemove', onMove); document.addEventListener('mouseup', ()=>{ document.removeEventListener('mousemove', onMove); endDrag(); }, { once:true }); });
-    rail.addEventListener('touchstart', e=>{ startDrag(e); document.addEventListener('touchmove', onMove,{passive:false}); document.addEventListener('touchend', ()=>{ document.removeEventListener('touchmove', onMove); endDrag(); }, { once:true }); },{passive:false});
-    thumb.addEventListener('mousedown', e=>{ e.stopPropagation(); startDrag(e); document.addEventListener('mousemove', onMove); document.addEventListener('mouseup', ()=>{ document.removeEventListener('mousemove', onMove); endDrag(); }, { once:true }); });
-    thumb.addEventListener('touchstart', e=>{ e.stopPropagation(); startDrag(e); document.addEventListener('touchmove', onMove,{passive:false}); document.addEventListener('touchend', ()=>{ document.removeEventListener('touchmove', onMove); endDrag(); }, { once:true }); },{passive:false});
+    sliderTrack.addEventListener('mousedown', e=>{ startDrag(e); document.addEventListener('mousemove', onMove); document.addEventListener('mouseup', ()=>{ document.removeEventListener('mousemove', onMove); endDrag(); }, { once:true }); });
+    sliderTrack.addEventListener('touchstart', e=>{ startDrag(e); document.addEventListener('touchmove', onMove,{passive:false}); document.addEventListener('touchend', ()=>{ document.removeEventListener('touchmove', onMove); endDrag(); }, { once:true }); },{passive:false});
+    sliderThumb.addEventListener('mousedown', e=>{ e.stopPropagation(); startDrag(e); document.addEventListener('mousemove', onMove); document.addEventListener('mouseup', ()=>{ document.removeEventListener('mousemove', onMove); endDrag(); }, { once:true }); });
+    sliderThumb.addEventListener('touchstart', e=>{ e.stopPropagation(); startDrag(e); document.addEventListener('touchmove', onMove,{passive:false}); document.addEventListener('touchend', ()=>{ document.removeEventListener('touchmove', onMove); endDrag(); }, { once:true }); },{passive:false});
 
     // Clickable labels
     const seq = ['A1','A2','B1','B2','C1'];
-    labelBtns.forEach((b,i)=> b.addEventListener('click', ()=> setLevel(seq[i])) );
+    sliderLabels.forEach((label,i)=> {
+      if (label.textContent.trim()) { // Only add click handler if label has text
+        label.addEventListener('click', ()=> setLevel(seq[i]));
+      }
+    });
 
     // initialize from URL or default
     const params = new URLSearchParams(window.location.search);
