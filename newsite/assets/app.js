@@ -41,7 +41,22 @@
   const levelChips = document.getElementById('level-chips');
   const multiToggleBtn = document.getElementById('multi-toggle-btn');
   const levelCount = document.getElementById('level-count');
-  if (!topicSelect || !levelChips) return;
+  
+  console.log('Found elements:', {
+    topicSelect: !!topicSelect,
+    topicChips: !!topicChips,
+    freeOnly: !!freeOnly,
+    freeSwitch: !!freeSwitch,
+    levelChips: !!levelChips,
+    multiToggleBtn: !!multiToggleBtn,
+    levelCount: !!levelCount
+  });
+  
+  // Check if we're on the right page
+  if (!levelChips) {
+    console.log('Level chips not found, exiting');
+    return;
+  }
 
   const cards = Array.from(document.querySelectorAll('#pdf-library > article.card'))
     .filter(c=>!c.querySelector('h2'));
@@ -82,23 +97,16 @@
     card.dataset.free = isFree ? 'true' : 'false';
   });
 
-  // Populate topic controls
+  // Populate topic controls (simplified)
   if (topicSelect){
-  topicSelect.innerHTML = '';
-  const optAllT = document.createElement('option');
-  optAllT.value = 'all'; optAllT.textContent = 'All topics';
-  topicSelect.appendChild(optAllT);
-  Array.from(topicMap.entries()).sort((a,b)=>a[1].localeCompare(b[1])).forEach(([value,label])=>{
-    const opt = document.createElement('option');
-    opt.value = value; opt.textContent = label;
-    topicSelect.appendChild(opt);
-  });
-  }
-  if (topicChips){
-    topicChips.querySelectorAll('[data-topic]').forEach(btn=>{
-      const t = btn.getAttribute('data-topic');
-      // Hide chips that aren't in the dataset to avoid dead filters
-      if (t!=='all' && !topicMap.has(t)) btn.style.display = 'none';
+    topicSelect.innerHTML = '';
+    const optAllT = document.createElement('option');
+    optAllT.value = 'all'; optAllT.textContent = 'All topics';
+    topicSelect.appendChild(optAllT);
+    Array.from(topicMap.entries()).sort((a,b)=>a[1].localeCompare(b[1])).forEach(([value,label])=>{
+      const opt = document.createElement('option');
+      opt.value = value; opt.textContent = label;
+      topicSelect.appendChild(opt);
     });
   }
 
@@ -210,8 +218,10 @@
   
   // Level chip event listeners
   if (levelChips) {
+    console.log('Setting up level chip event listeners');
     levelChips.querySelectorAll('.level-chip').forEach(chip => {
       chip.addEventListener('click', (e) => {
+        console.log('Level chip clicked:', chip.getAttribute('data-level'));
         const level = chip.getAttribute('data-level');
         const isShiftClick = e.shiftKey;
         const isMetaClick = e.metaKey || e.ctrlKey;
@@ -248,15 +258,22 @@
     });
   }
 
+  // Topic chip event listeners
   if (topicChips){
+    console.log('Setting up topic chip event listeners');
     topicChips.querySelectorAll('.chipbtn').forEach(btn=>{
       btn.addEventListener('click',()=>{
+        console.log('Topic chip clicked:', btn.getAttribute('data-topic'));
+        // Remove active class from all topic chips
         topicChips.querySelectorAll('.chipbtn').forEach(b=>b.classList.remove('active'));
+        // Add active class to clicked chip
         btn.classList.add('active');
         render();
       });
     });
-    const first = topicChips.querySelector('[data-topic="all"]'); if (first) first.classList.add('active');
+    // Set "All" as default active topic
+    const first = topicChips.querySelector('[data-topic="all"]'); 
+    if (first) first.classList.add('active');
   }
   freeOnly && freeOnly.addEventListener('change', ()=>{ if (freeSwitch) freeSwitch.classList.toggle('on', freeOnly.checked); render(); });
   if (freeSwitch){
@@ -273,7 +290,43 @@
     }
   }catch(e){}
   
-  // Initialize level chips
-  updateLevelChips();
+  // Initialize level chips and ensure they're clickable
+  if (levelChips) {
+    updateLevelChips();
+    
+    // Double-check that all level chips have event listeners
+    levelChips.querySelectorAll('.level-chip').forEach(chip => {
+      // Remove any existing listeners to avoid duplicates
+      chip.replaceWith(chip.cloneNode(true));
+    });
+    
+    // Re-attach event listeners
+    levelChips.querySelectorAll('.level-chip').forEach(chip => {
+      chip.addEventListener('click', (e) => {
+        const level = chip.getAttribute('data-level');
+        const isShiftClick = e.shiftKey;
+        const isMetaClick = e.metaKey || e.ctrlKey;
+        selectLevel(level, isShiftClick, isMetaClick);
+      });
+
+      // Keyboard navigation
+      chip.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          const level = chip.getAttribute('data-level');
+          selectLevel(level);
+        } else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+          e.preventDefault();
+          const nextChip = chip.nextElementSibling || levelChips.firstElementChild;
+          if (nextChip) nextChip.focus();
+        } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+          e.preventDefault();
+          const prevChip = chip.previousElementSibling || levelChips.lastElementChild;
+          if (prevChip) prevChip.focus();
+        }
+      });
+    });
+  }
+  
   render();
 })();
