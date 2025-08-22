@@ -117,10 +117,8 @@
     const tickEls = ticks.map(p=>{ const t=document.createElement('div'); t.className='tick'; t.style.left=p+'%'; rail.appendChild(t); return t; });
     const thumb = document.createElement('div'); thumb.className='thumb'; thumb.style.left='50%'; thumb.setAttribute('role','slider'); thumb.setAttribute('aria-valuemin','0'); thumb.setAttribute('aria-valuemax','5'); thumb.setAttribute('tabindex','0'); rail.appendChild(thumb);
     const badge = document.createElement('div'); badge.className='badge'; rail.appendChild(badge);
-    const labels = document.createElement('div'); labels.className='labels';
-    const names=['Beginner','Intermediate','Advanced','Proficient'];
-    const labelBtns = names.map((txt)=>{ const b=document.createElement('button'); b.type='button'; b.className='label'; b.textContent=txt; labels.appendChild(b); return b; });
-    railRoot.appendChild(labels);
+    // Remove level words below the slider; keep only dynamic A1..C1 badge on top
+    const labelBtns = [];
 
     // Match the tick positions exactly (in percentages)
     const levelPositions = { 'ALL':2, 'A1':6, 'A2':25, 'B1':50, 'B2':75, 'C1':94 };
@@ -146,7 +144,6 @@
       const map = { 'A1':0,'A2':1,'B1':2,'B2':3,'C1':4 };
       if (l!=='ALL' && map[l]!=null) tickEls[map[l]].classList.add('active');
       const seq = ['A1','A2','B1','B2','C1'];
-      labelBtns.forEach((b,i)=>{ b.classList.toggle('active', seq[i]===l); });
       thumb.setAttribute('aria-valuenow', l==='ALL'? '0' : String(['A1','A2','B1','B2','C1'].indexOf(l)+1));
       render();
     }
