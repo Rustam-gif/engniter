@@ -110,6 +110,7 @@
   if (railRoot){
     railRoot.innerHTML = '';
     const rail = document.createElement('div'); rail.className = 'rail'; railRoot.appendChild(rail);
+    const fill = document.createElement('div'); fill.className='fill'; rail.appendChild(fill);
     // Positions must align perfectly with visual circles on the rail
     // Use slight padding to avoid clipping at edges
     const ticks = [6,25,50,75,94];
@@ -128,7 +129,7 @@
       const thumbPos = (l==='ALL') ? 6 : base;
       const badgePos = thumbPos;
       thumb.style.left = thumbPos+'%';
-      rail.style.setProperty('--progress', thumbPos+'%');
+      fill.style.width = thumbPos+'%';
       badge.style.left = badgePos+'%';
       levelSelect.value = l==='ALL' ? 'all' : l;
       // Show badge only for specific levels
@@ -195,7 +196,7 @@
       lastPct = pct;
       const pos = pct*100;
       thumb.style.left = pos+'%';
-      rail.style.setProperty('--progress', pos+'%');
+      fill.style.width = pos+'%';
       const nearest = positionToLevel(pct);
       if (nearest!=='ALL'){
         badge.textContent = nearest;
