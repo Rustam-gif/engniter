@@ -421,7 +421,10 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
 /* Spacing between Level title and toggle */
 .level-toggle{margin-top:14px}
 
-.toggle .toggle-label{font-weight:700;color:var(--muted)}
+.toggle .toggle-label{font-weight:800;color:var(--ink-soft);transition:color .25s ease, transform .25s ease, text-shadow .25s ease}
+.switch.on+ .toggle-label{color:#0f874b;text-shadow:0 6px 18px rgba(16,185,129,.18);transform:translateY(-1px) scale(1.02);animation:pulseOn .35s ease}
+
+@keyframes pulseOn{0%{transform:translateY(0) scale(1)}60%{transform:translateY(-1px) scale(1.04)}100%{transform:translateY(-1px) scale(1.02)}}
 
 @media (max-width: 640px){
   .level-rail .label{font-size:12px}
