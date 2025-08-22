@@ -187,9 +187,29 @@
       entries.forEach(([lvl, p])=>{ const d = Math.abs(p/100 - pct); if (d <= bestd){ bestd=d; best=lvl; } });
       return best;
     }
-    function onMove(ev){ if (!dragging) return; const rect=rail.getBoundingClientRect(); const clientX = ev.touches? ev.touches[0].clientX : ev.clientX; const x=(clientX-rect.left)/rect.width; const pct=Math.max(0,Math.min(1,x)); const lvl = positionToLevel(pct); if (lvl==='ALL') return; setLevel(lvl); }
+    let lastPct = 0.5;
+    function onMove(ev){
+      if (!dragging) return;
+      const rect=rail.getBoundingClientRect();
+      const clientX = ev.touches? ev.touches[0].clientX : ev.clientX;
+      const x=(clientX-rect.left)/rect.width;
+      const pct=Math.max(0,Math.min(1,x));
+      lastPct = pct;
+      const pos = pct*100;
+      thumb.style.left = pos+'%';
+      const nearest = positionToLevel(pct);
+      if (nearest!=='ALL'){
+        badge.textContent = nearest;
+        badge.style.left = pos+'%';
+        badge.classList.add('show');
+      }
+    }
     function startDrag(e){ dragging=true; railRoot.classList.add('dragging'); onMove(e); }
-    function endDrag(){ dragging=false; railRoot.classList.remove('dragging'); }
+    function endDrag(){
+      dragging=false; railRoot.classList.remove('dragging');
+      const nearest = positionToLevel(lastPct);
+      if (nearest==='ALL'){ setLevel('A1'); } else { setLevel(nearest); }
+    }
     rail.addEventListener('mousedown', e=>{ startDrag(e); document.addEventListener('mousemove', onMove); document.addEventListener('mouseup', ()=>{ document.removeEventListener('mousemove', onMove); endDrag(); }, { once:true }); });
     rail.addEventListener('touchstart', e=>{ startDrag(e); document.addEventListener('touchmove', onMove,{passive:false}); document.addEventListener('touchend', ()=>{ document.removeEventListener('touchmove', onMove); endDrag(); }, { once:true }); },{passive:false});
     thumb.addEventListener('mousedown', e=>{ e.stopPropagation(); startDrag(e); document.addEventListener('mousemove', onMove); document.addEventListener('mouseup', ()=>{ document.removeEventListener('mousemove', onMove); endDrag(); }, { once:true }); });
