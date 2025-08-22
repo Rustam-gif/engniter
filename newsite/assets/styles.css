@@ -407,7 +407,7 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
 .level-rail .labels button{background:none;border:none;color:inherit;cursor:pointer;font-weight:inherit;padding:0 4px;border-radius:8px;opacity:.6}
 .level-rail .labels button:hover{background:rgba(0,0,0,.04)}
 .level-rail .labels button.active{color:#0f874b;opacity:1;font-weight:800}
-.level-rail .badge{background:#eef8f1;color:#0f874b;border-radius:999px;padding:6px 12px;position:absolute;transform:translate(-50%,-120%);font-size:13px;font-weight:800;white-space:nowrap;transition:left .2s ease, transform .2s ease, background .2s ease, color .2s ease, opacity .2s ease;box-shadow:0 4px 12px rgba(16, 185, 129, .12);z-index:5;pointer-events:none;opacity:0}
+.level-rail .badge{background:#eef8f1;color:#0f874b;border-radius:999px;padding:6px 12px;position:absolute;transform:translate(-50%,-135%);font-size:13px;font-weight:800;white-space:nowrap;transition:left .2s ease, transform .2s ease, background .2s ease, color .2s ease, opacity .2s ease;box-shadow:0 4px 12px rgba(16, 185, 129, .12);z-index:5;pointer-events:none;opacity:0}
 .level-rail .badge.show{opacity:1}
 .level-rail .badge.all{background:#0f874b;color:#fff}
 .level-rail .all-badge{display:none}
