@@ -38,7 +38,10 @@
   const topicChips = document.getElementById('pdf-topic-chips');
   const freeOnly = document.getElementById('pdf-filter-free');
   const freeSwitch = document.getElementById('pdf-free-switch');
-  if (!topicSelect) return;
+  const levelChips = document.getElementById('level-chips');
+  const multiToggleBtn = document.getElementById('multi-toggle-btn');
+  const levelCount = document.getElementById('level-count');
+  if (!topicSelect || !levelChips) return;
 
   const cards = Array.from(document.querySelectorAll('#pdf-library > article.card'))
     .filter(c=>!c.querySelector('h2'));
@@ -67,7 +70,7 @@
     card.dataset.topic = topicSlug;
 
     const levelPill = card.querySelector('.pill.level')?.textContent || '';
-    const match = levelPill.match(/A1|A2|B1|B2|C1/i);
+    const match = levelPill.match(/A1|A2|B1|B2|C1|C2/i);
     const level = match ? match[0].toUpperCase() : 'ALL';
     card.dataset.level = level;
     levelSet.add(level);
@@ -99,6 +102,78 @@
     });
   }
 
+  // Level chip management
+  let isMultiSelect = false;
+  let selectedLevels = new Set(['ALL']);
+
+  function updateLevelChips() {
+    const chips = levelChips.querySelectorAll('.level-chip');
+    chips.forEach(chip => {
+      const level = chip.getAttribute('data-level');
+      const isSelected = selectedLevels.has(level);
+      
+      chip.classList.toggle('active', isSelected);
+      chip.setAttribute('aria-selected', isSelected);
+    });
+
+    // Update count display
+    if (isMultiSelect && selectedLevels.size > 0) {
+      const count = selectedLevels.has('ALL') ? 'All levels' : `${selectedLevels.size} level${selectedLevels.size !== 1 ? 's' : ''}`;
+      levelCount.textContent = count;
+    } else {
+      levelCount.textContent = '';
+    }
+
+    // Update aria-multiselectable
+    levelChips.setAttribute('aria-multiselectable', isMultiSelect);
+  }
+
+  function selectLevel(level, isShiftClick = false, isMetaClick = false) {
+    if (isMultiSelect && (isShiftClick || isMetaClick)) {
+      // Multi-select mode with modifier keys
+      if (level === 'ALL') {
+        selectedLevels.clear();
+        selectedLevels.add('ALL');
+      } else {
+        selectedLevels.delete('ALL');
+        if (selectedLevels.has(level)) {
+          selectedLevels.delete(level);
+          if (selectedLevels.size === 0) {
+            selectedLevels.add('ALL');
+          }
+        } else {
+          selectedLevels.add(level);
+        }
+      }
+    } else {
+      // Single-select mode or no modifier keys
+      if (level === 'ALL') {
+        selectedLevels.clear();
+        selectedLevels.add('ALL');
+      } else {
+        selectedLevels.clear();
+        selectedLevels.add(level);
+      }
+    }
+    
+    updateLevelChips();
+    render();
+  }
+
+  function toggleMultiSelect() {
+    isMultiSelect = !isMultiSelect;
+    multiToggleBtn.setAttribute('aria-pressed', isMultiSelect);
+    
+    if (!isMultiSelect) {
+      // Reset to single select - keep only the first selected level
+      const firstLevel = Array.from(selectedLevels)[0] || 'ALL';
+      selectedLevels.clear();
+      selectedLevels.add(firstLevel);
+    }
+    
+    updateLevelChips();
+  }
+
 
 
     
@@ -125,12 +200,54 @@
     const onlyFree = !!(freeOnly && freeOnly.checked);
     cards.forEach(card=>{
       const topicOk = (activeTopic==='all' || card.dataset.topic===activeTopic);
+      const levelOk = selectedLevels.has('ALL') || selectedLevels.has(card.dataset.level);
       const freeOk = (!onlyFree || card.dataset.free === 'true');
-      card.style.display = (topicOk && freeOk) ? '' : 'none';
+      card.style.display = (topicOk && levelOk && freeOk) ? '' : 'none';
     });
   }
 
   topicSelect && topicSelect.addEventListener('change', render);
+  
+  // Level chip event listeners
+  if (levelChips) {
+    levelChips.querySelectorAll('.level-chip').forEach(chip => {
+      chip.addEventListener('click', (e) => {
+        const level = chip.getAttribute('data-level');
+        const isShiftClick = e.shiftKey;
+        const isMetaClick = e.metaKey || e.ctrlKey;
+        selectLevel(level, isShiftClick, isMetaClick);
+      });
+
+      // Keyboard navigation
+      chip.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          const level = chip.getAttribute('data-level');
+          selectLevel(level);
+        } else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+          e.preventDefault();
+          const nextChip = chip.nextElementSibling || levelChips.firstElementChild;
+          if (nextChip) nextChip.focus();
+        } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+          e.preventDefault();
+          const prevChip = chip.previousElementSibling || levelChips.lastElementChild;
+          if (prevChip) prevChip.focus();
+        }
+      });
+    });
+  }
+
+  // Multi-toggle button
+  if (multiToggleBtn) {
+    multiToggleBtn.addEventListener('click', toggleMultiSelect);
+    multiToggleBtn.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleMultiSelect();
+      }
+    });
+  }
+
   if (topicChips){
     topicChips.querySelectorAll('.chipbtn').forEach(btn=>{
       btn.addEventListener('click',()=>{
@@ -155,5 +272,8 @@
       freeOnly.checked = true;
     }
   }catch(e){}
+  
+  // Initialize level chips
+  updateLevelChips();
   render();
 })();
