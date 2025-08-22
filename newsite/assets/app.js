@@ -104,20 +104,25 @@
   }
 
   // Build custom level rail (Beginner A1 → Proficient C1)
-  const order = ['ALL','A1','A2','B1','B2','C1'];
+  const order = ['ALL','A1','A2','B1','C1'];
   levelSelect.innerHTML = '';
   order.forEach(l=>{ const opt=document.createElement('option'); opt.value = l==='ALL'?'all':l; opt.textContent = l; levelSelect.appendChild(opt); });
   if (railRoot){
     // Get the new slider elements
-    const levelBadge = railRoot.querySelector('.level-badge');
     const sliderTrack = railRoot.querySelector('.slider-track');
     const sliderFill = railRoot.querySelector('.slider-fill');
     const sliderThumb = railRoot.querySelector('.slider-thumb');
     const sliderMarkers = railRoot.querySelectorAll('.slider-marker');
     const sliderLabels = railRoot.querySelectorAll('.slider-label');
 
-    // Level positions for the new slider (0%, 25%, 50%, 75%, 100%)
-    const levelPositions = { 'ALL': 0, 'A1': 0, 'A2': 25, 'B1': 50, 'B2': 75, 'C1': 100 };
+    // Create the floating level badge
+    const levelBadge = document.createElement('div');
+    levelBadge.className = 'level-badge';
+    levelBadge.textContent = 'A1';
+    railRoot.appendChild(levelBadge);
+
+    // Level positions for the new 4-level slider (0%, 33.33%, 66.66%, 100%)
+    const levelPositions = { 'ALL': 0, 'A1': 0, 'A2': 33.33, 'B1': 66.66, 'C1': 100 };
     
     function setLevel(l){
       const base = levelPositions[l] ?? 0;
@@ -131,7 +136,14 @@
       
       // Update level badge
       if (levelBadge) {
-        levelBadge.textContent = l==='ALL' ? 'ALL' : l;
+        if (l === 'ALL') {
+          levelBadge.classList.remove('show');
+        } else {
+          levelBadge.textContent = l;
+          levelBadge.classList.add('show');
+          // Position badge above thumb
+          levelBadge.style.left = thumbPos + '%';
+        }
       }
       
       // Update select value
@@ -165,8 +177,14 @@
       });
       
       // Update aria attributes
-      const seq = ['A1','A2','B1','B2','C1'];
-      sliderThumb.setAttribute('aria-valuenow', l==='ALL'? '0' : String(['A1','A2','B1','B2','C1'].indexOf(l)+1));
+      const seq = ['A1','A2','B1','C1'];
+      sliderThumb.setAttribute('aria-valuenow', l==='ALL'? '0' : String(['A1','A2','B1','C1'].indexOf(l)+1));
+      
+      // Update aria-valuetext
+      const levelTexts = { 'A1': 'Beginner (A1)', 'A2': 'Intermediate (A2)', 'B1': 'Advanced (B1)', 'C1': 'Proficient (C1)' };
+      if (l !== 'ALL') {
+        sliderTrack.setAttribute('aria-valuetext', levelTexts[l]);
+      }
       
       render();
     }
@@ -221,6 +239,8 @@
       if (nearest!=='ALL'){
         if (levelBadge) {
           levelBadge.textContent = nearest;
+          levelBadge.style.left = pos + '%';
+          levelBadge.classList.add('show');
         }
       }
     }
@@ -236,11 +256,9 @@
     sliderThumb.addEventListener('touchstart', e=>{ e.stopPropagation(); startDrag(e); document.addEventListener('touchmove', onMove,{passive:false}); document.addEventListener('touchend', ()=>{ document.removeEventListener('touchmove', onMove); endDrag(); }, { once:true }); },{passive:false});
 
     // Clickable labels
-    const seq = ['A1','A2','B1','B2','C1'];
+    const seq = ['A1','A2','B1','C1'];
     sliderLabels.forEach((label,i)=> {
-      if (label.textContent.trim()) { // Only add click handler if label has text
-        label.addEventListener('click', ()=> setLevel(seq[i]));
-      }
+      label.addEventListener('click', ()=> setLevel(seq[i]));
     });
 
     // initialize from URL or default
