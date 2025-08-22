@@ -42,25 +42,17 @@
   const multiToggleBtn = document.getElementById('multi-toggle-btn');
   const levelCount = document.getElementById('level-count');
   
-  console.log('Found elements:', {
-    topicSelect: !!topicSelect,
-    topicChips: !!topicChips,
-    freeOnly: !!freeOnly,
-    freeSwitch: !!freeSwitch,
-    levelChips: !!levelChips,
-    multiToggleBtn: !!multiToggleBtn,
-    levelCount: !!levelCount
-  });
-  
   // Check if we're on the right page
   if (!levelChips) {
-    console.log('Level chips not found, exiting');
     return;
   }
 
-  const cards = Array.from(document.querySelectorAll('#pdf-library > article.card'))
-    .filter(c=>!c.querySelector('h2'));
-  if (!cards.length) return;
+  const cards = Array.from(document.querySelectorAll('article.card'))
+    .filter(card => {
+      const hasH2 = card.querySelector('h2');
+      const hasH3 = card.querySelector('h3');
+      return hasH3 && !hasH2; // We want cards with h3 but not h2
+    });
 
   const slug = (s)=> (s||'').toLowerCase().trim().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
   const titleCase = (s)=> (s||'').replace(/\w\S*/g, t=>t.charAt(0).toUpperCase()+t.slice(1).toLowerCase());
@@ -218,10 +210,10 @@
   
   // Level chip event listeners
   if (levelChips) {
-    console.log('Setting up level chip event listeners');
-    levelChips.querySelectorAll('.level-chip').forEach(chip => {
+    const levelChipElements = levelChips.querySelectorAll('.level-chip');
+    
+    levelChipElements.forEach((chip) => {
       chip.addEventListener('click', (e) => {
-        console.log('Level chip clicked:', chip.getAttribute('data-level'));
         const level = chip.getAttribute('data-level');
         const isShiftClick = e.shiftKey;
         const isMetaClick = e.metaKey || e.ctrlKey;
@@ -260,10 +252,10 @@
 
   // Topic chip event listeners
   if (topicChips){
-    console.log('Setting up topic chip event listeners');
-    topicChips.querySelectorAll('.chipbtn').forEach(btn=>{
+    const topicChipElements = topicChips.querySelectorAll('.chipbtn');
+    
+    topicChipElements.forEach((btn) => {
       btn.addEventListener('click',()=>{
-        console.log('Topic chip clicked:', btn.getAttribute('data-topic'));
         // Remove active class from all topic chips
         topicChips.querySelectorAll('.chipbtn').forEach(b=>b.classList.remove('active'));
         // Add active class to clicked chip

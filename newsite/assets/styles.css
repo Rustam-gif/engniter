@@ -480,6 +480,8 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
+  position: relative;
+  z-index: 1;
 }
 
 .level-chip:hover {
@@ -511,7 +513,7 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
 
 /* Topic chips and toggle */
 .chipbar{display:grid;grid-template-columns:repeat(4,minmax(140px,1fr));gap:10px}
-.chipbtn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;border:1px solid var(--line);background:var(--card);cursor:pointer;font-weight:700;color:var(--muted);justify-content:center;user-select:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none}
+.chipbtn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;border:1px solid var(--line);background:var(--card);cursor:pointer;font-weight:700;color:var(--muted);justify-content:center;user-select:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;position:relative;z-index:1}
 .chipbtn.active{background:#0f874b;color:#fff;border-color:#0f874b}
 .chipbtn svg{width:18px;height:18px;opacity:.95;stroke:currentColor;fill:none;stroke-width:2}
 
