@@ -117,8 +117,10 @@
     const tickEls = ticks.map(p=>{ const t=document.createElement('div'); t.className='tick'; t.style.left=p+'%'; rail.appendChild(t); return t; });
     const thumb = document.createElement('div'); thumb.className='thumb'; thumb.style.left='50%'; thumb.setAttribute('role','slider'); thumb.setAttribute('aria-valuemin','0'); thumb.setAttribute('aria-valuemax','5'); thumb.setAttribute('tabindex','0'); rail.appendChild(thumb);
     const badge = document.createElement('div'); badge.className='badge'; rail.appendChild(badge);
-    // Remove level words below the slider; keep only dynamic A1..C1 badge on top
-    const labelBtns = [];
+    // Re-add level words below the slider to match reference
+    const labels = document.createElement('div'); labels.className='labels';
+    const labelBtns = ['Beginner','Intermediate','Advanced','Proficient'].map((txt)=>{ const b=document.createElement('button'); b.type='button'; b.className='label'; b.textContent=txt; labels.appendChild(b); return b; });
+    railRoot.appendChild(labels);
 
     // Match the tick positions exactly (in percentages)
     const levelPositions = { 'ALL':2, 'A1':6, 'A2':25, 'B1':50, 'B2':75, 'C1':94 };
