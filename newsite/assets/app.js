@@ -39,8 +39,6 @@
   const freeOnly = document.getElementById('pdf-filter-free');
   const freeSwitch = document.getElementById('pdf-free-switch');
   const levelChips = document.getElementById('level-chips');
-  const multiToggleBtn = document.getElementById('multi-toggle-btn');
-  const levelCount = document.getElementById('level-count');
   
   // Check if we're on the right page
   if (!levelChips) return;
@@ -101,7 +99,6 @@
   }
 
   // Level chip management
-  let isMultiSelect = false;
   let selectedLevels = new Set(['ALL']);
 
   function updateLevelChips() {
@@ -113,64 +110,22 @@
       chip.classList.toggle('active', isSelected);
       chip.setAttribute('aria-selected', isSelected);
     });
-
-    // Update count display
-    if (isMultiSelect && selectedLevels.size > 0) {
-      const count = selectedLevels.has('ALL') ? 'All levels' : `${selectedLevels.size} level${selectedLevels.size !== 1 ? 's' : ''}`;
-      levelCount.textContent = count;
-    } else {
-      levelCount.textContent = '';
-    }
-
-    // Update aria-multiselectable
-    levelChips.setAttribute('aria-multiselectable', isMultiSelect);
   }
 
-  function selectLevel(level, isShiftClick = false, isMetaClick = false) {
-    if (isMultiSelect && (isShiftClick || isMetaClick)) {
-      // Multi-select mode with modifier keys
-      if (level === 'ALL') {
-        selectedLevels.clear();
-        selectedLevels.add('ALL');
-      } else {
-        selectedLevels.delete('ALL');
-        if (selectedLevels.has(level)) {
-          selectedLevels.delete(level);
-          if (selectedLevels.size === 0) {
-            selectedLevels.add('ALL');
-          }
-        } else {
-          selectedLevels.add(level);
-        }
-      }
+  function selectLevel(level) {
+    if (level === 'ALL') {
+      selectedLevels.clear();
+      selectedLevels.add('ALL');
     } else {
-      // Single-select mode or no modifier keys
-      if (level === 'ALL') {
-        selectedLevels.clear();
-        selectedLevels.add('ALL');
-      } else {
-        selectedLevels.clear();
-        selectedLevels.add(level);
-      }
+      selectedLevels.clear();
+      selectedLevels.add(level);
     }
     
     updateLevelChips();
     render();
   }
 
-  function toggleMultiSelect() {
-    isMultiSelect = !isMultiSelect;
-    multiToggleBtn.setAttribute('aria-pressed', isMultiSelect);
-    
-    if (!isMultiSelect) {
-      // Reset to single select - keep only the first selected level
-      const firstLevel = Array.from(selectedLevels)[0] || 'ALL';
-      selectedLevels.clear();
-      selectedLevels.add(firstLevel);
-    }
-    
-    updateLevelChips();
-  }
+
 
   function activeTopicValue(){
     if (topicChips){
@@ -198,9 +153,7 @@
     levelChips.querySelectorAll('.level-chip').forEach(chip => {
       chip.addEventListener('click', (e) => {
         const level = chip.getAttribute('data-level');
-        const isShiftClick = e.shiftKey;
-        const isMetaClick = e.metaKey || e.ctrlKey;
-        selectLevel(level, isShiftClick, isMetaClick);
+        selectLevel(level);
       });
 
       // Keyboard navigation
@@ -222,16 +175,7 @@
     });
   }
 
-  // Multi-toggle button
-  if (multiToggleBtn) {
-    multiToggleBtn.addEventListener('click', toggleMultiSelect);
-    multiToggleBtn.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        toggleMultiSelect();
-      }
-    });
-  }
+
 
   // Topic chip event listeners
   if (topicChips){
