@@ -33,9 +33,26 @@
 })();
 
 // Lightweight button filters for the PDF library
-document.addEventListener('DOMContentLoaded', function() {
-  console.log('DOM is loaded, JavaScript is running...');
-  alert('DOM is loaded - testing if this works');
+
+// Global function for testing
+window.testFilters = function() {
+  console.log('Testing filters...');
+  console.log('Level chips found:', document.querySelectorAll('.level-chip').length);
+  console.log('Topic chips found:', document.querySelectorAll('.chipbtn').length);
+  
+  // Try to add a simple click handler to test
+  const testChip = document.querySelector('.level-chip');
+  if (testChip) {
+    testChip.addEventListener('click', function() {
+      alert('Test click handler works!');
+    });
+    console.log('Added test click handler to first level chip');
+  }
+};
+
+// Function to initialize filters
+function initializeFilters() {
+  console.log('Initializing filters...');
   
   const topicSelect = document.getElementById('pdf-filter-topic');
   const topicChips = document.getElementById('pdf-topic-chips');
@@ -45,17 +62,17 @@ document.addEventListener('DOMContentLoaded', function() {
   const multiToggleBtn = document.getElementById('multi-toggle-btn');
   const levelCount = document.getElementById('level-count');
   
-  // Check if we're on the right page
-  if (!levelChips) {
-    console.error('Level chips element not found!');
-    return;
-  }
-  
   console.log('Elements found:', {
     levelChips: levelChips,
     topicChips: topicChips,
     multiToggleBtn: multiToggleBtn
   });
+  
+  // Check if we're on the right page
+  if (!levelChips) {
+    console.error('Level chips element not found!');
+    return;
+  }
   
   // Test if we can find the elements by different methods
   console.log('Testing element selection methods:');
@@ -63,6 +80,33 @@ document.addEventListener('DOMContentLoaded', function() {
   console.log('By ID pdf-topic-chips:', document.getElementById('pdf-topic-chips'));
   console.log('By class level-chip:', document.querySelectorAll('.level-chip').length);
   console.log('By class chipbtn:', document.querySelectorAll('.chipbtn').length);
+    
+    const topicSelect = document.getElementById('pdf-filter-topic');
+    const topicChips = document.getElementById('pdf-topic-chips');
+    const freeOnly = document.getElementById('pdf-filter-free');
+    const freeSwitch = document.getElementById('pdf-free-switch');
+    const levelChips = document.getElementById('level-chips');
+    const multiToggleBtn = document.getElementById('multi-toggle-btn');
+    const levelCount = document.getElementById('level-count');
+    
+    console.log('Elements found:', {
+      levelChips: levelChips,
+      topicChips: topicChips,
+      multiToggleBtn: multiToggleBtn
+    });
+    
+    // Check if we're on the right page
+    if (!levelChips) {
+      console.error('Level chips element not found!');
+      return;
+    }
+    
+    // Test if we can find the elements by different methods
+    console.log('Testing element selection methods:');
+    console.log('By ID level-chips:', document.getElementById('level-chips'));
+    console.log('By ID pdf-topic-chips:', document.getElementById('pdf-topic-chips'));
+    console.log('By class level-chip:', document.querySelectorAll('.level-chip').length);
+    console.log('By class chipbtn:', document.querySelectorAll('.chipbtn').length);
 
   const cards = Array.from(document.querySelectorAll('article.card'))
     .filter(card => {
@@ -354,4 +398,15 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   render();
-});
+}
+
+// Make the function globally available
+window.initializeFilters = initializeFilters;
+
+// Try to initialize immediately if DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initializeFilters);
+} else {
+  // DOM is already loaded
+  initializeFilters();
+}

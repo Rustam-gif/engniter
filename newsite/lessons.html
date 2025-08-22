@@ -76,9 +76,10 @@
               </button>
             </div>
             <div class="level-count" id="level-count" aria-live="polite"></div>
+            <button onclick="testFilters()" style="margin-left: 10px; padding: 4px 8px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">Test</button>
           </div>
           <div class="level-chips" id="level-chips" role="listbox" aria-label="Filter by CEFR level" aria-multiselectable="false">
-            <button class="level-chip active" role="option" aria-selected="true" data-level="ALL" onclick="alert('Test click works!')">All</button>
+            <button class="level-chip active" role="option" aria-selected="true" data-level="ALL">All</button>
             <button class="level-chip" role="option" aria-selected="false" data-level="A1">A1</button>
             <button class="level-chip" role="option" aria-selected="false" data-level="A2">A2</button>
             <button class="level-chip" role="option" aria-selected="false" data-level="B1">B1</button>
@@ -93,7 +94,7 @@
         <div class="group">
           <div class="group-title">Topics</div>
           <div class="chipbar" id="pdf-topic-chips" aria-label="Filter by topic">
-            <button class="chipbtn" data-topic="all" onclick="alert('Topic test click works!')"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/></svg>All</button>
+            <button class="chipbtn" data-topic="all"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/></svg>All</button>
             <button class="chipbtn" data-topic="science"><svg viewBox="0 0 24 24"><path d="M9 3v4l-5 9h16l-5-9V3"/></svg>Science</button>
             <button class="chipbtn" data-topic="history"><svg viewBox="0 0 24 24"><path d="M4 7h16M6 7v12m12-12v12M8 19h8"/></svg>History</button>
             <button class="chipbtn" data-topic="culture"><svg viewBox="0 0 24 24"><path d="M4 18h16M6 12h12M8 6h8"/></svg>Culture</button>
