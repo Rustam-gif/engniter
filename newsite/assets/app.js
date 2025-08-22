@@ -141,7 +141,7 @@
         } else {
           levelBadge.textContent = l;
           levelBadge.classList.add('show');
-          // Position badge above thumb
+          // Position badge above thumb using same left calculation
           levelBadge.style.left = thumbPos + '%';
         }
       }
@@ -202,8 +202,8 @@
     });
 
     // expose for keyboard a11y
-    sliderTrack.addEventListener('keydown', function(e){
-      const seq = ['A1','A2','B1','B2','C1'];
+    sliderThumb.addEventListener('keydown', function(e){
+      const seq = ['A1','A2','B1','C1'];
       const current = (levelSelect.value==='all' ? 'ALL' : levelSelect.value);
       if (e.key==='ArrowRight' || e.key==='ArrowUp'){
         e.preventDefault();
