@@ -72,10 +72,9 @@
         <li>Access to 5 basic lessons</li>
         <li>Basic progress tracking</li>
         <li>Community support</li>
-        <li>7-day trial period</li>
       </ul>
       <div class="stack">
-        <a href="login.html" class="btn">Start Free Trial</a>
+        <button class="btn" onclick="openSignupPopup()">Start Free Trial</button>
       </div>
     </article>
 
@@ -129,6 +128,35 @@
   </section>
 </main>
 
+<!-- Signup Popup Modal -->
+<div id="signupModal" class="modal hidden">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Start Your Free Trial</h2>
+      <button class="modal-close" onclick="closeSignupPopup()">&times;</button>
+    </div>
+    <div class="modal-body">
+      <p>Create your free account to access 5 basic lessons and start learning today!</p>
+      <div class="signup-form">
+        <div class="form-group">
+          <label for="signup-email">Email Address</label>
+          <input type="email" id="signup-email" placeholder="Enter your email" required>
+        </div>
+        <div class="form-group">
+          <label for="signup-password">Password</label>
+          <input type="password" id="signup-password" placeholder="Create a password" required>
+        </div>
+        <div class="form-group">
+          <label for="signup-name">Full Name</label>
+          <input type="text" id="signup-name" placeholder="Enter your full name" required>
+        </div>
+        <button class="btn" onclick="handleSignup()">Create Free Account</button>
+        <p class="fine">By signing up, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
 <footer class="footer" role="contentinfo">
   <div class="container inner">
     <div>© 2025 Engniter • Ignite your English</div>
@@ -139,6 +167,51 @@
 <script>
 document.addEventListener('DOMContentLoaded', function(){
   Auth.init();
+});
+
+// Signup popup functions
+function openSignupPopup() {
+  document.getElementById('signupModal').classList.remove('hidden');
+  document.body.style.overflow = 'hidden'; // Prevent background scrolling
+}
+
+function closeSignupPopup() {
+  document.getElementById('signupModal').classList.add('hidden');
+  document.body.style.overflow = 'auto'; // Restore scrolling
+}
+
+function handleSignup() {
+  const email = document.getElementById('signup-email').value;
+  const password = document.getElementById('signup-password').value;
+  const name = document.getElementById('signup-name').value;
+  
+  if (!email || !password || !name) {
+    alert('Please fill in all fields');
+    return;
+  }
+  
+  // Here you would typically integrate with your authentication system
+  // For now, we'll show a success message and redirect
+  alert('Account created successfully! Redirecting to your free lessons...');
+  closeSignupPopup();
+  
+  // Redirect to lessons page with free filter
+  window.location.href = 'lessons.html?free=1';
+}
+
+// Close modal when clicking outside of it
+document.addEventListener('click', function(event) {
+  const modal = document.getElementById('signupModal');
+  if (event.target === modal) {
+    closeSignupPopup();
+  }
+});
+
+// Close modal with Escape key
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape') {
+    closeSignupPopup();
+  }
 });
 </script>
 </body>
