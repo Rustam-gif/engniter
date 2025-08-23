@@ -91,7 +91,6 @@
       </ul>
       <div class="stack">
         <button class="btn pay-now pay-now-btn" id="monthly-pay-btn">Pay Now — €6.99</button>
-        <button class="btn" onclick="testPayment()" style="background: #666; margin-top: 8px;">Test Button (Debug)</button>
       </div>
     </article>
   </section>
@@ -202,14 +201,17 @@ function handlePayment(type) {
     // Open the signup popup
     window.netlifyIdentity.open('signup');
     
-    // Listen for successful login/signup
+    // Listen for successful login/signup and automatically redirect
     window.netlifyIdentity.on('login', function() {
-      console.log('Login successful, checking for pending payment');
+      console.log('Login successful, automatically redirecting to payment');
       const pendingPayment = sessionStorage.getItem('pendingPayment');
       if (pendingPayment) {
         sessionStorage.removeItem('pendingPayment');
-        console.log('Pending payment found, proceeding to payment');
-        proceedToPayment(pendingPayment);
+        console.log('Pending payment found, automatically redirecting to Stripe');
+        // Small delay to ensure the popup closes properly
+        setTimeout(() => {
+          proceedToPayment(pendingPayment);
+        }, 500);
       }
       window.netlifyIdentity.close();
     });
@@ -230,11 +232,7 @@ function proceedToPayment(type) {
   }
 }
 
-// Test function to verify everything is working
-function testPayment() {
-  console.log('Test payment function called');
-  alert('Test payment function is working!');
-}
+
 </script>
 </body>
 </html>
