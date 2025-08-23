@@ -121,6 +121,23 @@
 <script>
 document.addEventListener('DOMContentLoaded', function(){
   Auth.init();
+  
+  // Set up Netlify Identity event listeners once
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on('login', function() {
+      console.log('Login successful, checking for pending payment');
+      const pendingPayment = sessionStorage.getItem('pendingPayment');
+      if (pendingPayment) {
+        sessionStorage.removeItem('pendingPayment');
+        console.log('Pending payment found, automatically redirecting to Stripe');
+        // Small delay to ensure the popup closes properly
+        setTimeout(() => {
+          proceedToPayment(pendingPayment);
+        }, 1000);
+      }
+      window.netlifyIdentity.close();
+    });
+  }
 });
 
 // Enable free filter when "Get 5 Free Lesson Plans" is clicked
@@ -158,20 +175,7 @@ function handlePayment(type) {
     // Open the signup popup
     window.netlifyIdentity.open('signup');
     
-    // Listen for successful login/signup and automatically redirect
-    window.netlifyIdentity.on('login', function() {
-      console.log('Login successful, automatically redirecting to payment');
-      const pendingPayment = sessionStorage.getItem('pendingPayment');
-      if (pendingPayment) {
-        sessionStorage.removeItem('pendingPayment');
-        console.log('Pending payment found, automatically redirecting to Stripe');
-        // Small delay to ensure the popup closes properly
-        setTimeout(() => {
-          proceedToPayment(pendingPayment);
-        }, 500);
-      }
-      window.netlifyIdentity.close();
-    });
+
   }
 }
 
