@@ -221,15 +221,15 @@ function proceedToPayment(type) {
   console.log('proceedToPayment called with type:', type); // Debug log
   
   // Here you would integrate with your payment processor
-  // For now, we'll show a message and redirect to a payment page
+  // For now, we'll redirect to a payment page
   if (type === 'monthly') {
     console.log('Processing monthly subscription payment');
-    alert('Redirecting to monthly subscription payment...');
-    // window.location.href = 'your-payment-page.html?plan=monthly';
+    // Redirect to monthly subscription payment
+    window.location.href = 'https://buy.stripe.com/your-monthly-link?plan=monthly';
   } else if (type === 'lesson') {
     console.log('Processing lesson purchase payment');
-    alert('Redirecting to lesson purchase payment...');
-    // window.location.href = 'your-payment-page.html?plan=lesson';
+    // Redirect to lesson purchase payment
+    window.location.href = 'https://buy.stripe.com/your-lesson-link?plan=lesson';
   }
 }
 
