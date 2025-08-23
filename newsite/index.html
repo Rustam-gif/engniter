@@ -125,43 +125,59 @@ document.addEventListener('DOMContentLoaded', function(){
 
 // Handle payment flow - either proceed directly or handle auth during payment
 function handlePayment(type) {
-  const user = window.netlifyIdentity && window.netlifyIdentity.currentUser();
+  console.log('handlePayment called with type:', type); // Debug log
+  
+  // Check if Netlify Identity is available
+  if (!window.netlifyIdentity) {
+    console.log('Netlify Identity not available, redirecting to login');
+    window.location.href = 'login.html';
+    return;
+  }
+  
+  // Check if user is logged in
+  const user = window.netlifyIdentity.currentUser();
+  console.log('Current user:', user ? 'logged in' : 'not logged in');
   
   if (user) {
     // User is logged in, proceed directly to payment
+    console.log('User logged in, proceeding to payment');
     proceedToPayment(type);
   } else {
     // User is not logged in, open signup/login popup
-    // After successful auth, they'll be redirected to payment
-    if (window.netlifyIdentity) {
-      // Store payment type for after auth
-      sessionStorage.setItem('pendingPayment', type);
-      window.netlifyIdentity.open('signup');
-      
-      // Listen for successful login/signup
-      window.netlifyIdentity.on('login', function() {
-        const pendingPayment = sessionStorage.getItem('pendingPayment');
-        if (pendingPayment) {
-          sessionStorage.removeItem('pendingPayment');
-          proceedToPayment(pendingPayment);
-        }
-        window.netlifyIdentity.close();
-      });
-    } else {
-      // Fallback to login page
-      window.location.href = 'login.html';
-    }
+    console.log('User not logged in, opening auth popup');
+    
+    // Store payment type for after auth
+    sessionStorage.setItem('pendingPayment', type);
+    
+    // Open the signup popup
+    window.netlifyIdentity.open('signup');
+    
+    // Listen for successful login/signup
+    window.netlifyIdentity.on('login', function() {
+      console.log('Login successful, checking for pending payment');
+      const pendingPayment = sessionStorage.getItem('pendingPayment');
+      if (pendingPayment) {
+        sessionStorage.removeItem('pendingPayment');
+        console.log('Pending payment found, proceeding to payment');
+        proceedToPayment(pendingPayment);
+      }
+      window.netlifyIdentity.close();
+    });
   }
 }
 
 // Proceed to actual payment processing
 function proceedToPayment(type) {
+  console.log('proceedToPayment called with type:', type); // Debug log
+  
   // Here you would integrate with your payment processor
   // For now, we'll show a message and redirect to a payment page
   if (type === 'monthly') {
+    console.log('Processing monthly subscription payment');
     alert('Redirecting to monthly subscription payment...');
     // window.location.href = 'your-payment-page.html?plan=monthly';
   } else if (type === 'lesson') {
+    console.log('Processing lesson purchase payment');
     alert('Redirecting to lesson purchase payment...');
     // window.location.href = 'your-payment-page.html?plan=lesson';
   }
