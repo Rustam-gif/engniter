@@ -207,6 +207,18 @@
     }
   }catch(e){}
   
+  // Check if free filter should be enabled from session storage
+  try{
+    if (sessionStorage.getItem('enableFreeFilter') === 'true' && freeOnly){
+      freeOnly.checked = true;
+      sessionStorage.removeItem('enableFreeFilter'); // Clear the flag
+      // Update the switch visual state
+      if (freeSwitch) {
+        freeSwitch.classList.toggle('on', freeOnly.checked);
+      }
+    }
+  }catch(e){}
+  
   // Initialize level chips
   updateLevelChips();
   render();

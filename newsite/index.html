@@ -60,7 +60,7 @@
       <h1>Ready-to-Use ESL Lesson Plans for Teachers</h1>
       <p>Save hours preparing lessons with professionally designed lesson plans, worksheets, and activities for your ESL classes.</p>
       <div class="hero-actions">
-        <a href="lessons.html?free=1" class="btn free-cta">Get 5 Free Lesson Plans</a>
+        <a href="lessons.html?free=1" class="btn free-cta" onclick="enableFreeFilter()">Get 5 Free Lesson Plans</a>
       </div>
     </div>
     <div class="art"><img src="assets/logo.png" alt="Engniter mascot"></div>
@@ -122,6 +122,12 @@
 document.addEventListener('DOMContentLoaded', function(){
   Auth.init();
 });
+
+// Enable free filter when "Get 5 Free Lesson Plans" is clicked
+function enableFreeFilter() {
+  // Store the intent to enable free filter
+  sessionStorage.setItem('enableFreeFilter', 'true');
+}
 
 // Handle payment flow - either proceed directly or handle auth during payment
 function handlePayment(type) {
