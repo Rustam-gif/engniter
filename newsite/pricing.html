@@ -159,8 +159,13 @@ document.addEventListener('DOMContentLoaded', function(){
     });
   }
   
-  // Set up Netlify Identity event listeners once
+  console.log('Payment button event listeners added');
+});
+
+// Set up Netlify Identity event listeners after it's loaded
+function setupNetlifyIdentityListeners() {
   if (window.netlifyIdentity) {
+    console.log('Setting up Netlify Identity login listener');
     window.netlifyIdentity.on('login', function() {
       console.log('Login successful, checking for pending payment');
       const pendingPayment = sessionStorage.getItem('pendingPayment');
@@ -174,10 +179,15 @@ document.addEventListener('DOMContentLoaded', function(){
       }
       window.netlifyIdentity.close();
     });
+    console.log('Netlify Identity login listener set up successfully');
+  } else {
+    console.log('Netlify Identity not available yet, retrying in 500ms');
+    setTimeout(setupNetlifyIdentityListeners, 500);
   }
-  
-  console.log('Payment button event listeners and auth listeners added');
-});
+}
+
+// Start setting up listeners
+setupNetlifyIdentityListeners();
 
 // Open Netlify Identity popup for free trial signup
 function openAuthPopup() {
@@ -214,6 +224,8 @@ function handlePayment(type) {
     
     // Store payment type for after auth
     sessionStorage.setItem('pendingPayment', type);
+    console.log('Stored pending payment:', type, 'in session storage');
+    console.log('Session storage now contains:', sessionStorage.getItem('pendingPayment'));
     
     // Open the signup popup
     window.netlifyIdentity.open('signup');
