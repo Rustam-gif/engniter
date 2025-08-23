@@ -90,7 +90,7 @@
         <li>Mobile app access</li>
       </ul>
       <div class="stack">
-        <button class="btn pay-now pay-now-btn" onclick="console.log('Button clicked!'); alert('Button clicked!'); handlePayment('monthly');">Pay Now — €6.99</button>
+        <button class="btn pay-now pay-now-btn" id="monthly-pay-btn">Pay Now — €6.99</button>
         <button class="btn" onclick="testPayment()" style="background: #666; margin-top: 8px;">Test Button (Debug)</button>
       </div>
     </article>
@@ -122,7 +122,7 @@
       <h2 class="h3" style="margin-top:0">Purchase Lesson Access</h2>
       <p class="muted">Unlock the lesson instantly for <strong>€6.99</strong>.</p>
       <div class="stack">
-        <button class="btn pay-now pay-now-btn" onclick="console.log('Button clicked!'); handlePayment('lesson');">Pay Now — €6.99</button>
+        <button class="btn pay-now pay-now-btn" id="lesson-pay-btn">Pay Now — €6.99</button>
         <p class="fine">You’ll be redirected to our secure payment page.</p>
       </div>
     </article>
@@ -141,6 +141,26 @@
 <script>
 document.addEventListener('DOMContentLoaded', function(){
   Auth.init();
+  
+  // Add event listeners to payment buttons
+  const monthlyPayBtn = document.getElementById('monthly-pay-btn');
+  const lessonPayBtn = document.getElementById('lesson-pay-btn');
+  
+  if (monthlyPayBtn) {
+    monthlyPayBtn.addEventListener('click', function() {
+      console.log('Monthly pay button clicked via event listener');
+      handlePayment('monthly');
+    });
+  }
+  
+  if (lessonPayBtn) {
+    lessonPayBtn.addEventListener('click', function() {
+      console.log('Lesson pay button clicked via event listener');
+      handlePayment('lesson');
+    });
+  }
+  
+  console.log('Payment button event listeners added');
 });
 
 // Open Netlify Identity popup for free trial signup
