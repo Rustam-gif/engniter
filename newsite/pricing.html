@@ -90,7 +90,7 @@
         <li>Mobile app access</li>
       </ul>
       <div class="stack">
-        <a href="#" class="btn pay-now pay-now-btn">Pay Now — €6.99</a>
+        <button class="btn pay-now pay-now-btn" onclick="handlePayment('monthly')">Pay Now — €6.99</button>
       </div>
     </article>
   </section>
@@ -121,7 +121,7 @@
       <h2 class="h3" style="margin-top:0">Purchase Lesson Access</h2>
       <p class="muted">Unlock the lesson instantly for <strong>€6.99</strong>.</p>
       <div class="stack">
-        <a class="btn pay-now pay-now-btn" href="#">Pay Now — €6.99</a>
+        <button class="btn pay-now pay-now-btn" onclick="handlePayment('lesson')">Pay Now — €6.99</button>
         <p class="fine">You’ll be redirected to our secure payment page.</p>
       </div>
     </article>
@@ -149,6 +149,50 @@ function openAuthPopup() {
   } else {
     // Fallback to login page if Netlify Identity is not loaded
     window.location.href = 'login.html';
+  }
+}
+
+// Handle payment flow - either proceed directly or handle auth during payment
+function handlePayment(type) {
+  const user = window.netlifyIdentity && window.netlifyIdentity.currentUser();
+  
+  if (user) {
+    // User is logged in, proceed directly to payment
+    proceedToPayment(type);
+  } else {
+    // User is not logged in, open signup/login popup
+    // After successful auth, they'll be redirected to payment
+    if (window.netlifyIdentity) {
+      // Store payment type for after auth
+      sessionStorage.setItem('pendingPayment', type);
+      window.netlifyIdentity.open('signup');
+      
+      // Listen for successful login/signup
+      window.netlifyIdentity.on('login', function() {
+        const pendingPayment = sessionStorage.getItem('pendingPayment');
+        if (pendingPayment) {
+          sessionStorage.removeItem('pendingPayment');
+          proceedToPayment(pendingPayment);
+        }
+        window.netlifyIdentity.close();
+      });
+    } else {
+      // Fallback to login page
+      window.location.href = 'login.html';
+    }
+  }
+}
+
+// Proceed to actual payment processing
+function proceedToPayment(type) {
+  // Here you would integrate with your payment processor
+  // For now, we'll show a message and redirect to a payment page
+  if (type === 'monthly') {
+    alert('Redirecting to monthly subscription payment...');
+    // window.location.href = 'your-payment-page.html?plan=monthly';
+  } else if (type === 'lesson') {
+    alert('Redirecting to lesson purchase payment...');
+    // window.location.href = 'your-payment-page.html?plan=lesson';
   }
 }
 </script>
