@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thank You for Your Purchase · Engniter</title>
+  <meta name="description" content="Thank you for your purchase! Access your premium English lessons and start learning today.">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Thank You for Your Purchase · Engniter">
+  <meta property="og:description" content="Thank you for your purchase! Access your premium English lessons and start learning today.">
+  <meta property="og:image" content="assets/logo.png">
+  <meta property="og:type" content="website">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Thank You for Your Purchase · Engniter">
+  <meta name="twitter:description" content="Thank you for your purchase! Access your premium English lessons and start learning today.">
+  <meta name="twitter:image" content="assets/logo.png">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="assets/favicon.png" type="image/png">
+  
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Thank You for Your Purchase",
+    "description": "Thank you for your purchase! Access your premium English lessons and start learning today.",
+    "url": "https://engniter.com/thank-you.html",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Engniter",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://engniter.com/assets/logo.png"
+      }
+    }
+  }
+  </script>
+  
+  <!-- Google Analytics Conversion Tracking -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'GA_MEASUREMENT_ID');
+    
+    // Track conversion
+    gtag('event', 'purchase', {
+      'transaction_id': new URLSearchParams(window.location.search).get('transaction_id') || 'unknown',
+      'value': new URLSearchParams(window.location.search).get('value') || 0,
+      'currency': new URLSearchParams(window.location.search).get('currency') || 'USD'
+    });
+  </script>
+  
+  <!-- Google Ads Conversion Tracking -->
+  <script>
+    // Google Ads conversion tracking
+    gtag('event', 'conversion', {
+      'send_to': 'AW-CONVERSION_ID/CONVERSION_LABEL',
+      'value': new URLSearchParams(window.location.search).get('value') || 0,
+      'currency': new URLSearchParams(window.location.search).get('currency') || 'USD',
+      'transaction_id': new URLSearchParams(window.location.search).get('transaction_id') || 'unknown'
+    });
+  </script>
+  
+  <!-- Facebook Pixel Conversion Tracking -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', 'YOUR_PIXEL_ID');
+    fbq('track', 'Purchase', {
+      value: new URLSearchParams(window.location.search).get('value') || 0,
+      currency: new URLSearchParams(window.location.search).get('currency') || 'USD'
+    });
+  </script>
+  
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <!-- Skip to main content -->
+  <a href="#main" class="skip">Skip to main content</a>
+
+  <!-- Navigation -->
+  <nav class="nav" role="navigation">
+    <div class="container inner">
+      <div class="brand">
+        <img src="assets/logo.png" alt="Engniter logo">
+        <span>Engniter</span>
+      </div>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="lessons.html">Lessons</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="account.html" class="cta">Account</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="main">
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <div class="content">
+          <h1>🎉 Thank You for Your Purchase!</h1>
+          <p class="hero-subtitle">Welcome to Engniter Premium! Your English learning journey is about to get a whole lot better.</p>
+          
+          <!-- Success Message -->
+          <div class="success-card">
+            <div class="success-icon">✅</div>
+            <h2>Payment Successful</h2>
+            <p>Your premium subscription has been activated. You now have access to all our premium English lessons and materials.</p>
+          </div>
+        </div>
+        
+        <div class="art">
+          <img src="assets/logo.png" alt="Engniter mascot celebrating">
+        </div>
+      </div>
+    </section>
+
+    <!-- Next Steps Section -->
+    <section class="container">
+      <article class="card">
+        <h2 class="h3">What Happens Next?</h2>
+        <div class="steps-grid">
+          <div class="step">
+            <div class="step-number">1</div>
+            <h3>Check Your Email</h3>
+            <p>We've sent you a confirmation email with your login credentials and access instructions.</p>
+          </div>
+          
+          <div class="step">
+            <div class="step-number">2</div>
+            <h3>Access Your Account</h3>
+            <p>Log in to your account to start downloading premium lessons and tracking your progress.</p>
+          </div>
+          
+          <div class="step">
+            <div class="step-number">3</div>
+            <h3>Start Learning</h3>
+            <p>Choose from our premium lesson collection and begin your English learning journey.</p>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- Premium Features Section -->
+    <section class="container">
+      <article class="card">
+        <h2 class="h3">Your Premium Benefits</h2>
+        <div class="features-grid">
+          <div class="feature">
+            <div class="feature-icon">📚</div>
+            <h3>Premium Lessons</h3>
+            <p>Access to all our advanced lesson packs and specialized content.</p>
+          </div>
+          
+          <div class="feature">
+            <div class="feature-icon">💾</div>
+            <h3>Download Access</h3>
+            <p>Download lessons for offline study and keep them forever.</p>
+          </div>
+          
+          <div class="feature">
+            <div class="feature-icon">📊</div>
+            <h3>Progress Tracking</h3>
+            <p>Monitor your learning progress and see your improvement over time.</p>
+          </div>
+          
+          <div class="feature">
+            <div class="feature-icon">🎯</div>
+            <h3>Personalized Learning</h3>
+            <p>Get recommendations based on your level and interests.</p>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- Quick Actions Section -->
+    <section class="container">
+      <article class="card">
+        <h2 class="h3">Ready to Get Started?</h2>
+        <div class="action-buttons">
+          <a href="lessons.html" class="btn">Browse Premium Lessons</a>
+          <a href="account.html" class="btn pay-now">Access Your Account</a>
+        </div>
+        <p class="muted">Need help? Contact our support team at <a href="mailto:support@engniter.com">support@engniter.com</a></p>
+      </article>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="container">
+      <article class="card">
+        <h2 class="h3">Frequently Asked Questions</h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <h3>When will I receive my login credentials?</h3>
+            <p>You should receive them within 5-10 minutes of your purchase. Check your spam folder if you don't see them.</p>
+          </div>
+          
+          <div class="faq-item">
+            <h3>How long does my premium access last?</h3>
+            <p>Your premium access is valid for the duration specified in your subscription plan. You can check your account status anytime.</p>
+          </div>
+          
+          <div class="faq-item">
+            <h3>Can I download lessons on multiple devices?</h3>
+            <p>Yes! You can access your account and download lessons on any device where you're logged in.</p>
+          </div>
+          
+          <div class="faq-item">
+            <h3>What if I have technical issues?</h3>
+            <p>Our support team is here to help! Email us at support@engniter.com and we'll get back to you within 24 hours.</p>
+          </div>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="container inner">
+      <div>© 2025 Engniter • Ignite your English</div>
+      <div><a href="account.html">Account</a> · <a href="about.html#faq">FAQ</a></div>
+    </div>
+  </footer>
+
+  <!-- Conversion Tracking Scripts -->
+  <script>
+    // Additional conversion tracking
+    document.addEventListener('DOMContentLoaded', function() {
+      // Track page view
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'page_view', {
+          page_title: 'Thank You Page',
+          page_location: window.location.href
+        });
+      }
+      
+      // Track button clicks
+      document.querySelectorAll('.btn').forEach(button => {
+        button.addEventListener('click', function() {
+          if (typeof gtag !== 'undefined') {
+            gtag('event', 'click', {
+              event_category: 'engagement',
+              event_label: this.textContent.trim()
+            });
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
