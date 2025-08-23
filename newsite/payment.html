@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment - Engniter</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+  
+  <meta property="og:title" content="Payment - Engniter" />
+  <meta property="og:description" content="Complete your payment to access premium ESL lesson plans." />
+  <meta property="og:image" content="assets/logo.png" />
+  <meta name="theme-color" content="#f06736" />
+  
+  <!-- Netlify Identity widget -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <!-- GoTrue.js for custom authentication -->
+  <script src="https://unpkg.com/@supabase/gotrue-js@2.62.0/dist/umd/gotrue.js"></script>
+  <script src="assets/auth.js"></script>
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+
+<header class="nav" role="banner">
+  <div class="container inner">
+    <a class="brand" href="index.html" aria-label="Engniter home">
+      <img src="assets/logo.png" alt="Engniter logo" />
+      <span>ENGNITER</span>
+    </a>
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="lessons.html">Lessons</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="account.html" id="account-nav" class="hidden">Account</a></li>
+        <li><a class="cta" href="login.html" id="signin-nav">Sign In</a></li>
+        <li><a href="#" id="pay-now-nav" class="pay-now-nav hidden">Pay Now — €6.99</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="content" class="container">
+  <section class="hero">
+    <div>
+      <span class="badge">Payment</span>
+      <h1>Complete Your Purchase</h1>
+      <p>You're almost there! Complete your payment to access premium ESL lesson plans.</p>
+    </div>
+    <div class="art"><img src="assets/logo.png" alt="Engniter mascot"></div>
+  </section>
+
+  <section class="grid gap-24">
+    <article class="card">
+      <h2 class="h3" style="margin-top:0">Order Summary</h2>
+      <div id="order-details">
+        <p>Loading order details...</p>
+      </div>
+    </article>
+
+    <article class="card">
+      <h2 class="h3" style="margin-top:0">Payment Method</h2>
+      <p>Choose your preferred payment method to complete your purchase.</p>
+      
+      <div class="payment-options">
+        <div class="payment-option">
+          <input type="radio" id="stripe" name="payment" value="stripe" checked>
+          <label for="stripe">
+            <span class="payment-icon">💳</span>
+            Credit/Debit Card (Stripe)
+          </label>
+        </div>
+        
+        <div class="payment-option">
+          <input type="radio" id="paypal" name="payment" value="paypal">
+          <label for="paypal">
+            <span class="payment-icon">🅿️</span>
+            PayPal
+          </label>
+        </div>
+      </div>
+      
+      <div class="payment-form">
+        <div class="form-group">
+          <label for="card-number">Card Number</label>
+          <input type="text" id="card-number" placeholder="1234 5678 9012 3456" maxlength="19">
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="expiry">Expiry Date</label>
+            <input type="text" id="expiry" placeholder="MM/YY" maxlength="5">
+          </div>
+          <div class="form-group">
+            <label for="cvv">CVV</label>
+            <input type="text" id="cvv" placeholder="123" maxlength="4">
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="name">Cardholder Name</label>
+          <input type="text" id="name" placeholder="John Doe">
+        </div>
+        
+        <button class="btn" onclick="processPayment()">Complete Payment — €6.99</button>
+      </div>
+      
+      <p class="fine">Your payment is secured with SSL encryption. You can cancel your subscription at any time.</p>
+    </article>
+  </section>
+</main>
+
+<footer class="footer" role="contentinfo">
+  <div class="container inner">
+    <div>© 2025 Engniter • Ready-to-Use ESL Lesson Plans</div>
+    <div><a href="account.html">Account</a> · <a href="about.html#faq">FAQ</a></div>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  Auth.init();
+  loadOrderDetails();
+});
+
+function loadOrderDetails() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const plan = urlParams.get('plan');
+  const orderDetails = document.getElementById('order-details');
+  
+  if (plan === 'monthly') {
+    orderDetails.innerHTML = `
+      <div class="order-item">
+        <h3>Monthly Subscription Plan</h3>
+        <p>Access to all premium ESL lesson plans</p>
+        <p class="price">€6.99/month</p>
+        <ul>
+          <li>50+ lesson plans</li>
+          <li>Advanced progress tracking</li>
+          <li>Priority support</li>
+          <li>Cancel anytime</li>
+        </ul>
+      </div>
+    `;
+  } else if (plan === 'lesson') {
+    orderDetails.innerHTML = `
+      <div class="order-item">
+        <h3>Single Lesson Access</h3>
+        <p>Unlock one premium lesson plan</p>
+        <p class="price">€6.99</p>
+        <ul>
+          <li>Full lesson plan with worksheets</li>
+          <li>Reading materials and activities</li>
+          <li>Discussion prompts and tasks</li>
+          <li>Lifetime access to the lesson</li>
+        </ul>
+      </div>
+    `;
+  } else {
+    orderDetails.innerHTML = '<p>Order details not found.</p>';
+  }
+}
+
+function processPayment() {
+  // This is a placeholder - replace with actual payment processing
+  alert('Payment processing would happen here. This is a demo page.');
+  
+  // In a real implementation, you would:
+  // 1. Collect payment details
+  // 2. Send to your payment processor (Stripe, PayPal, etc.)
+  // 3. Handle success/failure responses
+  // 4. Redirect to success page or show error
+  
+  // For now, simulate success
+  setTimeout(() => {
+    window.location.href = 'thank-you.html?transaction_id=demo123&value=6.99&currency=EUR';
+  }, 1000);
+}
+</script>
+</body>
+</html>
