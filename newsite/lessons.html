@@ -601,7 +601,7 @@
   <section class="grid gap-24">
     <article class="card" style="grid-column: 1 / -1">
       <h2 class="h3" style="margin-top:0">Practice Your Skills</h2>
-      <p>Choose from {Object.keys(window.allQuizData || {}).length} interactive quizzes covering all lesson topics and levels.</p>
+      <p>Choose from our comprehensive collection of interactive quizzes covering all lesson topics and levels.</p>
     </article>
     
     <article class="card" style="grid-column: 1 / -1">
@@ -736,6 +736,10 @@ document.addEventListener('DOMContentLoaded', function(){
     console.log('Cleared old Quiz component');
   }
   
+  // Add a simple test to verify script loading
+  console.log('Starting quiz system initialization...');
+  console.log('Current time:', new Date().toISOString());
+  
   // Load React from CDN
   const reactScript = document.createElement('script');
   reactScript.src = 'https://unpkg.com/react@18/umd/react.production.min.js';
@@ -771,31 +775,41 @@ document.addEventListener('DOMContentLoaded', function(){
           // Initialize master quiz with a longer delay to ensure everything is ready
           setTimeout(function() {
             const quizRoot = document.getElementById('quiz-root');
+            console.log('=== QUIZ SYSTEM STATUS CHECK ===');
             console.log('Quiz root element:', quizRoot);
-            console.log('MasterQuizSelector available:', window.MasterQuizSelector);
-            console.log('React available:', window.React);
-            console.log('ReactDOM available:', window.ReactDOM);
-            console.log('All quiz data:', window.allQuizData);
+            console.log('MasterQuizSelector available:', !!window.MasterQuizSelector);
+            console.log('React available:', !!window.React);
+            console.log('ReactDOM available:', !!window.ReactDOM);
+            console.log('All quiz data available:', !!window.allQuizData);
+            console.log('All quiz data keys:', window.allQuizData ? Object.keys(window.allQuizData) : 'NOT LOADED');
+            console.log('================================');
             
             if (quizRoot && window.MasterQuizSelector && window.React && window.ReactDOM) {
               try {
+                console.log('Attempting to render MasterQuizSelector...');
                 const root = window.ReactDOM.createRoot(quizRoot);
                 root.render(window.React.createElement(window.MasterQuizSelector));
-                console.log('Master quiz selector rendered successfully');
+                console.log('✅ Master quiz selector rendered successfully');
               } catch (error) {
-                console.error('Error rendering master quiz:', error);
+                console.error('❌ Error rendering master quiz:', error);
                 showFallbackQuiz();
               }
             } else {
-              console.error('Required components not found:', {
+              console.error('❌ Required components not found:', {
                 quizRoot: !!quizRoot,
                 MasterQuizSelector: !!window.MasterQuizSelector,
                 React: !!window.React,
                 ReactDOM: !!window.ReactDOM
               });
+              
+              // Show what's actually available
+              if (window.Quiz) {
+                console.log('⚠️ Old Quiz component found - this might be causing conflicts');
+              }
+              
               showFallbackQuiz();
             }
-          }, 1000); // Increased delay to ensure everything is loaded
+          }, 2000); // Increased delay to ensure everything is loaded
           
           // Add timeout to show fallback if quiz doesn't load
           setTimeout(function() {
@@ -803,7 +817,7 @@ document.addEventListener('DOMContentLoaded', function(){
               console.log('Quiz timeout reached, showing fallback');
               showFallbackQuiz();
             }
-          }, 10000); // 10 second timeout
+          }, 15000); // Increased timeout to 15 seconds
         };
         document.body.appendChild(masterQuizScript);
       };
@@ -852,24 +866,20 @@ document.addEventListener('DOMContentLoaded', function(){
     }
   }
   
-  function loadFallbackQuiz() {
-    const fallbackScript = document.createElement('script');
-    fallbackScript.src = 'assets/quiz-fallback.js';
-    fallbackScript.onload = function() {
-      console.log('Fallback quiz loaded successfully');
-    };
-    fallbackScript.onerror = function() {
-      console.error('Failed to load fallback quiz');
+      function loadFallbackQuiz() {
+      console.log('Loading fallback quiz system...');
+      
+      // Instead of loading the old fallback, show a simple message
       const quizRoot = document.getElementById('quiz-root');
       if (quizRoot) {
         quizRoot.innerHTML = `
           <div class="quiz-container">
             <div class="quiz-header">
-              <h2>Objects That Tell a Story (A2)</h2>
-              <div class="progress">Interactive Quiz</div>
+              <h2>Quiz System Loading</h2>
+              <div class="progress">Please wait...</div>
             </div>
             <div class="question-container">
-              <h3 class="question">Quiz loading failed. Please refresh the page or try again later.</h3>
+              <h3 class="question">The master quiz system is loading. If this message persists, please refresh the page.</h3>
               <p style="text-align: center; color: var(--muted);">
                 <button class="btn" onclick="location.reload()">Refresh Page</button>
               </p>
@@ -877,9 +887,24 @@ document.addEventListener('DOMContentLoaded', function(){
           </div>
         `;
       }
-    };
-    document.body.appendChild(fallbackScript);
-  }
+      
+      // Try to manually load the master quiz system
+      setTimeout(function() {
+        if (window.MasterQuizSelector && window.React && window.ReactDOM) {
+          console.log('Retrying master quiz system...');
+          const quizRoot = document.getElementById('quiz-root');
+          if (quizRoot) {
+            try {
+              const root = window.ReactDOM.createRoot(quizRoot);
+              root.render(window.React.createElement(window.MasterQuizSelector));
+              console.log('✅ Master quiz selector loaded on retry');
+            } catch (error) {
+              console.error('❌ Retry failed:', error);
+            }
+          }
+        }
+      }, 3000);
+    }
   
   document.body.appendChild(reactScript);
 })();
