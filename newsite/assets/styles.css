@@ -1198,6 +1198,16 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
   color: #991b1b;
 }
 
+.option-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.option-btn:disabled:hover {
+  border-color: inherit;
+  background-color: inherit;
+}
+
 .quiz-navigation {
   display: flex;
   justify-content: space-between;
@@ -1208,6 +1218,28 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
 .quiz-navigation .btn {
   flex: 1;
   max-width: 120px;
+}
+
+.show-answer-btn {
+  background: #f59e0b !important;
+  color: white !important;
+}
+
+.show-answer-btn:hover {
+  background: #d97706 !important;
+}
+
+.answer-explanation {
+  background: #f0f9ff;
+  border: 1px solid #0ea5e9;
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 20px;
+}
+
+.answer-explanation p {
+  margin: 8px 0;
+  color: #0c4a6e;
 }
 
 .quiz-results {

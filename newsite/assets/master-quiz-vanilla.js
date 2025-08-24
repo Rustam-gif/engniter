@@ -50,11 +50,19 @@ function createQuiz(quizKey, quizData) {
               </button>
             `).join('')}
           </div>
+          
+          <div class="answer-explanation" style="display: none;">
+            <p><strong>Correct Answer:</strong> ${question.options[question.correctAnswer]}</p>
+            <p><strong>Explanation:</strong> This is the correct answer because it best addresses the question asked.</p>
+          </div>
         </div>
         
         <div class="quiz-navigation">
           <button class="btn" onclick="previousQuestion()" ${currentQuestionIndex === 0 ? 'disabled' : ''}>
             Previous
+          </button>
+          <button class="btn" onclick="showAnswer()" class="show-answer-btn">
+            Show Answer
           </button>
           <button class="btn" onclick="nextQuestion()" ${currentQuestionIndex === quizData.exercises.length - 1 ? 'disabled' : ''}>
             Next
@@ -67,21 +75,37 @@ function createQuiz(quizKey, quizData) {
   function selectOption(optionIndex) {
     userAnswers[currentQuestionIndex] = optionIndex;
     
-    // Highlight selected option
+    // Get current question data
+    const currentQuestion = quizData.exercises[currentQuestionIndex];
+    const correctAnswer = currentQuestion.correctAnswer;
+    
+    // Highlight all options to show correct answer
     const optionBtns = document.querySelectorAll('.option-btn');
     optionBtns.forEach((btn, index) => {
       btn.classList.remove('selected', 'correct', 'incorrect');
+      
       if (index === optionIndex) {
+        // User's selected answer
         btn.classList.add('selected');
-        if (index === quizData.exercises[currentQuestionIndex].correctAnswer) {
+        if (index === correctAnswer) {
           btn.classList.add('correct');
+          // Only increment score if this is the first time answering correctly
           if (!userAnswers[currentQuestionIndex] || userAnswers[currentQuestionIndex] !== index) {
             score++;
           }
         } else {
           btn.classList.add('incorrect');
         }
+      } else if (index === correctAnswer) {
+        // Show correct answer even if not selected
+        btn.classList.add('correct');
       }
+    });
+    
+    // Disable all buttons after selection
+    optionBtns.forEach(btn => {
+      btn.disabled = true;
+      btn.style.cursor = 'not-allowed';
     });
   }
 
@@ -128,6 +152,14 @@ function createQuiz(quizKey, quizData) {
   window.nextQuestion = nextQuestion;
   window.previousQuestion = previousQuestion;
   window.restartQuiz = restartQuiz;
+  window.showAnswer = showAnswer;
+  
+  function showAnswer() {
+    const answerExplanation = document.querySelector('.answer-explanation');
+    if (answerExplanation) {
+      answerExplanation.style.display = 'block';
+    }
+  }
 
   // Start the quiz
   renderQuiz();
