@@ -746,24 +746,25 @@ function startQuizFromLesson(lessonSlug) {
     // Clear existing quiz content
     quizRoot.innerHTML = '<div class="quiz-loading"><p>Loading quiz...</p><div class="loading-spinner"></div></div>';
     
-    // Initialize quiz system
+    // Load and display the specific quiz directly
     setTimeout(() => {
-      if (window.createMasterQuizSelector) {
-        // Initialize master quiz selector
-        window.createMasterQuizSelector();
+      if (window.allQuizData && window.createQuiz) {
+        // Find the quiz data for this lesson
+        const quizKey = Object.keys(window.allQuizData).find(key => 
+          key.toLowerCase().includes(lessonSlug.toLowerCase().replace(/[()]/g, '').replace(/\s+/g, '-')) ||
+          lessonSlug.toLowerCase().replace(/[()]/g, '').replace(/\s+/g, '-').includes(key.toLowerCase())
+        );
         
-        // Find and click the specific quiz
-        setTimeout(() => {
-          const quizCards = document.querySelectorAll('.quiz-card');
-          for (let card of quizCards) {
-            const title = card.querySelector('h3').textContent.toLowerCase();
-            if (title.includes(lessonSlug.replace(/-/g, ' ')) || 
-                lessonSlug.includes(title.replace(/\s+/g, '-'))) {
-              card.click();
-              break;
-            }
-          }
-        }, 500);
+        if (quizKey && window.allQuizData[quizKey]) {
+          // Create and display the specific quiz
+          window.createQuiz(quizKey, window.allQuizData[quizKey]);
+        } else {
+          // Fallback if quiz not found
+          quizRoot.innerHTML = '<div class="quiz-error"><p>Quiz not found for this lesson. Please try another lesson.</p></div>';
+        }
+      } else {
+        // Fallback if quiz system not loaded
+        quizRoot.innerHTML = '<div class="quiz-error"><p>Quiz system not available. Please refresh the page.</p></div>';
       }
     }, 300);
   }
@@ -834,6 +835,13 @@ document.addEventListener('DOMContentLoaded', function() {
     masterQuizScript.onload = function() {
       console.log('Master quiz component loaded successfully');
       
+      // Make createQuiz function globally available
+      if (window.createQuiz) {
+        console.log('✅ createQuiz function is available globally');
+      } else {
+        console.error('❌ createQuiz function not found');
+      }
+      
       // Initialize master quiz with a short delay to ensure everything is ready
       setTimeout(function() {
         const quizRoot = document.getElementById('quiz-root');
@@ -842,6 +850,7 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('All quiz data available:', !!window.allQuizData);
         console.log('All quiz data keys:', window.allQuizData ? Object.keys(window.allQuizData) : 'NOT LOADED');
         console.log('createMasterQuizSelector available:', !!window.createMasterQuizSelector);
+        console.log('createQuiz available:', !!window.createQuiz);
         console.log('================================');
         
         if (quizRoot && window.allQuizData && window.createMasterQuizSelector) {

@@ -1,3 +1,125 @@
+// Function to create and display a specific quiz
+function createQuiz(quizKey, quizData) {
+  const quizRoot = document.getElementById('quiz-root');
+  if (!quizRoot || !quizData) return;
+
+  let currentQuestionIndex = 0;
+  let score = 0;
+  let userAnswers = [];
+
+  function renderQuiz() {
+    if (currentQuestionIndex >= quizData.questions.length) {
+      renderResults();
+      return;
+    }
+
+    const question = quizData.questions[currentQuestionIndex];
+    quizRoot.innerHTML = `
+      <div class="quiz-container">
+        <div class="quiz-header">
+          <h3>${quizData.title}</h3>
+          <div class="quiz-progress">
+            Question ${currentQuestionIndex + 1} of ${quizData.questions.length}
+          </div>
+        </div>
+        
+        <div class="question-container">
+          <h4 class="question-text">${question.question}</h4>
+          
+          <div class="options-container">
+            ${question.options.map((option, index) => `
+              <button 
+                class="option-btn" 
+                onclick="selectOption(${index})"
+                data-option="${index}"
+              >
+                ${option}
+              </button>
+            `).join('')}
+          </div>
+        </div>
+        
+        <div class="quiz-navigation">
+          <button class="btn" onclick="previousQuestion()" ${currentQuestionIndex === 0 ? 'disabled' : ''}>
+            Previous
+          </button>
+          <button class="btn" onclick="nextQuestion()" ${currentQuestionIndex === quizData.questions.length - 1 ? 'disabled' : ''}>
+            Next
+          </button>
+        </div>
+      </div>
+    `;
+  }
+
+  function selectOption(optionIndex) {
+    userAnswers[currentQuestionIndex] = optionIndex;
+    
+    // Highlight selected option
+    const optionBtns = document.querySelectorAll('.option-btn');
+    optionBtns.forEach((btn, index) => {
+      btn.classList.remove('selected', 'correct', 'incorrect');
+      if (index === optionIndex) {
+        btn.classList.add('selected');
+        if (index === question.correctAnswer) {
+          btn.classList.add('correct');
+          if (!userAnswers[currentQuestionIndex] || userAnswers[currentQuestionIndex] !== index) {
+            score++;
+          }
+        } else {
+          btn.classList.add('incorrect');
+        }
+      }
+    });
+  }
+
+  function nextQuestion() {
+    if (currentQuestionIndex < quizData.questions.length - 1) {
+      currentQuestionIndex++;
+      renderQuiz();
+    }
+  }
+
+  function previousQuestion() {
+    if (currentQuestionIndex > 0) {
+      currentQuestionIndex--;
+      renderQuiz();
+    }
+  }
+
+  function renderResults() {
+    const percentage = Math.round((score / quizData.questions.length) * 100);
+    quizRoot.innerHTML = `
+      <div class="quiz-results">
+        <h3>Quiz Complete!</h3>
+        <div class="score-display">
+          <p>Your Score: ${score} out of ${quizData.questions.length}</p>
+          <p>Percentage: ${percentage}%</p>
+        </div>
+        <div class="result-actions">
+          <button class="btn" onclick="restartQuiz()">Take Quiz Again</button>
+          <button class="btn" onclick="closeQuizModal()">Close Quiz</button>
+        </div>
+      </div>
+    `;
+  }
+
+  function restartQuiz() {
+    currentQuestionIndex = 0;
+    score = 0;
+    userAnswers = [];
+    renderQuiz();
+  }
+
+  // Make functions globally accessible
+  window.selectOption = selectOption;
+  window.nextQuestion = nextQuestion;
+  window.previousQuestion = previousQuestion;
+  window.restartQuiz = restartQuiz;
+
+  // Start the quiz
+  renderQuiz();
+}
+
 // Vanilla JavaScript Master Quiz Selector (No JSX required)
 function createMasterQuizSelector() {
   const quizRoot = document.getElementById('quiz-root');
