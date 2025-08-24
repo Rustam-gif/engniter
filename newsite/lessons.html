@@ -748,6 +748,11 @@ function startQuizFromLesson(lessonSlug) {
     
     // Load and display the specific quiz directly
     setTimeout(() => {
+      console.log('Starting quiz loading process...');
+      console.log('Lesson slug:', lessonSlug);
+      console.log('allQuizData available:', !!window.allQuizData);
+      console.log('createQuiz available:', !!window.createQuiz);
+      
       if (window.allQuizData && window.createQuiz) {
         // Find the quiz data for this lesson
         const quizKey = Object.keys(window.allQuizData).find(key => 
@@ -755,15 +760,21 @@ function startQuizFromLesson(lessonSlug) {
           lessonSlug.toLowerCase().replace(/[()]/g, '').replace(/\s+/g, '-').includes(key.toLowerCase())
         );
         
+        console.log('Found quiz key:', quizKey);
+        console.log('Quiz data:', quizKey ? window.allQuizData[quizKey] : 'NOT FOUND');
+        
         if (quizKey && window.allQuizData[quizKey]) {
           // Create and display the specific quiz
+          console.log('Creating quiz with key:', quizKey);
           window.createQuiz(quizKey, window.allQuizData[quizKey]);
         } else {
           // Fallback if quiz not found
+          console.log('Quiz not found, showing error message');
           quizRoot.innerHTML = '<div class="quiz-error"><p>Quiz not found for this lesson. Please try another lesson.</p></div>';
         }
       } else {
         // Fallback if quiz system not loaded
+        console.log('Quiz system not available, showing error message');
         quizRoot.innerHTML = '<div class="quiz-error"><p>Quiz system not available. Please refresh the page.</p></div>';
       }
     }, 300);

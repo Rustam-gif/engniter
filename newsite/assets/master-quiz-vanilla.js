@@ -1,25 +1,38 @@
 // Function to create and display a specific quiz
 function createQuiz(quizKey, quizData) {
+  console.log('createQuiz called with:', { quizKey, quizData });
+  
   const quizRoot = document.getElementById('quiz-root');
-  if (!quizRoot || !quizData) return;
+  if (!quizRoot || !quizData) {
+    console.error('Missing quizRoot or quizData:', { quizRoot: !!quizRoot, quizData: !!quizData });
+    return;
+  }
+  
+  console.log('Quiz data structure:', {
+    title: quizData.title,
+    level: quizData.level,
+    topic: quizData.topic,
+    exercisesCount: quizData.exercises ? quizData.exercises.length : 'UNDEFINED',
+    exercises: quizData.exercises
+  });
 
   let currentQuestionIndex = 0;
   let score = 0;
   let userAnswers = [];
 
   function renderQuiz() {
-    if (currentQuestionIndex >= quizData.questions.length) {
+    if (currentQuestionIndex >= quizData.exercises.length) {
       renderResults();
       return;
     }
 
-    const question = quizData.questions[currentQuestionIndex];
+    const question = quizData.exercises[currentQuestionIndex];
     quizRoot.innerHTML = `
       <div class="quiz-container">
         <div class="quiz-header">
           <h3>${quizData.title}</h3>
           <div class="quiz-progress">
-            Question ${currentQuestionIndex + 1} of ${quizData.questions.length}
+            Question ${currentQuestionIndex + 1} of ${quizData.exercises.length}
           </div>
         </div>
         
@@ -43,7 +56,7 @@ function createQuiz(quizKey, quizData) {
           <button class="btn" onclick="previousQuestion()" ${currentQuestionIndex === 0 ? 'disabled' : ''}>
             Previous
           </button>
-          <button class="btn" onclick="nextQuestion()" ${currentQuestionIndex === quizData.questions.length - 1 ? 'disabled' : ''}>
+          <button class="btn" onclick="nextQuestion()" ${currentQuestionIndex === quizData.exercises.length - 1 ? 'disabled' : ''}>
             Next
           </button>
         </div>
@@ -60,7 +73,7 @@ function createQuiz(quizKey, quizData) {
       btn.classList.remove('selected', 'correct', 'incorrect');
       if (index === optionIndex) {
         btn.classList.add('selected');
-        if (index === question.correctAnswer) {
+        if (index === quizData.exercises[currentQuestionIndex].correctAnswer) {
           btn.classList.add('correct');
           if (!userAnswers[currentQuestionIndex] || userAnswers[currentQuestionIndex] !== index) {
             score++;
@@ -73,7 +86,7 @@ function createQuiz(quizKey, quizData) {
   }
 
   function nextQuestion() {
-    if (currentQuestionIndex < quizData.questions.length - 1) {
+    if (currentQuestionIndex < quizData.exercises.length - 1) {
       currentQuestionIndex++;
       renderQuiz();
     }
@@ -87,7 +100,7 @@ function createQuiz(quizKey, quizData) {
   }
 
   function renderResults() {
-    const percentage = Math.round((score / quizData.questions.length) * 100);
+    const percentage = Math.round((score / quizData.exercises.length) * 100);
     quizRoot.innerHTML = `
       <div class="quiz-results">
         <h3>Quiz Complete!</h3>
