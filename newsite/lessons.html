@@ -605,7 +605,12 @@
     </article>
     
     <article class="card" style="grid-column: 1 / -1">
-      <div id="quiz-root"></div>
+      <div id="quiz-root">
+        <div class="quiz-loading">
+          <p>Loading interactive quiz...</p>
+          <div class="loading-spinner"></div>
+        </div>
+      </div>
     </article>
   </section>
 </main>
@@ -733,19 +738,68 @@ document.addEventListener('DOMContentLoaded', function(){
   
   // Wait for React to load, then load quiz
   reactScript.onload = function() {
+    console.log('React loaded successfully');
     reactDOMScript.onload = function() {
+      console.log('ReactDOM loaded successfully');
       quizScript.onload = function() {
-        // Initialize quiz
-        const quizRoot = document.getElementById('quiz-root');
-        if (quizRoot && window.Quiz) {
-          const root = ReactDOM.createRoot(quizRoot);
-          root.render(React.createElement(window.Quiz));
-        }
+        console.log('Quiz script loaded successfully');
+        // Initialize quiz with a small delay to ensure everything is ready
+        setTimeout(function() {
+          const quizRoot = document.getElementById('quiz-root');
+          console.log('Quiz root element:', quizRoot);
+          console.log('Window.Quiz available:', window.Quiz);
+          
+          if (quizRoot && window.Quiz) {
+            try {
+              const root = ReactDOM.createRoot(quizRoot);
+              root.render(React.createElement(window.Quiz));
+              console.log('Quiz rendered successfully');
+            } catch (error) {
+              console.error('Error rendering quiz:', error);
+            }
+          } else {
+            console.error('Quiz root or Quiz component not found');
+          }
+        }, 100);
       };
       document.body.appendChild(quizScript);
     };
     document.body.appendChild(reactDOMScript);
   };
+  
+  reactScript.onerror = function() {
+    console.error('Failed to load React');
+  };
+  
+  reactDOMScript.onerror = function() {
+    console.error('Failed to load ReactDOM');
+  };
+  
+  quizScript.onerror = function() {
+    console.error('Failed to load Quiz script');
+    showFallbackQuiz();
+  };
+  
+  // Fallback quiz if React fails to load
+  function showFallbackQuiz() {
+    const quizRoot = document.getElementById('quiz-root');
+    if (quizRoot) {
+      quizRoot.innerHTML = `
+        <div class="quiz-container">
+          <div class="quiz-header">
+            <h2>Objects That Tell a Story (A2)</h2>
+            <div class="progress">Interactive Quiz</div>
+          </div>
+          <div class="question-container">
+            <h3 class="question">Quiz loading failed. Please refresh the page or try again later.</h3>
+            <p style="text-align: center; color: var(--muted);">
+              <button class="btn" onclick="location.reload()">Refresh Page</button>
+            </p>
+          </div>
+        </div>
+      `;
+    }
+  }
   
   document.body.appendChild(reactScript);
 })();
