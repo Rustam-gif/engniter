@@ -8,31 +8,57 @@ function createQuiz(quizKey, quizData) {
     return;
   }
   
+  // Create a deep copy of the quiz data and shuffle the answer options
+  const shuffledQuizData = JSON.parse(JSON.stringify(quizData));
+  shuffleQuizAnswers(shuffledQuizData);
+  
   console.log('Quiz data structure:', {
-    title: quizData.title,
-    level: quizData.level,
-    topic: quizData.topic,
-    exercisesCount: quizData.exercises ? quizData.exercises.length : 'UNDEFINED',
-    exercises: quizData.exercises
+    title: shuffledQuizData.title,
+    level: shuffledQuizData.level,
+    topic: shuffledQuizData.topic,
+    exercisesCount: shuffledQuizData.exercises ? shuffledQuizData.exercises.length : 'UNDEFINED',
+    exercises: shuffledQuizData.exercises
   });
 
   let currentQuestionIndex = 0;
   let score = 0;
   let userAnswers = [];
 
+  // Function to shuffle answer options for each question
+  function shuffleQuizAnswers(quizData) {
+    quizData.exercises.forEach(exercise => {
+      // Store the correct answer text
+      const correctAnswerText = exercise.options[exercise.correctAnswer];
+      
+      // Shuffle the options array
+      const shuffledOptions = [...exercise.options];
+      for (let i = shuffledOptions.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffledOptions[i], shuffledOptions[j]] = [shuffledOptions[j], shuffledOptions[i]];
+      }
+      
+      // Find the new position of the correct answer
+      const newCorrectIndex = shuffledOptions.indexOf(correctAnswerText);
+      
+      // Update the exercise with shuffled options and new correct answer index
+      exercise.options = shuffledOptions;
+      exercise.correctAnswer = newCorrectIndex;
+    });
+  }
+
   function renderQuiz() {
-    if (currentQuestionIndex >= quizData.exercises.length) {
+    if (currentQuestionIndex >= shuffledQuizData.exercises.length) {
       renderResults();
       return;
     }
 
-    const question = quizData.exercises[currentQuestionIndex];
+    const question = shuffledQuizData.exercises[currentQuestionIndex];
     quizRoot.innerHTML = `
       <div class="quiz-container">
         <div class="quiz-header">
-          <h3>${quizData.title}</h3>
+          <h3>${shuffledQuizData.title}</h3>
           <div class="quiz-progress">
-            Question ${currentQuestionIndex + 1} of ${quizData.exercises.length}
+            Question ${currentQuestionIndex + 1} of ${shuffledQuizData.exercises.length}
           </div>
         </div>
         
@@ -64,7 +90,7 @@ function createQuiz(quizKey, quizData) {
           <button class="btn" onclick="showAnswer()" class="show-answer-btn">
             Show Answer
           </button>
-          ${currentQuestionIndex === quizData.exercises.length - 1 ? 
+          ${currentQuestionIndex === shuffledQuizData.exercises.length - 1 ? 
             '<button class="btn finish-btn" onclick="nextQuestion()">Finish Quiz</button>' :
             '<button class="btn" onclick="nextQuestion()">Next</button>'
           }
@@ -77,7 +103,7 @@ function createQuiz(quizKey, quizData) {
     userAnswers[currentQuestionIndex] = optionIndex;
     
     // Get current question data
-    const currentQuestion = quizData.exercises[currentQuestionIndex];
+    const currentQuestion = shuffledQuizData.exercises[currentQuestionIndex];
     const correctAnswer = currentQuestion.correctAnswer;
     
     // Highlight all options to show correct answer
@@ -111,8 +137,8 @@ function createQuiz(quizKey, quizData) {
   }
 
   function nextQuestion() {
-    console.log('nextQuestion called, currentQuestionIndex:', currentQuestionIndex, 'total questions:', quizData.exercises.length);
-    if (currentQuestionIndex < quizData.exercises.length - 1) {
+    console.log('nextQuestion called, currentQuestionIndex:', currentQuestionIndex, 'total questions:', shuffledQuizData.exercises.length);
+    if (currentQuestionIndex < shuffledQuizData.exercises.length - 1) {
       currentQuestionIndex++;
       renderQuiz();
     } else {
@@ -130,13 +156,13 @@ function createQuiz(quizKey, quizData) {
   }
 
   function renderResults() {
-    const percentage = Math.round((score / quizData.exercises.length) * 100);
-    const totalQuestions = quizData.exercises.length;
+    const percentage = Math.round((score / shuffledQuizData.exercises.length) * 100);
+    const totalQuestions = shuffledQuizData.exercises.length;
     
     // Generate detailed results with correct answers and mistakes
     let detailedResults = '';
     for (let i = 0; i < totalQuestions; i++) {
-      const question = quizData.exercises[i];
+      const question = shuffledQuizData.exercises[i];
       const userAnswer = userAnswers[i];
       const correctAnswer = question.correctAnswer;
       const isCorrect = userAnswer === correctAnswer;
