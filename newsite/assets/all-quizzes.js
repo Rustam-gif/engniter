@@ -9,102 +9,102 @@ const allQuizData = {
       {
         question: "What should you do before traveling to a new country?",
         options: [
-          "Research local customs and culture",
           "Pack only summer clothes",
+          "Research local customs and culture",
           "Book the cheapest flight possible",
           "Learn the entire language"
         ],
-        correctAnswer: 0
+        correctAnswer: 1
       },
       {
         question: "What is 'jet lag'?",
         options: [
-          "Tiredness from crossing time zones",
           "Fear of flying",
           "Motion sickness on planes",
+          "Tiredness from crossing time zones",
           "Lost luggage"
         ],
-        correctAnswer: 0
+        correctAnswer: 2
       },
       {
         question: "What should you do if you get lost in a foreign city?",
         options: [
-          "Ask a local for directions",
           "Start walking randomly",
           "Hide in a building",
+          "Ask a local for directions",
           "Call your embassy immediately"
         ],
-        correctAnswer: 0
+        correctAnswer: 2
       },
       {
         question: "What is the best way to exchange money when traveling?",
         options: [
-          "Use local ATMs or banks",
           "Exchange at the airport",
           "Use your home currency everywhere",
-          "Avoid exchanging money"
+          "Avoid exchanging money",
+          "Use local ATMs or banks"
         ],
-        correctAnswer: 0
+        correctAnswer: 3
       },
       {
         question: "What should you pack for any trip?",
         options: [
-          "Essential documents and basic necessities",
           "Everything you own",
           "Only clothes",
+          "Essential documents and basic necessities",
           "Nothing - buy everything there"
         ],
-        correctAnswer: 0
+        correctAnswer: 2
       },
       {
         question: "What is 'culture shock'?",
         options: [
-          "Feeling overwhelmed by cultural differences",
           "Getting sick from foreign food",
           "Being afraid of flying",
-          "Losing your luggage"
+          "Losing your luggage",
+          "Feeling overwhelmed by cultural differences"
         ],
-        correctAnswer: 0
+        correctAnswer: 3
       },
       {
         question: "What is the best way to learn about local customs?",
         options: [
-          "Research before you go and observe locals",
           "Ignore local customs",
           "Only speak English",
-          "Stay in your hotel"
+          "Stay in your hotel",
+          "Research before you go and observe locals"
         ],
-        correctAnswer: 0
+        correctAnswer: 3
       },
       {
         question: "What should you do if you don't speak the local language?",
         options: [
-          "Learn basic phrases and use gestures",
           "Speak louder in English",
           "Avoid talking to anyone",
-          "Use only hand signals"
+          "Use only hand signals",
+          "Learn basic phrases and use gestures"
         ],
-        correctAnswer: 0
+        correctAnswer: 3
       },
       {
         question: "What is 'sustainable tourism'?",
         options: [
-          "Traveling in ways that help local communities and environment",
           "Only visiting famous places",
           "Traveling as cheaply as possible",
-          "Avoiding tourist areas"
+          "Avoiding tourist areas",
+          "Traveling in ways that help local communities and environment"
         ],
-        correctAnswer: 0
+        correctAnswer: 3
       },
       {
         question: "What should you do if you have an emergency abroad?",
         options: [
-          "Contact local emergency services and your embassy",
           "Try to handle it alone",
           "Ignore the problem",
-          "Leave the country immediately"
+          "Leave the country immediately",
+          "Contact local emergency services and your embassy"
         ],
-        correctAnswer: 0
+        correctAnswer: 3
       }
     ]
   },
@@ -117,102 +117,102 @@ const allQuizData = {
       {
         question: "What are urban legends?",
         options: [
-          "Modern folk stories that spread quickly",
           "Official government announcements",
           "Historical facts about cities",
+          "Modern folk stories that spread quickly",
           "Travel guide information"
         ],
-        correctAnswer: 0
+        correctAnswer: 2
       },
       {
         question: "Why do urban legends spread so quickly?",
         options: [
-          "They're often shocking or mysterious",
           "They're always true",
           "They're written by famous authors",
-          "They're taught in schools"
+          "They're taught in schools",
+          "They're often shocking or mysterious"
         ],
-        correctAnswer: 0
+        correctAnswer: 3
       },
       {
         question: "What makes urban legends believable?",
         options: [
-          "They often contain elements of truth",
           "They're always completely false",
           "They're written by experts",
-          "They're proven by science"
+          "They're proven by science",
+          "They often contain elements of truth"
         ],
-        correctAnswer: 0
+        correctAnswer: 3
       },
       {
         question: "How do urban legends typically spread?",
         options: [
-          "Through word of mouth and social media",
           "Only through official news sources",
           "Only in books and magazines",
-          "Only through television"
+          "Only through television",
+          "Through word of mouth and social media"
         ],
-        correctAnswer: 0
+        correctAnswer: 3
       },
       {
         question: "What is a common theme in urban legends?",
         options: [
-          "Warnings about danger or consequences",
           "Always happy endings",
           "Historical facts only",
-          "Scientific explanations"
+          "Scientific explanations",
+          "Warnings about danger or consequences"
         ],
-        correctAnswer: 0
+        correctAnswer: 3
       },
       {
         question: "Why do people believe urban legends?",
         options: [
-          "They often confirm existing fears or beliefs",
           "They're always scientifically proven",
           "They're written by authorities",
-          "They're taught in schools"
+          "They're taught in schools",
+          "They often confirm existing fears or beliefs"
         ],
-        correctAnswer: 0
+        correctAnswer: 3
       },
       {
         question: "What is the difference between urban legends and myths?",
         options: [
-          "Urban legends are modern, myths are ancient",
           "Urban legends are always true",
           "Myths are always false",
-          "There's no difference"
+          "There's no difference",
+          "Urban legends are modern, myths are ancient"
         ],
-        correctAnswer: 0
+        correctAnswer: 3
       },
       {
         question: "How can you verify if an urban legend is true?",
         options: [
-          "Check reliable sources and fact-checking websites",
           "Believe everything you hear",
           "Ignore all urban legends",
-          "Ask only your friends"
+          "Ask only your friends",
+          "Check reliable sources and fact-checking websites"
         ],
-        correctAnswer: 0
+        correctAnswer: 3
       },
       {
         question: "What role do emotions play in urban legends?",
         options: [
-          "They make stories more memorable and shareable",
           "They have no effect on stories",
           "They make stories less believable",
-          "They only appear in happy stories"
+          "They only appear in happy stories",
+          "They make stories more memorable and shareable"
         ],
-        correctAnswer: 0
+        correctAnswer: 3
       },
       {
         question: "Why do urban legends persist over time?",
         options: [
-          "They adapt to new contexts and technologies",
           "They never change",
           "They're always forgotten quickly",
-          "They're only told once"
+          "They're only told once",
+          "They adapt to new contexts and technologies"
         ],
-        correctAnswer: 0
+        correctAnswer: 3
       }
     ]
   },
@@ -226,102 +226,102 @@ const allQuizData = {
       {
         question: "How has technology changed education?",
         options: [
-          "Online learning and digital resources",
           "Only traditional classroom teaching",
           "No changes at all",
-          "Less access to information"
+          "Less access to information",
+          "Online learning and digital resources"
         ],
-        correctAnswer: 0
+        correctAnswer: 3
       },
       {
         question: "What is artificial intelligence?",
         options: [
-          "Computers that can think like humans",
           "Regular computer programs",
           "Human brain enhancement",
-          "Science fiction only"
+          "Science fiction only",
+          "Computers that can think like humans"
         ],
-        correctAnswer: 0
+        correctAnswer: 3
       },
       {
         question: "What is the Internet of Things (IoT)?",
         options: [
-          "Connected devices that share data",
           "Only smartphones and computers",
           "Traditional appliances only",
-          "Social media platforms"
+          "Social media platforms",
+          "Connected devices that share data"
         ],
-        correctAnswer: 0
+        correctAnswer: 3
       },
       {
         question: "How has technology affected communication?",
         options: [
-          "Faster and more global communication",
           "No change in communication",
           "Only face-to-face communication",
-          "Slower communication"
+          "Slower communication",
+          "Faster and more global communication"
         ],
-        correctAnswer: 0
+        correctAnswer: 3
       },
       {
         question: "What is cloud computing?",
         options: [
-          "Storing and accessing data over the internet",
           "Only using physical hard drives",
           "Traditional software installation",
-          "Offline data storage"
+          "Offline data storage",
+          "Storing and accessing data over the internet"
         ],
-        correctAnswer: 0
+        correctAnswer: 3
       },
       {
         question: "How has technology changed shopping?",
         options: [
-          "Online shopping and digital payments",
           "Only traditional stores",
           "No changes to shopping",
-          "More expensive shopping"
+          "More expensive shopping",
+          "Online shopping and digital payments"
         ],
-        correctAnswer: 0
+        correctAnswer: 3
       },
       {
         question: "What is virtual reality (VR)?",
         options: [
-          "Immersive computer-generated environments",
           "Regular video games",
           "Traditional movies",
-          "Social media apps"
+          "Social media apps",
+          "Immersive computer-generated environments"
         ],
-        correctAnswer: 0
+        correctAnswer: 3
       },
       {
         question: "How has technology affected healthcare?",
         options: [
-          "Better diagnosis and treatment options",
           "No improvements in healthcare",
           "Only traditional medicine",
-          "More expensive healthcare"
+          "More expensive healthcare",
+          "Better diagnosis and treatment options"
         ],
-        correctAnswer: 0
+        correctAnswer: 3
       },
       {
         question: "What is blockchain technology?",
         options: [
-          "Secure, decentralized digital ledger system",
           "Traditional banking system",
           "Social media platform",
-          "Email service"
+          "Email service",
+          "Secure, decentralized digital ledger system"
         ],
-        correctAnswer: 0
+        correctAnswer: 3
       },
       {
         question: "How has technology changed work?",
         options: [
-          "Remote work and digital collaboration",
           "Only office-based work",
           "No changes to work",
-          "Less productive work"
+          "Less productive work",
+          "Remote work and digital collaboration"
         ],
-        correctAnswer: 0
+        correctAnswer: 3
       }
     ]
   },
