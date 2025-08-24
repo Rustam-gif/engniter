@@ -1863,6 +1863,86 @@ const allQuizData = {
           "Nothing useful"
         ],
         correctAnswer: 0
+      },
+      {
+        question: "What is the most famous accidental invention?",
+        options: [
+          "Penicillin",
+          "The light bulb",
+          "The telephone",
+          "The computer"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How do mistakes lead to discoveries?",
+        options: [
+          "Unexpected results can reveal new possibilities",
+          "Mistakes are always bad",
+          "Only planned experiments work",
+          "Mistakes should be avoided"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What role does curiosity play in accidental inventions?",
+        options: [
+          "It drives people to investigate unexpected results",
+          "Curiosity has no role",
+          "Only scientists are curious",
+          "Curiosity is dangerous"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How do accidental inventions change industries?",
+        options: [
+          "They can create entirely new product categories",
+          "They have no impact on industries",
+          "Only planned inventions matter",
+          "They only affect small companies"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is the importance of documenting accidents?",
+        options: [
+          "It helps others learn from unexpected discoveries",
+          "It's not important",
+          "Only successful experiments matter",
+          "Accidents should be hidden"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How do accidental inventions inspire future research?",
+        options: [
+          "They open new research directions and possibilities",
+          "They have no influence on research",
+          "Only planned research is valuable",
+          "They slow down progress"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What can companies learn from accidental inventions?",
+        options: [
+          "The value of being open to unexpected opportunities",
+          "Only planned innovation matters",
+          "Accidents should be punished",
+          "Innovation is too risky"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How do accidental inventions benefit society?",
+        options: [
+          "They often solve problems we didn't know existed",
+          "They have no social benefits",
+          "Only planned inventions help society",
+          "They cause more problems than they solve"
+        ],
+        correctAnswer: 0
       }
     ]
   },
@@ -1889,6 +1969,86 @@ const allQuizData = {
           "Only because they were stupid",
           "They never had real knowledge",
           "Knowledge always disappears"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is the most famous lost civilization?",
+        options: [
+          "The Maya",
+          "Ancient Egypt",
+          "The Romans",
+          "The Greeks"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How do archaeologists study lost civilizations?",
+        options: [
+          "Through artifacts, ruins, and written records",
+          "Only through books",
+          "Only through stories",
+          "They can't study them"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What technologies have been lost to time?",
+        options: [
+          "Ancient construction methods and materials",
+          "All technologies are preserved",
+          "Only simple tools were lost",
+          "No technologies were lost"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How do lost civilizations influence modern society?",
+        options: [
+          "Their discoveries and ideas often inspire modern innovations",
+          "They have no modern influence",
+          "Only historians care about them",
+          "They only influence museums"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What can we learn from ancient building techniques?",
+        options: [
+          "Sustainable and efficient construction methods",
+          "Only that ancient people were primitive",
+          "Nothing useful for today",
+          "Only expensive building methods"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How do lost civilizations help us understand human nature?",
+        options: [
+          "They show universal human patterns and behaviors",
+          "They have no relevance to human nature",
+          "Only modern societies matter",
+          "Ancient people were completely different"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is the importance of preserving ancient knowledge?",
+        options: [
+          "It helps us avoid repeating mistakes and learn from successes",
+          "Ancient knowledge is useless",
+          "Only modern knowledge matters",
+          "Preservation is too expensive"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How do lost civilizations challenge our assumptions?",
+        options: [
+          "They show that progress isn't always linear or inevitable",
+          "They confirm all our assumptions",
+          "They have no impact on modern thinking",
+          "They only confuse historians"
         ],
         correctAnswer: 0
       }
@@ -1920,6 +2080,86 @@ const allQuizData = {
           "Make us more afraid"
         ],
         correctAnswer: 0
+      },
+      {
+        question: "What is the fight-or-flight response?",
+        options: [
+          "A natural reaction to prepare for danger",
+          "A type of fear",
+          "A medical condition",
+          "A psychological disorder"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How does fear affect decision-making?",
+        options: [
+          "It can lead to quick, survival-focused decisions",
+          "It always improves decisions",
+          "It has no effect on decisions",
+          "It only makes decisions worse"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is the difference between fear and anxiety?",
+        options: [
+          "Fear is immediate, anxiety is prolonged worry",
+          "There's no difference",
+          "Fear is worse than anxiety",
+          "Anxiety is always irrational"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How do people develop phobias?",
+        options: [
+          "Through negative experiences or learned associations",
+          "Only through genetics",
+          "Only through trauma",
+          "Phobias are random"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is the role of fear in learning?",
+        options: [
+          "It can help us remember dangerous situations",
+          "Fear has no role in learning",
+          "Fear only blocks learning",
+          "Fear makes learning impossible"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How can fear be beneficial?",
+        options: [
+          "It can protect us from real dangers",
+          "Fear is never beneficial",
+          "Only in extreme situations",
+          "Only for children"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What techniques help manage fear?",
+        options: [
+          "Deep breathing, exposure therapy, and cognitive techniques",
+          "Only avoiding scary situations",
+          "Only medication",
+          "Nothing helps with fear"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How does fear vary across cultures?",
+        options: [
+          "Different cultures fear different things",
+          "All cultures fear the same things",
+          "Only Western cultures have fear",
+          "Fear is universal and identical"
+        ],
+        correctAnswer: 0
       }
     ]
   },
@@ -1946,6 +2186,86 @@ const allQuizData = {
           "Only hoping for luck",
           "Doing nothing",
           "Avoiding all risks"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is the difference between luck and skill?",
+        options: [
+          "Luck is random, skill is developed through practice",
+          "There's no difference",
+          "Luck is more important than skill",
+          "Skill is just luck"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How do people create their own luck?",
+        options: [
+          "By being prepared and taking opportunities",
+          "Luck can't be created",
+          "Only through wishing",
+          "Only through superstition"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is confirmation bias in luck?",
+        options: [
+          "Remembering lucky events more than unlucky ones",
+          "Always being lucky",
+          "Never being lucky",
+          "Luck doesn't exist"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How does probability relate to luck?",
+        options: [
+          "Luck is often just probability in action",
+          "Probability has nothing to do with luck",
+          "Only mathematicians understand luck",
+          "Luck is completely random"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is the role of mindset in luck?",
+        options: [
+          "Positive thinking can help recognize opportunities",
+          "Mindset has no effect on luck",
+          "Only negative thinking brings luck",
+          "Mindset is superstition"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How do lucky people behave differently?",
+        options: [
+          "They often take more risks and notice opportunities",
+          "They're always happy",
+          "They never fail",
+          "They're born lucky"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is the gambler's fallacy?",
+        options: [
+          "Thinking past events affect future probability",
+          "Always gambling",
+          "Never gambling",
+          "Understanding probability"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How can you become 'luckier'?",
+        options: [
+          "By improving skills and being open to opportunities",
+          "By wishing harder",
+          "By avoiding all risks",
+          "By believing in superstitions"
         ],
         correctAnswer: 0
       }
@@ -1977,6 +2297,86 @@ const allQuizData = {
           "To avoid animals"
         ],
         correctAnswer: 0
+      },
+      {
+        question: "Which animal is known for problem-solving skills?",
+        options: [
+          "Crows and ravens",
+          "Only dogs",
+          "Only cats",
+          "Only monkeys"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How do animals use tools?",
+        options: [
+          "They adapt objects for specific purposes",
+          "Animals never use tools",
+          "Only primates use tools",
+          "Only birds use tools"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is animal communication like?",
+        options: [
+          "Complex systems of sounds, gestures, and signals",
+          "Animals don't communicate",
+          "Only simple sounds",
+          "Only body language"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How do animals navigate long distances?",
+        options: [
+          "Using magnetic fields, stars, and landmarks",
+          "Only by following humans",
+          "Only by random wandering",
+          "Animals can't navigate"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is social learning in animals?",
+        options: [
+          "Animals learning from each other's behavior",
+          "Only humans can learn socially",
+          "Animals don't learn",
+          "Only from humans"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How do animals adapt to changing environments?",
+        options: [
+          "Through behavioral flexibility and learning",
+          "Animals never adapt",
+          "Only through evolution",
+          "Only through human help"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is the intelligence of octopuses?",
+        options: [
+          "They can solve complex puzzles and use tools",
+          "They're not intelligent",
+          "Only as smart as fish",
+          "Only as smart as insects"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How do animals show emotional intelligence?",
+        options: [
+          "Through empathy, cooperation, and social bonds",
+          "Animals have no emotions",
+          "Only mammals have emotions",
+          "Only pets have emotions"
+        ],
+        correctAnswer: 0
       }
     ]
   },
@@ -2003,6 +2403,86 @@ const allQuizData = {
           "Nature being disobedient",
           "Only human interference",
           "Random chaos"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What are examples of natural anomalies?",
+        options: [
+          "Albino animals, two-headed creatures, and unusual weather",
+          "Only normal animals",
+          "Only plants",
+          "Only weather events"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How do scientists study natural anomalies?",
+        options: [
+          "Through observation, research, and documentation",
+          "They ignore anomalies",
+          "Only through experiments",
+          "Only through books"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What causes genetic mutations in nature?",
+        options: [
+          "Environmental factors, radiation, and natural variation",
+          "Only human interference",
+          "Only pollution",
+          "Only accidents"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How do natural anomalies affect ecosystems?",
+        options: [
+          "They can create new opportunities or challenges",
+          "They always destroy ecosystems",
+          "They have no effect",
+          "They only help ecosystems"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is the role of chance in nature?",
+        options: [
+          "Random events can lead to new adaptations",
+          "Chance has no role in nature",
+          "Only humans create chance",
+          "Nature is completely predictable"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How do natural anomalies inspire human innovation?",
+        options: [
+          "They can suggest new solutions and approaches",
+          "They have no influence on innovation",
+          "Only scientists are inspired",
+          "Only artists are inspired"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is the importance of biodiversity?",
+        options: [
+          "It increases the chances of beneficial anomalies",
+          "Biodiversity doesn't matter",
+          "Only rare species matter",
+          "Only common species matter"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How do natural anomalies challenge our understanding?",
+        options: [
+          "They show that nature is more complex than we thought",
+          "They prove our theories wrong",
+          "They have no impact on understanding",
+          "They only confuse scientists"
         ],
         correctAnswer: 0
       }
@@ -2034,6 +2514,86 @@ const allQuizData = {
           "Ignore the problem"
         ],
         correctAnswer: 0
+      },
+      {
+        question: "What are the main causes of climate change?",
+        options: [
+          "Greenhouse gas emissions from human activities",
+          "Only natural processes",
+          "Only volcanic eruptions",
+          "Only solar activity"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How does deforestation affect the environment?",
+        options: [
+          "It reduces carbon absorption and biodiversity",
+          "It has no effect",
+          "It only affects animals",
+          "It only affects plants"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is renewable energy?",
+        options: [
+          "Energy from sources that don't run out",
+          "Only solar power",
+          "Only wind power",
+          "Only expensive energy"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How does pollution affect marine life?",
+        options: [
+          "It can harm or kill marine animals and plants",
+          "It has no effect on marine life",
+          "It only affects fish",
+          "It only affects plants"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is the importance of biodiversity?",
+        options: [
+          "It helps ecosystems function and adapt to changes",
+          "It's not important",
+          "Only rare species matter",
+          "Only common species matter"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How can transportation be more sustainable?",
+        options: [
+          "Using public transport, walking, and electric vehicles",
+          "Only driving cars",
+          "Only flying",
+          "Only using buses"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is the impact of plastic pollution?",
+        options: [
+          "It harms wildlife and takes centuries to decompose",
+          "It has no impact",
+          "It only affects oceans",
+          "It only affects land animals"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How do extreme weather events relate to climate change?",
+        options: [
+          "They may become more frequent and intense",
+          "They have no connection",
+          "They only affect certain areas",
+          "They're completely natural"
+        ],
+        correctAnswer: 0
       }
     ]
   },
@@ -2061,6 +2621,86 @@ const allQuizData = {
           "Ignore all local rules",
           "Only follow your country's laws",
           "Break rules to test them"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What are examples of bizarre laws?",
+        options: [
+          "Laws about chewing gum, walking backwards, and pet ownership",
+          "Only traffic laws",
+          "Only criminal laws",
+          "Only business laws"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How do cultural differences affect laws?",
+        options: [
+          "Different cultures have different values and priorities",
+          "All cultures have identical laws",
+          "Only Western cultures have laws",
+          "Culture doesn't affect laws"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is the purpose of unusual laws?",
+        options: [
+          "They often address specific local concerns or traditions",
+          "They have no purpose",
+          "Only to confuse people",
+          "Only to generate fines"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How do laws reflect societal values?",
+        options: [
+          "They often mirror what a society considers important",
+          "Laws have no connection to values",
+          "Only criminal laws reflect values",
+          "Only modern laws reflect values"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is the importance of understanding local laws?",
+        options: [
+          "It helps avoid legal trouble and shows respect",
+          "It's not important",
+          "Only lawyers need to know",
+          "Only tourists need to know"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How do laws change over time?",
+        options: [
+          "They adapt to changing social norms and needs",
+          "Laws never change",
+          "Only through revolution",
+          "Only through court decisions"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is the role of tradition in law-making?",
+        options: [
+          "Traditional practices often influence modern laws",
+          "Tradition has no role",
+          "Only religious traditions matter",
+          "Only ancient traditions matter"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How do bizarre laws affect tourism?",
+        options: [
+          "They can create interest and cultural learning opportunities",
+          "They have no effect on tourism",
+          "They only discourage tourism",
+          "They only affect business travel"
         ],
         correctAnswer: 0
       }
@@ -2096,6 +2736,76 @@ const allQuizData = {
       {
         question: "The old photo looks ____ after many years in the sun.",
         options: ["faded", "bright", "new", "expensive"],
+        correctAnswer: 0
+      },
+      {
+        question: "What can objects tell us about history?",
+        options: [
+          "They reveal how people lived and what they valued",
+          "Objects have no historical value",
+          "Only expensive objects matter",
+          "Only old objects matter"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How do objects connect generations?",
+        options: [
+          "They carry stories and memories across time",
+          "Objects don't connect people",
+          "Only family photos connect people",
+          "Only valuable items connect people"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is the value of sentimental objects?",
+        options: [
+          "They hold emotional meaning beyond their material worth",
+          "They have no real value",
+          "Only expensive objects have value",
+          "Only useful objects have value"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How do objects reflect cultural identity?",
+        options: [
+          "They often represent cultural traditions and values",
+          "Objects have no cultural meaning",
+          "Only traditional objects matter",
+          "Only modern objects matter"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is the importance of preserving objects?",
+        options: [
+          "It helps maintain cultural heritage and personal history",
+          "Preservation is not important",
+          "Only museums should preserve objects",
+          "Only valuable objects should be preserved"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How do objects change meaning over time?",
+        options: [
+          "Their significance can evolve with context and age",
+          "Objects never change meaning",
+          "Only valuable objects change",
+          "Only old objects change"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What can we learn from everyday objects?",
+        options: [
+          "They reveal daily life, technology, and social customs",
+          "Everyday objects teach us nothing",
+          "Only rare objects are educational",
+          "Only expensive objects are educational"
+        ],
         correctAnswer: 0
       }
     ]
