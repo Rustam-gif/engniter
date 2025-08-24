@@ -732,47 +732,67 @@ document.addEventListener('DOMContentLoaded', function(){
   reactDOMScript.src = 'https://unpkg.com/react-dom@18/umd/react-dom.development.js';
   reactDOMScript.crossOrigin = '';
   
-  // Load quiz component
-  const quizScript = document.createElement('script');
-  quizScript.src = 'assets/quiz.js';
+  // Load all quiz data first
+  const allQuizzesScript = document.createElement('script');
+  allQuizzesScript.src = 'assets/all-quizzes.js';
   
-  // Wait for React to load, then load quiz
+  // Load master quiz component
+  const masterQuizScript = document.createElement('script');
+  masterQuizScript.src = 'assets/master-quiz.js';
+  
+  // Wait for React to load, then load quiz data and component
   reactScript.onload = function() {
     console.log('React loaded successfully');
     reactDOMScript.onload = function() {
       console.log('ReactDOM loaded successfully');
-      quizScript.onload = function() {
-        console.log('Quiz script loaded successfully');
-        // Initialize quiz with a small delay to ensure everything is ready
-        setTimeout(function() {
-          const quizRoot = document.getElementById('quiz-root');
-          console.log('Quiz root element:', quizRoot);
-          console.log('Window.Quiz available:', window.Quiz);
+      
+      // Load all quizzes data first
+      allQuizzesScript.onload = function() {
+        console.log('All quizzes data loaded successfully');
+        
+        // Then load master quiz component
+        masterQuizScript.onload = function() {
+          console.log('Master quiz component loaded successfully');
           
-          if (quizRoot && window.Quiz) {
-            try {
-              const root = window.ReactDOM.createRoot(quizRoot);
-              root.render(window.React.createElement(window.Quiz));
-              console.log('Quiz rendered successfully');
-            } catch (error) {
-              console.error('Error rendering quiz:', error);
+          // Initialize master quiz with a small delay to ensure everything is ready
+          setTimeout(function() {
+            const quizRoot = document.getElementById('quiz-root');
+            console.log('Quiz root element:', quizRoot);
+            console.log('MasterQuizSelector available:', window.MasterQuizSelector);
+            console.log('React available:', window.React);
+            console.log('ReactDOM available:', window.ReactDOM);
+            
+            if (quizRoot && window.MasterQuizSelector && window.React && window.ReactDOM) {
+              try {
+                const root = window.ReactDOM.createRoot(quizRoot);
+                root.render(window.React.createElement(window.MasterQuizSelector));
+                console.log('Master quiz selector rendered successfully');
+              } catch (error) {
+                console.error('Error rendering master quiz:', error);
+                showFallbackQuiz();
+              }
+            } else {
+              console.error('Required components not found:', {
+                quizRoot: !!quizRoot,
+                MasterQuizSelector: !!window.MasterQuizSelector,
+                React: !!window.React,
+                ReactDOM: !!window.ReactDOM
+              });
               showFallbackQuiz();
             }
-          } else {
-            console.error('Quiz root or Quiz component not found');
-            showFallbackQuiz();
-          }
-        }, 500); // Increased delay to ensure everything is loaded
-        
-        // Add timeout to show fallback if quiz doesn't load
-        setTimeout(function() {
-          if (!document.querySelector('.quiz-container .question')) {
-            console.log('Quiz timeout reached, showing fallback');
-            showFallbackQuiz();
-          }
-        }, 10000); // 10 second timeout
+          }, 500);
+          
+          // Add timeout to show fallback if quiz doesn't load
+          setTimeout(function() {
+            if (!document.querySelector('.master-quiz-selector') && !document.querySelector('.quiz-container .question')) {
+              console.log('Quiz timeout reached, showing fallback');
+              showFallbackQuiz();
+            }
+          }, 10000); // 10 second timeout
+        };
+        document.body.appendChild(masterQuizScript);
       };
-      document.body.appendChild(quizScript);
+      document.body.appendChild(allQuizzesScript);
     };
     document.body.appendChild(reactDOMScript);
   };
@@ -785,8 +805,13 @@ document.addEventListener('DOMContentLoaded', function(){
     console.error('Failed to load ReactDOM');
   };
   
-  quizScript.onerror = function() {
-    console.error('Failed to load Quiz script');
+  allQuizzesScript.onerror = function() {
+    console.error('Failed to load All Quizzes script');
+    loadFallbackQuiz();
+  };
+  
+  masterQuizScript.onerror = function() {
+    console.error('Failed to load Master Quiz script');
     loadFallbackQuiz();
   };
   
