@@ -596,6 +596,18 @@
       </ul>
     </article>
   </section>
+
+  <!-- Interactive Quiz Section -->
+  <section class="grid gap-24">
+    <article class="card" style="grid-column: 1 / -1">
+      <h2 class="h3" style="margin-top:0">Practice Your Skills</h2>
+      <p>Test your knowledge with this interactive quiz based on "Objects That Tell a Story" lesson.</p>
+    </article>
+    
+    <article class="card" style="grid-column: 1 / -1">
+      <div id="quiz-root"></div>
+    </article>
+  </section>
 </main>
 
 <footer class="footer" role="contentinfo">
@@ -703,6 +715,40 @@ document.addEventListener('DOMContentLoaded', function(){
     refresh();
   })();
 });
+
+// Load React and Quiz
+(function() {
+  // Load React from CDN
+  const reactScript = document.createElement('script');
+  reactScript.src = 'https://unpkg.com/react@18/umd/react.development.js';
+  reactScript.crossOrigin = '';
+  
+  const reactDOMScript = document.createElement('script');
+  reactDOMScript.src = 'https://unpkg.com/react-dom@18/umd/react-dom.development.js';
+  reactDOMScript.crossOrigin = '';
+  
+  // Load quiz component
+  const quizScript = document.createElement('script');
+  quizScript.src = 'assets/quiz.js';
+  
+  // Wait for React to load, then load quiz
+  reactScript.onload = function() {
+    reactDOMScript.onload = function() {
+      quizScript.onload = function() {
+        // Initialize quiz
+        const quizRoot = document.getElementById('quiz-root');
+        if (quizRoot && window.Quiz) {
+          const root = ReactDOM.createRoot(quizRoot);
+          root.render(React.createElement(window.Quiz));
+        }
+      };
+      document.body.appendChild(quizScript);
+    };
+    document.body.appendChild(reactDOMScript);
+  };
+  
+  document.body.appendChild(reactScript);
+})();
 </script>
 </body>
 </html>
