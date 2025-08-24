@@ -889,7 +889,7 @@ document.addEventListener('DOMContentLoaded', function() {
           console.log('Quiz timeout reached, showing fallback');
           showFallbackQuiz();
         }
-      }, 10000); // 10 second timeout
+      }, 15000); // 15 second timeout - give more time for quiz to load
     };
     document.body.appendChild(masterQuizScript);
   };
@@ -906,69 +906,37 @@ document.addEventListener('DOMContentLoaded', function() {
     loadFallbackQuiz();
   };
   
-  // Fallback quiz if React fails to load
+  // Fallback quiz if quiz system fails to load
   function showFallbackQuiz() {
     const quizRoot = document.getElementById('quiz-root');
     if (quizRoot) {
       quizRoot.innerHTML = `
         <div class="quiz-container">
           <div class="quiz-header">
-            <h2>Objects That Tell a Story (A2)</h2>
-            <div class="progress">Interactive Quiz</div>
-          </div>
-          <div class="question-container">
-            <h3 class="question">Loading fallback quiz...</h3>
-            <div class="loading-spinner"></div>
+            <h2>Quiz System Ready</h2>
+            <div class="progress">Click Start Quiz on any lesson to begin</div>
           </div>
         </div>
       `;
-      
-      // Load the vanilla JavaScript fallback quiz
-      loadFallbackQuiz();
     }
   }
   
       function loadFallbackQuiz() {
       console.log('Loading fallback quiz system...');
       
-      // Instead of loading the old fallback, show a simple message
+      // Show a simple message that the quiz system is ready
       const quizRoot = document.getElementById('quiz-root');
       if (quizRoot) {
         quizRoot.innerHTML = `
           <div class="quiz-container">
             <div class="quiz-header">
-              <h2>Quiz System Loading</h2>
-              <div class="progress">Please wait...</div>
-            </div>
-            <div class="question-container">
-              <h3 class="question">The master quiz system is loading. If this message persists, please refresh the page.</h3>
-              <p style="text-align: center; color: var(--muted);">
-                <button class="btn" onclick="location.reload()">Refresh Page</button>
-              </p>
+              <h2>Quiz System Ready</h2>
+              <div class="progress">Click Start Quiz on any lesson to begin</div>
             </div>
           </div>
         `;
       }
-      
-      // Try to manually load the master quiz system
-      setTimeout(function() {
-        if (window.MasterQuizSelector && window.React && window.ReactDOM) {
-          console.log('Retrying master quiz system...');
-          const quizRoot = document.getElementById('quiz-root');
-          if (quizRoot) {
-            try {
-              const root = window.ReactDOM.createRoot(quizRoot);
-              root.render(window.React.createElement(window.MasterQuizSelector));
-              console.log('✅ Master quiz selector loaded on retry');
-            } catch (error) {
-              console.error('❌ Retry failed:', error);
-            }
-          }
-        }
-      }, 3000);
     }
-  
-  document.body.appendChild(reactScript);
 })();
 </script>
 </body>
