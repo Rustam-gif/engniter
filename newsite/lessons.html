@@ -601,13 +601,13 @@
   <section class="grid gap-24">
     <article class="card" style="grid-column: 1 / -1">
       <h2 class="h3" style="margin-top:0">Practice Your Skills</h2>
-      <p>Test your knowledge with this interactive quiz based on "Objects That Tell a Story" lesson.</p>
+      <p>Choose from {Object.keys(window.allQuizData || {}).length} interactive quizzes covering all lesson topics and levels.</p>
     </article>
     
     <article class="card" style="grid-column: 1 / -1">
       <div id="quiz-root">
         <div class="quiz-loading">
-          <p>Loading interactive quiz...</p>
+          <p>Loading comprehensive quiz system...</p>
           <div class="loading-spinner"></div>
         </div>
       </div>
@@ -721,24 +721,37 @@ document.addEventListener('DOMContentLoaded', function(){
   })();
 });
 
-// Load React and Quiz
+// Load React and Master Quiz System
 (function() {
+  // Clear any existing quiz content and force fresh start
+  const quizRoot = document.getElementById('quiz-root');
+  if (quizRoot) {
+    quizRoot.innerHTML = '<div class="quiz-loading"><p>Loading comprehensive quiz system...</p><div class="loading-spinner"></div></div>';
+    console.log('Quiz root cleared and ready for new content');
+  }
+  
+  // Clear any existing global variables to prevent conflicts
+  if (window.Quiz) {
+    delete window.Quiz;
+    console.log('Cleared old Quiz component');
+  }
+  
   // Load React from CDN
   const reactScript = document.createElement('script');
-  reactScript.src = 'https://unpkg.com/react@18/umd/react.development.js';
+  reactScript.src = 'https://unpkg.com/react@18/umd/react.production.min.js';
   reactScript.crossOrigin = '';
   
   const reactDOMScript = document.createElement('script');
-  reactDOMScript.src = 'https://unpkg.com/react-dom@18/umd/react-dom.development.js';
+  reactDOMScript.src = 'https://unpkg.com/react-dom@18/umd/react-dom.production.min.js';
   reactDOMScript.crossOrigin = '';
   
   // Load all quiz data first
   const allQuizzesScript = document.createElement('script');
-  allQuizzesScript.src = 'assets/all-quizzes.js';
+  allQuizzesScript.src = 'assets/all-quizzes.js?v=' + Date.now(); // Force fresh load
   
   // Load master quiz component
   const masterQuizScript = document.createElement('script');
-  masterQuizScript.src = 'assets/master-quiz.js';
+  masterQuizScript.src = 'assets/master-quiz.js?v=' + Date.now(); // Force fresh load
   
   // Wait for React to load, then load quiz data and component
   reactScript.onload = function() {
@@ -753,14 +766,16 @@ document.addEventListener('DOMContentLoaded', function(){
         // Then load master quiz component
         masterQuizScript.onload = function() {
           console.log('Master quiz component loaded successfully');
+          console.log('MasterQuizSelector available:', !!window.MasterQuizSelector);
           
-          // Initialize master quiz with a small delay to ensure everything is ready
+          // Initialize master quiz with a longer delay to ensure everything is ready
           setTimeout(function() {
             const quizRoot = document.getElementById('quiz-root');
             console.log('Quiz root element:', quizRoot);
             console.log('MasterQuizSelector available:', window.MasterQuizSelector);
             console.log('React available:', window.React);
             console.log('ReactDOM available:', window.ReactDOM);
+            console.log('All quiz data:', window.allQuizData);
             
             if (quizRoot && window.MasterQuizSelector && window.React && window.ReactDOM) {
               try {
@@ -780,7 +795,7 @@ document.addEventListener('DOMContentLoaded', function(){
               });
               showFallbackQuiz();
             }
-          }, 500);
+          }, 1000); // Increased delay to ensure everything is loaded
           
           // Add timeout to show fallback if quiz doesn't load
           setTimeout(function() {
