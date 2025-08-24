@@ -1112,13 +1112,13 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
 
 /* Quiz Button Styling */
 .quiz-btn {
-  background: #8b5cf6 !important;
+  background: #ea580c !important;
   color: white !important;
   border: none !important;
 }
 
 .quiz-btn:hover {
-  background: #7c3aed !important;
+  background: #c2410c !important;
   color: white !important;
 }
 

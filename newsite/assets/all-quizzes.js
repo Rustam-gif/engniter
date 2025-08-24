@@ -350,6 +350,86 @@ const allQuizData = {
           "Only manual jobs affected"
         ],
         correctAnswer: 0
+      },
+      {
+        question: "What is a 'hybrid job'?",
+        options: [
+          "A job that combines multiple skill sets",
+          "A job that only works from home",
+          "A job that requires no skills",
+          "A traditional office job"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "Why is lifelong learning important for future careers?",
+        options: [
+          "Skills become outdated quickly in changing industries",
+          "Learning stops after college",
+          "Only young people need to learn",
+          "Traditional education is always sufficient"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is the 'gig economy'?",
+        options: [
+          "Short-term, flexible work arrangements",
+          "Traditional 9-5 jobs only",
+          "Government employment",
+          "Unpaid volunteer work"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How will AI change the workplace?",
+        options: [
+          "AI will handle routine tasks, humans focus on creativity",
+          "AI will replace all human workers",
+          "AI will have no impact on work",
+          "AI will only affect manual labor"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is 'remote work'?",
+        options: [
+          "Working from anywhere outside a traditional office",
+          "Only working from home",
+          "Working longer hours",
+          "Working without pay"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "Why is emotional intelligence important for future jobs?",
+        options: [
+          "AI can't replicate human emotional understanding",
+          "Emotions don't matter in the workplace",
+          "Only managers need emotional skills",
+          "Emotional intelligence is outdated"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is 'upskilling'?",
+        options: [
+          "Learning new skills to advance your career",
+          "Working harder at the same job",
+          "Changing jobs frequently",
+          "Avoiding new technology"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How will climate change affect future jobs?",
+        options: [
+          "New jobs in renewable energy and sustainability",
+          "No impact on employment",
+          "Only manual labor jobs will change",
+          "All jobs will disappear"
+        ],
+        correctAnswer: 0
       }
     ]
   },
@@ -487,6 +567,86 @@ const allQuizData = {
           "Stay up late"
         ],
         correctAnswer: 0
+      },
+      {
+        question: "What is the half-life of caffeine?",
+        options: [
+          "About 5-6 hours",
+          "Only 1 hour",
+          "24 hours",
+          "Caffeine never leaves the body"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What are natural alternatives to caffeine?",
+        options: [
+          "Exercise, water, and good sleep",
+          "More coffee",
+          "Energy drinks",
+          "Skipping meals"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How does caffeine affect sleep?",
+        options: [
+          "It can interfere with sleep quality",
+          "It helps you sleep better",
+          "It has no effect on sleep",
+          "It only affects deep sleep"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is 'caffeine tolerance'?",
+        options: [
+          "Needing more caffeine for the same effect",
+          "Being allergic to caffeine",
+          "Hating the taste of coffee",
+          "Being immune to caffeine"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "When is the best time to drink caffeine?",
+        options: [
+          "Early in the day, not after 2 PM",
+          "Right before bed",
+          "Only when you're tired",
+          "Throughout the entire day"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What are symptoms of caffeine withdrawal?",
+        options: [
+          "Headaches, fatigue, and irritability",
+          "Increased energy and focus",
+          "Better sleep quality",
+          "No symptoms at all"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How much caffeine is safe per day?",
+        options: [
+          "Up to 400mg for most adults",
+          "Unlimited amounts",
+          "Only 100mg maximum",
+          "Caffeine is never safe"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is the relationship between caffeine and exercise?",
+        options: [
+          "Caffeine can improve exercise performance",
+          "Caffeine always hurts performance",
+          "Caffeine has no effect on exercise",
+          "Caffeine should never be used with exercise"
+        ],
+        correctAnswer: 0
       }
     ]
   },
@@ -514,6 +674,86 @@ const allQuizData = {
           "Only prepare your presentation",
           "Arrive late to show importance",
           "Speak only your language"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is a 'high-context' culture?",
+        options: [
+          "A culture where communication relies on context and non-verbal cues",
+          "A culture that only uses formal language",
+          "A culture that ignores context",
+          "A culture with no communication rules"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How do different cultures view time in business?",
+        options: [
+          "Some cultures are more flexible, others are strict about punctuality",
+          "All cultures view time the same way",
+          "Only Western cultures care about time",
+          "Time is never important in business"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is 'face' in Asian business culture?",
+        options: [
+          "Maintaining dignity and avoiding embarrassment",
+          "Physical appearance only",
+          "Being dishonest",
+          "Ignoring problems"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How do cultures differ in decision-making?",
+        options: [
+          "Some prefer group consensus, others prefer individual decisions",
+          "All cultures make decisions the same way",
+          "Only managers make decisions",
+          "Decisions are never made in groups"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is 'power distance' in business?",
+        options: [
+          "How hierarchical or egalitarian a culture is",
+          "Physical distance between people",
+          "How far people travel for work",
+          "The size of office spaces"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How do cultures differ in gift-giving?",
+        options: [
+          "Some cultures expect gifts, others find them inappropriate",
+          "All cultures give gifts the same way",
+          "Gifts are never given in business",
+          "Only expensive gifts are acceptable"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is 'indirect communication'?",
+        options: [
+          "Saying things subtly rather than directly",
+          "Not communicating at all",
+          "Using only written communication",
+          "Speaking in code"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is the best way to handle cultural misunderstandings?",
+        options: [
+          "Learn about the culture, apologize, and adapt your approach",
+          "Ignore the misunderstanding",
+          "Force your own culture on others",
+          "Avoid working with different cultures"
         ],
         correctAnswer: 0
       }
@@ -544,6 +784,86 @@ const allQuizData = {
           "Delay the decision indefinitely"
         ],
         correctAnswer: 0
+      },
+      {
+        question: "What is 'analysis paralysis'?",
+        options: [
+          "Overthinking a decision until you can't decide",
+          "Making decisions too quickly",
+          "Ignoring all information",
+          "Always choosing the safe option"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How can you reduce stress before making important decisions?",
+        options: [
+          "Take breaks, exercise, and practice mindfulness",
+          "Work harder and longer",
+          "Ignore the stress completely",
+          "Make decisions immediately"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is the '80/20 rule' in decision-making?",
+        options: [
+          "80% of results come from 20% of efforts",
+          "Always spend 80% of your time deciding",
+          "Make 80% of decisions quickly",
+          "80% of decisions are wrong"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How should you prioritize decisions under stress?",
+        options: [
+          "Focus on high-impact, urgent decisions first",
+          "Make all decisions at once",
+          "Ignore urgent decisions",
+          "Only make easy decisions"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is 'decision fatigue'?",
+        options: [
+          "Getting tired of making decisions, leading to poor choices",
+          "Being too energetic to decide",
+          "Never making decisions",
+          "Always making good decisions"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How can you improve decision-making skills?",
+        options: [
+          "Practice, learn from mistakes, and gather feedback",
+          "Always trust your first instinct",
+          "Avoid making decisions",
+          "Copy other people's decisions"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is the importance of sleep in decision-making?",
+        options: [
+          "Good sleep improves decision quality and reduces stress",
+          "Sleep has no effect on decisions",
+          "Less sleep makes better decisions",
+          "Sleep only affects physical health"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How should you handle regret after a decision?",
+        options: [
+          "Learn from it, don't dwell, and move forward",
+          "Constantly think about what went wrong",
+          "Never make decisions again",
+          "Blame others for the outcome"
+        ],
+        correctAnswer: 0
       }
     ]
   },
@@ -572,6 +892,86 @@ const allQuizData = {
           "As proof of incompetence"
         ],
         correctAnswer: 0
+      },
+      {
+        question: "What is 'failing fast' in business?",
+        options: [
+          "Learning from mistakes quickly and moving on",
+          "Giving up immediately when things get hard",
+          "Never trying anything new",
+          "Always choosing the safe option"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How do successful entrepreneurs handle failure?",
+        options: [
+          "They analyze what went wrong and try again",
+          "They give up and find a new career",
+          "They blame others for their mistakes",
+          "They pretend failure never happened"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is the difference between failure and learning?",
+        options: [
+          "Failure becomes learning when you analyze and improve",
+          "There's no difference between them",
+          "Learning only happens with success",
+          "Failure is always permanent"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How can you build resilience to failure?",
+        options: [
+          "Practice, develop a growth mindset, and build support systems",
+          "Avoid all risks and challenges",
+          "Only do things you're already good at",
+          "Ignore all feedback and criticism"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is 'post-mortem analysis' in business?",
+        options: [
+          "Analyzing what went wrong after a project fails",
+          "Giving up on failed projects",
+          "Celebrating only successful projects",
+          "Ignoring all project outcomes"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How should you communicate about failures?",
+        options: [
+          "Be honest, take responsibility, and share lessons learned",
+          "Hide all failures from everyone",
+          "Blame others for your mistakes",
+          "Pretend failures were successes"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is the role of failure in innovation?",
+        options: [
+          "Failure is often necessary for breakthrough innovations",
+          "Innovation only happens without failure",
+          "Failure prevents all innovation",
+          "Innovation and failure are unrelated"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How can you turn a failure into a success?",
+        options: [
+          "Learn from mistakes, adapt your approach, and try again",
+          "Ignore the failure and do something else",
+          "Blame external factors for the failure",
+          "Give up and never try again"
+        ],
+        correctAnswer: 0
       }
     ]
   },
@@ -598,6 +998,86 @@ const allQuizData = {
           "Only extra money",
           "No real benefits",
           "Less free time"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How do you balance a side hustle with your main job?",
+        options: [
+          "Set clear boundaries and manage your time effectively",
+          "Work on your side hustle during main job hours",
+          "Quit your main job immediately",
+          "Ignore your main job responsibilities"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What skills can you develop through a side hustle?",
+        options: [
+          "Entrepreneurship, marketing, and customer service",
+          "Only technical skills",
+          "No new skills",
+          "Only skills related to your main job"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How can you turn a side hustle into a full-time business?",
+        options: [
+          "Build it gradually while maintaining your main income",
+          "Quit your job and hope for the best",
+          "Never try to expand it",
+          "Only work on it occasionally"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What are popular side hustle ideas?",
+        options: [
+          "Freelancing, online tutoring, and e-commerce",
+          "Only traditional part-time jobs",
+          "Only manual labor",
+          "Only creative projects"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How do you market your side hustle?",
+        options: [
+          "Use social media, word-of-mouth, and online platforms",
+          "Only rely on friends and family",
+          "Don't market at all",
+          "Only use expensive advertising"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What legal considerations exist for side hustles?",
+        options: [
+          "Business registration, taxes, and permits",
+          "No legal requirements",
+          "Only tax considerations",
+          "Only business registration"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How do you set pricing for side hustle services?",
+        options: [
+          "Research market rates and value your time appropriately",
+          "Always charge the lowest price",
+          "Charge whatever you want",
+          "Never change your prices"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is the importance of networking for side hustles?",
+        options: [
+          "Builds relationships that can lead to opportunities",
+          "Networking is not important",
+          "Only useful for full-time jobs",
+          "Only important for large businesses"
         ],
         correctAnswer: 0
       }
