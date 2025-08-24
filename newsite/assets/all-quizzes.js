@@ -1108,6 +1108,86 @@ const allQuizData = {
           "Always stressful"
         ],
         correctAnswer: 0
+      },
+      {
+        question: "What are the disadvantages of gig work?",
+        options: [
+          "Unstable income and lack of benefits",
+          "No disadvantages",
+          "Too much free time",
+          "Too much job security"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How do gig workers manage their finances?",
+        options: [
+          "Budget carefully and save for lean periods",
+          "Spend everything they earn",
+          "Rely on government assistance",
+          "Never save money"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What skills are important for gig workers?",
+        options: [
+          "Self-management, marketing, and customer service",
+          "Only technical skills",
+          "Only communication skills",
+          "No special skills needed"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How do gig workers find clients?",
+        options: [
+          "Online platforms, networking, and referrals",
+          "Only through friends",
+          "Only through advertising",
+          "Clients find them automatically"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is 'portfolio career'?",
+        options: [
+          "Having multiple gigs and income streams",
+          "Only one type of work",
+          "Traditional career path",
+          "Retirement planning"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How do gig workers handle taxes?",
+        options: [
+          "Track income, save for taxes, and file quarterly",
+          "Ignore taxes completely",
+          "Only pay once a year",
+          "Let clients handle taxes"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is the future of the gig economy?",
+        options: [
+          "Likely to grow with technology and changing work preferences",
+          "Will disappear completely",
+          "Will replace all traditional jobs",
+          "Will stay exactly the same"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How can gig workers build long-term success?",
+        options: [
+          "Develop expertise, build relationships, and diversify income",
+          "Only focus on one type of work",
+          "Never change their approach",
+          "Rely on luck"
+        ],
+        correctAnswer: 0
       }
     ]
   },
@@ -1136,6 +1216,86 @@ const allQuizData = {
           "Always schedule for 2 hours"
         ],
         correctAnswer: 0
+      },
+      {
+        question: "What is 'meeting creep'?",
+        options: [
+          "Meetings that start late and run over time",
+          "People who don't attend meetings",
+          "Meetings that are too short",
+          "Meetings with no agenda"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How do you calculate the true cost of a meeting?",
+        options: [
+          "Multiply participants' hourly rates by meeting duration",
+          "Only count room rental costs",
+          "Ignore participant time",
+          "Only count coffee costs"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is the 'two-pizza rule' for meetings?",
+        options: [
+          "Keep meetings small enough to feed with two pizzas",
+          "Always serve pizza at meetings",
+          "Have meetings during lunch time",
+          "Limit meetings to two hours"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How can you reduce unnecessary meetings?",
+        options: [
+          "Use email, chat, or async communication when possible",
+          "Always have face-to-face meetings",
+          "Schedule meetings for everything",
+          "Never communicate outside meetings"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is 'meeting recovery time'?",
+        options: [
+          "Time needed to refocus after a meeting ends",
+          "Time between meetings",
+          "Time spent preparing for meetings",
+          "Time spent traveling to meetings"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How do you handle meeting participants who dominate?",
+        options: [
+          "Set time limits and redirect conversation",
+          "Let them talk as long as they want",
+          "Cancel the meeting",
+          "Ignore the problem"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is the importance of meeting follow-up?",
+        options: [
+          "Ensures action items are completed and decisions are implemented",
+          "Meetings don't need follow-up",
+          "Only managers need to follow up",
+          "Follow-up is optional"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How can you measure meeting effectiveness?",
+        options: [
+          "Track outcomes, participant satisfaction, and action completion",
+          "Only count meeting duration",
+          "Only count participant numbers",
+          "Meetings can't be measured"
+        ],
+        correctAnswer: 0
       }
     ]
   },
@@ -1162,6 +1322,86 @@ const allQuizData = {
           "Most Valuable Player",
           "Maximum Value Proposition",
           "Main Venture Plan"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is 'bootstrapping'?",
+        options: [
+          "Starting a business with minimal external funding",
+          "Wearing boots to work",
+          "Getting government grants",
+          "Taking out large loans"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is a 'pivot' in startup terms?",
+        options: [
+          "Changing business direction based on market feedback",
+          "Physical rotation of the company",
+          "Moving to a new office",
+          "Changing company name"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is 'runway' for a startup?",
+        options: [
+          "How long the company can operate before running out of money",
+          "Physical runway for airplanes",
+          "Time to launch the product",
+          "Distance to profitability"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is 'scaling' a startup?",
+        options: [
+          "Growing the business rapidly while maintaining efficiency",
+          "Making the company smaller",
+          "Changing the company structure",
+          "Moving to a new location"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is 'product-market fit'?",
+        options: [
+          "When a product satisfies a strong market demand",
+          "When products fit in the market",
+          "When markets fit the product",
+          "When products are cheap"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is 'burn rate'?",
+        options: [
+          "How quickly a startup spends money",
+          "How fast employees work",
+          "How quickly products sell",
+          "How fast the company grows"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is 'disruption' in startup terms?",
+        options: [
+          "Creating new markets or significantly changing existing ones",
+          "Breaking things",
+          "Causing problems",
+          "Making noise"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is 'exit strategy' for a startup?",
+        options: [
+          "Plan for how founders and investors will get returns",
+          "How to leave the company",
+          "Emergency escape plan",
+          "How to close the business"
         ],
         correctAnswer: 0
       }
@@ -1513,6 +1753,86 @@ const allQuizData = {
           "They're always useless",
           "They're only interesting stories",
           "They waste research time"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is the 'serendipity effect'?",
+        options: [
+          "Making fortunate discoveries by accident",
+          "Always failing in research",
+          "Only planned experiments",
+          "Avoiding all accidents"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How do scientists handle accidental discoveries?",
+        options: [
+          "They investigate and document unexpected findings",
+          "They ignore all accidents",
+          "They only focus on planned research",
+          "They punish researchers for accidents"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is the role of observation in accidental discoveries?",
+        options: [
+          "Being alert to unexpected results and patterns",
+          "Only looking for expected outcomes",
+          "Ignoring all observations",
+          "Only recording planned results"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How do accidental discoveries contribute to innovation?",
+        options: [
+          "They open new research directions and applications",
+          "They only cause problems",
+          "They slow down progress",
+          "They have no impact on innovation"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is the difference between luck and skill in discoveries?",
+        options: [
+          "Luck provides opportunities, skill recognizes and develops them",
+          "Only luck matters in discoveries",
+          "Only skill matters in discoveries",
+          "Neither luck nor skill matter"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How do accidental discoveries affect scientific progress?",
+        options: [
+          "They often lead to paradigm shifts and new theories",
+          "They only cause confusion",
+          "They slow down all research",
+          "They have no effect on progress"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is the importance of documenting accidental discoveries?",
+        options: [
+          "It helps others learn and build on unexpected findings",
+          "It's not important",
+          "It only wastes time",
+          "It's only for famous scientists"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How can we encourage accidental discoveries?",
+        options: [
+          "Maintain curiosity and be open to unexpected results",
+          "Only follow strict research plans",
+          "Avoid all accidents",
+          "Never try new approaches"
         ],
         correctAnswer: 0
       }
