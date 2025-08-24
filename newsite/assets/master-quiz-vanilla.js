@@ -125,13 +125,57 @@ function createQuiz(quizKey, quizData) {
 
   function renderResults() {
     const percentage = Math.round((score / quizData.exercises.length) * 100);
+    const totalQuestions = quizData.exercises.length;
+    
+    // Generate detailed results with correct answers and mistakes
+    let detailedResults = '';
+    for (let i = 0; i < totalQuestions; i++) {
+      const question = quizData.exercises[i];
+      const userAnswer = userAnswers[i];
+      const correctAnswer = question.correctAnswer;
+      const isCorrect = userAnswer === correctAnswer;
+      
+      detailedResults += `
+        <div class="question-result ${isCorrect ? 'correct' : 'incorrect'}">
+          <h4>Question ${i + 1}</h4>
+          <p class="question-text">${question.question}</p>
+          <div class="answer-analysis">
+            <div class="user-answer">
+              <strong>Your Answer:</strong> 
+              <span class="${isCorrect ? 'correct-answer' : 'wrong-answer'}">
+                ${userAnswer !== undefined ? question.options[userAnswer] : 'Not answered'}
+              </span>
+            </div>
+            ${!isCorrect ? `
+              <div class="correct-answer-display">
+                <strong>Correct Answer:</strong> 
+                <span class="correct-answer">${question.options[correctAnswer]}</span>
+              </div>
+            ` : ''}
+            <div class="result-indicator">
+              ${isCorrect ? '✅ Correct' : '❌ Incorrect'}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+    
     quizRoot.innerHTML = `
       <div class="quiz-results">
         <h3>Quiz Complete!</h3>
         <div class="score-display">
-          <p>Your Score: ${score} out of ${quizData.questions.length}</p>
-          <p>Percentage: ${percentage}%</p>
+          <p class="final-score">Your Score: ${score} out of ${totalQuestions}</p>
+          <p class="percentage">Percentage: ${percentage}%</p>
+          <div class="score-bar">
+            <div class="score-fill" style="width: ${percentage}%"></div>
+          </div>
         </div>
+        
+        <div class="detailed-results">
+          <h4>Detailed Results</h4>
+          ${detailedResults}
+        </div>
+        
         <div class="result-actions">
           <button class="btn" onclick="restartQuiz()">Take Quiz Again</button>
           <button class="btn" onclick="closeQuizModal()">Close Quiz</button>
