@@ -751,16 +751,26 @@ document.addEventListener('DOMContentLoaded', function(){
           
           if (quizRoot && window.Quiz) {
             try {
-              const root = ReactDOM.createRoot(quizRoot);
-              root.render(React.createElement(window.Quiz));
+              const root = window.ReactDOM.createRoot(quizRoot);
+              root.render(window.React.createElement(window.Quiz));
               console.log('Quiz rendered successfully');
             } catch (error) {
               console.error('Error rendering quiz:', error);
+              showFallbackQuiz();
             }
           } else {
             console.error('Quiz root or Quiz component not found');
+            showFallbackQuiz();
           }
-        }, 100);
+        }, 500); // Increased delay to ensure everything is loaded
+        
+        // Add timeout to show fallback if quiz doesn't load
+        setTimeout(function() {
+          if (!document.querySelector('.quiz-container .question')) {
+            console.log('Quiz timeout reached, showing fallback');
+            showFallbackQuiz();
+          }
+        }, 10000); // 10 second timeout
       };
       document.body.appendChild(quizScript);
     };
@@ -777,7 +787,7 @@ document.addEventListener('DOMContentLoaded', function(){
   
   quizScript.onerror = function() {
     console.error('Failed to load Quiz script');
-    showFallbackQuiz();
+    loadFallbackQuiz();
   };
   
   // Fallback quiz if React fails to load
@@ -791,14 +801,44 @@ document.addEventListener('DOMContentLoaded', function(){
             <div class="progress">Interactive Quiz</div>
           </div>
           <div class="question-container">
-            <h3 class="question">Quiz loading failed. Please refresh the page or try again later.</h3>
-            <p style="text-align: center; color: var(--muted);">
-              <button class="btn" onclick="location.reload()">Refresh Page</button>
-            </p>
+            <h3 class="question">Loading fallback quiz...</h3>
+            <div class="loading-spinner"></div>
           </div>
         </div>
       `;
+      
+      // Load the vanilla JavaScript fallback quiz
+      loadFallbackQuiz();
     }
+  }
+  
+  function loadFallbackQuiz() {
+    const fallbackScript = document.createElement('script');
+    fallbackScript.src = 'assets/quiz-fallback.js';
+    fallbackScript.onload = function() {
+      console.log('Fallback quiz loaded successfully');
+    };
+    fallbackScript.onerror = function() {
+      console.error('Failed to load fallback quiz');
+      const quizRoot = document.getElementById('quiz-root');
+      if (quizRoot) {
+        quizRoot.innerHTML = `
+          <div class="quiz-container">
+            <div class="quiz-header">
+              <h2>Objects That Tell a Story (A2)</h2>
+              <div class="progress">Interactive Quiz</div>
+            </div>
+            <div class="question-container">
+              <h3 class="question">Quiz loading failed. Please refresh the page or try again later.</h3>
+              <p style="text-align: center; color: var(--muted);">
+                <button class="btn" onclick="location.reload()">Refresh Page</button>
+              </p>
+            </div>
+          </div>
+        `;
+      }
+    };
+    document.body.appendChild(fallbackScript);
   }
   
   document.body.appendChild(reactScript);
