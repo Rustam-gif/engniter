@@ -754,18 +754,26 @@ function startQuizFromLesson(lessonSlug) {
       console.log('createQuiz available:', !!window.createQuiz);
       
       if (window.allQuizData && window.createQuiz) {
-        // Find the quiz data for this lesson
-        const quizKey = Object.keys(window.allQuizData).find(key => 
-          key.toLowerCase().includes(lessonSlug.toLowerCase().replace(/[()]/g, '').replace(/\s+/g, '-')) ||
-          lessonSlug.toLowerCase().replace(/[()]/g, '').replace(/\s+/g, '-').includes(key.toLowerCase())
-        );
+        // Find the quiz data for this lesson - use exact matching first, then fallback
+        let quizKey = lessonSlug; // Try exact match first
+        
+        if (!window.allQuizData[quizKey]) {
+          // If exact match fails, try to find a similar key
+          quizKey = Object.keys(window.allQuizData).find(key => 
+            key.toLowerCase() === lessonSlug.toLowerCase() ||
+            key.toLowerCase().replace(/[()]/g, '').replace(/\s+/g, '-') === lessonSlug.toLowerCase().replace(/[()]/g, '').replace(/\s+/g, '-')
+          );
+        }
         
         console.log('Found quiz key:', quizKey);
         console.log('Quiz data:', quizKey ? window.allQuizData[quizKey] : 'NOT FOUND');
+        console.log('Quiz exercises count:', quizKey ? window.allQuizData[quizKey].exercises.length : 'N/A');
         
         if (quizKey && window.allQuizData[quizKey]) {
           // Create and display the specific quiz
           console.log('Creating quiz with key:', quizKey);
+          console.log('Quiz title:', window.allQuizData[quizKey].title);
+          console.log('Quiz exercises:', window.allQuizData[quizKey].exercises);
           window.createQuiz(quizKey, window.allQuizData[quizKey]);
         } else {
           // Fallback if quiz not found

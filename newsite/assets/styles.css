@@ -1384,6 +1384,20 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
   background: #f3f4f6;
 }
 
+.finish-btn {
+  background: linear-gradient(135deg, #10b981, #059669) !important;
+  color: white !important;
+  font-weight: 600 !important;
+  border: none !important;
+  box-shadow: 0 4px 14px 0 rgba(16, 185, 129, 0.3) !important;
+}
+
+.finish-btn:hover {
+  background: linear-gradient(135deg, #059669, #047857) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 20px 0 rgba(16, 185, 129, 0.4) !important;
+}
+
 .quiz-error {
   text-align: center;
   padding: 40px 20px;

@@ -64,9 +64,10 @@ function createQuiz(quizKey, quizData) {
           <button class="btn" onclick="showAnswer()" class="show-answer-btn">
             Show Answer
           </button>
-          <button class="btn" onclick="nextQuestion()" ${currentQuestionIndex === quizData.exercises.length - 1 ? 'disabled' : ''}>
-            Next
-          </button>
+          ${currentQuestionIndex === quizData.exercises.length - 1 ? 
+            '<button class="btn finish-btn" onclick="nextQuestion()">Finish Quiz</button>' :
+            '<button class="btn" onclick="nextQuestion()">Next</button>'
+          }
         </div>
       </div>
     `;
@@ -110,9 +111,14 @@ function createQuiz(quizKey, quizData) {
   }
 
   function nextQuestion() {
+    console.log('nextQuestion called, currentQuestionIndex:', currentQuestionIndex, 'total questions:', quizData.exercises.length);
     if (currentQuestionIndex < quizData.exercises.length - 1) {
       currentQuestionIndex++;
       renderQuiz();
+    } else {
+      // If we're on the last question, show results
+      console.log('Showing results page');
+      renderResults();
     }
   }
 

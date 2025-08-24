@@ -4460,73 +4460,7 @@ const allQuizData = {
     ]
   },
 
-  "Bizarre-Laws": {
-    title: "Bizarre Laws Around the World (B1)",
-    level: "B1",
-    topic: "Law",
-    exercises: [
-      {
-        question: "In which country is it illegal to chew gum?",
-        options: ["Singapore", "France", "Japan", "Canada"],
-        correctAnswer: 0
-      },
-      {
-        question: "Where is it illegal to own just one guinea pig (for animal loneliness)?",
-        options: ["Switzerland", "Germany", "Brazil", "USA"],
-        correctAnswer: 0
-      },
-      {
-        question: "In which country is it illegal to wear camouflage clothing as a civilian?",
-        options: ["Barbados", "Italy", "Nigeria", "Spain"],
-        correctAnswer: 0
-      },
-      {
-        question: "Which places have strange laws about public dancing?",
-        options: [
-          "Japan (late-night ban)",
-          "Iran",
-          "USA",
-          "UK"
-        ],
-        correctAnswer: 0
-      },
-      {
-        question: "In which country is it illegal to walk your cow down the street on Sunday?",
-        options: ["Switzerland", "Canada", "Australia", "USA"],
-        correctAnswer: 0
-      },
-      {
-        question: "Where can you be fined for forgetting your wife's birthday?",
-        options: ["Samoa", "Sweden", "Italy", "China"],
-        correctAnswer: 0
-      },
-      {
-        question: "In which country is it illegal to step on money (it's disrespectful)?",
-        options: ["Thailand", "USA", "South Africa", "India"],
-        correctAnswer: 0
-      },
-      {
-        question: "Which countries have unusual rules about naming children?",
-        options: ["Germany", "Iceland", "China", "UK"],
-        correctAnswer: 0
-      },
-      {
-        question: "In which country is it illegal to carry an ice cream cone in your back pocket?",
-        options: ["USA (Kentucky)", "Japan", "Brazil", "Norway"],
-        correctAnswer: 0
-      },
-      {
-        question: "Which places ban strange foods or drinks?",
-        options: [
-          "Singapore (durian on public transport)",
-          "USA (Kinder Surprise eggs)",
-          "France (ketchup in school cafeterias)",
-          "Italy (pineapple pizza)"
-        ],
-        correctAnswer: 0
-      }
-    ]
-  },
+
 
   // FINAL COMPREHENSIVE QUIZZES
   "Technology-Comprehensive": {
@@ -5112,8 +5046,7 @@ const quizCategories = {
     "Environment-Climate"
   ],
   "Law": [
-    "bizarre-laws-around-the-world",
-    "Bizarre-Laws"
+    "bizarre-laws-around-the-world"
   ],
   "Culture": [
     "objects-that-tell-a-story"
@@ -5159,7 +5092,6 @@ const quizLevels = {
     "Dark-History",
     "Environment-Climate",
     "Conspiracy-Theories",
-    "Bizarre-Laws",
     "Technology-Comprehensive",
     "Psychology-Fear",
     "Science-Luck",
