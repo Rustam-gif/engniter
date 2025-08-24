@@ -35,6 +35,76 @@ const allQuizData = {
           "Call your embassy immediately"
         ],
         correctAnswer: 0
+      },
+      {
+        question: "What is the best way to exchange money when traveling?",
+        options: [
+          "Use local ATMs or banks",
+          "Exchange at the airport",
+          "Use your home currency everywhere",
+          "Avoid exchanging money"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What should you pack for any trip?",
+        options: [
+          "Essential documents and basic necessities",
+          "Everything you own",
+          "Only clothes",
+          "Nothing - buy everything there"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is 'culture shock'?",
+        options: [
+          "Feeling overwhelmed by cultural differences",
+          "Getting sick from foreign food",
+          "Being afraid of flying",
+          "Losing your luggage"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is the best way to learn about local customs?",
+        options: [
+          "Research before you go and observe locals",
+          "Ignore local customs",
+          "Only speak English",
+          "Stay in your hotel"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What should you do if you don't speak the local language?",
+        options: [
+          "Learn basic phrases and use gestures",
+          "Speak louder in English",
+          "Avoid talking to anyone",
+          "Use only hand signals"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is 'sustainable tourism'?",
+        options: [
+          "Traveling in ways that help local communities and environment",
+          "Only visiting famous places",
+          "Traveling as cheaply as possible",
+          "Avoiding tourist areas"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What should you do if you have an emergency abroad?",
+        options: [
+          "Contact local emergency services and your embassy",
+          "Try to handle it alone",
+          "Ignore the problem",
+          "Leave the country immediately"
+        ],
+        correctAnswer: 0
       }
     ]
   },
@@ -61,6 +131,86 @@ const allQuizData = {
           "They're always true",
           "They're written by famous authors",
           "They're taught in schools"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What makes urban legends believable?",
+        options: [
+          "They often contain elements of truth",
+          "They're always completely false",
+          "They're written by experts",
+          "They're proven by science"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How do urban legends typically spread?",
+        options: [
+          "Through word of mouth and social media",
+          "Only through official news sources",
+          "Only in books and magazines",
+          "Only through television"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is a common theme in urban legends?",
+        options: [
+          "Warnings about danger or consequences",
+          "Always happy endings",
+          "Historical facts only",
+          "Scientific explanations"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "Why do people believe urban legends?",
+        options: [
+          "They often confirm existing fears or beliefs",
+          "They're always scientifically proven",
+          "They're written by authorities",
+          "They're taught in schools"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is the difference between urban legends and myths?",
+        options: [
+          "Urban legends are modern, myths are ancient",
+          "Urban legends are always true",
+          "Myths are always false",
+          "There's no difference"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How can you verify if an urban legend is true?",
+        options: [
+          "Check reliable sources and fact-checking websites",
+          "Believe everything you hear",
+          "Ignore all urban legends",
+          "Ask only your friends"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What role do emotions play in urban legends?",
+        options: [
+          "They make stories more memorable and shareable",
+          "They have no effect on stories",
+          "They make stories less believable",
+          "They only appear in happy stories"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "Why do urban legends persist over time?",
+        options: [
+          "They adapt to new contexts and technologies",
+          "They never change",
+          "They're always forgotten quickly",
+          "They're only told once"
         ],
         correctAnswer: 0
       }
@@ -90,6 +240,86 @@ const allQuizData = {
           "Regular computer programs",
           "Human brain enhancement",
           "Science fiction only"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is the Internet of Things (IoT)?",
+        options: [
+          "Connected devices that share data",
+          "Only smartphones and computers",
+          "Traditional appliances only",
+          "Social media platforms"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How has technology affected communication?",
+        options: [
+          "Faster and more global communication",
+          "No change in communication",
+          "Only face-to-face communication",
+          "Slower communication"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is cloud computing?",
+        options: [
+          "Storing and accessing data over the internet",
+          "Only using physical hard drives",
+          "Traditional software installation",
+          "Offline data storage"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How has technology changed shopping?",
+        options: [
+          "Online shopping and digital payments",
+          "Only traditional stores",
+          "No changes to shopping",
+          "More expensive shopping"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is virtual reality (VR)?",
+        options: [
+          "Immersive computer-generated environments",
+          "Regular video games",
+          "Traditional movies",
+          "Social media apps"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How has technology affected healthcare?",
+        options: [
+          "Better diagnosis and treatment options",
+          "No improvements in healthcare",
+          "Only traditional medicine",
+          "More expensive healthcare"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is blockchain technology?",
+        options: [
+          "Secure, decentralized digital ledger system",
+          "Traditional banking system",
+          "Social media platform",
+          "Email service"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How has technology changed work?",
+        options: [
+          "Remote work and digital collaboration",
+          "Only office-based work",
+          "No changes to work",
+          "Less productive work"
         ],
         correctAnswer: 0
       }
@@ -147,6 +377,86 @@ const allQuizData = {
           "Only when thirsty",
           "As much as possible",
           "No water needed"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is the recommended amount of sleep for adults?",
+        options: [
+          "7-9 hours per night",
+          "Only 4-5 hours",
+          "As much as possible",
+          "No sleep needed"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What are the main food groups for a balanced diet?",
+        options: [
+          "Fruits, vegetables, proteins, grains, and dairy",
+          "Only meat and potatoes",
+          "Only fruits and vegetables",
+          "Only bread and water"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How often should you exercise for good health?",
+        options: [
+          "At least 150 minutes per week",
+          "Only once a month",
+          "Only when you're sick",
+          "Never exercise"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is stress management?",
+        options: [
+          "Techniques to reduce and control stress",
+          "Ignoring all problems",
+          "Working harder to avoid stress",
+          "Avoiding all responsibilities"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "Why is breakfast important?",
+        options: [
+          "It provides energy for the day",
+          "It's not really important",
+          "It makes you gain weight",
+          "It's only a tradition"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is the best way to maintain a healthy weight?",
+        options: [
+          "Balanced diet and regular exercise",
+          "Only dieting",
+          "Only exercising",
+          "Eating whatever you want"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "How does exercise affect mental health?",
+        options: [
+          "It reduces stress and improves mood",
+          "It has no effect on mental health",
+          "It makes you more stressed",
+          "It only affects physical health"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is the importance of stretching?",
+        options: [
+          "It improves flexibility and prevents injury",
+          "It's not important",
+          "It makes you slower",
+          "It's only for athletes"
         ],
         correctAnswer: 0
       }
