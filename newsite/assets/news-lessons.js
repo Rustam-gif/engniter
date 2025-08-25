@@ -208,22 +208,42 @@ Whether you think it's secret weapons testing or just routine data collection, t
 
 // Function to open a news lesson
 function openNewsLesson(lessonKey) {
+    console.log('Opening news lesson:', lessonKey);
+    
     const lesson = newsLessons[lessonKey];
     if (!lesson) {
         console.error('Lesson not found:', lessonKey);
         return;
     }
 
+    console.log('Lesson data:', lesson);
+
     // Set modal title
-    document.getElementById('modalTitle').textContent = lesson.title;
+    const modalTitle = document.getElementById('modalTitle');
+    if (modalTitle) {
+        modalTitle.textContent = lesson.title;
+    } else {
+        console.error('Modal title element not found');
+    }
 
     // Create lesson content
     const lessonContent = createLessonContent(lesson);
-    document.getElementById('modalBody').innerHTML = lessonContent;
+    const modalBody = document.getElementById('modalBody');
+    if (modalBody) {
+        modalBody.innerHTML = lessonContent;
+    } else {
+        console.error('Modal body element not found');
+    }
 
     // Show modal
-    document.getElementById('newsModal').style.display = 'block';
-    document.body.style.overflow = 'hidden';
+    const modal = document.getElementById('newsModal');
+    if (modal) {
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+        console.log('Modal should now be visible');
+    } else {
+        console.error('Modal element not found');
+    }
 }
 
 // Function to create lesson content
@@ -315,8 +335,15 @@ function createLessonContent(lesson) {
 
 // Function to close news modal
 function closeNewsModal() {
-    document.getElementById('newsModal').style.display = 'none';
-    document.body.style.overflow = 'auto';
+    console.log('Closing news modal');
+    const modal = document.getElementById('newsModal');
+    if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+        console.log('Modal should now be hidden');
+    } else {
+        console.error('Modal element not found for closing');
+    }
 }
 
 // Function to filter news by level and topic
