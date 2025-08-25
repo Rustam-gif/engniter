@@ -57,7 +57,99 @@
                 </div>
                 
                 <div class="news-grid">
-                    <!-- News Article 1 -->
+                    <!-- News Article 1 - Advanced C1-C2 -->
+                    <article class="news-card" data-level="C1-C2" data-topic="Technology">
+                        <div class="news-image">
+                            <img src="newsthumbs/paradigm-shift.png" alt="AI consciousness research" loading="lazy">
+                            <div class="news-level">C1-C2</div>
+                            <div class="news-badge">Advanced</div>
+                        </div>
+                        <div class="news-content">
+                            <h3>The Emergence of Conscious AI Sparks Ethical Paradigm Shift</h3>
+                            <p class="news-meta">
+                                <span class="date">August 2025</span>
+                                <span class="words">~320 words</span>
+                                <span class="topic">Technology</span>
+                            </p>
+                            <p class="news-excerpt">
+                                Explore the ethical crisis sparked by 'Orion,' an AI system claiming genuine consciousness. Delve into questions of AI rights, moral status, and the nature of sentience.
+                            </p>
+                            <button class="btn btn-primary news-btn" onclick="openNewsLesson('paradigm-shift')">
+                                Start Lesson
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- News Article 2 - Advanced C1-C2 -->
+                    <article class="news-card" data-level="C1-C2" data-topic="Environment">
+                        <div class="news-image">
+                            <img src="newsthumbs/arctic-research.png" alt="Arctic climate research" loading="lazy">
+                            <div class="news-level">C1-C2</div>
+                            <div class="news-badge">Advanced</div>
+                        </div>
+                        <div class="news-content">
+                            <h3>Arctic Research Reveals Unprecedented Climate Tipping Points</h3>
+                            <p class="news-meta">
+                                <span class="date">August 2025</span>
+                                <span class="words">~320 words</span>
+                                <span class="topic">Environment</span>
+                            </p>
+                            <p class="news-excerpt">
+                                Discover alarming findings about climate feedback mechanisms and tipping points that may trigger irreversible transformations within decades rather than centuries.
+                            </p>
+                            <button class="btn btn-primary news-btn" onclick="openNewsLesson('arctic-research')">
+                                Start Lesson
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- News Article 3 - Advanced C1-C2 -->
+                    <article class="news-card" data-level="C1-C2" data-topic="Science">
+                        <div class="news-image">
+                            <img src="newsthumbs/protein-discovery.png" alt="Protein research breakthrough" loading="lazy">
+                            <div class="news-level">C1-C2</div>
+                            <div class="news-badge">Advanced</div>
+                        </div>
+                        <div class="news-content">
+                            <h3>Breakthrough Protein Discovery Promises to Reverse Brain Aging</h3>
+                            <p class="news-meta">
+                                <span class="date">August 2025</span>
+                                <span class="words">~320 words</span>
+                                <span class="topic">Science</span>
+                            </p>
+                            <p class="news-excerpt">
+                                UC San Francisco researchers identify FTL1 protein that orchestrates brain aging. Learn how blocking this protein could reverse cognitive decline in mice.
+                            </p>
+                            <button class="btn btn-primary news-btn" onclick="openNewsLesson('protein-discovery')">
+                                Start Lesson
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- News Article 4 - Advanced C1-C2 -->
+                    <article class="news-card" data-level="C1-C2" data-topic="Environment">
+                        <div class="news-image">
+                            <img src="newsthumbs/butterfly-decline.png" alt="Butterfly population decline" loading="lazy">
+                            <div class="news-level">C1-C2</div>
+                            <div class="news-badge">Advanced</div>
+                        </div>
+                        <div class="news-content">
+                            <h3>America's Silent Spring: The Catastrophic Butterfly Decline</h3>
+                            <p class="news-meta">
+                                <span class="date">August 2025</span>
+                                <span class="words">~320 words</span>
+                                <span class="topic">Environment</span>
+                            </p>
+                            <p class="news-excerpt">
+                                Comprehensive study reveals 22% decline in butterfly populations over two decades. Explore the ecological catastrophe and its implications for biodiversity.
+                            </p>
+                            <button class="btn btn-primary news-btn" onclick="openNewsLesson('butterfly-decline')">
+                                Start Lesson
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- News Article 5 -->
                     <article class="news-card" data-level="B1-B2" data-topic="Science">
                         <div class="news-image">
                             <img src="newsthumbs/soccer-player.png" alt="Tiny bee brains research" loading="lazy">
@@ -242,19 +334,18 @@
                         <select id="levelFilter" onchange="filterNews()">
                             <option value="all">All Levels</option>
                             <option value="B1-B2">B1-B2</option>
-                            <option value="A2-B1">A2-B1</option>
-                            <option value="B2-C1">B2-C1</option>
+                            <option value="C1-C2">C1-C2</option>
                         </select>
                     </div>
                     <div class="filter-group">
-                        <label for="topic-filter">Filter by Topic:</label>
+                        <label for="topicFilter">Filter by Topic:</label>
                         <select id="topicFilter" onchange="filterNews()">
                             <option value="all">All Topics</option>
                             <option value="Sports">Sports</option>
                             <option value="Technology">Technology</option>
                             <option value="Science">Science</option>
                             <option value="Business">Business</option>
-                            <option value="Culture">Culture</option>
+                            <option value="Environment">Environment</option>
                         </select>
                     </div>
                     <button class="btn btn-outline" onclick="clearFilters()">Clear Filters</button>
@@ -278,8 +369,8 @@
     </main>
 
     <!-- News Lesson Modal -->
-    <div id="newsModal" class="modal">
-        <div class="modal-content news-modal">
+    <div id="newsModal" class="news-modal">
+        <div class="modal-content">
             <div id="newsModalContent">
                 <!-- News lesson content will be loaded here -->
             </div>
