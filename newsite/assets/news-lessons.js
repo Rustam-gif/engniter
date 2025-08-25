@@ -273,30 +273,46 @@ const newsLessons = {
 // Open news lesson modal
 function openNewsLesson(lessonKey) {
     console.log('Opening lesson:', lessonKey);
-    const lesson = newsLessons[lessonKey];
-    if (!lesson) {
+    
+    if (!newsLessons[lessonKey]) {
         console.error('Lesson not found:', lessonKey);
         return;
     }
-
+    
+    const lesson = newsLessons[lessonKey];
     const modal = document.getElementById('newsModal');
-    if (!modal) {
-        console.error('Modal element not found');
+    const modalContent = document.getElementById('newsModalContent');
+    
+    if (!modal || !modalContent) {
+        console.error('Modal elements not found');
         return;
     }
-
-    // Populate modal content
-    const modalContent = document.getElementById('newsModalContent');
-    if (modalContent) {
-        modalContent.innerHTML = createLessonContent(lesson);
-    }
-
+    
+    // Create lesson content
+    modalContent.innerHTML = createLessonContent(lesson);
+    
     // Show modal
     modal.style.display = 'flex';
+    modal.classList.add('show');
     document.body.style.overflow = 'hidden';
-
-    // Initialize interactive elements
-    initializeInteractiveElements();
+    
+    // Add error handling for images
+    const images = modal.querySelectorAll('img');
+    images.forEach(img => {
+        img.onerror = function() {
+            // Replace broken image with fallback
+            this.style.display = 'none';
+            const fallback = document.createElement('div');
+            fallback.className = 'news-image-fallback';
+            fallback.innerHTML = `
+                <div class="fallback-content">
+                    <span class="fallback-icon">📰</span>
+                    <p>Image not available</p>
+                </div>
+            `;
+            this.parentNode.appendChild(fallback);
+        };
+    });
 }
 
 // Create lesson content with new design
@@ -355,8 +371,7 @@ function createLessonContent(lesson) {
                                     <div class="question-options">
                                         ${question.options.map((option, optIndex) => `
                                             <button class="option-btn" 
-                                                    data-correct="${option === question.answer}"
-                                                    onclick="selectAnswer(this, '${option === question.answer}')">
+                                                    onclick="selectAnswer(this)">
                                                 ${option}
                                             </button>
                                         `).join('')}
@@ -364,13 +379,11 @@ function createLessonContent(lesson) {
                                 ` : `
                                     <div class="question-options">
                                         <button class="option-btn" 
-                                                data-correct="true"
-                                                onclick="selectAnswer(this, 'true')">
+                                                onclick="selectAnswer(this)">
                                             True
                                         </button>
                                         <button class="option-btn" 
-                                                data-correct="false"
-                                                onclick="selectAnswer(this, 'false')">
+                                                onclick="selectAnswer(this)">
                                             False
                                         </button>
                                     </div>
@@ -427,32 +440,32 @@ function createLessonContent(lesson) {
     `;
 }
 
-// Helper function to get thumbnail for lesson headlines
+// Get thumbnail for lesson by title
 function getThumbnailForLesson(lessonTitle) {
     const thumbnails = {
-        "Soccer Star's Party Sparks Disability Rights Backlash": "Soccer-player",
+        "Soccer Star's Party Sparks Disability Rights Backlash": "soccer-player",
         "Lawyer Apologizes After Fake AI Citations Delay Murder Trial": "lawyer",
         "Ancient 'Pokémon-Like' Whale Fossil Found in Australia": "pokemon-whale",
         "CEO Wants to Hire Full-Time Doom-Scrollers": "doomscrollers",
-        "Secret Air Force Jet Spotted Over Area 51": "lawyer", // Reusing lawyer image for area-51
-        "Tiny Bee Brains Could Make AI Smarter": "al-bee",
-        "Telescopes Find Hidden Moon Around Uranus": "hidden-moon",
-        "Scientists Build First Pieces of Quantum Internet": "quantum-internet"
+        "Secret Air Force Jet Spotted Over Area 51": "area-51",
+        "Tiny Bee Brains Could Make AI Smarter": "soccer-player", // Fallback to existing image
+        "Telescopes Find Hidden Moon Around Uranus": "pokemon-whale", // Fallback to existing image
+        "Scientists Build First Pieces of Quantum Internet": "lawyer" // Fallback to existing image
     };
     return thumbnails[lessonTitle] || 'lawyer';
 }
 
-// Helper function to get thumbnail for related lessons by key
+// Get thumbnail for lesson by key
 function getThumbnailForLessonByKey(lessonKey) {
     const thumbnails = {
-        'soccer-party': 'Soccer-player',
+        'soccer-party': 'soccer-player',
         'ai-lawyer': 'lawyer',
         'pokemon-whale': 'pokemon-whale',
         'doomscrollers': 'doomscrollers',
-        'area-51': 'lawyer', // Reusing lawyer image for area-51
-        'al-bee': 'al-bee',
-        'hidden-moon': 'hidden-moon',
-        'quantum-internet': 'quantum-internet'
+        'area-51': 'area-51',
+        'al-bee': 'soccer-player', // Fallback to existing image
+        'hidden-moon': 'pokemon-whale', // Fallback to existing image
+        'quantum-internet': 'lawyer' // Fallback to existing image
     };
     return thumbnails[lessonKey] || 'lawyer';
 }
@@ -593,7 +606,7 @@ function flipCard(card) {
 }
 
 // Select answer option
-function selectAnswer(button, isCorrect) {
+function selectAnswer(button) {
     const questionItem = button.closest('.question-item');
     const questionNumber = parseInt(questionItem.dataset.question);
     
@@ -626,8 +639,11 @@ function selectAnswer(button, isCorrect) {
         questionItem.appendChild(resultDiv);
     }
     
+    // Check if the selected answer is correct by comparing with the question's correct answer
+    const selectedText = button.textContent.trim();
+    const isCorrectAnswer = selectedText === question.answer;
+    
     // Show result immediately
-    const isCorrectAnswer = isCorrect === 'true';
     resultDiv.innerHTML = `
         <div class="result ${isCorrectAnswer ? 'correct' : 'incorrect'}">
             <span class="result-icon">${isCorrectAnswer ? '✅' : '❌'}</span>
@@ -641,8 +657,8 @@ function selectAnswer(button, isCorrect) {
     
     // Highlight correct and incorrect answers
     questionItem.querySelectorAll('.option-btn').forEach(btn => {
-        const btnIsCorrect = btn.dataset.correct === 'true';
-        if (btnIsCorrect) {
+        const btnText = btn.textContent.trim();
+        if (btnText === question.answer) {
             btn.classList.add('correct');
         } else if (btn === button && !isCorrectAnswer) {
             btn.classList.add('incorrect');
@@ -676,6 +692,7 @@ function closeNewsModal() {
     const modal = document.getElementById('newsModal');
     if (modal) {
         modal.style.display = 'none';
+        modal.classList.remove('show');
         document.body.style.overflow = 'auto';
     }
 }
