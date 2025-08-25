@@ -2583,3 +2583,117 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
     color: #6b7280;
     line-height: 1.6;
 }
+
+/* News Lesson Modal - Answer Results */
+.answer-result {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+.answer-result .result {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.answer-result .result.correct {
+    background-color: #d1fae5;
+    color: #065f46;
+    border: 1px solid #10b981;
+}
+
+.answer-result .result.incorrect {
+    background-color: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #ef4444;
+}
+
+.result-icon {
+    font-size: 1.25rem;
+}
+
+.result-text {
+    flex: 1;
+}
+
+/* Question Options Styling */
+.question-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.option-btn {
+    padding: 0.75rem 1rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    background: white;
+    color: #374151;
+    font-size: 0.95rem;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.option-btn:hover:not(:disabled) {
+    border-color: #3b82f6;
+    background-color: #f8fafc;
+}
+
+.option-btn.selected {
+    border-color: #3b82f6;
+    background-color: #eff6ff;
+    color: #1e40af;
+}
+
+.option-btn.correct {
+    border-color: #10b981;
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+.option-btn.incorrect {
+    border-color: #ef4444;
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+.option-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* Question Item Styling */
+.question-item {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.question-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    background: #3b82f6;
+    color: white;
+    border-radius: 50%;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.question-text {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #1f2937;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}

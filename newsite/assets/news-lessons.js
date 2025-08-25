@@ -217,38 +217,35 @@ function createLessonContent(lesson) {
                 <div class="lesson-header-text">
                     <h2>${lesson.title}</h2>
                     <div class="lesson-meta">
-                        <span class="level-badge">${lesson.level}</span>
-                        <span class="word-count">~${lesson.wordCount} words</span>
+                        <span class="level">${lesson.level}</span>
                         <span class="date">${lesson.date}</span>
-                        <span class="topic">${lesson.topic}</span>
+                        <span class="words">~${lesson.wordCount} words</span>
                     </div>
                 </div>
                 <div class="lesson-header-image">
-                    <img src="newsthumbs/${getThumbnailForLesson(lesson.title)}.png" alt="${lesson.topic}" loading="lazy">
+                    <img src="newsthumbs/${getThumbnailForLesson(lesson.title)}.png" alt="${lesson.title}" loading="lazy">
                 </div>
             </div>
         </div>
 
-        <div class="lesson-content">
-            <!-- Vocabulary Section -->
+        <div class="lesson-sections">
             <section class="vocabulary-section">
                 <h3>📚 Vocabulary</h3>
                 <div class="vocabulary-list">
-                    ${lesson.vocabulary.map((vocab, i) => `
+                    ${lesson.vocabulary.map(vocab => `
                         <div class="vocab-item">
                             <div class="vocab-header">
-                                <span class="vocab-term">${vocab.term}</span>
+                                <strong>${vocab.term}</strong>
                                 <span class="vocab-pos">${getPartOfSpeech(vocab.term)}</span>
                                 <span class="vocab-pronunciation">${getPronunciation(vocab.term)}</span>
                             </div>
-                            <div class="vocab-definition">${vocab.definition}</div>
-                            <div class="vocab-example">${vocab.example}</div>
+                            <p class="vocab-definition">${vocab.definition}</p>
+                            <p class="vocab-example"><em>Example:</em> ${vocab.example}</p>
                         </div>
                     `).join('')}
                 </div>
             </section>
 
-            <!-- Article Section -->
             <section class="article-section">
                 <h3>📰 Article</h3>
                 <div class="article-text">
@@ -256,73 +253,86 @@ function createLessonContent(lesson) {
                 </div>
             </section>
 
-            <!-- Comprehension Section -->
             <section class="comprehension-section">
                 <h3>❓ Comprehension Questions</h3>
-                <div class="comprehension-questions">
-                    ${lesson.comprehension.map((q, i) => `
-                        <div class="question-item">
-                            <div class="question-number">${i + 1}</div>
+                <div class="questions-list">
+                    ${lesson.comprehension.map((question, index) => `
+                        <div class="question-item" data-question="${index}">
+                            <div class="question-number">${index + 1}</div>
                             <div class="question-content">
-                                <div class="question-text">${q.question}</div>
-                                ${q.type === 'truefalse' ? `
-                                    <div class="answer-options">
-                                        <button class="option-btn" onclick="selectAnswer(this, ${i}, 'True')">True</button>
-                                        <button class="option-btn" onclick="selectAnswer(this, ${i}, 'False')">False</button>
-                                    </div>
-                                ` : `
-                                    <div class="answer-options">
-                                        ${q.options.map((option, j) => `
-                                            <button class="option-btn" onclick="selectAnswer(this, ${i}, '${option.replace(/'/g, "\\'")}')">${option}</button>
+                                <p class="question-text">${question.question}</p>
+                                ${question.type === 'multiple' ? `
+                                    <div class="question-options">
+                                        ${question.options.map((option, optIndex) => `
+                                            <button class="option-btn" 
+                                                    data-correct="${option === question.answer}"
+                                                    onclick="selectAnswer(this, '${option === question.answer}')">
+                                                ${option}
+                                            </button>
                                         `).join('')}
                                     </div>
+                                ` : `
+                                    <div class="question-options">
+                                        <button class="option-btn" 
+                                                data-correct="true"
+                                                onclick="selectAnswer(this, 'true')">
+                                            True
+                                        </button>
+                                        <button class="option-btn" 
+                                                data-correct="false"
+                                                onclick="selectAnswer(this, 'false')">
+                                            False
+                                        </button>
+                                    </div>
                                 `}
-                                <button class="check-answer-btn" onclick="checkAnswer(${i}, '${q.answer.replace(/'/g, "\\'")}')" style="display: none;">
-                                    Check Answer
-                                </button>
-                                <div class="answer-result" style="display: none;"></div>
                             </div>
                         </div>
                     `).join('')}
                 </div>
             </section>
 
-            <!-- Discussion Section -->
             <section class="discussion-section">
                 <h3>💬 Discussion Questions</h3>
                 <div class="discussion-questions">
-                    ${lesson.discussion.map((q, i) => `
+                    ${lesson.discussion.map(question => `
                         <div class="discussion-question">
-                            <span class="question-number">${i + 1}</span>
-                            <span class="question-text">${q}</span>
+                            <p>${question}</p>
                         </div>
                     `).join('')}
                 </div>
             </section>
 
-            <!-- Related Lessons Section -->
-            <section class="related-lessons-section">
+            <section class="related-lessons">
                 <h3>🔗 Related Lessons</h3>
-                <div class="related-lessons-grid">
-                    ${Object.keys(newsLessons).filter(key => key !== Object.keys(newsLessons).find(k => newsLessons[k].title === lesson.title)).map(key => `
-                        <div class="related-lesson-card" onclick="openNewsLesson('${key}')">
-                            <div class="related-lesson-image">
-                                <img src="newsthumbs/${getThumbnailForLessonByKey(key)}.png" alt="${newsLessons[key].topic}" loading="lazy">
+                <div class="related-grid">
+                    ${Object.keys(newsLessons).filter(key => key !== lesson.key).slice(0, 3).map(key => {
+                        const relatedLesson = newsLessons[key];
+                        return `
+                            <div class="related-lesson-card" onclick="openNewsLesson('${key}')">
+                                <div class="related-lesson-image">
+                                    <img src="newsthumbs/${getThumbnailForLessonByKey(key)}.png" alt="${relatedLesson.title}" loading="lazy">
+                                </div>
+                                <div class="related-lesson-content">
+                                    <h4>${relatedLesson.title}</h4>
+                                    <p class="related-lesson-level">${relatedLesson.level}</p>
+                                </div>
                             </div>
-                            <div class="related-lesson-content">
-                                <h4>${newsLessons[key].title.substring(0, 50)}...</h4>
-                                <span class="related-lesson-level">${newsLessons[key].level}</span>
-                                <span class="related-lesson-topic">${newsLessons[key].topic}</span>
-                            </div>
-                        </div>
-                    `).join('')}
+                        `;
+                    }).join('')}
                 </div>
             </section>
         </div>
 
-        <div class="lesson-actions">
-            <button class="btn btn-orange" onclick="printLesson()">Print Lesson</button>
-            <button class="btn btn-blue" onclick="closeNewsModal()">Close</button>
+        <div class="lesson-footer">
+            <p class="lesson-source"><strong>Source:</strong> ${lesson.source}</p>
+            <div class="lesson-actions">
+                <button class="btn btn-secondary" onclick="printLesson()">
+                    <span class="icon">🖨️</span> Print Lesson
+                </button>
+                <button class="btn btn-primary" onclick="closeNewsModal()">
+                    <span class="icon">✖️</span> Close
+                </button>
+            </div>
         </div>
     `;
 }
@@ -451,53 +461,62 @@ function flipCard(card) {
 }
 
 // Select answer option
-function selectAnswer(button, questionIndex, selectedAnswer) {
-    const questionContainer = button.closest('.question-item');
-    const optionBtns = questionContainer.querySelectorAll('.option-btn');
-    const checkBtn = questionContainer.querySelector('.check-answer-btn');
+function selectAnswer(button, isCorrect) {
+    const questionItem = button.closest('.question-item');
+    const questionNumber = parseInt(questionItem.dataset.question);
     
-    // Remove previous selections
-    optionBtns.forEach(btn => btn.classList.remove('selected'));
+    // Find the current lesson
+    const lessonTitle = document.querySelector('.lesson-header h2').textContent;
+    const lessonKey = Object.keys(newsLessons).find(key => newsLessons[key].title === lessonTitle);
+    const lesson = newsLessons[lessonKey];
+    const question = lesson.comprehension[questionNumber];
+    
+    // Remove previous selections and results
+    questionItem.querySelectorAll('.option-btn').forEach(btn => {
+        btn.classList.remove('selected', 'correct', 'incorrect');
+        btn.disabled = false;
+    });
+    
+    // Remove any existing result
+    const existingResult = questionItem.querySelector('.answer-result');
+    if (existingResult) {
+        existingResult.remove();
+    }
     
     // Select current option
     button.classList.add('selected');
     
-    // Show check answer button
-    checkBtn.style.display = 'inline-block';
-    
-    // Store selected answer
-    questionContainer.dataset.selectedAnswer = selectedAnswer;
-}
-
-// Check answer
-function checkAnswer(questionIndex, correctAnswer) {
-    const questionContainer = document.querySelector(`[data-question="${questionIndex}"]`);
-    const selectedAnswer = questionContainer.dataset.selectedAnswer;
-    const resultDiv = questionContainer.querySelector('.answer-result');
-    const checkBtn = questionContainer.querySelector('.check-answer-btn');
-    
-    if (!selectedAnswer) {
-        alert('Please select an answer first!');
-        return;
+    // Create result div if it doesn't exist
+    let resultDiv = questionItem.querySelector('.answer-result');
+    if (!resultDiv) {
+        resultDiv = document.createElement('div');
+        resultDiv.className = 'answer-result';
+        questionItem.appendChild(resultDiv);
     }
     
-    const isCorrect = selectedAnswer === correctAnswer;
-    
+    // Show result immediately
+    const isCorrectAnswer = isCorrect === 'true';
     resultDiv.innerHTML = `
-        <div class="result ${isCorrect ? 'correct' : 'incorrect'}">
-            <span class="result-icon">${isCorrect ? '✅' : '❌'}</span>
+        <div class="result ${isCorrectAnswer ? 'correct' : 'incorrect'}">
+            <span class="result-icon">${isCorrectAnswer ? '✅' : '❌'}</span>
             <span class="result-text">
-                ${isCorrect ? 'Correct!' : 'Incorrect. The correct answer is: ' + correctAnswer}
+                ${isCorrectAnswer ? 'Correct!' : 'Incorrect!'}
+                ${!isCorrectAnswer ? ` The correct answer is: <strong>${question.answer}</strong>` : ''}
             </span>
         </div>
     `;
-    
     resultDiv.style.display = 'block';
-    checkBtn.style.display = 'none';
     
-    // Disable all option buttons
-    const optionBtns = questionContainer.querySelectorAll('.option-btn');
-    optionBtns.forEach(btn => btn.disabled = true);
+    // Highlight correct and incorrect answers
+    questionItem.querySelectorAll('.option-btn').forEach(btn => {
+        const btnIsCorrect = btn.dataset.correct === 'true';
+        if (btnIsCorrect) {
+            btn.classList.add('correct');
+        } else if (btn === button && !isCorrectAnswer) {
+            btn.classList.add('incorrect');
+        }
+        btn.disabled = true;
+    });
 }
 
 // Toggle answer key
