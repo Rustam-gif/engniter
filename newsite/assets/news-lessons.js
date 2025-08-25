@@ -568,9 +568,11 @@ function getThumbnailForLesson(lessonTitle) {
         "Ancient 'Pokémon-Like' Whale Fossil Found in Australia": "pokemon-whale",
         "CEO Wants to Hire Full-Time Doom-Scrollers": "doomscrollers",
         "Secret Air Force Jet Spotted Over Area 51": "area-51",
-        "Tiny Bee Brains Could Make AI Smarter": "soccer-player", // Fallback to existing image
-        "Telescopes Find Hidden Moon Around Uranus": "pokemon-whale", // Fallback to existing image
-        "Scientists Build First Pieces of Quantum Internet": "lawyer", // Fallback to existing image
+        "Tiny Bee Brains Could Make AI Smarter": "al-bee",
+        "Telescopes Find Hidden Moon Around Uranus": "hidden-moon",
+        "Scientists Build First Pieces of Quantum Internet": "quantum-internet",
+        "The Emergence of Conscious AI Sparks Ethical Paradigm Shift": "paradigm-shift",
+        "Arctic Research Reveals Unprecedented Climate Tipping Points": "arctic-research",
         "Breakthrough Protein Discovery Promises to Reverse Brain Aging": "protein-discovery",
         "America's Silent Spring: The Catastrophic Butterfly Decline": "butterfly-decline"
     };
@@ -585,9 +587,11 @@ function getThumbnailForLessonByKey(lessonKey) {
         'pokemon-whale': 'pokemon-whale',
         'doomscrollers': 'doomscrollers',
         'area-51': 'area-51',
-        'al-bee': 'soccer-player', // Fallback to existing image
-        'hidden-moon': 'pokemon-whale', // Fallback to existing image
-        'quantum-internet': 'lawyer', // Fallback to existing image
+        'al-bee': 'al-bee',
+        'hidden-moon': 'hidden-moon',
+        'quantum-internet': 'quantum-internet',
+        'paradigm-shift': 'paradigm-shift',
+        'arctic-research': 'arctic-research',
         'protein-discovery': 'protein-discovery',
         'butterfly-decline': 'butterfly-decline'
     };
