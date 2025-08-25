@@ -2162,12 +2162,11 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
 
 .question-item {
     background: white;
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-    padding: 1.5rem;
-    transition: all 0.2s;
-    display: flex;
-    gap: 1rem;
+    border: 1px solid #f3f4f6;
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin-bottom: 1.25rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .question-item:hover {
@@ -2175,28 +2174,24 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
 }
 
 .question-number {
-    background: #10b981;
-    color: white;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-size: 1rem;
+    width: 1.75rem;
+    height: 1.75rem;
+    background: #3b82f6;
+    color: white;
+    border-radius: 50%;
     font-weight: 600;
-    flex-shrink: 0;
-}
-
-.question-content {
-    flex: 1;
+    font-size: 0.8rem;
+    margin-bottom: 0.75rem;
 }
 
 .question-text {
-    font-size: 1.125rem;
-    font-weight: 600;
+    font-size: 1rem;
+    font-weight: 500;
     color: #1f2937;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
     line-height: 1.5;
 }
 
@@ -2587,9 +2582,10 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
 /* News Lesson Modal - Answer Results */
 .answer-result {
     margin-top: 1rem;
-    padding: 1rem;
-    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
     font-weight: 500;
+    font-size: 0.9rem;
 }
 
 .answer-result .result {
@@ -2599,48 +2595,51 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
 }
 
 .answer-result .result.correct {
-    background-color: #d1fae5;
-    color: #065f46;
-    border: 1px solid #10b981;
+    background-color: #f0fdf4;
+    color: #166534;
+    border-left: 3px solid #22c55e;
 }
 
 .answer-result .result.incorrect {
-    background-color: #fee2e2;
+    background-color: #fef2f2;
     color: #991b1b;
-    border: 1px solid #ef4444;
+    border-left: 3px solid #ef4444;
 }
 
 .result-icon {
-    font-size: 1.25rem;
+    font-size: 1rem;
+    flex-shrink: 0;
 }
 
 .result-text {
     flex: 1;
+    line-height: 1.4;
 }
 
 /* Question Options Styling */
 .question-options {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 0.5rem;
     margin-top: 1rem;
 }
 
 .option-btn {
     padding: 0.75rem 1rem;
-    border: 2px solid #e5e7eb;
-    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
     background: white;
     color: #374151;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     text-align: left;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.15s ease;
+    position: relative;
 }
 
 .option-btn:hover:not(:disabled) {
-    border-color: #3b82f6;
-    background-color: #f8fafc;
+    border-color: #d1d5db;
+    background-color: #f9fafb;
 }
 
 .option-btn.selected {
@@ -2650,51 +2649,51 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
 }
 
 .option-btn.correct {
-    border-color: #10b981;
-    background-color: #d1fae5;
-    color: #065f46;
+    border-color: #22c55e;
+    background-color: #f0fdf4;
+    color: #166534;
 }
 
 .option-btn.incorrect {
     border-color: #ef4444;
-    background-color: #fee2e2;
+    background-color: #fef2f2;
     color: #991b1b;
 }
 
 .option-btn:disabled {
     cursor: not-allowed;
-    opacity: 0.7;
+    opacity: 0.8;
 }
 
 /* Question Item Styling */
 .question-item {
     background: white;
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid #f3f4f6;
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin-bottom: 1.25rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .question-number {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 2rem;
-    height: 2rem;
+    width: 1.75rem;
+    height: 1.75rem;
     background: #3b82f6;
     color: white;
     border-radius: 50%;
     font-weight: 600;
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
+    font-size: 0.8rem;
+    margin-bottom: 0.75rem;
 }
 
 .question-text {
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 500;
     color: #1f2937;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
     line-height: 1.5;
 }
 
