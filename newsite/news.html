@@ -132,7 +132,7 @@
                                 <span class="feature">5 Comprehension Qs</span>
                                 <span class="feature">4 Discussion Topics</span>
                             </div>
-                            <button class="btn btn-primary news-btn" onclick="openNewsLesson('whale-fossil')">
+                            <button class="btn btn-primary news-btn" onclick="openNewsLesson('pokemon-whale')">
                                 Start Lesson
                             </button>
                         </div>
@@ -160,7 +160,7 @@
                                 <span class="feature">5 Comprehension Qs</span>
                                 <span class="feature">4 Discussion Topics</span>
                             </div>
-                            <button class="btn btn-primary news-btn" onclick="openNewsLesson('doom-scroller-job')">
+                            <button class="btn btn-primary news-btn" onclick="openNewsLesson('doomscrollers')">
                                 Start Lesson
                             </button>
                         </div>
@@ -187,7 +187,7 @@
                                 <span class="feature">5 Comprehension Qs</span>
                                 <span class="feature">4 Discussion Topics</span>
                             </div>
-                            <button class="btn btn-primary news-btn" onclick="openNewsLesson('area51-jet')">
+                            <button class="btn btn-primary news-btn" onclick="openNewsLesson('area-51')">
                                 Start Lesson
                             </button>
                         </div>
@@ -197,8 +197,8 @@
                 <!-- Filter Section -->
                 <div class="news-filters">
                     <div class="filter-group">
-                        <label for="level-filter">Filter by Level:</label>
-                        <select id="level-filter" onchange="filterNews()">
+                        <label for="levelFilter">Filter by Level:</label>
+                        <select id="levelFilter" onchange="filterNews()">
                             <option value="all">All Levels</option>
                             <option value="B1-B2">B1-B2</option>
                             <option value="A2-B1">A2-B1</option>
@@ -207,7 +207,7 @@
                     </div>
                     <div class="filter-group">
                         <label for="topic-filter">Filter by Topic:</label>
-                        <select id="topic-filter" onchange="filterNews()">
+                        <select id="topicFilter" onchange="filterNews()">
                             <option value="all">All Topics</option>
                             <option value="Sports">Sports</option>
                             <option value="Technology">Technology</option>
@@ -228,8 +228,8 @@
                     <h2>Ready to Start Teaching with News?</h2>
                     <p>Get access to our complete collection of current news lessons, plus all our PDF lesson plans.</p>
                     <div class="cta-actions">
-                        <a href="pricing.html" class="btn btn-primary">Get Full Access</a>
-                        <a href="lessons.html" class="btn btn-outline">Browse All Lessons</a>
+                        <a href="pricing.html" class="btn btn-green">Get Full Access</a>
+                        <a href="lessons.html" class="btn btn-orange">Browse News Lessons</a>
                     </div>
                 </div>
             </div>
@@ -239,11 +239,7 @@
     <!-- News Lesson Modal -->
     <div id="newsModal" class="modal">
         <div class="modal-content news-modal">
-            <div class="modal-header">
-                <h2 id="modalTitle">News Lesson</h2>
-                <button class="close-btn" onclick="closeNewsModal()">&times;</button>
-            </div>
-            <div class="modal-body" id="modalBody">
+            <div id="newsModalContent">
                 <!-- News lesson content will be loaded here -->
             </div>
         </div>

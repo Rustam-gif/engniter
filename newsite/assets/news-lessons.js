@@ -26,35 +26,29 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// News lesson data
+// News Lessons Data
 const newsLessons = {
-    'soccer-party': {
+    "soccer-party": {
         title: "Soccer Star's Party Sparks Disability Rights Backlash",
         level: "B1-B2",
-        wordCount: "~220",
-        date: "July 13, 2025",
+        wordCount: 220,
+        date: "2025-08-25",
         topic: "Sports",
-        article: `Lamine Yamal, the electric 18-year-old winger from Barcelona and Spain, threw a huge birthday party on July 13, 2025, surrounded by teammates, celebs, and influencers. But things got awkward fast when a Spanish disability rights group, ADEE, claimed that people with dwarfism were hired as entertainment—and they weren't happy.
-
-ADEE said this kind of act "perpetuates stereotypes, fuels discrimination, and undermines dignity." They plan to take legal and social action. Spain's Ministry of Social Rights also stepped in, urging a full investigation by prosecutors and anti-hate-crime offices to see if disability laws were broken.
-
-One entertainer hit back, saying, "No one disrespected us; we were allowed to work in peace. We're normal people doing what we love, legally."
-
-Yamal—now the proud wearer of the No. 10 shirt at Barça and signed through 2031—hasn't made a public comment yet about the controversy.`,
+        article: "Lamine Yamal, the electric 18-year-old winger from Barcelona and Spain, threw a huge birthday party on July 13, 2025, surrounded by teammates, celebs, and influencers. But things got awkward fast when a Spanish disability rights group, ADEE, claimed that people with dwarfism were hired as entertainment—and they weren't happy. ADEE said this kind of act 'perpetuates stereotypes, fuels discrimination, and undermines dignity.' They plan to take legal and social action. Spain's Ministry of Social Rights also stepped in, urging a full investigation by prosecutors and anti-hate-crime offices to see if disability laws were broken. One entertainer hit back, saying, 'No one disrespected us; we were allowed to work in peace. We're normal people doing what we love, legally.' Yamal—now the proud wearer of the No. 10 shirt at Barça and signed through 2031—hasn't made a public comment yet about the controversy.",
         vocabulary: [
-            { term: "Perpetuate", definition: "To keep something going (usually something bad or unfair)", example: "Bad habits perpetuate poor health." },
-            { term: "Stereotype", definition: "A fixed idea that doesn't reflect true diversity", example: "Don't stereotype people by their appearance." },
+            { term: "Perpetuate", definition: "To keep something going (usually something bad or unfair)", example: "Bad habits can perpetuate poor health." },
+            { term: "Stereotype", definition: "A fixed idea that doesn't reflect the true diversity of people", example: "Breaking stereotypes helps create understanding." },
             { term: "Dignity", definition: "Being respected and valued as a person", example: "Everyone deserves to be treated with dignity." },
-            { term: "Legal action", definition: "Using the law or courts to resolve a problem", example: "The company took legal action against the thief." },
-            { term: "Investigation", definition: "Official checking to see if rules were broken", example: "Police started an investigation into the crime." },
-            { term: "We're normal", definition: "We are just regular people—expressing equality", example: "We're normal people doing what we love." }
+            { term: "Legal action", definition: "Using the law or courts to resolve a problem or get justice", example: "The company took legal action against the competitor." },
+            { term: "Investigation", definition: "Official checking to see if rules were broken", example: "Police launched an investigation into the incident." },
+            { term: "We're normal", definition: "We are just regular people—expressing equality", example: "People with disabilities often say 'we're normal' to challenge assumptions." }
         ],
         comprehension: [
-            { question: "Lamine Yamal is a soccer player for Barcelona and Spain.", answer: "True", type: "TF" },
-            { question: "The party controversy involved hiring people with dwarfism as entertainment.", answer: "True", type: "TF" },
-            { question: "ADEE is a Spanish disability rights group.", answer: "True", type: "TF" },
-            { question: "Yamal has publicly apologized for the controversy.", answer: "False", type: "TF" },
-            { question: "The entertainers hired for the party were happy with their treatment.", answer: "True", type: "TF" }
+            { question: "What type of party did Lamine Yamal throw?", type: "multiple", options: ["A small family gathering", "A huge birthday party", "A team meeting", "A charity event"], answer: "A huge birthday party" },
+            { question: "Which organization complained about the party?", type: "multiple", options: ["FIFA", "ADEE", "Barcelona FC", "Spanish government"], answer: "ADEE" },
+            { question: "The entertainers at the party were people with dwarfism.", type: "truefalse", answer: "True" },
+            { question: "Spain's Ministry of Social Rights supported the party organizers.", type: "truefalse", answer: "False" },
+            { question: "What did one entertainer say about their treatment?", type: "multiple", options: ["They were disrespected", "They were allowed to work in peace", "They were forced to leave", "They were not paid"], answer: "They were allowed to work in peace" }
         ],
         discussion: [
             "Is hiring people based on physical traits respectful entertainment—or disrespectful? Why?",
@@ -62,34 +56,29 @@ Yamal—now the proud wearer of the No. 10 shirt at Barça and signed through 20
             "What's a fair way for performers to earn a living while staying respectful of others' rights?",
             "If you were organizing a party, how would you decide what's appropriate?"
         ],
-        source: "Sky News coverage and other reports"
+        source: "Sky News coverage and other reports."
     },
-    
-    'ai-lawyer': {
+    "ai-lawyer": {
         title: "Lawyer Apologizes After Fake AI Citations Delay Murder Trial",
         level: "B1-B2",
-        wordCount: "~220",
-        date: "August 2025",
+        wordCount: 220,
+        date: "2025-08-25",
         topic: "Technology",
-        article: `A senior Australian lawyer, Rishi Nathwani KC, apologized to Judge James Elliott in the Supreme Court of Victoria after filing court documents in a murder case containing fake legislative quotes and references to nonexistent rulings—all generated by AI. These errors delayed the trial by one day. The defendant—a teenager who can't be named—was later found not guilty by reason of mental impairment.
-
-Judge Elliott said AI tools can be helpful, but anything they produce must be independently verified. He also pointed out that guidelines already warn lawyers about relying blindly on AI. In this case, both sides failed to catch the fake citations before submitting them.
-
-Similar AI mix-ups have happened elsewhere. In the U.S., some lawyers were fined for submitting fake AI-made case law. In the U.K., judges warned that using false material could be contempt of court or even perverting the course of justice.`,
+        article: "A senior Australian lawyer, Rishi Nathwani KC, apologized to Judge James Elliott in the Supreme Court of Victoria after filing court documents in a murder case containing fake legislative quotes and references to nonexistent rulings—all generated by AI. These errors delayed the trial by one day. The defendant—a teenager who can't be named—was later found not guilty by reason of mental impairment. Judge Elliott said AI tools can be helpful, but anything they produce must be independently verified. He also pointed out that guidelines already warn lawyers about relying blindly on AI. In this case, both sides failed to catch the fake citations before submitting them. Similar AI mix-ups have happened elsewhere. In the U.S., some lawyers were fined for submitting fake AI-made case law. In the U.K., judges warned that using false material could be contempt of court or even perverting the course of justice.",
         vocabulary: [
-            { term: "King's Counsel (KC)", definition: "A senior, top-tier lawyer honored by the monarch", example: "She was appointed King's Counsel for her excellent work." },
+            { term: "King's Counsel (KC)", definition: "A senior, top-tier lawyer honored by the monarch", example: "Only the best lawyers become King's Counsel." },
             { term: "Submissions", definition: "Documents lawyers give to the court", example: "The lawyer prepared his submissions carefully." },
-            { term: "Fabricated", definition: "Made up—false but presented as real", example: "The evidence was fabricated and not authentic." },
-            { term: "Verified", definition: "Checked carefully to make sure it's accurate", example: "All facts must be verified before publishing." },
-            { term: "Contempt of court", definition: "Breaking or disrespecting court rules—punishable", example: "The judge found him in contempt of court." },
-            { term: "Perverting the course of justice", definition: "Blocking fair legal process—very serious", example: "Lying to police can be perverting the course of justice." }
+            { term: "Fabricated", definition: "Made up—false but presented as real", example: "The evidence was fabricated and not reliable." },
+            { term: "Verified", definition: "Checked carefully to make sure it's accurate", example: "All facts must be verified before use." },
+            { term: "Contempt of court", definition: "Breaking or disrespecting court rules—punishable", example: "Refusing to answer questions can result in contempt of court." },
+            { term: "Perverting the course of justice", definition: "Blocking fair legal process—very serious", example: "Lying under oath is perverting the course of justice." }
         ],
         comprehension: [
-            { question: "Rishi Nathwani KC is a senior Australian lawyer.", answer: "True", type: "TF" },
-            { question: "The AI-generated citations were all accurate and real.", answer: "False", type: "TF" },
-            { question: "The trial was delayed because of the fake citations.", answer: "True", type: "TF" },
-            { question: "The defendant was found guilty of murder.", answer: "False", type: "TF" },
-            { question: "This is the first time AI has caused problems in legal cases.", answer: "False", type: "TF" }
+            { question: "What type of lawyer was Rishi Nathwani?", type: "multiple", options: ["Junior lawyer", "King's Counsel (KC)", "Judge", "Prosecutor"], answer: "King's Counsel (KC)" },
+            { question: "The fake citations were generated by AI.", type: "truefalse", answer: "True" },
+            { question: "How long did the trial get delayed?", type: "multiple", options: ["One week", "One day", "One month", "Not delayed"], answer: "One day" },
+            { question: "The defendant was found guilty of murder.", type: "truefalse", answer: "False" },
+            { question: "What did Judge Elliott say about AI tools?", type: "multiple", options: ["They should be banned", "They can be helpful but need verification", "They are always reliable", "They are useless"], answer: "They can be helpful but need verification" }
         ],
         discussion: [
             "Why is AI tempting for lawyers—but also risky?",
@@ -97,34 +86,29 @@ Similar AI mix-ups have happened elsewhere. In the U.S., some lawyers were fined
             "Should courts ban AI, regulate it, or embrace it carefully?",
             "If a tool helps but sometimes lies, how would you use it wisely?"
         ],
-        source: "AP News"
+        source: "AP News."
     },
-    
-    'whale-fossil': {
+    "pokemon-whale": {
         title: "Ancient 'Pokémon-Like' Whale Fossil Found in Australia",
         level: "B1-B2",
-        wordCount: "~200",
-        date: "August 2025",
+        wordCount: 200,
+        date: "2025-08-25",
         topic: "Science",
-        article: `Meet Janjucetus dullardi, a wild new whale species from a 25-million-year-old fossil on Victoria's Jan Juc Beach. Instead of being a gentle giant, this whale was small—about 2–3 meters long—tiny enough to fit on a single bed. But don't be fooled: it had tennis-ball-sized eyes, a shark-like snout, and razor-sharp teeth. Scientists call it "deceptively cute, but definitely not harmless."
-
-The fossil was discovered in 2019 by Ross Dullard, a school principal and fossil fan, who donated it to Museums Victoria. The find is a big breakthrough—it's one of only four known species from the mammalodontid group, early whales that followed a very different path from today's filter-feeding giants.
-
-This discovery gives us a peek at how whales evolved from toothy predators into the peaceful leviathans we know now.`,
+        article: "Meet Janjucetus dullardi, a wild new whale species from a 25-million-year-old fossil on Victoria's Jan Juc Beach. Instead of being a gentle giant, this whale was small—about 2–3 meters long—tiny enough to fit on a single bed. But don't be fooled: it had tennis-ball-sized eyes, a shark-like snout, and razor-sharp teeth. Scientists call it 'deceptively cute, but definitely not harmless.' The fossil was discovered in 2019 by Ross Dullard, a school principal and fossil fan, who donated it to Museums Victoria. The find is a big breakthrough—it's one of only four known species from the mammalodontid group, early whales that followed a very different path from today's filter-feeding giants. This discovery gives us a peek at how whales evolved from toothy predators into the peaceful leviathans we know now.",
         vocabulary: [
-            { term: "Deceptively cute", definition: "Looks sweet, but really isn't—kind of tricks you", example: "The kitten was deceptively cute but very aggressive." },
-            { term: "Predator", definition: "Animal that hunts and eats other animals", example: "Lions are apex predators in the savanna." },
-            { term: "Mammalodontid", definition: "Early, toothy whale group—ancestors of big whales", example: "Mammalodontids lived millions of years ago." },
+            { term: "Deceptively cute", definition: "Looks sweet, but really isn't—kind of tricks you", example: "The baby shark was deceptively cute but dangerous." },
+            { term: "Predator", definition: "Animal that hunts and eats other animals", example: "Lions are apex predators in their ecosystem." },
+            { term: "Mammalodontid", definition: "Early, toothy whale group—ancestors of big whales", example: "Mammalodontids were the first whales with teeth." },
             { term: "Evolution", definition: "How species change slowly over millions of years", example: "Human evolution took millions of years." },
-            { term: "Fossil", definition: "Remains or traces of ancient life preserved in rock", example: "The dinosaur fossil was perfectly preserved." },
-            { term: "Juvenile", definition: "Young; not yet fully grown", example: "The juvenile bird couldn't fly yet." }
+            { term: "Fossil", definition: "Remains or traces of ancient life preserved in rock", example: "Dinosaur fossils help us understand prehistoric life." },
+            { term: "Juvenile", definition: "Young; not yet fully grown", example: "The juvenile whale was smaller than adults." }
         ],
         comprehension: [
-            { question: "Janjucetus dullardi was a large whale species.", answer: "False", type: "TF" },
-            { question: "The fossil is about 25 million years old.", answer: "True", type: "TF" },
-            { question: "Ross Dullard is a professional paleontologist.", answer: "False", type: "TF" },
-            { question: "This whale had sharp teeth and was a predator.", answer: "True", type: "TF" },
-            { question: "Modern whales are filter-feeders, not predators.", answer: "True", type: "TF" }
+            { question: "How old is the whale fossil?", type: "multiple", options: ["25 million years", "25 thousand years", "25 hundred years", "25 years"], answer: "25 million years" },
+            { question: "The whale was large and gentle.", type: "truefalse", answer: "False" },
+            { question: "Who discovered the fossil?", type: "multiple", options: ["A scientist", "Ross Dullard", "A fisherman", "A tourist"], answer: "Ross Dullard" },
+            { question: "The whale had small eyes and dull teeth.", type: "truefalse", answer: "False" },
+            { question: "What does this discovery help us understand?", type: "multiple", options: ["Modern whale behavior", "Whale evolution from predators to filter-feeders", "Australian beaches", "Fossil preservation"], answer: "Whale evolution from predators to filter-feeders" }
         ],
         discussion: [
             "What's the coolest (or oddest) prehistoric animal you've heard of—and why?",
@@ -132,34 +116,29 @@ This discovery gives us a peek at how whales evolved from toothy predators into 
             "Why is it important when everyday people help discover fossils?",
             "How do you imagine the oceans looked when little toothy whales ruled?"
         ],
-        source: "AP News and science coverage"
+        source: "AP News and science coverage."
     },
-    
-    'doom-scroller-job': {
+    "doomscrollers": {
         title: "CEO Wants to Hire Full-Time Doom-Scrollers",
         level: "B1-B2",
-        wordCount: "~200",
-        date: "August 2025",
+        wordCount: 200,
+        date: "2025-08-25",
         topic: "Business",
-        article: `Monk Entertainment's CEO in Mumbai, Viraj Sheth, just flipped doom-scrolling—yes, that six-hours-a-day Instagram + Reddit time sink—into a real job. He's looking for someone whose hobby is their superpower: living on social feeds and knowing the latest in creator culture.
-
-To land the gig, you should: spend 6+ hours/day on Instagram/YouTube (proof via screenshots), be up on creator culture and celeb gossip subreddits, and be fluent in English + Hindi (bonus: Excel skills). It's a full-time, Mumbai-based role with a "very competitive" salary—no exact number shared.
-
-Online reactions were mixed: some called it a dream job; others joked they were "overqualified" thanks to scary screen-time stats. If you want to pitch yourself, the application asks for personality and humor—no AI-written cover letters.`,
+        article: "Monk Entertainment's CEO in Mumbai, Viraj Sheth, just flipped doom-scrolling—yes, that six-hours-a-day Instagram + Reddit time sink—into a real job. He's looking for someone whose hobby is their superpower: living on social feeds and knowing the latest in creator culture. To land the gig, you should: spend 6+ hours/day on Instagram/YouTube (proof via screenshots), be up on creator culture and celeb gossip subreddits, and be fluent in English + Hindi (bonus: Excel skills). It's a full-time, Mumbai-based role with a 'very competitive' salary—no exact number shared. Online reactions were mixed: some called it a dream job; others joked they were 'overqualified' thanks to scary screen-time stats. If you want to pitch yourself, the application asks for personality and humor—no AI-written cover letters.",
         vocabulary: [
-            { term: "Doom-scrolling", definition: "Endlessly scrolling social media, often through negative news", example: "I spent hours doom-scrolling through bad news." },
-            { term: "Creator culture", definition: "The world of influencers, trends, and online content", example: "Creator culture is changing how people make money online." },
-            { term: "Competitive salary", definition: "Pay that's better than average", example: "The company offers a competitive salary for the industry." },
-            { term: "Obsession", definition: "A very strong interest in something", example: "His obsession with cars started when he was young." },
+            { term: "Doom-scrolling", definition: "Endlessly scrolling social media, often through negative news", example: "I spent hours doom-scrolling through bad news yesterday." },
+            { term: "Creator culture", definition: "The world of influencers, trends, and online content", example: "Creator culture has changed how people consume media." },
+            { term: "Competitive salary", definition: "Pay that's better than average", example: "The company offers competitive salaries to attract talent." },
+            { term: "Obsession", definition: "A very strong interest in something", example: "His obsession with gaming affects his studies." },
             { term: "Overqualified", definition: "Having more skills/experience than a job needs", example: "She was overqualified for the entry-level position." },
             { term: "Full-time role", definition: "Regular, 5-day-a-week job—not a side hustle", example: "I'm looking for a full-time role in marketing." }
         ],
         comprehension: [
-            { question: "Viraj Sheth is the CEO of Monk Entertainment.", answer: "True", type: "TF" },
-            { question: "The job requires spending at least 6 hours per day on social media.", answer: "True", type: "TF" },
-            { question: "The salary amount is clearly stated in the job posting.", answer: "False", type: "TF" },
-            { question: "Everyone online thought this was a great job opportunity.", answer: "False", type: "TF" },
-            { question: "The company accepts AI-written cover letters.", answer: "False", type: "TF" }
+            { question: "What company is hiring doom-scrollers?", type: "multiple", options: ["Instagram", "Reddit", "Monk Entertainment", "YouTube"], answer: "Monk Entertainment" },
+            { question: "The job requires spending 6+ hours per day on social media.", type: "truefalse", answer: "True" },
+            { question: "Where is the job located?", type: "multiple", options: ["New York", "London", "Mumbai", "Tokyo"], answer: "Mumbai" },
+            { question: "The salary is clearly stated in the job posting.", type: "truefalse", answer: "False" },
+            { question: "What language skills are required?", type: "multiple", options: ["English only", "Hindi only", "English + Hindi", "Any language"], answer: "English + Hindi" }
         ],
         discussion: [
             "What would you tell your parents if scrolling Instagram could be your job?",
@@ -167,34 +146,29 @@ Online reactions were mixed: some called it a dream job; others joked they were 
             "Would you apply if you could prove elite scrolling skills?",
             "Should jobs like this limit screen time? How would you balance it?"
         ],
-        source: "NDTV and related reports"
+        source: "NDTV and related reports."
     },
-    
-    'area51-jet': {
+    "area-51": {
         title: "Secret Air Force Jet Spotted Over Area 51",
         level: "B1-B2",
-        wordCount: "~200",
-        date: "August 2025",
+        wordCount: 200,
+        date: "2025-08-25",
         topic: "Technology",
-        article: `A rare sighting at Nevada's Groom Lake—better known as Area 51—set aviation Twitter on fire. Photographer Michael Rokita filmed a heavily modified Boeing 737-200 nicknamed RAT55, a U.S. Air Force radar-test aircraft, from Tikaboo Peak about 26 miles away.
-
-The jet reportedly performed touch-and-go maneuvers, landed on Runway 32, and taxied toward Hangar 18—the base's most famous (and mysterious) building. RAT55 is thought to support stealth and radar testing, sometimes flying with its transponder off to avoid easy tracking. The base itself was only officially acknowledged by the U.S. government in 2013, so every new clip fuels more curiosity.
-
-Whether you think it's secret weapons testing or just routine data collection, the video reminded the world that Area 51 is still very much active—and very good at keeping secrets.`,
+        article: "A rare sighting at Nevada's Groom Lake—better known as Area 51—set aviation Twitter on fire. Photographer Michael Rokita filmed a heavily modified Boeing 737-200 nicknamed RAT55, a U.S. Air Force radar-test aircraft, from Tikaboo Peak about 26 miles away. The jet reportedly performed touch-and-go maneuvers, landed on Runway 32, and taxied toward Hangar 18—the base's most famous (and mysterious) building. RAT55 is thought to support stealth and radar testing, sometimes flying with its transponder off to avoid easy tracking. The base itself was only officially acknowledged by the U.S. government in 2013, so every new clip fuels more curiosity. Whether you think it's secret weapons testing or just routine data collection, the video reminded the world that Area 51 is still very much active—and very good at keeping secrets.",
         vocabulary: [
-            { term: "Touch-and-go", definition: "A landing where the plane immediately takes off again", example: "The pilot practiced touch-and-go landings." },
-            { term: "Radar testbed", definition: "An aircraft used to test radar systems and stealth tech", example: "The military uses radar testbeds for research." },
-            { term: "Transponder", definition: "A device that broadcasts an aircraft's identity/location", example: "The transponder helps air traffic control track planes." },
-            { term: "Groom Lake", definition: "The dry lakebed where Area 51's runway complex sits", example: "Groom Lake is in the Nevada desert." },
-            { term: "Hangar 18", definition: "A large building at Area 51 often linked with secret projects", example: "Hangar 18 is famous in conspiracy theories." },
-            { term: "Classified", definition: "Officially secret information or activity", example: "The documents were classified and confidential." }
+            { term: "Touch-and-go", definition: "A landing where the plane immediately takes off again", example: "The pilot practiced touch-and-go landings for training." },
+            { term: "Radar testbed", definition: "An aircraft used to test radar systems and stealth tech", example: "The military uses radar testbeds to improve detection." },
+            { term: "Transponder", definition: "A device that broadcasts an aircraft's identity/location", example: "Air traffic control tracks planes using transponders." },
+            { term: "Groom Lake", definition: "The dry lakebed where Area 51's runway complex sits", example: "Groom Lake is the official name for Area 51." },
+            { term: "Hangar 18", definition: "A large building at Area 51 often linked with secret projects", example: "Hangar 18 is famous for its mysterious contents." },
+            { term: "Classified", definition: "Officially secret information or activity", example: "The documents were classified and not available to the public." }
         ],
         comprehension: [
-            { question: "Area 51 is located in Nevada.", answer: "True", type: "TF" },
-            { question: "Michael Rokita photographed the jet from 26 miles away.", answer: "True", type: "TF" },
-            { question: "The U.S. government officially acknowledged Area 51 in 2013.", answer: "True", type: "TF" },
-            { question: "RAT55 is a passenger aircraft, not a military plane.", answer: "False", type: "TF" },
-            { question: "The jet always flies with its transponder on for safety.", answer: "False", type: "TF" }
+            { question: "What type of aircraft was spotted?", type: "multiple", options: ["Boeing 737-200", "Fighter jet", "Helicopter", "Drone"], answer: "Boeing 737-200" },
+            { question: "The jet was photographed from 26 miles away.", type: "truefalse", answer: "True" },
+            { question: "Who filmed the aircraft?", type: "multiple", options: ["A pilot", "Michael Rokita", "A soldier", "A tourist"], answer: "Michael Rokita" },
+            { question: "Area 51 was officially acknowledged in 2013.", type: "truefalse", answer: "True" },
+            { question: "What is RAT55 used for?", type: "multiple", options: ["Passenger transport", "Stealth and radar testing", "Cargo delivery", "Training flights"], answer: "Stealth and radar testing" }
         ],
         discussion: [
             "Why do places like Area 51 capture people's imaginations?",
@@ -202,156 +176,291 @@ Whether you think it's secret weapons testing or just routine data collection, t
             "What's the line between national security and healthy transparency?",
             "If you were the photographer, would you publish the footage?"
         ],
-        source: "New York Post summary and follow-up coverage"
+        source: "New York Post summary and follow-up coverage."
     }
 };
 
-// Function to open a news lesson
+// Open news lesson modal
 function openNewsLesson(lessonKey) {
-    console.log('Opening news lesson:', lessonKey);
-    
+    console.log('Opening lesson:', lessonKey);
     const lesson = newsLessons[lessonKey];
     if (!lesson) {
         console.error('Lesson not found:', lessonKey);
         return;
     }
 
-    console.log('Lesson data:', lesson);
-
-    // Set modal title
-    const modalTitle = document.getElementById('modalTitle');
-    if (modalTitle) {
-        modalTitle.textContent = lesson.title;
-    } else {
-        console.error('Modal title element not found');
+    const modal = document.getElementById('newsModal');
+    if (!modal) {
+        console.error('Modal element not found');
+        return;
     }
 
-    // Create lesson content
-    const lessonContent = createLessonContent(lesson);
-    const modalBody = document.getElementById('modalBody');
-    if (modalBody) {
-        modalBody.innerHTML = lessonContent;
-    } else {
-        console.error('Modal body element not found');
+    // Populate modal content
+    const modalContent = document.getElementById('newsModalContent');
+    if (modalContent) {
+        modalContent.innerHTML = createLessonContent(lesson);
     }
 
     // Show modal
-    const modal = document.getElementById('newsModal');
-    if (modal) {
-        modal.style.display = 'block';
-        document.body.style.overflow = 'hidden';
-        console.log('Modal should now be visible');
-    } else {
-        console.error('Modal element not found');
-    }
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+
+    // Initialize interactive elements
+    initializeInteractiveElements();
 }
 
-// Function to create lesson content
+// Create lesson content with new design
 function createLessonContent(lesson) {
     return `
-        <div class="news-lesson">
-            <div class="lesson-header">
-                <div class="lesson-meta">
-                    <span class="level">Level: ${lesson.level}</span>
-                    <span class="words">Words: ${lesson.wordCount}</span>
-                    <span class="date">Date: ${lesson.date}</span>
-                </div>
-                <div class="lesson-topic">Topic: ${lesson.topic}</div>
+        <div class="lesson-header">
+            <h2>${lesson.title}</h2>
+            <div class="lesson-meta">
+                <span class="level-badge">${lesson.level}</span>
+                <span class="word-count">~${lesson.wordCount} words</span>
+                <span class="date">${lesson.date}</span>
+                <span class="topic">${lesson.topic}</span>
             </div>
+        </div>
 
-            <div class="lesson-section">
+        <div class="lesson-content">
+            <!-- Article Section -->
+            <section class="article-section">
                 <h3>Article</h3>
-                <div class="article-text">
-                    ${lesson.article.split('\n\n').map(paragraph => `<p>${paragraph}</p>`).join('')}
+                <div class="article-intro">
+                    ${lesson.article.substring(0, 150)}...
                 </div>
-            </div>
-
-            <div class="lesson-section">
-                <h3>Vocabulary Preview</h3>
-                <div class="vocabulary-table">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Word/Phrase</th>
-                                <th>Meaning</th>
-                                <th>Example</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            ${lesson.vocabulary.map(vocab => `
-                                <tr>
-                                    <td><strong>${vocab.term}</strong></td>
-                                    <td>${vocab.definition}</td>
-                                    <td>${vocab.example}</td>
-                                </tr>
-                            `).join('')}
-                        </tbody>
-                    </table>
+                <button class="read-more-btn" onclick="toggleArticle(this, '${lesson.article.replace(/'/g, "\\'")}')">
+                    Read More
+                </button>
+                <div class="article-full" style="display: none;">
+                    ${lesson.article}
                 </div>
-            </div>
+            </section>
 
-            <div class="lesson-section">
-                <h3>Comprehension Check</h3>
-                <div class="comprehension-questions">
-                    ${lesson.comprehension.map((q, index) => `
-                        <div class="question">
-                            <p><strong>${index + 1})</strong> ${q.question}</p>
-                        </div>
-                    `).join('')}
-                </div>
-            </div>
-
-            <div class="lesson-section">
-                <h3>Answer Key</h3>
-                <div class="answer-key">
-                    ${lesson.comprehension.map((q, index) => `
-                        <span class="answer">${index + 1}) ${q.answer}</span>
-                    `).join('  ')}
-                </div>
-            </div>
-
-            <div class="lesson-section">
+            <!-- Discussion Questions Section -->
+            <section class="discussion-section">
                 <h3>Discussion Questions</h3>
                 <div class="discussion-questions">
-                    ${lesson.discussion.map((q, index) => `
-                        <div class="question">
-                            <p><strong>${index + 1})</strong> ${q}</p>
+                    ${lesson.discussion.map((q, i) => `
+                        <div class="discussion-question">
+                            <span class="question-number">${i + 1}.</span>
+                            <span class="question-text">${q}</span>
                         </div>
                     `).join('')}
                 </div>
-            </div>
+            </section>
 
-            <div class="lesson-source">
-                <p><em>Source:</em> ${lesson.source}</p>
-            </div>
+            <!-- Vocabulary Section -->
+            <section class="vocabulary-section">
+                <h3>Vocabulary Preview</h3>
+                <div class="vocabulary-cards">
+                    ${lesson.vocabulary.map((vocab, i) => `
+                        <div class="vocab-card" onclick="flipCard(this)">
+                            <div class="card-front">
+                                <span class="vocab-term">${vocab.term}</span>
+                                <span class="flip-hint">Click to see meaning</span>
+                            </div>
+                            <div class="card-back">
+                                <div class="vocab-definition">${vocab.definition}</div>
+                                <div class="vocab-example">${vocab.example}</div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            </section>
 
-            <div class="lesson-actions">
-                <button class="btn btn-outline" onclick="printLesson()">Print Lesson</button>
-                <button class="btn btn-primary" onclick="closeNewsModal()">Close</button>
-            </div>
+            <!-- Comprehension Section -->
+            <section class="comprehension-section">
+                <h3>Comprehension Check</h3>
+                <div class="comprehension-questions">
+                    ${lesson.comprehension.map((q, i) => `
+                        <div class="question-container" data-question="${i}">
+                            <div class="question-text">${i + 1}. ${q.question}</div>
+                            ${q.type === 'truefalse' ? `
+                                <div class="answer-options">
+                                    <button class="option-btn" onclick="selectAnswer(this, ${i}, 'True')">True</button>
+                                    <button class="option-btn" onclick="selectAnswer(this, ${i}, 'False')">False</button>
+                                </div>
+                            ` : `
+                                <div class="answer-options">
+                                    ${q.options.map((option, j) => `
+                                        <button class="option-btn" onclick="selectAnswer(this, ${i}, '${option.replace(/'/g, "\\'")}')">${option}</button>
+                                    `).join('')}
+                                </div>
+                            `}
+                            <button class="check-answer-btn" onclick="checkAnswer(${i}, '${q.answer.replace(/'/g, "\\'")}')" style="display: none;">
+                                Check Answer
+                            </button>
+                            <div class="answer-result" style="display: none;"></div>
+                        </div>
+                    `).join('')}
+                </div>
+            </section>
+
+            <!-- Answer Key Section (Collapsible) -->
+            <section class="answer-key-section">
+                <div class="answer-key-header" onclick="toggleAnswerKey()">
+                    <h3>Answer Key (Teacher View)</h3>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="answer-key-content" style="display: none;">
+                    <div class="answer-key-list">
+                        ${lesson.comprehension.map((q, i) => `
+                            <div class="answer-key-item">
+                                <span class="question-number">${i + 1}.</span>
+                                <span class="correct-answer">${q.answer}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            </section>
+
+            <!-- Related Lessons Section -->
+            <section class="related-lessons-section">
+                <h3>Related Lessons</h3>
+                <div class="related-lessons-grid">
+                    ${Object.keys(newsLessons).filter(key => key !== Object.keys(newsLessons).find(k => newsLessons[k].title === lesson.title)).map(key => `
+                        <div class="related-lesson-card" onclick="openNewsLesson('${key}')">
+                            <div class="related-lesson-image">
+                                <img src="newsthumbs/${getThumbnailForLesson(key)}.jpg" alt="${newsLessons[key].topic}" loading="lazy">
+                            </div>
+                            <div class="related-lesson-content">
+                                <h4>${newsLessons[key].title.substring(0, 50)}...</h4>
+                                <span class="related-lesson-level">${newsLessons[key].level}</span>
+                                <span class="related-lesson-topic">${newsLessons[key].topic}</span>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            </section>
+        </div>
+
+        <div class="lesson-actions">
+            <button class="btn btn-orange" onclick="printLesson()">Print Lesson</button>
+            <button class="btn btn-blue" onclick="closeNewsModal()">Close</button>
         </div>
     `;
 }
 
-// Function to close news modal
+// Helper function to get thumbnail for related lessons
+function getThumbnailForLesson(lessonKey) {
+    const thumbnails = {
+        'soccer-party': 'Soccer-player',
+        'ai-lawyer': 'lawyer',
+        'pokemon-whale': 'pokemon-whale',
+        'doomscrollers': 'doomscrollers',
+        'area-51': 'lawyer' // Reusing lawyer image for area-51
+    };
+    return thumbnails[lessonKey] || 'lawyer';
+}
+
+// Toggle article read more/less
+function toggleArticle(button, fullText) {
+    const intro = button.previousElementSibling;
+    const full = button.nextElementSibling;
+    
+    if (full.style.display === 'none') {
+        full.style.display = 'block';
+        intro.style.display = 'none';
+        button.textContent = 'Show Less';
+    } else {
+        full.style.display = 'none';
+        intro.style.display = 'block';
+        button.textContent = 'Read More';
+    }
+}
+
+// Flip vocabulary card
+function flipCard(card) {
+    card.classList.toggle('flipped');
+}
+
+// Select answer option
+function selectAnswer(button, questionIndex, selectedAnswer) {
+    const questionContainer = button.closest('.question-container');
+    const optionBtns = questionContainer.querySelectorAll('.option-btn');
+    const checkBtn = questionContainer.querySelector('.check-answer-btn');
+    
+    // Remove previous selections
+    optionBtns.forEach(btn => btn.classList.remove('selected'));
+    
+    // Select current option
+    button.classList.add('selected');
+    
+    // Show check answer button
+    checkBtn.style.display = 'inline-block';
+    
+    // Store selected answer
+    questionContainer.dataset.selectedAnswer = selectedAnswer;
+}
+
+// Check answer
+function checkAnswer(questionIndex, correctAnswer) {
+    const questionContainer = document.querySelector(`[data-question="${questionIndex}"]`);
+    const selectedAnswer = questionContainer.dataset.selectedAnswer;
+    const resultDiv = questionContainer.querySelector('.answer-result');
+    const checkBtn = questionContainer.querySelector('.check-answer-btn');
+    
+    if (!selectedAnswer) {
+        alert('Please select an answer first!');
+        return;
+    }
+    
+    const isCorrect = selectedAnswer === correctAnswer;
+    
+    resultDiv.innerHTML = `
+        <div class="result ${isCorrect ? 'correct' : 'incorrect'}">
+            <span class="result-icon">${isCorrect ? '✅' : '❌'}</span>
+            <span class="result-text">
+                ${isCorrect ? 'Correct!' : 'Incorrect. The correct answer is: ' + correctAnswer}
+            </span>
+        </div>
+    `;
+    
+    resultDiv.style.display = 'block';
+    checkBtn.style.display = 'none';
+    
+    // Disable all option buttons
+    const optionBtns = questionContainer.querySelectorAll('.option-btn');
+    optionBtns.forEach(btn => btn.disabled = true);
+}
+
+// Toggle answer key
+function toggleAnswerKey() {
+    const content = document.querySelector('.answer-key-content');
+    const icon = document.querySelector('.toggle-icon');
+    
+    if (content.style.display === 'none') {
+        content.style.display = 'block';
+        icon.textContent = '▲';
+    } else {
+        content.style.display = 'none';
+        icon.textContent = '▼';
+    }
+}
+
+// Initialize interactive elements
+function initializeInteractiveElements() {
+    // Any additional initialization can go here
+}
+
+// Close news modal
 function closeNewsModal() {
     console.log('Closing news modal');
     const modal = document.getElementById('newsModal');
     if (modal) {
         modal.style.display = 'none';
         document.body.style.overflow = 'auto';
-        console.log('Modal should now be hidden');
-    } else {
-        console.error('Modal element not found for closing');
     }
 }
 
-// Function to filter news by level and topic
+// Filter news by level and topic
 function filterNews() {
-    const levelFilter = document.getElementById('level-filter').value;
-    const topicFilter = document.getElementById('topic-filter').value;
+    const levelFilter = document.getElementById('levelFilter').value;
+    const topicFilter = document.getElementById('topicFilter').value;
+    
     const newsCards = document.querySelectorAll('.news-card');
-
+    
     newsCards.forEach(card => {
         const level = card.dataset.level;
         const topic = card.dataset.topic;
@@ -367,10 +476,10 @@ function filterNews() {
     });
 }
 
-// Function to clear filters
+// Clear all filters
 function clearFilters() {
-    document.getElementById('level-filter').value = 'all';
-    document.getElementById('topic-filter').value = 'all';
+    document.getElementById('levelFilter').value = 'all';
+    document.getElementById('topicFilter').value = 'all';
     
     const newsCards = document.querySelectorAll('.news-card');
     newsCards.forEach(card => {
@@ -378,47 +487,58 @@ function clearFilters() {
     });
 }
 
-// Function to print lesson
+// Print lesson
 function printLesson() {
-    const lessonContent = document.querySelector('.news-lesson');
-    if (lessonContent) {
-        const printWindow = window.open('', '_blank');
-        printWindow.document.write(`
-            <html>
-                <head>
-                    <title>News Lesson - ${document.getElementById('modalTitle').textContent}</title>
-                    <style>
-                        body { font-family: Arial, sans-serif; margin: 20px; }
-                        .lesson-section { margin-bottom: 20px; }
-                        .vocabulary-table table { border-collapse: collapse; width: 100%; }
-                        .vocabulary-table th, .vocabulary-table td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-                        .question { margin-bottom: 10px; }
-                        .answer-key { margin-bottom: 20px; }
-                        .answer { margin-right: 15px; }
-                        .lesson-source { margin-top: 30px; font-style: italic; }
-                    </style>
-                </head>
-                <body>
-                    ${lessonContent.outerHTML}
-                </body>
-            </html>
-        `);
-        printWindow.document.close();
-        printWindow.print();
-    }
+    const printWindow = window.open('', '_blank');
+    const lessonContent = document.getElementById('newsModalContent').innerHTML;
+    
+    printWindow.document.write(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>News Lesson - Print</title>
+            <style>
+                body { font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; }
+                h2, h3 { color: #333; }
+                .lesson-meta { margin-bottom: 20px; color: #666; }
+                .level-badge { background: #10b981; color: white; padding: 4px 8px; border-radius: 4px; margin-right: 10px; }
+                .vocabulary-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin: 20px 0; }
+                .vocab-card { border: 1px solid #ddd; padding: 15px; border-radius: 8px; }
+                .comprehension-questions { margin: 20px 0; }
+                .question-container { margin-bottom: 20px; padding: 15px; border: 1px solid #eee; border-radius: 8px; }
+                .discussion-questions { background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0; }
+                .discussion-question { margin-bottom: 10px; }
+                .question-number { font-weight: bold; margin-right: 10px; }
+                @media print { .lesson-actions, .answer-key-header { display: none; } }
+            </style>
+        </head>
+        <body>
+            ${lessonContent}
+        </body>
+        </html>
+    `);
+    
+    printWindow.document.close();
+    printWindow.focus();
+    printWindow.print();
 }
 
-// Close modal when clicking outside
-window.onclick = function(event) {
+// Event listeners
+document.addEventListener('DOMContentLoaded', function() {
+    // Close modal when clicking outside
     const modal = document.getElementById('newsModal');
-    if (event.target === modal) {
-        closeNewsModal();
+    if (modal) {
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeNewsModal();
+            }
+        });
     }
-}
-
-// Close modal with Escape key
-document.addEventListener('keydown', function(event) {
-    if (event.key === 'Escape') {
-        closeNewsModal();
-    }
+    
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeNewsModal();
+        }
+    });
 });
