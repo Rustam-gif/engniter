@@ -332,6 +332,84 @@ function getThumbnailForLesson(lessonKey) {
     return thumbnails[lessonKey] || 'lawyer';
 }
 
+// Helper function to get part of speech
+function getPartOfSpeech(word) {
+    const posMap = {
+        'reward': 'Verb',
+        'shoplifter': 'Noun',
+        'offense': 'Noun',
+        'confront': 'Verb',
+        'punishment': 'Noun',
+        'perpetuate': 'Verb',
+        'stereotype': 'Noun',
+        'dignity': 'Noun',
+        'legal action': 'Noun',
+        'investigation': 'Noun',
+        'fabricated': 'Adjective',
+        'verified': 'Adjective',
+        'contempt': 'Noun',
+        'deceptively': 'Adverb',
+        'predator': 'Noun',
+        'evolution': 'Noun',
+        'fossil': 'Noun',
+        'doom-scrolling': 'Noun',
+        'creator culture': 'Noun',
+        'competitive': 'Adjective',
+        'obsession': 'Noun',
+        'overqualified': 'Adjective',
+        'touch-and-go': 'Adjective',
+        'radar': 'Noun',
+        'transponder': 'Noun',
+        'classified': 'Adjective',
+        'king\'s counsel': 'Noun',
+        'submissions': 'Noun',
+        'perverting': 'Verb',
+        'justice': 'Noun',
+        'mammalodontid': 'Noun',
+        'juvenile': 'Adjective'
+    };
+    return posMap[word.toLowerCase()] || 'Noun';
+}
+
+// Helper function to get pronunciation
+function getPronunciation(word) {
+    const pronMap = {
+        'reward': '/rɪˈwɔ:rd/',
+        'shoplifter': '/ˈʃɒplɪftər/',
+        'offense': '/əˈfɛns/',
+        'confront': '/kənˈfrʌnt/',
+        'punishment': '/ˈpʌnɪʃmənt/',
+        'perpetuate': '/pərˈpetʃueɪt/',
+        'stereotype': '/ˈsteriətaɪp/',
+        'dignity': '/ˈdɪɡnəti/',
+        'legal action': '/ˈliːɡəl ˈækʃən/',
+        'investigation': '/ɪnˌvestɪˈɡeɪʃən/',
+        'fabricated': '/ˈfæbrɪkeɪtɪd/',
+        'verified': '/ˈverɪfaɪd/',
+        'contempt': '/kənˈtempt/',
+        'deceptively': '/dɪˈseptɪvli/',
+        'predator': '/ˈpredətər/',
+        'evolution': '/ˌevəˈluːʃən/',
+        'fossil': '/ˈfɒsəl/',
+        'doom-scrolling': '/ˈduːm skroʊlɪŋ/',
+        'creator culture': '/kriˈeɪtər ˈkʌltʃər/',
+        'competitive': '/kəmˈpetətɪv/',
+        'obsession': '/əbˈseʃən/',
+        'overqualified': '/ˌoʊvərˈkwɒlɪfaɪd/',
+        'touch-and-go': '/ˈtʌtʃ ənd ˈɡoʊ/',
+        'radar': '/ˈreɪdɑːr/',
+        'transponder': '/trænˈspɒndər/',
+        'classified': '/ˈklæsɪfaɪd/',
+        'king\'s counsel': '/ˈkɪŋz ˈkaʊnsəl/',
+        'submissions': '/səbˈmɪʃənz/',
+        'perverting': '/pərˈvɜːtɪŋ/',
+        'justice': '/ˈdʒʌstɪs/',
+        'mammalodontid': '/ˌmæmələˈdɒntɪd/',
+        'juvenile': '/ˈdʒuːvənaɪl/'
+    };
+    return pronMap[word.toLowerCase()] || '/ˈwɜːrd/';
+}
+
 // Toggle article read more/less
 function toggleArticle(button, fullText) {
     const intro = button.previousElementSibling;
