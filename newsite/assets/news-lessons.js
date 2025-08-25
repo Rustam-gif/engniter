@@ -31,10 +31,10 @@ const newsLessons = {
     "soccer-party": {
         title: "Soccer Star's Party Sparks Disability Rights Backlash",
         level: "B1-B2",
-        wordCount: 220,
+        wordCount: 300,
         date: "2025-08-25",
         topic: "Sports",
-        article: "Lamine Yamal, the electric 18-year-old winger from Barcelona and Spain, threw a huge birthday party on July 13, 2025, surrounded by teammates, celebs, and influencers. But things got awkward fast when a Spanish disability rights group, ADEE, claimed that people with dwarfism were hired as entertainment—and they weren't happy. ADEE said this kind of act 'perpetuates stereotypes, fuels discrimination, and undermines dignity.' They plan to take legal and social action. Spain's Ministry of Social Rights also stepped in, urging a full investigation by prosecutors and anti-hate-crime offices to see if disability laws were broken. One entertainer hit back, saying, 'No one disrespected us; we were allowed to work in peace. We're normal people doing what we love, legally.' Yamal—now the proud wearer of the No. 10 shirt at Barça and signed through 2031—hasn't made a public comment yet about the controversy.",
+        article: "Lamine Yamal, Barcelona's 18-year-old superstar, celebrated his birthday with a big private party in mid-July. Soon after, a Spanish disability rights group, ADEE, said that people with dwarfism were hired as entertainment at the event. The group argued this practice is outdated and harmful because it turns a real physical condition into a joke for others to watch. In their view, it keeps negative stereotypes alive and can make daily life harder for people who already face barriers. ADEE said they would push for legal and social action, and asked authorities to check whether Spain's disability laws were broken. Government officials publicly supported an investigation and asked prosecutors to review any available videos, contracts, or witness statements. Not everyone agreed. One entertainer said the job was voluntary and respectful, and that people with dwarfism, like everyone else, deserve the right to work in roles they choose. Supporters of this view argue that banning certain jobs might remove income from the very people we want to protect. They also say context matters: Are performers treated with respect? Are they paid fairly and given safe conditions? Yamal, a national hero after his breakout season with Spain and Barça, has not made a long public statement about the claims. His team has kept the focus on football while the discussion plays out online, where opinions are split. Some fans demand a clear apology; others want to wait for facts. Whatever the final legal outcome, the moment is important. It raises tough questions about entertainment, work, and dignity. It also reminds us to listen to the people most affected. If performers say the setup is fair and empowering, that matters. If many others say it hurts them, that matters too. Societies change when we keep having honest, respectful conversations—and back them with fair rules that protect everyone.",
         vocabulary: [
             { term: "Perpetuate", definition: "To keep something going (usually something bad or unfair)", example: "Bad habits can perpetuate poor health." },
             { term: "Stereotype", definition: "A fixed idea that doesn't reflect the true diversity of people", example: "Breaking stereotypes helps create understanding." },
@@ -44,11 +44,11 @@ const newsLessons = {
             { term: "We're normal", definition: "We are just regular people—expressing equality", example: "People with disabilities often say 'we're normal' to challenge assumptions." }
         ],
         comprehension: [
-            { question: "What type of party did Lamine Yamal throw?", type: "multiple", options: ["A small family gathering", "A huge birthday party", "A team meeting", "A charity event"], answer: "A huge birthday party" },
+            { question: "What type of party did Lamine Yamal throw?", type: "multiple", options: ["A small family gathering", "A big private party", "A team meeting", "A charity event"], answer: "A big private party" },
             { question: "Which organization complained about the party?", type: "multiple", options: ["FIFA", "ADEE", "Barcelona FC", "Spanish government"], answer: "ADEE" },
             { question: "The entertainers at the party were people with dwarfism.", type: "truefalse", answer: "True" },
             { question: "Spain's Ministry of Social Rights supported the party organizers.", type: "truefalse", answer: "False" },
-            { question: "What did one entertainer say about their treatment?", type: "multiple", options: ["They were disrespected", "They were allowed to work in peace", "They were forced to leave", "They were not paid"], answer: "They were allowed to work in peace" }
+            { question: "What did one entertainer say about their treatment?", type: "multiple", options: ["They were disrespected", "The job was voluntary and respectful", "They were forced to leave", "They were not paid"], answer: "The job was voluntary and respectful" }
         ],
         discussion: [
             "Is hiring people based on physical traits respectful entertainment—or disrespectful? Why?",
@@ -61,10 +61,10 @@ const newsLessons = {
     "ai-lawyer": {
         title: "Lawyer Apologizes After Fake AI Citations Delay Murder Trial",
         level: "B1-B2",
-        wordCount: 220,
+        wordCount: 300,
         date: "2025-08-25",
         topic: "Technology",
-        article: "A senior Australian lawyer, Rishi Nathwani KC, apologized to Judge James Elliott in the Supreme Court of Victoria after filing court documents in a murder case containing fake legislative quotes and references to nonexistent rulings—all generated by AI. These errors delayed the trial by one day. The defendant—a teenager who can't be named—was later found not guilty by reason of mental impairment. Judge Elliott said AI tools can be helpful, but anything they produce must be independently verified. He also pointed out that guidelines already warn lawyers about relying blindly on AI. In this case, both sides failed to catch the fake citations before submitting them. Similar AI mix-ups have happened elsewhere. In the U.S., some lawyers were fined for submitting fake AI-made case law. In the U.K., judges warned that using false material could be contempt of court or even perverting the course of justice.",
+        article: "A high-profile lawyer in Australia, Rishi Nathwani KC, apologized in the Supreme Court of Victoria after filing documents that contained quotes and case references invented by an AI tool. The submissions looked polished, but several citations pointed to laws or judgments that simply did not exist. Court staff and the judge flagged the problems, and the trial was delayed for a day while the lawyers corrected the record. The case itself involved a teenager accused of murder. Under Australian law, the court later found the young person not guilty by reason of mental impairment. That decision was based on medical evidence and legal standards, not on the AI mistake. Still, the incident became a teachable moment. Judge James Elliott stressed that AI can assist with drafting or summarizing, but it cannot replace a lawyer's duty to verify every fact and citation. He also noted that professional bodies had already warned the legal community: treat AI outputs like any untrusted source—check, confirm, and document your checks. Both the prosecution and the defense missed the false references before filing. That detail matters, because it shows how easily a sleek, confident paragraph can slip past busy humans. It also shows why courts require sources: accuracy is not optional. In some countries, submitting fake case law has led to fines or formal discipline. In extreme situations, using false material could violate serious criminal laws about interfering with justice. For students and professionals, the lesson is simple. Use AI to brainstorm, translate, or outline. Then slow down. Track the original sources, open the actual documents, and read the parts you plan to cite. If something cannot be verified, remove it. Your credibility—and a fair trial—depend on it.",
         vocabulary: [
             { term: "King's Counsel (KC)", definition: "A senior, top-tier lawyer honored by the monarch", example: "Only the best lawyers become King's Counsel." },
             { term: "Submissions", definition: "Documents lawyers give to the court", example: "The lawyer prepared his submissions carefully." },
@@ -78,7 +78,7 @@ const newsLessons = {
             { question: "The fake citations were generated by AI.", type: "truefalse", answer: "True" },
             { question: "How long did the trial get delayed?", type: "multiple", options: ["One week", "One day", "One month", "Not delayed"], answer: "One day" },
             { question: "The defendant was found guilty of murder.", type: "truefalse", answer: "False" },
-            { question: "What did Judge Elliott say about AI tools?", type: "multiple", options: ["They should be banned", "They can be helpful but need verification", "They are always reliable", "They are useless"], answer: "They can be helpful but need verification" }
+            { question: "What did Judge Elliott say about AI tools?", type: "multiple", options: ["They should be banned", "They can assist but cannot replace verification", "They are always reliable", "They are useless"], answer: "They can assist but cannot replace verification" }
         ],
         discussion: [
             "Why is AI tempting for lawyers—but also risky?",
@@ -91,10 +91,10 @@ const newsLessons = {
     "pokemon-whale": {
         title: "Ancient 'Pokémon-Like' Whale Fossil Found in Australia",
         level: "B1-B2",
-        wordCount: 200,
+        wordCount: 300,
         date: "2025-08-25",
         topic: "Science",
-        article: "Meet Janjucetus dullardi, a wild new whale species from a 25-million-year-old fossil on Victoria's Jan Juc Beach. Instead of being a gentle giant, this whale was small—about 2–3 meters long—tiny enough to fit on a single bed. But don't be fooled: it had tennis-ball-sized eyes, a shark-like snout, and razor-sharp teeth. Scientists call it 'deceptively cute, but definitely not harmless.' The fossil was discovered in 2019 by Ross Dullard, a school principal and fossil fan, who donated it to Museums Victoria. The find is a big breakthrough—it's one of only four known species from the mammalodontid group, early whales that followed a very different path from today's filter-feeding giants. This discovery gives us a peek at how whales evolved from toothy predators into the peaceful leviathans we know now.",
+        article: "Say hello to Janjucetus dullardi, a small but fierce whale from about 25 million years ago. The fossil was found near Jan Juc Beach in Victoria, Australia, and later studied by museum researchers and paleontologists. Unlike modern baleen whales that filter tiny animals from the water, Janjucetus had sharp, pointed teeth and a short, powerful snout. Its eyes were unusually large for its body size, suggesting strong vision for hunting near the surface or along the coast. Scientists think it ate fish, squid, or even small seabirds when it had the chance. Janjucetus belonged to an early group called mammalodontids. These whales are important because they sit close to a key moment in whale evolution: the shift from toothy hunters to gentle filter feeders. Some early whales may have mixed behaviors—biting larger prey at times, while also taking advantage of small swarms of food. Over millions of years, tooth shapes, jaws, and skulls changed, and baleen plates appeared in later relatives. Those changes became the toolkit that powers today's giant, peaceful feeders. The fossil was first spotted by Ross Dullard, a school principal who enjoys searching for fossils on weekends. He donated the specimen to Museums Victoria so experts could scan, compare, and describe it properly. That public-spirited choice helps science move forward. To many people, the animal looks cute in reconstructions—round eyes, compact body—but the teeth tell the real story. This was a quick, capable predator in a busy coastal world. Finds like this remind us that the ocean has changed again and again. What is common now—a sea full of filter feeders—once grew from countless experiments, winners, and dead ends. Janjucetus is one more page in that long, surprising book.",
         vocabulary: [
             { term: "Deceptively cute", definition: "Looks sweet, but really isn't—kind of tricks you", example: "The baby shark was deceptively cute but dangerous." },
             { term: "Predator", definition: "Animal that hunts and eats other animals", example: "Lions are apex predators in their ecosystem." },
@@ -121,10 +121,10 @@ const newsLessons = {
     "doomscrollers": {
         title: "CEO Wants to Hire Full-Time Doom-Scrollers",
         level: "B1-B2",
-        wordCount: 200,
+        wordCount: 300,
         date: "2025-08-25",
         topic: "Business",
-        article: "Monk Entertainment's CEO in Mumbai, Viraj Sheth, just flipped doom-scrolling—yes, that six-hours-a-day Instagram + Reddit time sink—into a real job. He's looking for someone whose hobby is their superpower: living on social feeds and knowing the latest in creator culture. To land the gig, you should: spend 6+ hours/day on Instagram/YouTube (proof via screenshots), be up on creator culture and celeb gossip subreddits, and be fluent in English + Hindi (bonus: Excel skills). It's a full-time, Mumbai-based role with a 'very competitive' salary—no exact number shared. Online reactions were mixed: some called it a dream job; others joked they were 'overqualified' thanks to scary screen-time stats. If you want to pitch yourself, the application asks for personality and humor—no AI-written cover letters.",
+        article: "Imagine turning your late-night scrolling habit into a real job. That is the pitch from a Mumbai-based media company whose CEO says he wants to hire a full-time 'doom-scroller.' The idea sounds like a meme, but the tasks are quite practical: watch social feeds for hours, spot fresh trends before they go mainstream, and summarize what creators, brands, and fans are talking about. In other words, do the time-consuming discovery work that busy teams often skip. The job description calls for spending six or more hours a day on platforms like Instagram and YouTube, checking niche subreddits, and tracking creator news. Applicants should write clearly in English and Hindi, feel comfortable with spreadsheets, and show a sense of humor. The company says the salary is 'very competitive,' though it did not share a number. Online, reactions landed all over the map. Some people said this is the perfect role for the chronically online. Others worried about burnout and mental health. Staring at endless feeds—especially negative or dramatic content—can raise stress and shrink attention spans. The healthier approach is structure: time blocks, breaks, and a clear definition of what counts as useful insight. If you were to apply, the best portfolio would look less like 'hours spent' and more like 'wins delivered.' Examples: a weekly trends brief that helped a campaign, a simple dashboard that tracks rising tags, or a memo that saved a client from jumping on a tired meme. Turning scrolling into strategy is the difference between wasting time and creating value.",
         vocabulary: [
             { term: "Doom-scrolling", definition: "Endlessly scrolling social media, often through negative news", example: "I spent hours doom-scrolling through bad news yesterday." },
             { term: "Creator culture", definition: "The world of influencers, trends, and online content", example: "Creator culture has changed how people consume media." },
@@ -134,7 +134,7 @@ const newsLessons = {
             { term: "Full-time role", definition: "Regular, 5-day-a-week job—not a side hustle", example: "I'm looking for a full-time role in marketing." }
         ],
         comprehension: [
-            { question: "What company is hiring doom-scrollers?", type: "multiple", options: ["Instagram", "Reddit", "Monk Entertainment", "YouTube"], answer: "Monk Entertainment" },
+            { question: "What company is hiring doom-scrollers?", type: "multiple", options: ["Instagram", "Reddit", "Mumbai-based media company", "YouTube"], answer: "Mumbai-based media company" },
             { question: "The job requires spending 6+ hours per day on social media.", type: "truefalse", answer: "True" },
             { question: "Where is the job located?", type: "multiple", options: ["New York", "London", "Mumbai", "Tokyo"], answer: "Mumbai" },
             { question: "The salary is clearly stated in the job posting.", type: "truefalse", answer: "False" },
@@ -151,10 +151,10 @@ const newsLessons = {
     "area-51": {
         title: "Secret Air Force Jet Spotted Over Area 51",
         level: "B1-B2",
-        wordCount: 200,
+        wordCount: 300,
         date: "2025-08-25",
         topic: "Technology",
-        article: "A rare sighting at Nevada's Groom Lake—better known as Area 51—set aviation Twitter on fire. Photographer Michael Rokita filmed a heavily modified Boeing 737-200 nicknamed RAT55, a U.S. Air Force radar-test aircraft, from Tikaboo Peak about 26 miles away. The jet reportedly performed touch-and-go maneuvers, landed on Runway 32, and taxied toward Hangar 18—the base's most famous (and mysterious) building. RAT55 is thought to support stealth and radar testing, sometimes flying with its transponder off to avoid easy tracking. The base itself was only officially acknowledged by the U.S. government in 2013, so every new clip fuels more curiosity. Whether you think it's secret weapons testing or just routine data collection, the video reminded the world that Area 51 is still very much active—and very good at keeping secrets.",
+        article: "Aviation fans have long watched the desert ridges around Groom Lake, the remote Nevada base better known as Area 51. From a mountain called Tikaboo Peak, patient spotters sometimes catch glimpses of unusual aircraft. Recently, one photographer filmed a highly modified Boeing 737-200 associated with U.S. Air Force radar testing, often nicknamed RAT55. The jet appeared to perform touch-and-go landings before rolling toward one of the base's large hangars. Even a short clip like this can set off days of analysis online. Why does a plain old 737 matter? Because test aircraft can carry special radars, antennas, and sensor pods to evaluate how new systems perform. Engineers need a reliable, roomy platform to fly predictable patterns while they collect data. A commercial airframe can be a perfect truck for that job. It is not always a sign of aliens or a brand-new stealth jet—though the base's secret history invites that kind of guesswork. Area 51 was officially acknowledged by the U.S. government only in 2013, even though it had been operating for decades. Classic programs like the U-2 and A-12 were tested in the region, and it remains a natural home for sensitive work. Because the area is restricted, the best public views come from faraway peaks. That distance means shaky videos, partial details, and lots of room for speculation. For most observers, the fun is in the puzzle: watching flight paths, comparing photos, and slowly building a story from scraps. Whether the latest clip shows routine calibration or a hint of something new, it proves one thing—Area 51 still keeps its secrets well.",
         vocabulary: [
             { term: "Touch-and-go", definition: "A landing where the plane immediately takes off again", example: "The pilot practiced touch-and-go landings for training." },
             { term: "Radar testbed", definition: "An aircraft used to test radar systems and stealth tech", example: "The military uses radar testbeds to improve detection." },
@@ -166,9 +166,9 @@ const newsLessons = {
         comprehension: [
             { question: "What type of aircraft was spotted?", type: "multiple", options: ["Boeing 737-200", "Fighter jet", "Helicopter", "Drone"], answer: "Boeing 737-200" },
             { question: "The jet was photographed from 26 miles away.", type: "truefalse", answer: "True" },
-            { question: "Who filmed the aircraft?", type: "multiple", options: ["A pilot", "Michael Rokita", "A soldier", "A tourist"], answer: "Michael Rokita" },
+            { question: "Who filmed the aircraft?", type: "multiple", options: ["A pilot", "A photographer from Tikaboo Peak", "A soldier", "A tourist"], answer: "A photographer from Tikaboo Peak" },
             { question: "Area 51 was officially acknowledged in 2013.", type: "truefalse", answer: "True" },
-            { question: "What is RAT55 used for?", type: "multiple", options: ["Passenger transport", "Stealth and radar testing", "Cargo delivery", "Training flights"], answer: "Stealth and radar testing" }
+            { question: "What is RAT55 used for?", type: "multiple", options: ["Passenger transport", "Radar testing and evaluation", "Cargo delivery", "Training flights"], answer: "Radar testing and evaluation" }
         ],
         discussion: [
             "Why do places like Area 51 capture people's imaginations?",
