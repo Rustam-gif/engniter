@@ -322,7 +322,7 @@ function createLessonContent(lesson) {
                     ${Object.keys(newsLessons).filter(key => key !== Object.keys(newsLessons).find(k => newsLessons[k].title === lesson.title)).map(key => `
                         <div class="related-lesson-card" onclick="openNewsLesson('${key}')">
                             <div class="related-lesson-image">
-                                <img src="newsthumbs/${getThumbnailForLesson(key)}.jpg" alt="${newsLessons[key].topic}" loading="lazy">
+                                <img src="newsthumbs/${getThumbnailForLesson(key)}.png" alt="${newsLessons[key].topic}" loading="lazy">
                             </div>
                             <div class="related-lesson-content">
                                 <h4>${newsLessons[key].title.substring(0, 50)}...</h4>
