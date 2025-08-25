@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Lessons - Engniter</title>
+    <meta name="description" content="Current news lessons for ESL teachers and students. Practice English with real-world articles, vocabulary, and discussion questions.">
+    <link rel="stylesheet" href="assets/styles.css">
+    <link rel="icon" href="assets/favicon.png">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-brand">
+                <a href="index.html">
+                    <img src="assets/logo.webp" alt="Engniter" class="logo">
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="lessons.html">Lessons</a></li>
+                <li><a href="news.html" class="active">News</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-auth">
+                <a href="login.html" class="btn btn-outline">Sign In</a>
+                <a href="login.html" class="btn btn-primary">Get Started</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Hero Section -->
+        <section class="hero news-hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Current News Lessons</h1>
+                    <p>Practice English with real-world news articles. Each lesson includes vocabulary, comprehension questions, and discussion topics.</p>
+                    <div class="hero-actions">
+                        <a href="#news-grid" class="btn btn-primary">Browse News</a>
+                        <a href="lessons.html" class="btn btn-outline">View All Lessons</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- News Grid -->
+        <section id="news-grid" class="news-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Latest News Lessons</h2>
+                    <p>Updated regularly with current events and trending topics</p>
+                </div>
+                
+                <div class="news-grid">
+                    <!-- News Article 1 -->
+                    <article class="news-card" data-level="B1-B2" data-topic="Sports">
+                        <div class="news-image">
+                            <img src="newsthumbs/soccer-party.jpg" alt="Soccer party controversy" loading="lazy">
+                            <div class="news-level">B1-B2</div>
+                        </div>
+                        <div class="news-content">
+                            <h3>Soccer Star's Party Sparks Disability Rights Backlash</h3>
+                            <p class="news-meta">
+                                <span class="date">July 13, 2025</span>
+                                <span class="words">~220 words</span>
+                                <span class="topic">Sports</span>
+                            </p>
+                            <p class="news-excerpt">
+                                Lamine Yamal's birthday celebration faces criticism over entertainment choices. Learn about disability rights, stereotypes, and public figure responsibility.
+                            </p>
+                            <div class="news-features">
+                                <span class="feature">6 Vocabulary Words</span>
+                                <span class="feature">5 Comprehension Qs</span>
+                                <span class="feature">4 Discussion Topics</span>
+                            </div>
+                            <button class="btn btn-primary news-btn" onclick="openNewsLesson('soccer-party')">
+                                Start Lesson
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- News Article 2 -->
+                    <article class="news-card" data-level="B1-B2" data-topic="Technology">
+                        <div class="news-image">
+                            <img src="newsthumbs/ai-lawyer.jpg" alt="AI lawyer controversy" loading="lazy">
+                            <div class="news-level">B1-B2</div>
+                        </div>
+                        <div class="news-content">
+                            <h3>Lawyer Apologizes After Fake AI Citations Delay Murder Trial</h3>
+                            <p class="news-meta">
+                                <span class="date">August 2025</span>
+                                <span class="words">~220 words</span>
+                                <span class="topic">Technology</span>
+                            </p>
+                            <p class="news-excerpt">
+                                Australian lawyer faces consequences after AI-generated fake legal citations. Explore the risks and responsibilities of using AI in professional settings.
+                            </p>
+                            <div class="news-features">
+                                <span class="feature">6 Vocabulary Words</span>
+                                <span class="feature">5 Comprehension Qs</span>
+                                <span class="feature">4 Discussion Topics</span>
+                            </div>
+                            <button class="btn btn-primary news-btn" onclick="openNewsLesson('ai-lawyer')">
+                                Start Lesson
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- News Article 3 -->
+                    <article class="news-card" data-level="B1-B2" data-topic="Science">
+                        <div class="news-image">
+                            <img src="newsthumbs/whale-fossil.jpg" alt="Ancient whale fossil" loading="lazy">
+                            <div class="news-level">B1-B2</div>
+                        </div>
+                        <div class="news-content">
+                            <h3>Ancient 'Pokémon-Like' Whale Fossil Found in Australia</h3>
+                            <p class="news-meta">
+                                <span class="date">August 2025</span>
+                                <span class="words">~200 words</span>
+                                <span class="topic">Science</span>
+                            </p>
+                            <p class="news-excerpt">
+                                Discover a 25-million-year-old whale species with surprising features. Learn about evolution, fossils, and prehistoric marine life.
+                            </p>
+                            <div class="news-features">
+                                <span class="feature">6 Vocabulary Words</span>
+                                <span class="feature">5 Comprehension Qs</span>
+                                <span class="feature">4 Discussion Topics</span>
+                            </div>
+                            <button class="btn btn-primary news-btn" onclick="openNewsLesson('whale-fossil')">
+                                Start Lesson
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- News Article 4 -->
+                    <article class="news-card" data-level="B1-B2" data-topic="Business">
+                        <div class="news-image">
+                            <img src="newsthumbs/doom-scroller-job.jpg" alt="Doom-scrolling job" loading="lazy">
+                            <div class="news-level">B1-B2</div>
+                            <div class="news-badge">Trending</div>
+                        </div>
+                        <div class="news-content">
+                            <h3>CEO Wants to Hire Full-Time Doom-Scrollers</h3>
+                            <p class="news-meta">
+                                <span class="date">August 2025</span>
+                                <span class="words">~200 words</span>
+                                <span class="topic">Business</span>
+                            </p>
+                            <p class="news-excerpt">
+                                Mumbai company creates job for social media experts. Explore modern employment trends, creator culture, and the future of work.
+                            </p>
+                            <div class="news-features">
+                                <span class="feature">6 Vocabulary Words</span>
+                                <span class="feature">5 Comprehension Qs</span>
+                                <span class="feature">4 Discussion Topics</span>
+                            </div>
+                            <button class="btn btn-primary news-btn" onclick="openNewsLesson('doom-scroller-job')">
+                                Start Lesson
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- News Article 5 -->
+                    <article class="news-card" data-level="B1-B2" data-topic="Technology">
+                        <div class="news-image">
+                            <img src="newsthumbs/area51-jet.jpg" alt="Area 51 jet sighting" loading="lazy">
+                            <div class="news-level">B1-B2</div>
+                        </div>
+                        <div class="news-content">
+                            <h3>Secret Air Force Jet Spotted Over Area 51</h3>
+                            <p class="news-meta">
+                                <span class="date">August 2025</span>
+                                <span class="words">~200 words</span>
+                                <span class="topic">Technology</span>
+                            </p>
+                            <p class="news-excerpt">
+                                Mysterious aircraft photographed at Nevada's secret base. Learn about military aviation, secrecy, and public curiosity about classified locations.
+                            </p>
+                            <div class="news-features">
+                                <span class="feature">6 Vocabulary Words</span>
+                                <span class="feature">5 Comprehension Qs</span>
+                                <span class="feature">4 Discussion Topics</span>
+                            </div>
+                            <button class="btn btn-primary news-btn" onclick="openNewsLesson('area51-jet')">
+                                Start Lesson
+                            </button>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Filter Section -->
+                <div class="news-filters">
+                    <div class="filter-group">
+                        <label for="level-filter">Filter by Level:</label>
+                        <select id="level-filter" onchange="filterNews()">
+                            <option value="all">All Levels</option>
+                            <option value="B1-B2">B1-B2</option>
+                            <option value="A2-B1">A2-B1</option>
+                            <option value="B2-C1">B2-C1</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="topic-filter">Filter by Topic:</label>
+                        <select id="topic-filter" onchange="filterNews()">
+                            <option value="all">All Topics</option>
+                            <option value="Sports">Sports</option>
+                            <option value="Technology">Technology</option>
+                            <option value="Science">Science</option>
+                            <option value="Business">Business</option>
+                            <option value="Culture">Culture</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-outline" onclick="clearFilters()">Clear Filters</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>Ready to Start Teaching with News?</h2>
+                    <p>Get access to our complete collection of current news lessons, plus all our PDF lesson plans.</p>
+                    <div class="cta-actions">
+                        <a href="pricing.html" class="btn btn-primary">Get Full Access</a>
+                        <a href="lessons.html" class="btn btn-outline">Browse All Lessons</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- News Lesson Modal -->
+    <div id="newsModal" class="modal">
+        <div class="modal-content news-modal">
+            <div class="modal-header">
+                <h2 id="modalTitle">News Lesson</h2>
+                <button class="close-btn" onclick="closeNewsModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- News lesson content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <img src="assets/logo.webp" alt="Engniter" class="footer-logo">
+                    <p>Professional ESL lesson plans for teachers worldwide.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="lessons.html">Lessons</a></li>
+                        <li><a href="news.html">News</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="account.html">Account</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Engniter. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/news-lessons.js"></script>
+    <script src="assets/app.js"></script>
+</body>
+</html>
