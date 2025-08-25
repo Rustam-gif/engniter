@@ -213,12 +213,19 @@ function openNewsLesson(lessonKey) {
 function createLessonContent(lesson) {
     return `
         <div class="lesson-header">
-            <h2>${lesson.title}</h2>
-            <div class="lesson-meta">
-                <span class="level-badge">${lesson.level}</span>
-                <span class="word-count">~${lesson.wordCount} words</span>
-                <span class="date">${lesson.date}</span>
-                <span class="topic">${lesson.topic}</span>
+            <div class="lesson-header-content">
+                <div class="lesson-header-text">
+                    <h2>${lesson.title}</h2>
+                    <div class="lesson-meta">
+                        <span class="level-badge">${lesson.level}</span>
+                        <span class="word-count">~${lesson.wordCount} words</span>
+                        <span class="date">${lesson.date}</span>
+                        <span class="topic">${lesson.topic}</span>
+                    </div>
+                </div>
+                <div class="lesson-header-image">
+                    <img src="newsthumbs/${getThumbnailForLesson(lesson.title)}.png" alt="${lesson.topic}" loading="lazy">
+                </div>
             </div>
         </div>
 
@@ -300,7 +307,7 @@ function createLessonContent(lesson) {
                     ${Object.keys(newsLessons).filter(key => key !== Object.keys(newsLessons).find(k => newsLessons[k].title === lesson.title)).map(key => `
                         <div class="related-lesson-card" onclick="openNewsLesson('${key}')">
                             <div class="related-lesson-image">
-                                <img src="newsthumbs/${getThumbnailForLesson(key)}.png" alt="${newsLessons[key].topic}" loading="lazy">
+                                <img src="newsthumbs/${getThumbnailForLessonByKey(key)}.png" alt="${newsLessons[key].topic}" loading="lazy">
                             </div>
                             <div class="related-lesson-content">
                                 <h4>${newsLessons[key].title.substring(0, 50)}...</h4>
@@ -320,8 +327,20 @@ function createLessonContent(lesson) {
     `;
 }
 
-// Helper function to get thumbnail for related lessons
-function getThumbnailForLesson(lessonKey) {
+// Helper function to get thumbnail for lesson headlines
+function getThumbnailForLesson(lessonTitle) {
+    const thumbnails = {
+        "Soccer Star's Party Sparks Disability Rights Backlash": "Soccer-player",
+        "Lawyer Apologizes After Fake AI Citations Delay Murder Trial": "lawyer",
+        "Ancient 'Pokémon-Like' Whale Fossil Found in Australia": "pokemon-whale",
+        "CEO Wants to Hire Full-Time Doom-Scrollers": "doomscrollers",
+        "Secret Air Force Jet Spotted Over Area 51": "lawyer" // Reusing lawyer image for area-51
+    };
+    return thumbnails[lessonTitle] || 'lawyer';
+}
+
+// Helper function to get thumbnail for related lessons by key
+function getThumbnailForLessonByKey(lessonKey) {
     const thumbnails = {
         'soccer-party': 'Soccer-player',
         'ai-lawyer': 'lawyer',
