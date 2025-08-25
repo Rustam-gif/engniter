@@ -28,6 +28,96 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // News Lessons Data
 const newsLessons = {
+    "al-bee": {
+        title: "Tiny Bee Brains Could Make AI Smarter",
+        level: "B1-B2",
+        wordCount: 300,
+        date: "2025-08-25",
+        topic: "Science",
+        article: "When bees zoom through gardens looking for flowers, they do something amazing with brains smaller than sesame seeds. New research from the University of Sheffield shows that bees use their flight movements to help their tiny brains recognize complex patterns with incredible accuracy. The discovery could change how we build artificial intelligence in the future. Scientists created a digital model of a bee's brain to understand this process better. They found that when bees move their heads, bodies, and eyes during flight, these movements actually help sharpen the signals in their brains. It is like adjusting the focus on a camera while taking a photo. The physical movements help bees process what they see more clearly, allowing them to identify flowers and navigate with remarkable precision. This finding challenges how we think about intelligence. Most AI systems today rely on massive computer networks and enormous amounts of data to recognize patterns. But bees show us a different approach: they combine brain power with body movement to solve complex visual problems using very few brain cells. The researchers think this could revolutionize robotics and AI development. Future robots might become much more efficient by copying this bee strategy. Instead of requiring huge amounts of computing power, they could use movement and smaller brains to understand their environment. This could lead to better self-driving cars, more agile drones, and robots that work more naturally in the real world. The study proves an important point about intelligence: it is not just about having a big brain. Success comes from how the brain, body, and environment work together. Even the smallest creatures can teach us valuable lessons about solving problems efficiently. As we continue developing AI, perhaps we should look down at the humble bee for inspiration rather than just building bigger and bigger computers.",
+        vocabulary: [
+            { term: "Digital model", definition: "A computer simulation that copies how something works in real life", example: "Scientists created a digital model of the human heart." },
+            { term: "Neural circuits", definition: "Connected brain cells that process information together", example: "Neural circuits help us think and remember." },
+            { term: "Pattern recognition", definition: "The ability to identify familiar shapes, sounds, or movements", example: "Computers use pattern recognition to identify faces." },
+            { term: "Revolutionize", definition: "To completely change how something is done", example: "Smartphones revolutionized how we communicate." },
+            { term: "Agile", definition: "Able to move quickly and easily in different directions", example: "The agile cat jumped from branch to branch." },
+            { term: "Computing power", definition: "How fast and complex calculations a computer can handle", example: "Modern phones have incredible computing power." }
+        ],
+        comprehension: [
+            { question: "What animal is the focus of this research?", type: "multiple", options: ["Birds", "Bees", "Butterflies", "Ants"], answer: "Bees" },
+            { question: "Which university conducted this research?", type: "multiple", options: ["Oxford University", "University of Sheffield", "MIT", "Stanford University"], answer: "University of Sheffield" },
+            { question: "Bees use movement to help their brains process visual information.", type: "truefalse", answer: "True" },
+            { question: "The research could help improve self-driving cars and drones.", type: "truefalse", answer: "True" },
+            { question: "What does the study prove about intelligence?", type: "multiple", options: ["Bigger brains are always better", "Intelligence comes from brain, body, and environment working together", "Only humans can be intelligent", "Computers will never be as smart as animals"], answer: "Intelligence comes from brain, body, and environment working together" }
+        ],
+        discussion: [
+            "What other small animals might teach us about solving problems efficiently?",
+            "Should future robots copy nature more closely? What are the benefits and risks?",
+            "How might movement-based AI change jobs that require visual recognition?",
+            "If tiny brains can be so effective, why do we always try to build bigger computers?"
+        ],
+        source: "University of Sheffield and ScienceDaily reports."
+    },
+    "hidden-moon": {
+        title: "Telescopes Find Hidden Moon Around Uranus",
+        level: "B1-B2",
+        wordCount: 300,
+        date: "2025-08-25",
+        topic: "Science",
+        article: "The James Webb Space Telescope has discovered a tiny new moon orbiting Uranus, bringing the distant planet's total to 29 known satellites. The moon, called S/2025 U1 for now, is only about six miles wide—so small you could walk around it in roughly two hours. Its discovery shows how much we still do not know about our own solar system. The moon was spotted in February 2025 during a series of long-exposure photographs taken by Webb's powerful infrared camera. What makes this discovery remarkable is that the moon had been hiding in plain sight for decades. NASA's Voyager 2 spacecraft flew past Uranus in 1986 and discovered 10 moons, but this tiny satellite was too small and faint to detect with the technology available at that time. Uranus is a strange planet in many ways. It spins on its side, has narrow dark rings instead of bright ones like Saturn, and sits in the cold outer reaches of our solar system. Most of its 29 moons are named after characters from Shakespeare plays and the works of poet Alexander Pope. The newly discovered moon orbits between two other small moons, Ophelia and Bianca, at a distance of about 35,000 miles from Uranus. Scientists believe these small inner moons act like shepherds, using their gravity to keep the planet's narrow rings in place. Without them, the ring material might drift away into space. The discovery suggests there could be even more tiny moons waiting to be found around Uranus, each playing a role in the complex dance of gravity that shapes the planet's ring system. This finding demonstrates the incredible power of the James Webb telescope to reveal secrets hiding in our cosmic neighborhood. While it was designed to peer deep into space and study the earliest galaxies, it proves equally valuable for exploring mysteries much closer to home.",
+        vocabulary: [
+            { term: "Satellite", definition: "A natural or artificial object that orbits around a planet", example: "The Moon is Earth's natural satellite." },
+            { term: "Long-exposure", definition: "Photography technique using slow shutter speed to capture faint objects", example: "Long-exposure photos can capture star trails." },
+            { term: "Infrared", definition: "Light wavelengths longer than visible light, often used to see heat", example: "Infrared cameras can see in the dark." },
+            { term: "Shepherd moons", definition: "Small moons that use gravity to keep planet rings organized", example: "Shepherd moons help maintain Saturn's rings." },
+            { term: "Cosmic neighborhood", definition: "The area of space around us, including nearby planets and stars", example: "Our solar system is part of the cosmic neighborhood." },
+            { term: "Orbit", definition: "The curved path an object takes around a larger object in space", example: "Earth orbits around the Sun once a year." }
+        ],
+        comprehension: [
+            { question: "How many moons does Uranus have now?", type: "multiple", options: ["27", "28", "29", "30"], answer: "29" },
+            { question: "What is the size of the newly discovered moon?", type: "multiple", options: ["About 6 miles wide", "About 60 miles wide", "About 600 miles wide", "About 6,000 miles wide"], answer: "About 6 miles wide" },
+            { question: "The moon was discovered by the James Webb Space Telescope.", type: "truefalse", answer: "True" },
+            { question: "Voyager 2 detected this moon when it flew past Uranus in 1986.", type: "truefalse", answer: "False" },
+            { question: "What do shepherd moons do?", type: "multiple", options: ["They provide light for the planet", "They use gravity to keep planet rings organized", "They protect the planet from asteroids", "They generate heat for the planet"], answer: "They use gravity to keep planet rings organized" }
+        ],
+        discussion: [
+            "Why might it be important to map all the moons around distant planets?",
+            "What other secrets might be hiding in our solar system, waiting for better telescopes?",
+            "How does finding tiny objects like this moon help prepare for future space missions?",
+            "If you could name this new moon, what would you call it and why?"
+        ],
+        source: "NASA and space science reports."
+    },
+    "quantum-internet": {
+        title: "Scientists Build First Pieces of Quantum Internet",
+        level: "B1-B2",
+        wordCount: 300,
+        date: "2025-08-25",
+        topic: "Technology",
+        article: "Imagine sending a message that cannot be hacked, no matter how powerful the computer trying to break it. Scientists are making this dream reality by building the first working pieces of a 'quantum internet'—a new type of network that uses the strange rules of quantum physics to transmit information. Recent breakthroughs from research teams in Germany, the United States, and Austria show that this futuristic technology is moving from science fiction into science fact. In Germany, researchers successfully sent quantum signals over 254 kilometers of regular fiber-optic cables—the same wires that carry today's internet. Meanwhile, scientists at Northwestern University proved they could send quantum information through cables already busy with normal internet traffic, like a bicycle finding its way through a tunnel full of speeding trucks. What makes quantum communication special is that it is naturally secure. If anyone tries to spy on a quantum message, the act of looking at it actually changes the message itself. The intended recipient would immediately know someone was listening in. This happens because of quantum entanglement, where particles become mysteriously connected even when separated by vast distances. Oxford University researchers took things further by linking two separate quantum computers into one larger system using quantum teleportation. They successfully ran a complex search algorithm across the networked computers, proving that quantum devices can work together just like today's internet connects regular computers. The quantum internet will not replace the current internet but will work alongside it for special tasks requiring ultimate security or massive computing power. Banks might use it for financial transactions, governments for sensitive communications, and scientists for solving problems too complex for regular computers. While we are still years away from quantum internet reaching your home, these early successes show that the foundation is being built today.",
+        vocabulary: [
+            { term: "Quantum physics", definition: "Science studying matter and energy at the smallest possible scales", example: "Quantum physics explains how atoms behave." },
+            { term: "Fiber-optic cables", definition: "Thin glass wires that carry information using pulses of light", example: "Fiber-optic cables provide fast internet speeds." },
+            { term: "Entanglement", definition: "When quantum particles become connected across any distance", example: "Quantum entanglement is like magic at the atomic level." },
+            { term: "Teleportation", definition: "Instantly transferring quantum information without physical movement", example: "Quantum teleportation moves data, not objects." },
+            { term: "Algorithm", definition: "A set of rules or instructions for solving a problem", example: "Search engines use algorithms to find information." },
+            { term: "Infrastructure", definition: "The basic systems and equipment needed for something to work", example: "Roads and bridges are part of city infrastructure." }
+        ],
+        comprehension: [
+            { question: "What makes quantum communication naturally secure?", type: "multiple", options: ["It uses encryption", "Looking at the message changes it", "It requires special passwords", "It only works over short distances"], answer: "Looking at the message changes it" },
+            { question: "How far did German researchers send quantum signals?", type: "multiple", options: ["25 kilometers", "254 kilometers", "2,540 kilometers", "25,400 kilometers"], answer: "254 kilometers" },
+            { question: "The quantum internet will completely replace the current internet.", type: "truefalse", answer: "False" },
+            { question: "Which university linked quantum computers using teleportation?", type: "multiple", options: ["Northwestern University", "Oxford University", "MIT", "Stanford University"], answer: "Oxford University" },
+            { question: "What is quantum entanglement?", type: "multiple", options: ["A type of computer virus", "When quantum particles become connected across any distance", "A security protocol", "A type of internet cable"], answer: "When quantum particles become connected across any distance" }
+        ],
+        discussion: [
+            "Would you trust a quantum internet more than today's internet? Why or why not?",
+            "What types of information would benefit most from unhackable communication?",
+            "How might the quantum internet change how we think about privacy and security?",
+            "If quantum computers can solve problems regular computers cannot, what might they discover?"
+        ],
+        source: "Research reports from Germany, United States, and Austria."
+    },
     "soccer-party": {
         title: "Soccer Star's Party Sparks Disability Rights Backlash",
         level: "B1-B2",
@@ -344,7 +434,10 @@ function getThumbnailForLesson(lessonTitle) {
         "Lawyer Apologizes After Fake AI Citations Delay Murder Trial": "lawyer",
         "Ancient 'Pokémon-Like' Whale Fossil Found in Australia": "pokemon-whale",
         "CEO Wants to Hire Full-Time Doom-Scrollers": "doomscrollers",
-        "Secret Air Force Jet Spotted Over Area 51": "lawyer" // Reusing lawyer image for area-51
+        "Secret Air Force Jet Spotted Over Area 51": "lawyer", // Reusing lawyer image for area-51
+        "Tiny Bee Brains Could Make AI Smarter": "al-bee",
+        "Telescopes Find Hidden Moon Around Uranus": "hidden-moon",
+        "Scientists Build First Pieces of Quantum Internet": "quantum-internet"
     };
     return thumbnails[lessonTitle] || 'lawyer';
 }
@@ -356,7 +449,10 @@ function getThumbnailForLessonByKey(lessonKey) {
         'ai-lawyer': 'lawyer',
         'pokemon-whale': 'pokemon-whale',
         'doomscrollers': 'doomscrollers',
-        'area-51': 'lawyer' // Reusing lawyer image for area-51
+        'area-51': 'lawyer', // Reusing lawyer image for area-51
+        'al-bee': 'al-bee',
+        'hidden-moon': 'hidden-moon',
+        'quantum-internet': 'quantum-internet'
     };
     return thumbnails[lessonKey] || 'lawyer';
 }
@@ -395,7 +491,25 @@ function getPartOfSpeech(word) {
         'perverting': 'Verb',
         'justice': 'Noun',
         'mammalodontid': 'Noun',
-        'juvenile': 'Adjective'
+        'juvenile': 'Adjective',
+        'digital model': 'Noun',
+        'neural circuits': 'Noun',
+        'pattern recognition': 'Noun',
+        'revolutionize': 'Verb',
+        'agile': 'Adjective',
+        'computing power': 'Noun',
+        'satellite': 'Noun',
+        'long-exposure': 'Adjective',
+        'infrared': 'Adjective',
+        'shepherd moons': 'Noun',
+        'cosmic neighborhood': 'Noun',
+        'orbit': 'Noun',
+        'quantum physics': 'Noun',
+        'fiber-optic cables': 'Noun',
+        'entanglement': 'Noun',
+        'teleportation': 'Noun',
+        'algorithm': 'Noun',
+        'infrastructure': 'Noun'
     };
     return posMap[word.toLowerCase()] || 'Noun';
 }
@@ -434,7 +548,25 @@ function getPronunciation(word) {
         'perverting': '/pərˈvɜːtɪŋ/',
         'justice': '/ˈdʒʌstɪs/',
         'mammalodontid': '/ˌmæmələˈdɒntɪd/',
-        'juvenile': '/ˈdʒuːvənaɪl/'
+        'juvenile': '/ˈdʒuːvənaɪl/',
+        'digital model': '/ˈdɪdʒɪtəl ˈmɒdl/',
+        'neural circuits': '/ˈnɜːrəl ˈsɪrktʃəz/',
+        'pattern recognition': '/ˈpætərn ˈrɪˈkɒɡnɪʃən/',
+        'revolutionize': '/rɪˈvɜːʃənɪz/',
+        'agile': '/ˈædʒəl/',
+        'computing power': '/ˈkɒmputɪŋ ˈpouər/',
+        'satellite': '/ˈsætəlaɪt/',
+        'long-exposure': '/ˈlɒŋ ɪksˈpəʊzər/',
+        'infrared': '/ɪnˈfrɪd/',
+        'shepherd moons': '/ˈʃiːpəd ˈməʊnz/',
+        'cosmic neighborhood': '/ˈkɒzmɪk ˈneɪbəhʊd/',
+        'orbit': '/ˈɔːrbɪt/',
+        'quantum physics': '/ˈkwɒntəm ˈfɪzɪks/',
+        'fiber-optic cables': '/ˈfaɪbər ˈɒptɪk ˈkəblz/',
+        'entanglement': '/ɪnˈtæŋɡlmənt/',
+        'teleportation': '/tɪˈlɔːpəteɪʃən/',
+        'algorithm': '/ˈælɡərɪðəm/',
+        'infrastructure': '/ɪnˈfɒrəstrʌktʃər/'
     };
     return pronMap[word.toLowerCase()] || '/ˈwɜːrd/';
 }
