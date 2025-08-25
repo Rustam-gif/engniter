@@ -226,18 +226,61 @@ function createLessonContent(lesson) {
             <!-- Article Section -->
             <section class="article-section">
                 <h3>Article</h3>
-                <div class="article-intro">
-                    ${lesson.article.substring(0, 150)}...
-                </div>
-                <button class="read-more-btn" onclick="toggleArticle(this, '${lesson.article.replace(/'/g, "\\'")}')">
-                    Read More
-                </button>
-                <div class="article-full" style="display: none;">
+                <div class="article-text">
                     ${lesson.article}
                 </div>
             </section>
 
-            <!-- Discussion Questions Section -->
+            <!-- Vocabulary Section -->
+            <section class="vocabulary-section">
+                <h3>Vocabulary</h3>
+                <div class="vocabulary-list">
+                    ${lesson.vocabulary.map((vocab, i) => `
+                        <div class="vocab-item">
+                            <div class="vocab-header">
+                                <span class="vocab-term">${vocab.term}</span>
+                                <span class="vocab-pos">${getPartOfSpeech(vocab.term)}</span>
+                                <span class="vocab-pronunciation">${getPronunciation(vocab.term)}</span>
+                            </div>
+                            <div class="vocab-definition">${vocab.definition}</div>
+                            <div class="vocab-example">${vocab.example}</div>
+                        </div>
+                    `).join('')}
+                </div>
+            </section>
+
+            <!-- Comprehension Section -->
+            <section class="comprehension-section">
+                <h3>Comprehension Questions</h3>
+                <div class="comprehension-questions">
+                    ${lesson.comprehension.map((q, i) => `
+                        <div class="question-item">
+                            <div class="question-number">${i + 1}.</div>
+                            <div class="question-content">
+                                <div class="question-text">${q.question}</div>
+                                ${q.type === 'truefalse' ? `
+                                    <div class="answer-options">
+                                        <button class="option-btn" onclick="selectAnswer(this, ${i}, 'True')">True</button>
+                                        <button class="option-btn" onclick="selectAnswer(this, ${i}, 'False')">False</button>
+                                    </div>
+                                ` : `
+                                    <div class="answer-options">
+                                        ${q.options.map((option, j) => `
+                                            <button class="option-btn" onclick="selectAnswer(this, ${i}, '${option.replace(/'/g, "\\'")}')">${option}</button>
+                                        `).join('')}
+                                    </div>
+                                `}
+                                <button class="check-answer-btn" onclick="checkAnswer(${i}, '${q.answer.replace(/'/g, "\\'")}')" style="display: none;">
+                                    Check Answer
+                                </button>
+                                <div class="answer-result" style="display: none;"></div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            </section>
+
+            <!-- Discussion Section -->
             <section class="discussion-section">
                 <h3>Discussion Questions</h3>
                 <div class="discussion-questions">
@@ -247,71 +290,6 @@ function createLessonContent(lesson) {
                             <span class="question-text">${q}</span>
                         </div>
                     `).join('')}
-                </div>
-            </section>
-
-            <!-- Vocabulary Section -->
-            <section class="vocabulary-section">
-                <h3>Vocabulary Preview</h3>
-                <div class="vocabulary-cards">
-                    ${lesson.vocabulary.map((vocab, i) => `
-                        <div class="vocab-card" onclick="flipCard(this)">
-                            <div class="card-front">
-                                <span class="vocab-term">${vocab.term}</span>
-                                <span class="flip-hint">Click to see meaning</span>
-                            </div>
-                            <div class="card-back">
-                                <div class="vocab-definition">${vocab.definition}</div>
-                                <div class="vocab-example">${vocab.example}</div>
-                            </div>
-                        </div>
-                    `).join('')}
-                </div>
-            </section>
-
-            <!-- Comprehension Section -->
-            <section class="comprehension-section">
-                <h3>Comprehension Check</h3>
-                <div class="comprehension-questions">
-                    ${lesson.comprehension.map((q, i) => `
-                        <div class="question-container" data-question="${i}">
-                            <div class="question-text">${i + 1}. ${q.question}</div>
-                            ${q.type === 'truefalse' ? `
-                                <div class="answer-options">
-                                    <button class="option-btn" onclick="selectAnswer(this, ${i}, 'True')">True</button>
-                                    <button class="option-btn" onclick="selectAnswer(this, ${i}, 'False')">False</button>
-                                </div>
-                            ` : `
-                                <div class="answer-options">
-                                    ${q.options.map((option, j) => `
-                                        <button class="option-btn" onclick="selectAnswer(this, ${i}, '${option.replace(/'/g, "\\'")}')">${option}</button>
-                                    `).join('')}
-                                </div>
-                            `}
-                            <button class="check-answer-btn" onclick="checkAnswer(${i}, '${q.answer.replace(/'/g, "\\'")}')" style="display: none;">
-                                Check Answer
-                            </button>
-                            <div class="answer-result" style="display: none;"></div>
-                        </div>
-                    `).join('')}
-                </div>
-            </section>
-
-            <!-- Answer Key Section (Collapsible) -->
-            <section class="answer-key-section">
-                <div class="answer-key-header" onclick="toggleAnswerKey()">
-                    <h3>Answer Key (Teacher View)</h3>
-                    <span class="toggle-icon">▼</span>
-                </div>
-                <div class="answer-key-content" style="display: none;">
-                    <div class="answer-key-list">
-                        ${lesson.comprehension.map((q, i) => `
-                            <div class="answer-key-item">
-                                <span class="question-number">${i + 1}.</span>
-                                <span class="correct-answer">${q.answer}</span>
-                            </div>
-                        `).join('')}
-                    </div>
                 </div>
             </section>
 
@@ -377,7 +355,7 @@ function flipCard(card) {
 
 // Select answer option
 function selectAnswer(button, questionIndex, selectedAnswer) {
-    const questionContainer = button.closest('.question-container');
+    const questionContainer = button.closest('.question-item');
     const optionBtns = questionContainer.querySelectorAll('.option-btn');
     const checkBtn = questionContainer.querySelector('.check-answer-btn');
     
