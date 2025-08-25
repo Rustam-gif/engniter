@@ -223,17 +223,9 @@ function createLessonContent(lesson) {
         </div>
 
         <div class="lesson-content">
-            <!-- Article Section -->
-            <section class="article-section">
-                <h3>Article</h3>
-                <div class="article-text">
-                    ${lesson.article}
-                </div>
-            </section>
-
             <!-- Vocabulary Section -->
             <section class="vocabulary-section">
-                <h3>Vocabulary</h3>
+                <h3>📚 Vocabulary</h3>
                 <div class="vocabulary-list">
                     ${lesson.vocabulary.map((vocab, i) => `
                         <div class="vocab-item">
@@ -249,13 +241,21 @@ function createLessonContent(lesson) {
                 </div>
             </section>
 
+            <!-- Article Section -->
+            <section class="article-section">
+                <h3>📰 Article</h3>
+                <div class="article-text">
+                    ${lesson.article}
+                </div>
+            </section>
+
             <!-- Comprehension Section -->
             <section class="comprehension-section">
-                <h3>Comprehension Questions</h3>
+                <h3>❓ Comprehension Questions</h3>
                 <div class="comprehension-questions">
                     ${lesson.comprehension.map((q, i) => `
                         <div class="question-item">
-                            <div class="question-number">${i + 1}.</div>
+                            <div class="question-number">${i + 1}</div>
                             <div class="question-content">
                                 <div class="question-text">${q.question}</div>
                                 ${q.type === 'truefalse' ? `
@@ -282,11 +282,11 @@ function createLessonContent(lesson) {
 
             <!-- Discussion Section -->
             <section class="discussion-section">
-                <h3>Discussion Questions</h3>
+                <h3>💬 Discussion Questions</h3>
                 <div class="discussion-questions">
                     ${lesson.discussion.map((q, i) => `
                         <div class="discussion-question">
-                            <span class="question-number">${i + 1}.</span>
+                            <span class="question-number">${i + 1}</span>
                             <span class="question-text">${q}</span>
                         </div>
                     `).join('')}
@@ -295,7 +295,7 @@ function createLessonContent(lesson) {
 
             <!-- Related Lessons Section -->
             <section class="related-lessons-section">
-                <h3>Related Lessons</h3>
+                <h3>🔗 Related Lessons</h3>
                 <div class="related-lessons-grid">
                     ${Object.keys(newsLessons).filter(key => key !== Object.keys(newsLessons).find(k => newsLessons[k].title === lesson.title)).map(key => `
                         <div class="related-lesson-card" onclick="openNewsLesson('${key}')">

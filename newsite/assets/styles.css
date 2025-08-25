@@ -927,7 +927,7 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
 
 .news-image {
     position: relative;
-    height: 140px;
+    height: 200px;
     overflow: hidden;
 }
 
@@ -1031,21 +1031,7 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
     overflow: hidden;
 }
 
-.news-features {
-    display: flex;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-    flex-wrap: wrap;
-}
 
-.feature {
-    background: #f3f4f6;
-    color: #6b7280;
-    padding: 4px 8px;
-    border-radius: 6px;
-    font-size: 0.75rem;
-    font-weight: 500;
-}
 
 .news-btn {
     background: #f59e0b;
