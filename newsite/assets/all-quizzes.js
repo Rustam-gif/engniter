@@ -4974,6 +4974,115 @@ const allQuizData = {
         correctAnswer: 0
       }
     ]
+  },
+
+  // HEALTH & MEDICAL
+  "at-the-doctors": {
+    title: "At the Doctors (A2-B1)",
+    level: "A2-B1",
+    topic: "Health",
+    exercises: [
+      {
+        question: "What should you tell the doctor when you have an appointment?",
+        options: [
+          "Your symptoms and how long you've had them",
+          "Only your name",
+          "Your favorite food",
+          "Your travel plans"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is a 'symptom'?",
+        options: [
+          "A type of medicine",
+          "A sign that something is wrong with your health",
+          "A doctor's appointment",
+          "A medical test"
+        ],
+        correctAnswer: 1
+      },
+      {
+        question: "What should you do if you have a fever?",
+        options: [
+          "Go to work immediately",
+          "Stay home, rest, and drink plenty of fluids",
+          "Exercise vigorously",
+          "Eat spicy food"
+        ],
+        correctAnswer: 1
+      },
+      {
+        question: "What is a 'prescription'?",
+        options: [
+          "A doctor's note for work",
+          "A written order for medicine from a doctor",
+          "A medical bill",
+          "A hospital appointment"
+        ],
+        correctAnswer: 1
+      },
+      {
+        question: "What should you bring to a doctor's appointment?",
+        options: [
+          "Your ID, insurance card, and list of current medicines",
+          "Only your phone",
+          "Your pet",
+          "Nothing special"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "What is a 'check-up'?",
+        options: [
+          "A medical emergency",
+          "A routine examination to check your health",
+          "A surgery",
+          "A medical test"
+        ],
+        correctAnswer: 1
+      },
+      {
+        question: "What should you do if you're allergic to a medicine?",
+        options: [
+          "Take it anyway",
+          "Tell your doctor immediately and avoid taking it",
+          "Hide it from your doctor",
+          "Take a smaller dose"
+        ],
+        correctAnswer: 1
+      },
+      {
+        question: "What is 'blood pressure'?",
+        options: [
+          "A type of blood test",
+          "The force of blood against artery walls",
+          "A heart condition",
+          "A type of medicine"
+        ],
+        correctAnswer: 1
+      },
+      {
+        question: "What should you do if you miss a dose of medicine?",
+        options: [
+          "Take double the next dose",
+          "Skip it and continue with the next scheduled dose",
+          "Stop taking all medicine",
+          "Take it immediately whenever you remember"
+        ],
+        correctAnswer: 1
+      },
+      {
+        question: "What is important to tell your doctor about?",
+        options: [
+          "Only your current symptoms",
+          "All medicines you're taking, including vitamins and supplements",
+          "Your favorite TV shows",
+          "Your travel history"
+        ],
+        correctAnswer: 1
+      }
+    ]
   }
 };
 
