@@ -39,7 +39,7 @@ exports.handler = async (event, context) => {
       return { statusCode: 403, headers: { 'Access-Control-Allow-Origin': '*' }, body: 'Forbidden (Premium only)' };
     }
 
-    const filePath = path.resolve(__dirname, '../../private-files', requested);
+    const filePath = path.resolve(__dirname, '../private-files', requested);
     let data;
     try {
       data = await fs.readFile(filePath);
