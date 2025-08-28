@@ -690,16 +690,20 @@
 <script>
 // Global pagination functions
 function showPage(pageNumber) {
-  // Only count actual lesson cards, exclude news promo and other non-lesson cards
+  // Always count ALL lesson cards (not just visible ones) for total pages calculation
   const allCards = document.querySelectorAll('article.card:not(.news-promo)');
+  const totalAvailableCards = allCards.length;
+  
+  // Count currently visible cards for current page logic
   const visibleCards = Array.from(allCards).filter(card => 
     card.style.display !== 'none'
   );
+  
   const cardsPerPage = 15;
-  const totalPages = Math.ceil(visibleCards.length / cardsPerPage);
+  const totalPages = Math.ceil(totalAvailableCards / cardsPerPage);
   
   console.log('Pagination debug:', {
-    totalCards: allCards.length,
+    totalAvailableCards: totalAvailableCards,
     visibleCards: visibleCards.length,
     totalPages: totalPages,
     requestedPage: pageNumber
@@ -725,19 +729,19 @@ function showPage(pageNumber) {
   
   // Calculate which cards to show for this page
   const startIndex = (pageNumber - 1) * cardsPerPage;
-  const endIndex = Math.min(startIndex + cardsPerPage, visibleCards.length);
+  const endIndex = Math.min(startIndex + cardsPerPage, totalAvailableCards);
   
-  console.log(`Showing page ${pageNumber}: cards ${startIndex + 1} to ${endIndex} of ${visibleCards.length}`);
+  console.log(`Showing page ${pageNumber}: cards ${startIndex + 1} to ${endIndex} of ${totalAvailableCards}`);
   
-  // Hide ALL visible cards first
-  visibleCards.forEach(card => {
+  // Hide ALL cards first
+  allCards.forEach(card => {
     card.style.display = 'none';
   });
   
   // Show only the cards for the current page
   for (let i = startIndex; i < endIndex; i++) {
-    if (visibleCards[i]) {
-      visibleCards[i].style.display = '';
+    if (allCards[i]) {
+      allCards[i].style.display = '';
     }
   }
   
@@ -777,17 +781,20 @@ function changePage(direction) {
 
 // Update pagination when filters change
 function updatePaginationForVisibleCards() {
-  // Only count actual lesson cards, exclude news promo and other non-lesson cards
+  // Always count ALL lesson cards (not just visible ones) for total pages calculation
   const allCards = document.querySelectorAll('article.card:not(.news-promo)');
+  const totalAvailableCards = allCards.length;
+  
+  // Count currently visible cards for current page logic
   const visibleCards = Array.from(allCards).filter(card => 
     card.style.display !== 'none'
   );
   
   const cardsPerPage = 15;
-  const totalPages = Math.ceil(visibleCards.length / cardsPerPage);
+  const totalPages = Math.ceil(totalAvailableCards / cardsPerPage);
   
   console.log('Filter update pagination:', {
-    totalCards: allCards.length,
+    totalAvailableCards: totalAvailableCards,
     visibleCards: visibleCards.length,
     totalPages: totalPages
   });
