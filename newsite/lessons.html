@@ -690,26 +690,19 @@
 <script>
 // Global pagination functions
 function showPage(pageNumber) {
-  // Always count ALL lesson cards (not just visible ones) for total pages calculation
+  // Get all lesson cards (excluding news promo)
   const allCards = document.querySelectorAll('article.card:not(.news-promo)');
   const totalAvailableCards = allCards.length;
   
-  // Count currently visible cards for current page logic
+  // Get currently visible cards (after filters are applied)
   const visibleCards = Array.from(allCards).filter(card => 
     card.style.display !== 'none'
   );
   
   const cardsPerPage = 15;
   
-  // Calculate totalPages based on whether filters are active
-  let totalPages;
-  if (visibleCards.length === totalAvailableCards) {
-    // No filters active - use total available cards
-    totalPages = Math.ceil(totalAvailableCards / cardsPerPage);
-  } else {
-    // Filters active - use visible cards count
-    totalPages = Math.ceil(visibleCards.length / cardsPerPage);
-  }
+  // Calculate total pages based on visible cards (filtered results)
+  const totalPages = Math.ceil(visibleCards.length / cardsPerPage);
   
   console.log('Pagination debug:', {
     totalAvailableCards: totalAvailableCards,
@@ -791,26 +784,19 @@ function changePage(direction) {
 
 // Update pagination when filters change
 function updatePaginationForVisibleCards() {
-  // Always count ALL lesson cards (not just visible ones) for total pages calculation
+  // Get all lesson cards (excluding news promo)
   const allCards = document.querySelectorAll('article.card:not(.news-promo)');
   const totalAvailableCards = allCards.length;
   
-  // Count currently visible cards for current page logic
+  // Get currently visible cards (after filters are applied)
   const visibleCards = Array.from(allCards).filter(card => 
     card.style.display !== 'none'
   );
   
   const cardsPerPage = 15;
   
-  // Calculate totalPages based on whether filters are active
-  let totalPages;
-  if (visibleCards.length === totalAvailableCards) {
-    // No filters active - use total available cards
-    totalPages = Math.ceil(totalAvailableCards / cardsPerPage);
-  } else {
-    // Filters active - use visible cards count
-    totalPages = Math.ceil(visibleCards.length / cardsPerPage);
-  }
+  // Calculate total pages based on visible cards (filtered results)
+  const totalPages = Math.ceil(visibleCards.length / cardsPerPage);
   
   console.log('Filter update pagination:', {
     totalAvailableCards: totalAvailableCards,
@@ -938,15 +924,9 @@ document.addEventListener('DOMContentLoaded', function(){
       
       console.log('=== FINISHED PROCESSING ALL CARDS ===');
       
-      // Now trigger a render to apply the new attributes
-      setTimeout(() => {
-        console.log('Triggering render after adding attributes...');
-        if (typeof window.render === 'function') {
-          window.render();
-        } else {
-          console.log('WARNING: render function not available!');
-        }
-      }, 100);
+      // Don't trigger render here - it causes cascading pagination updates
+      // The attributes are already set, and pagination will work correctly
+      console.log('Attributes set successfully. Pagination will update naturally.');
     })();
   };
   document.body.appendChild(s);
