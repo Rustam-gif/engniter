@@ -1788,8 +1788,8 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
 }
 
 /* Themed premium/download buttons */
-.btn.premium{background:#3BA7A1 !important}
-.btn.download{background:#0f874b !important}
+.btn.premium{background:#6B7280 !important; color: white !important}
+.btn.download{background:#3BA7A1 !important; color: white !important}
 .btn.premium::after,.btn.download::after{content:"";position:absolute;top:-50%;left:-30%;width:30%;height:200%;
   background:linear-gradient(120deg, rgba(255,255,255,.25), rgba(255,255,255,0));
   transform:skewX(-20deg);animation:btn-shine 2.6s infinite;pointer-events:none}
