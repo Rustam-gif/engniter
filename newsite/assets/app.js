@@ -147,15 +147,24 @@
     
     // Reset pagination to page 1 after filtering
     setTimeout(() => {
+      console.log('=== RENDER: UPDATING PAGINATION ===');
+      
       // Check if pagination functions exist and call them
       if (typeof window.showPage === 'function') {
+        console.log('Calling window.showPage(1)');
         window.showPage(1);
-      }
-      if (typeof window.updatePaginationForVisibleCards === 'function') {
-        window.updatePaginationForVisibleCards();
+      } else {
+        console.log('window.showPage not available yet');
       }
       
-      // Also try to update pagination display directly
+      if (typeof window.updatePaginationForVisibleCards === 'function') {
+        console.log('Calling window.updatePaginationForVisibleCards()');
+        window.updatePaginationForVisibleCards();
+      } else {
+        console.log('window.updatePaginationForVisibleCards not available yet');
+      }
+      
+      // Fallback: Update pagination display directly if functions aren't available
       const totalPagesElement = document.getElementById('total-pages');
       const currentPageElement = document.getElementById('current-page');
       if (totalPagesElement && currentPageElement) {
@@ -164,6 +173,8 @@
         );
         const cardsPerPage = 15;
         const totalPages = Math.ceil(visibleCards.length / cardsPerPage);
+        
+        console.log('Fallback update - Visible cards:', visibleCards.length, 'Total pages:', totalPages);
         
         totalPagesElement.textContent = totalPages;
         currentPageElement.textContent = '1';
@@ -174,6 +185,8 @@
         
         if (prevBtn) prevBtn.disabled = true; // Always disabled on page 1
         if (nextBtn) nextBtn.disabled = totalPages <= 1;
+        
+        console.log('Fallback button states - Prev disabled:', prevBtn?.disabled, 'Next disabled:', nextBtn?.disabled);
       }
     }, 100);
   }

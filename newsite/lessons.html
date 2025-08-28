@@ -703,8 +703,8 @@ function showPage(pageNumber) {
   if (pageNumber < 1) pageNumber = 1;
   if (pageNumber > totalPages) pageNumber = totalPages;
   
-  // If no pages, show all cards
-  if (totalPages === 0) {
+  // If no pages or only one page, show all cards
+  if (totalPages <= 1) {
     visibleCards.forEach(card => card.style.display = '');
     document.getElementById('current-page').textContent = '1';
     document.getElementById('total-pages').textContent = '1';
@@ -738,14 +738,15 @@ function showPage(pageNumber) {
   document.getElementById('current-page').textContent = pageNumber;
   document.getElementById('total-pages').textContent = totalPages;
   
-  // Update button states
+  // Update button states - FIXED LOGIC
   const prevBtn = document.querySelector('.prev-btn');
   const nextBtn = document.querySelector('.next-btn');
   
-  if (prevBtn) prevBtn.disabled = pageNumber === 1;
-  if (nextBtn) nextBtn.disabled = pageNumber >= totalPages;
+  if (prevBtn) prevBtn.disabled = (pageNumber <= 1);
+  if (nextBtn) nextBtn.disabled = (pageNumber >= totalPages);
   
-  console.log('Page updated. Prev disabled:', pageNumber === 1, 'Next disabled:', pageNumber >= totalPages);
+  console.log('Page updated. Prev disabled:', pageNumber <= 1, 'Next disabled:', pageNumber >= totalPages);
+  console.log('Button states - Prev:', prevBtn?.disabled, 'Next:', nextBtn?.disabled);
   
   // Store current page in session storage
   sessionStorage.setItem('currentLessonPage', pageNumber);
@@ -852,6 +853,13 @@ window.togglePagination = togglePagination;
 
 document.addEventListener('DOMContentLoaded', function(){
   Auth.init();
+  
+  // Initialize pagination after a short delay to ensure filters are ready
+  setTimeout(() => {
+    console.log('Initializing pagination...');
+    initializePagination();
+  }, 200);
+  
   // Late-load filter logic after DOM and pills are present
   const s = document.createElement('script');
   s.src = 'assets/app.js';
@@ -1163,6 +1171,35 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 })();
 
+// Force refresh pagination state
+function forceRefreshPagination() {
+  console.log('=== FORCE REFRESHING PAGINATION ===');
+  
+  // Recalculate visible cards
+  const allCards = document.querySelectorAll('article.card');
+  const visibleCards = Array.from(allCards).filter(card => 
+    card.style.display !== 'none'
+  );
+  
+  console.log('Total cards found:', allCards.length);
+  console.log('Visible cards after filter:', visibleCards.length);
+  
+  // Update pagination
+  if (typeof window.updatePaginationForVisibleCards === 'function') {
+    window.updatePaginationForVisibleCards();
+  }
+  
+  // Force show page 1
+  if (typeof window.showPage === 'function') {
+    window.showPage(1);
+  }
+  
+  console.log('Pagination refreshed');
+}
+
+// Make force refresh function globally available
+window.forceRefreshPagination = forceRefreshPagination;
+
 // Restore page from session storage on page load
 document.addEventListener('DOMContentLoaded', function() {
   // Wait a bit for all content to load
@@ -1232,3 +1269,44 @@ function debugButtonStyling() {
 
 // Make debug function globally available
 window.debugButtonStyling = debugButtonStyling;
+
+// Debug function to check pagination state
+function debugPaginationState() {
+  console.log('=== PAGINATION STATE DEBUG ===');
+  
+  const allCards = document.querySelectorAll('article.card');
+  const visibleCards = Array.from(allCards).filter(card => 
+    card.style.display !== 'none'
+  );
+  const cardsPerPage = 15;
+  const totalPages = Math.ceil(visibleCards.length / cardsPerPage);
+  const currentPage = parseInt(document.getElementById('current-page')?.textContent || '1');
+  const totalPagesDisplay = parseInt(document.getElementById('total-pages')?.textContent || '1');
+  
+  console.log('Total cards found:', allCards.length);
+  console.log('Visible cards:', visibleCards.length);
+  console.log('Cards per page:', cardsPerPage);
+  console.log('Total pages calculated:', totalPages);
+  console.log('Current page display:', currentPage);
+  console.log('Total pages display:', totalPagesDisplay);
+  
+  // Check button states
+  const prevBtn = document.querySelector('.prev-btn');
+  const nextBtn = document.querySelector('.next-btn');
+  console.log('Previous button disabled:', prevBtn?.disabled);
+  console.log('Next button disabled:', nextBtn?.disabled);
+  
+  // Check if buttons exist
+  console.log('Previous button exists:', !!prevBtn);
+  console.log('Next button exists:', !!nextBtn);
+  
+  // Check pagination container
+  const paginationContainer = document.querySelector('.pagination-container');
+  console.log('Pagination container exists:', !!paginationContainer);
+  console.log('Pagination container display:', paginationContainer?.style.display);
+  
+  console.log('=============================');
+}
+
+// Make debug function globally available
+window.debugPaginationState = debugPaginationState;
