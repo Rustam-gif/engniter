@@ -677,13 +677,27 @@ function initializePagination() {
 
 function showPage(pageNumber) {
   console.log('showPage called with:', pageNumber);
-  const visibleCards = Array.from(document.querySelectorAll('article.card')).filter(card => 
+  const allCards = document.querySelectorAll('article.card');
+  const visibleCards = Array.from(allCards).filter(card => 
     card.style.display !== 'none'
   );
   const cardsPerPage = 15;
   const totalPages = Math.ceil(visibleCards.length / cardsPerPage);
   
-  console.log('Visible cards:', visibleCards.length, 'Total pages:', totalPages);
+  console.log('=== PAGINATION DEBUG ===');
+  console.log('Total cards found:', allCards.length);
+  console.log('Visible cards:', visibleCards.length);
+  console.log('Cards per page:', cardsPerPage);
+  console.log('Total pages calculated:', totalPages);
+  console.log('Current page requested:', pageNumber);
+  
+  // Log some card details to see what's happening
+  visibleCards.forEach((card, index) => {
+    const title = card.querySelector('.h3')?.textContent || 'No title';
+    const display = card.style.display;
+    console.log(`Card ${index}: "${title}" - display: ${display}`);
+  });
+  console.log('========================');
   
   // Validate page number
   if (pageNumber < 1) pageNumber = 1;
@@ -707,6 +721,8 @@ function showPage(pageNumber) {
   const startIndex = (pageNumber - 1) * cardsPerPage;
   const endIndex = startIndex + cardsPerPage;
   
+  console.log(`Showing cards ${startIndex} to ${endIndex} (page ${pageNumber})`);
+  
   // Hide all visible cards first
   visibleCards.forEach(card => card.style.display = 'none');
   
@@ -714,6 +730,7 @@ function showPage(pageNumber) {
   visibleCards.forEach((card, index) => {
     if (index >= startIndex && index < endIndex) {
       card.style.display = '';
+      console.log(`Showing card ${index}: "${card.querySelector('.h3')?.textContent}"`);
     }
   });
   
@@ -762,12 +779,28 @@ function changePage(direction) {
 
 // Update pagination when filters change
 function updatePaginationForVisibleCards() {
-  const visibleCards = Array.from(document.querySelectorAll('article.card')).filter(card => 
+  const allCards = document.querySelectorAll('article.card');
+  const visibleCards = Array.from(allCards).filter(card => 
     card.style.display !== 'none'
   );
   
   const cardsPerPage = 15;
   const totalPages = Math.ceil(visibleCards.length / cardsPerPage);
+  
+  console.log('=== FILTER UPDATE DEBUG ===');
+  console.log('Total cards found:', allCards.length);
+  console.log('Visible cards after filter:', visibleCards.length);
+  console.log('Total pages calculated:', totalPages);
+  
+  // Check if cards are being hidden by filters
+  allCards.forEach((card, index) => {
+    const title = card.querySelector('.h3')?.textContent || 'No title';
+    const display = card.style.display;
+    if (display === 'none') {
+      console.log(`Hidden card ${index}: "${title}" - display: ${display}`);
+    }
+  });
+  console.log('==========================');
   
   // Update total pages display
   document.getElementById('total-pages').textContent = totalPages;
@@ -1149,6 +1182,22 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 200);
   }, 100);
 });
-</script>
-</body>
-</html>
+
+// Debug function to show all cards temporarily
+function debugShowAllCards() {
+  console.log('=== DEBUG: SHOWING ALL CARDS ===');
+  const allCards = document.querySelectorAll('article.card');
+  allCards.forEach((card, index) => {
+    card.style.display = '';
+    const title = card.querySelector('.h3')?.textContent || 'No title';
+    console.log(`Card ${index} now visible: "${title}"`);
+  });
+  
+  // Update pagination
+  updatePaginationForVisibleCards();
+  showPage(1);
+  console.log('All cards should now be visible');
+}
+
+// Make debug function globally available
+window.debugShowAllCards = debugShowAllCards;
