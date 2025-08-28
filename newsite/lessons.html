@@ -700,20 +700,24 @@ function showPage(pageNumber) {
   );
   
   const cardsPerPage = 15;
-  const totalPages = Math.ceil(totalAvailableCards / cardsPerPage);
+  
+  // When filters are active, calculate totalPages based on visible cards
+  // When no filters, use total available cards
+  const totalPages = Math.ceil(visibleCards.length / cardsPerPage);
   
   console.log('Pagination debug:', {
     totalAvailableCards: totalAvailableCards,
     visibleCards: visibleCards.length,
     totalPages: totalPages,
-    requestedPage: pageNumber
+    requestedPage: pageNumber,
+    hasActiveFilters: visibleCards.length !== totalAvailableCards
   });
   
   // Validate page number
   if (pageNumber < 1) pageNumber = 1;
   if (pageNumber > totalPages) pageNumber = totalPages;
   
-  // If only one page or no pages, show all cards and disable pagination
+  // If only one page or no pages, show all visible cards and disable pagination
   if (totalPages <= 1) {
     visibleCards.forEach(card => card.style.display = '');
     document.getElementById('current-page').textContent = '1';
@@ -729,19 +733,19 @@ function showPage(pageNumber) {
   
   // Calculate which cards to show for this page
   const startIndex = (pageNumber - 1) * cardsPerPage;
-  const endIndex = Math.min(startIndex + cardsPerPage, totalAvailableCards);
+  const endIndex = Math.min(startIndex + cardsPerPage, visibleCards.length);
   
-  console.log(`Showing page ${pageNumber}: cards ${startIndex + 1} to ${endIndex} of ${totalAvailableCards}`);
+  console.log(`Showing page ${pageNumber}: cards ${startIndex + 1} to ${endIndex} of ${visibleCards.length}`);
   
-  // Hide ALL cards first
-  allCards.forEach(card => {
+  // Hide ALL visible cards first
+  visibleCards.forEach(card => {
     card.style.display = 'none';
   });
   
   // Show only the cards for the current page
   for (let i = startIndex; i < endIndex; i++) {
-    if (allCards[i]) {
-      allCards[i].style.display = '';
+    if (visibleCards[i]) {
+      visibleCards[i].style.display = '';
     }
   }
   
@@ -791,12 +795,16 @@ function updatePaginationForVisibleCards() {
   );
   
   const cardsPerPage = 15;
-  const totalPages = Math.ceil(totalAvailableCards / cardsPerPage);
+  
+  // When filters are active, calculate totalPages based on visible cards
+  // When no filters, use total available cards
+  const totalPages = Math.ceil(visibleCards.length / cardsPerPage);
   
   console.log('Filter update pagination:', {
     totalAvailableCards: totalAvailableCards,
     visibleCards: visibleCards.length,
-    totalPages: totalPages
+    totalPages: totalPages,
+    hasActiveFilters: visibleCards.length !== totalAvailableCards
   });
   
   // Update total pages display
