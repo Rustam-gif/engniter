@@ -119,7 +119,7 @@
       </div>
     </article>
 
-    <article class="card">
+    <article class="card" data-topic="business" data-level="B2">
       <img src="pdf_pictures/accidental-discoveries-that-changed-the-world.png" alt="Accidental Discoveries That Changed the World thumbnail">
       <h3 class="h3">Accidental Discoveries That Changed the World</h3>
       <div class="meta-row">
@@ -134,7 +134,7 @@
       </div>
     </article>
 
-    <article class="card">
+    <article class="card" data-topic="law" data-level="B2">
       <img src="pdf_pictures/bizarre-laws-around-the-world.png" alt="Bizarre Laws Around the World thumbnail">
       <h3 class="h3">Bizarre Laws Around the World</h3>
       <div class="meta-row">
@@ -149,7 +149,7 @@
       </div>
     </article>
 
-    <article class="card">
+    <article class="card" data-topic="health" data-level="C1">
       <img src="pdf_pictures/caffeine-crash.png" alt="Caffeine Crash thumbnail">
       <h3 class="h3">Caffeine Crash</h3>
       <div class="meta-row">
@@ -164,7 +164,7 @@
       </div>
     </article>
 
-    <article class="card">
+    <article class="card" data-topic="culture" data-level="B2">
       <img src="pdf_pictures/conspiracy-theories-people-actually-believed.png" alt="Conspiracy Theories People Actually Believed thumbnail">
       <h3 class="h3">Conspiracy Theories People Actually Believed</h3>
       <div class="meta-row">
@@ -954,6 +954,55 @@ document.addEventListener('DOMContentLoaded', function() {
       window.netlifyIdentity.init();
     }
     refresh();
+  })();
+
+  // Auto-add missing data attributes to lesson cards
+  (function(){
+    console.log('Adding missing data attributes to lesson cards...');
+    
+    const lessonCards = document.querySelectorAll('article.card:not(.news-promo)');
+    lessonCards.forEach(card => {
+      // Skip if already has attributes
+      if (card.hasAttribute('data-topic') && card.hasAttribute('data-level')) {
+        return;
+      }
+      
+      // Extract topic from pill
+      const topicPill = card.querySelector('.pill.topic');
+      if (topicPill) {
+        const topicText = topicPill.textContent.replace('Topic: ', '').toLowerCase();
+        card.setAttribute('data-topic', topicText);
+        console.log('Added data-topic:', topicText, 'to card:', card.querySelector('.h3')?.textContent);
+      }
+      
+      // Extract level from pill
+      const levelPill = card.querySelector('.pill.level');
+      if (levelPill) {
+        const levelText = levelPill.textContent.replace('Level: ', '');
+        card.setAttribute('data-level', levelText);
+        console.log('Added data-level:', levelText, 'to card:', card.querySelector('.h3')?.textContent);
+      }
+      
+      // Mark as free if it's in the free files list
+      const downloadBtn = card.querySelector('[data-premium-file]');
+      if (downloadBtn) {
+        const fileName = downloadBtn.getAttribute('data-premium-file');
+        const isFree = ['travel.pdf', 'the-science-of-luck.pdf', 'objects-that-tell-a-story.pdf', 'The-Power-of-Networking(B1-B2).pdf', 'Brand.pdf'].includes(fileName);
+        if (isFree) {
+          card.setAttribute('data-free', 'true');
+        }
+      }
+    });
+    
+    console.log('Finished adding data attributes to', lessonCards.length, 'lesson cards');
+    
+    // Now reinitialize pagination with the proper attributes
+    setTimeout(() => {
+      if (typeof window.initializePagination === 'function') {
+        console.log('Reinitializing pagination after adding data attributes...');
+        window.initializePagination();
+      }
+    }, 100);
   })();
 });
 </script>
