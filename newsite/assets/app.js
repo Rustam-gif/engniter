@@ -138,23 +138,79 @@
   function render(){
     const activeTopic = activeTopicValue();
     const onlyFree = !!(freeOnly && freeOnly.checked);
-    cards.forEach(card=>{
+    
+    console.log('=== RENDER FUNCTION DEBUG ===');
+    console.log('freeOnly element:', freeOnly);
+    console.log('freeOnly.checked:', freeOnly?.checked);
+    console.log('onlyFree calculated:', onlyFree);
+    
+    cards.forEach((card, index) => {
       const topicOk = (activeTopic==='all' || card.dataset.topic===activeTopic);
       const levelOk = selectedLevels.has('ALL') || selectedLevels.has(card.dataset.level);
       const freeOk = (!onlyFree || card.dataset.free === 'true');
+      
+      console.log(`Card ${index + 1} (${card.querySelector('.h3')?.textContent}):`, {
+        topicOk,
+        levelOk,
+        freeOk,
+        topic: card.dataset.topic,
+        level: card.dataset.level,
+        free: card.dataset.free,
+        onlyFree: onlyFree
+      });
+      
       card.style.display = (topicOk && levelOk && freeOk) ? '' : 'none';
     });
     
-    // Reset pagination to page 1 after filtering
+    console.log('=== RENDER: FILTERS APPLIED ===');
+    console.log('Active topic:', activeTopic);
+    console.log('Selected levels:', Array.from(selectedLevels));
+    console.log('Free only:', onlyFree);
+    
+    // Update pagination after filtering
     setTimeout(() => {
-      if (typeof showPage === 'function') {
-        showPage(1);
-      }
-      if (typeof updatePaginationForVisibleCards === 'function') {
-        updatePaginationForVisibleCards();
+      console.log('=== RENDER: UPDATING PAGINATION ===');
+      
+      // Call pagination update function
+      if (typeof window.updatePaginationForVisibleCards === 'function') {
+        console.log('Calling updatePaginationForVisibleCards...');
+        window.updatePaginationForVisibleCards();
+      } else {
+        console.log('WARNING: updatePaginationForVisibleCards not available!');
+        
+        // Fallback: Update pagination manually
+        const visibleCards = Array.from(document.querySelectorAll('article.card')).filter(card => 
+          card.style.display !== 'none'
+        );
+        const cardsPerPage = 15;
+        const totalPages = Math.ceil(visibleCards.length / cardsPerPage);
+        
+        console.log('Fallback pagination update:');
+        console.log('  Visible cards:', visibleCards.length);
+        console.log('  Total pages:', totalPages);
+        
+        // Update display
+        const totalPagesElement = document.getElementById('total-pages');
+        const currentPageElement = document.getElementById('current-page');
+        if (totalPagesElement && currentPageElement) {
+          totalPagesElement.textContent = totalPages;
+          currentPageElement.textContent = '1';
+        }
+        
+        // Update button states
+        const prevBtn = document.querySelector('.prev-btn');
+        const nextBtn = document.querySelector('.next-btn');
+        
+        if (prevBtn) prevBtn.disabled = true; // Always disabled on page 1
+        if (nextBtn) nextBtn.disabled = totalPages <= 1;
+        
+        console.log('Fallback button states - Prev disabled:', prevBtn?.disabled, 'Next disabled:', nextBtn?.disabled);
       }
     }, 100);
   }
+
+  // Make render function globally accessible
+  window.render = render;
 
   topicSelect && topicSelect.addEventListener('change', render);
   

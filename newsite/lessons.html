@@ -657,6 +657,9 @@
       <button class="pagination-btn secondary" onclick="togglePagination()">
         <span id="pagination-toggle-text">Show All</span>
       </button>
+      <button class="pagination-btn secondary" onclick="testFreeFilter()" style="margin-left: 10px;">
+        Test Free Filter
+      </button>
     </div>
   </div>
 
@@ -690,6 +693,76 @@ document.addEventListener('DOMContentLoaded', function(){
   // Late-load filter logic after DOM and pills are present
   const s = document.createElement('script');
   s.src = 'assets/app.js';
+  s.onload = function() {
+    console.log('app.js loaded, now running auto-attribute script...');
+    
+    // Auto-add missing data attributes to lesson cards
+    (function(){
+      console.log('=== AUTO-ATTRIBUTE SCRIPT STARTING ===');
+      console.log('Current time:', new Date().toISOString());
+      
+      const lessonCards = document.querySelectorAll('article.card:not(.news-promo)');
+      console.log('Found lesson cards:', lessonCards.length);
+      
+      lessonCards.forEach((card, index) => {
+        console.log(`Processing card ${index + 1}:`, card.querySelector('.h3')?.textContent);
+        
+        // Skip if already has attributes
+        if (card.hasAttribute('data-topic') && card.hasAttribute('data-level')) {
+          console.log(`Card ${index + 1} already has attributes, skipping`);
+          return;
+        }
+        
+        // Extract topic from pill
+        const topicPill = card.querySelector('.pill.topic');
+        if (topicPill) {
+          const topicText = topicPill.textContent.replace('Topic: ', '').toLowerCase();
+          card.setAttribute('data-topic', topicText);
+          console.log(`Card ${index + 1}: Added data-topic:`, topicText);
+        }
+        
+        // Extract level from pill
+        const levelPill = card.querySelector('.pill.level');
+        if (levelPill) {
+          const levelText = levelPill.textContent.replace('Level: ', '');
+          card.setAttribute('data-level', levelText);
+          console.log(`Card ${index + 1}: Added data-level:`, levelText);
+        }
+        
+        // Mark as free if it's in the free files list
+        const downloadBtn = card.querySelector('[data-premium-file]');
+        if (downloadBtn) {
+          const fileName = downloadBtn.getAttribute('data-premium-file');
+          const isFree = ['travel.pdf', 'the-science-of-luck.pdf', 'objects-that-tell-a-story.pdf', 'The-Power-of-Networking(B1-B2).pdf', 'Brand.pdf'].includes(fileName);
+          if (isFree) {
+            card.setAttribute('data-free', 'true');
+            console.log(`Card ${index + 1}: Marked as FREE:`, fileName);
+          } else {
+            console.log(`Card ${index + 1}: NOT free:`, fileName);
+          }
+        }
+        
+        // Log final attributes for this card
+        console.log(`Card ${index + 1} final attributes:`, {
+          topic: card.getAttribute('data-topic'),
+          level: card.getAttribute('data-level'),
+          free: card.getAttribute('data-free')
+        });
+      });
+      
+      console.log('=== FINISHED PROCESSING ALL CARDS ===');
+      
+      // Now trigger a render to apply the new attributes
+      setTimeout(() => {
+        console.log('Triggering render after adding attributes...');
+        if (typeof window.render === 'function') {
+          window.render();
+        } else {
+          console.log('WARNING: render function not available!');
+        }
+      }, 100);
+    })();
+  };
   document.body.appendChild(s);
 
   // Remove all Preview buttons and make single-column action rows
@@ -782,258 +855,190 @@ document.addEventListener('DOMContentLoaded', function(){
     refresh();
   })();
 
-  // Auto-add missing data attributes to lesson cards
-  (function(){
-    console.log('Adding missing data attributes to lesson cards...');
+  // Function to start quiz from lesson card
+  function startQuizFromLesson(lessonSlug) {
+    // Show quiz modal
+    const quizModal = document.getElementById('quiz-modal');
+    const quizRoot = document.getElementById('quiz-root');
     
-    const lessonCards = document.querySelectorAll('article.card:not(.news-promo)');
-    lessonCards.forEach(card => {
-      // Skip if already has attributes
-      if (card.hasAttribute('data-topic') && card.hasAttribute('data-level')) {
-        return;
-      }
+    if (quizModal && quizRoot) {
+      // Show modal
+      quizModal.style.display = 'block';
+      document.body.style.overflow = 'hidden'; // Prevent background scrolling
       
-      // Extract topic from pill
-      const topicPill = card.querySelector('.pill.topic');
-      if (topicPill) {
-        const topicText = topicPill.textContent.replace('Topic: ', '').toLowerCase();
-        card.setAttribute('data-topic', topicText);
-        console.log('Added data-topic:', topicText, 'to card:', card.querySelector('.h3')?.textContent);
-      }
+      // Clear existing quiz content
+      quizRoot.innerHTML = '<div class="quiz-loading"><p>Loading quiz...</p><div class="loading-spinner"></div></div>';
       
-      // Extract level from pill
-      const levelPill = card.querySelector('.pill.level');
-      if (levelPill) {
-        const levelText = levelPill.textContent.replace('Level: ', '');
-        card.setAttribute('data-level', levelText);
-        console.log('Added data-level:', levelText, 'to card:', card.querySelector('.h3')?.textContent);
-      }
-      
-      // Mark as free if it's in the free files list
-      const downloadBtn = card.querySelector('[data-premium-file]');
-      if (downloadBtn) {
-        const fileName = downloadBtn.getAttribute('data-premium-file');
-        const isFree = ['travel.pdf', 'the-science-of-luck.pdf', 'objects-that-tell-a-story.pdf', 'The-Power-of-Networking(B1-B2).pdf', 'Brand.pdf'].includes(fileName);
-        if (isFree) {
-          card.setAttribute('data-free', 'true');
-          console.log('Marked as free:', fileName);
-        }
-      }
-    });
-    
-    console.log('Finished adding data attributes to', lessonCards.length, 'lesson cards');
-    
-    // Now reinitialize pagination with the proper attributes
-    setTimeout(() => {
-      if (typeof window.initializePagination === 'function') {
-        console.log('Reinitializing pagination after adding data attributes...');
-        window.initializePagination();
-      }
-    }, 100);
-  })();
-});
-
-// Function to start quiz from lesson card
-function startQuizFromLesson(lessonSlug) {
-  // Show quiz modal
-  const quizModal = document.getElementById('quiz-modal');
-  const quizRoot = document.getElementById('quiz-root');
-  
-  if (quizModal && quizRoot) {
-    // Show modal
-    quizModal.style.display = 'block';
-    document.body.style.overflow = 'hidden'; // Prevent background scrolling
-    
-    // Clear existing quiz content
-    quizRoot.innerHTML = '<div class="quiz-loading"><p>Loading quiz...</p><div class="loading-spinner"></div></div>';
-    
-    // Load and display the specific quiz directly
-    setTimeout(() => {
-      console.log('Starting quiz loading process...');
-      console.log('Lesson slug:', lessonSlug);
-      console.log('allQuizData available:', !!window.allQuizData);
-      console.log('createQuiz available:', !!window.createQuiz);
-      
-      if (window.allQuizData && window.createQuiz) {
-        // Find the quiz data for this lesson - use exact matching first, then fallback
-        let quizKey = lessonSlug; // Try exact match first
-        
-        if (!window.allQuizData[quizKey]) {
-          // If exact match fails, try to find a similar key
-          quizKey = Object.keys(window.allQuizData).find(key => 
-            key.toLowerCase() === lessonSlug.toLowerCase() ||
-            key.toLowerCase().replace(/[()]/g, '').replace(/\s+/g, '-') === lessonSlug.toLowerCase().replace(/[()]/g, '').replace(/\s+/g, '-')
-          );
-        }
-        
-        console.log('Found quiz key:', quizKey);
-        console.log('Quiz data:', quizKey ? window.allQuizData[quizKey] : 'NOT FOUND');
-        console.log('Quiz exercises count:', quizKey ? window.allQuizData[quizKey].exercises.length : 'N/A');
-        
-        if (quizKey && window.allQuizData[quizKey]) {
-          // Create and display the specific quiz
-          console.log('Creating quiz with key:', quizKey);
-          console.log('Quiz title:', window.allQuizData[quizKey].title);
-          console.log('Quiz exercises:', window.allQuizData[quizKey].exercises);
-          window.createQuiz(quizKey, window.allQuizData[quizKey]);
-        } else {
-          // Fallback if quiz not found
-          console.log('Quiz not found, showing error message');
-          quizRoot.innerHTML = '<div class="quiz-error"><p>Quiz not found for this lesson. Please try another lesson.</p></div>';
-        }
-      } else {
-        // Fallback if quiz system not loaded
-        console.log('Quiz system not available, showing error message');
-        quizRoot.innerHTML = '<div class="quiz-error"><p>Quiz system not available. Please refresh the page.</p></div>';
-      }
-    }, 300);
-  }
-}
-
-// Function to close quiz modal
-function closeQuizModal() {
-  const quizModal = document.getElementById('quiz-modal');
-  if (quizModal) {
-    quizModal.style.display = 'none';
-    document.body.style.overflow = 'auto'; // Restore scrolling
-  }
-}
-
-// Close modal when clicking outside
-document.addEventListener('DOMContentLoaded', function() {
-  const quizModal = document.getElementById('quiz-modal');
-  if (quizModal) {
-    quizModal.addEventListener('click', function(e) {
-      if (e.target === quizModal) {
-        closeQuizModal();
-      }
-    });
-  }
-});
-
-// Load React and Master Quiz System
-(function() {
-  // Clear any existing quiz content and force fresh start
-  const quizRoot = document.getElementById('quiz-root');
-  if (quizRoot) {
-    quizRoot.innerHTML = '<div class="quiz-loading"><p>Loading comprehensive quiz system...</p><div class="loading-spinner"></div></div>';
-    console.log('Quiz root cleared and ready for new content');
-  }
-  
-  // Clear any existing global variables to prevent conflicts
-  if (window.Quiz) {
-    delete window.Quiz;
-    console.log('Cleared old Quiz component');
-  }
-  
-  // Add a simple test to verify script loading
-  console.log('Starting quiz system initialization...');
-  console.log('Current time:', new Date().toISOString());
-  
-
-
-
-
-  
-
-
-
-  
-  // Load all quiz data first
-  const allQuizzesScript = document.createElement('script');
-  allQuizzesScript.src = 'assets/all-quizzes.js?v=' + Date.now(); // Force fresh load
-  
-  // Load master quiz component (vanilla JavaScript version)
-  const masterQuizScript = document.createElement('script');
-  masterQuizScript.src = 'assets/master-quiz-vanilla.js?v=' + Date.now(); // Force fresh load
-  
-  // Load quiz data and component directly (no React needed)
-  allQuizzesScript.onload = function() {
-    console.log('All quizzes data loaded successfully');
-    
-    // Then load master quiz component
-    masterQuizScript.onload = function() {
-      console.log('Master quiz component loaded successfully');
-      
-      // Make createQuiz function globally available
-      if (window.createQuiz) {
-        console.log('✅ createQuiz function is available globally');
-      } else {
-        console.error('❌ createQuiz function not found');
-      }
-      
-      // Initialize master quiz with a short delay to ensure everything is ready
-      setTimeout(function() {
-        const quizRoot = document.getElementById('quiz-root');
-        console.log('=== QUIZ SYSTEM STATUS CHECK ===');
-        console.log('Quiz root element:', quizRoot);
-        console.log('All quiz data available:', !!window.allQuizData);
-        console.log('All quiz data keys:', window.allQuizData ? Object.keys(window.allQuizData) : 'NOT LOADED');
-        console.log('createMasterQuizSelector available:', !!window.createMasterQuizSelector);
+      // Load and display the specific quiz directly
+      setTimeout(() => {
+        console.log('Starting quiz loading process...');
+        console.log('Lesson slug:', lessonSlug);
+        console.log('allQuizData available:', !!window.allQuizData);
         console.log('createQuiz available:', !!window.createQuiz);
-        console.log('================================');
         
-        if (quizRoot && window.allQuizData && window.createMasterQuizSelector) {
-          try {
-            console.log('Attempting to initialize master quiz selector...');
-            window.createMasterQuizSelector();
-            console.log('✅ Master quiz selector initialized successfully');
-          } catch (error) {
-            console.error('❌ Error initializing master quiz:', error);
-            showFallbackQuiz();
+        if (window.allQuizData && window.createQuiz) {
+          // Find the quiz data for this lesson - use exact matching first, then fallback
+          let quizKey = lessonSlug; // Try exact match first
+          
+          if (!window.allQuizData[quizKey]) {
+            // If exact match fails, try to find a similar key
+            quizKey = Object.keys(window.allQuizData).find(key => 
+              key.toLowerCase() === lessonSlug.toLowerCase() ||
+              key.toLowerCase().replace(/[()]/g, '').replace(/\s+/g, '-') === lessonSlug.toLowerCase().replace(/[()]/g, '').replace(/\s+/g, '-')
+            );
+          }
+          
+          console.log('Found quiz key:', quizKey);
+          console.log('Quiz data:', quizKey ? window.allQuizData[quizKey] : 'NOT FOUND');
+          console.log('Quiz exercises count:', quizKey ? window.allQuizData[quizKey].exercises.length : 'N/A');
+          
+          if (quizKey && window.allQuizData[quizKey]) {
+            // Create and display the specific quiz
+            console.log('Creating quiz with key:', quizKey);
+            console.log('Quiz title:', window.allQuizData[quizKey].title);
+            console.log('Quiz exercises:', window.allQuizData[quizKey].exercises);
+            window.createQuiz(quizKey, window.allQuizData[quizKey]);
+          } else {
+            // Fallback if quiz not found
+            console.log('Quiz not found, showing error message');
+            quizRoot.innerHTML = '<div class="quiz-error"><p>Quiz not found for this lesson. Please try another lesson.</p></div>';
           }
         } else {
-          console.error('❌ Required components not found:', {
-            quizRoot: !!quizRoot,
-            allQuizData: !!window.allQuizData,
-            createMasterQuizSelector: !!window.createMasterQuizSelector
-          });
-          showFallbackQuiz();
+          // Fallback if quiz system not loaded
+          console.log('Quiz system not available, showing error message');
+          quizRoot.innerHTML = '<div class="quiz-error"><p>Quiz system not available. Please refresh the page.</p></div>';
         }
-      }, 1000); // Short delay to ensure everything is loaded
-      
-      // Add timeout to show fallback if quiz doesn't load
-      setTimeout(function() {
-        if (!document.querySelector('.master-quiz-selector') && !document.querySelector('.quiz-container .question')) {
-          console.log('Quiz timeout reached, showing fallback');
-          showFallbackQuiz();
-        }
-      }, 15000); // 15 second timeout - give more time for quiz to load
-    };
-    document.body.appendChild(masterQuizScript);
-  };
-  
-  document.body.appendChild(allQuizzesScript);
-  
-  allQuizzesScript.onerror = function() {
-    console.error('Failed to load All Quizzes script');
-    loadFallbackQuiz();
-  };
-  
-  masterQuizScript.onerror = function() {
-    console.error('Failed to load Master Quiz script');
-    loadFallbackQuiz();
-  };
-  
-  // Fallback quiz if quiz system fails to load
-  function showFallbackQuiz() {
-    const quizRoot = document.getElementById('quiz-root');
-    if (quizRoot) {
-      quizRoot.innerHTML = `
-        <div class="quiz-container">
-          <div class="quiz-header">
-            <h2>Quiz System Ready</h2>
-            <div class="progress">Click Start Quiz on any lesson to begin</div>
-          </div>
-        </div>
-      `;
+      }, 300);
     }
   }
-  
-      function loadFallbackQuiz() {
-      console.log('Loading fallback quiz system...');
+
+  // Function to close quiz modal
+  function closeQuizModal() {
+    const quizModal = document.getElementById('quiz-modal');
+    if (quizModal) {
+      quizModal.style.display = 'none';
+      document.body.style.overflow = 'auto'; // Restore scrolling
+    }
+  }
+
+  // Close modal when clicking outside
+  document.addEventListener('DOMContentLoaded', function() {
+    const quizModal = document.getElementById('quiz-modal');
+    if (quizModal) {
+      quizModal.addEventListener('click', function(e) {
+        if (e.target === quizModal) {
+          closeQuizModal();
+        }
+      });
+    }
+  });
+
+  // Load React and Master Quiz System
+  (function() {
+    // Clear any existing quiz content and force fresh start
+    const quizRoot = document.getElementById('quiz-root');
+    if (quizRoot) {
+      quizRoot.innerHTML = '<div class="quiz-loading"><p>Loading comprehensive quiz system...</p><div class="loading-spinner"></div></div>';
+      console.log('Quiz root cleared and ready for new content');
+    }
+    
+    // Clear any existing global variables to prevent conflicts
+    if (window.Quiz) {
+      delete window.Quiz;
+      console.log('Cleared old Quiz component');
+    }
+    
+    // Add a simple test to verify script loading
+    console.log('Starting quiz system initialization...');
+    console.log('Current time:', new Date().toISOString());
+    
+
+
+
+
+    
+
+
+
+    
+    // Load all quiz data first
+    const allQuizzesScript = document.createElement('script');
+    allQuizzesScript.src = 'assets/all-quizzes.js?v=' + Date.now(); // Force fresh load
+    
+    // Load master quiz component (vanilla JavaScript version)
+    const masterQuizScript = document.createElement('script');
+    masterQuizScript.src = 'assets/master-quiz-vanilla.js?v=' + Date.now(); // Force fresh load
+    
+    // Load quiz data and component directly (no React needed)
+    allQuizzesScript.onload = function() {
+      console.log('All quizzes data loaded successfully');
       
-      // Show a simple message that the quiz system is ready
+      // Then load master quiz component
+      masterQuizScript.onload = function() {
+        console.log('Master quiz component loaded successfully');
+        
+        // Make createQuiz function globally available
+        if (window.createQuiz) {
+          console.log('✅ createQuiz function is available globally');
+        } else {
+          console.error('❌ createQuiz function not found');
+        }
+        
+        // Initialize master quiz with a short delay to ensure everything is ready
+        setTimeout(function() {
+          const quizRoot = document.getElementById('quiz-root');
+          console.log('=== QUIZ SYSTEM STATUS CHECK ===');
+          console.log('Quiz root element:', quizRoot);
+          console.log('All quiz data available:', !!window.allQuizData);
+          console.log('All quiz data keys:', window.allQuizData ? Object.keys(window.allQuizData) : 'NOT LOADED');
+          console.log('createMasterQuizSelector available:', !!window.createMasterQuizSelector);
+          console.log('createQuiz available:', !!window.createQuiz);
+          console.log('================================');
+          
+          if (quizRoot && window.allQuizData && window.createMasterQuizSelector) {
+            try {
+              console.log('Attempting to initialize master quiz selector...');
+              window.createMasterQuizSelector();
+              console.log('✅ Master quiz selector initialized successfully');
+            } catch (error) {
+              console.error('❌ Error initializing master quiz:', error);
+              showFallbackQuiz();
+            }
+          } else {
+            console.error('❌ Required components not found:', {
+              quizRoot: !!quizRoot,
+              allQuizData: !!window.allQuizData,
+              createMasterQuizSelector: !!window.createMasterQuizSelector
+            });
+            showFallbackQuiz();
+          }
+        }, 1000); // Short delay to ensure everything is loaded
+        
+        // Add timeout to show fallback if quiz doesn't load
+        setTimeout(function() {
+          if (!document.querySelector('.master-quiz-selector') && !document.querySelector('.quiz-container .question')) {
+            console.log('Quiz timeout reached, showing fallback');
+            showFallbackQuiz();
+          }
+        }, 15000); // 15 second timeout - give more time for quiz to load
+      };
+      document.body.appendChild(masterQuizScript);
+    };
+    
+    document.body.appendChild(allQuizzesScript);
+    
+    allQuizzesScript.onerror = function() {
+      console.error('Failed to load All Quizzes script');
+      loadFallbackQuiz();
+    };
+    
+    masterQuizScript.onerror = function() {
+      console.error('Failed to load Master Quiz script');
+      loadFallbackQuiz();
+    };
+    
+    // Fallback quiz if quiz system fails to load
+    function showFallbackQuiz() {
       const quizRoot = document.getElementById('quiz-root');
       if (quizRoot) {
         quizRoot.innerHTML = `
@@ -1046,124 +1051,186 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
       }
     }
-})();
+    
+        function loadFallbackQuiz() {
+        console.log('Loading fallback quiz system...');
+        
+        // Show a simple message that the quiz system is ready
+        const quizRoot = document.getElementById('quiz-root');
+        if (quizRoot) {
+          quizRoot.innerHTML = `
+            <div class="quiz-container">
+              <div class="quiz-header">
+                <h2>Quiz System Ready</h2>
+                <div class="progress">Click Start Quiz on any lesson to begin</div>
+              </div>
+            </div>
+          `;
+        }
+      }
+  })();
 
-// Pagination functionality
-function initializePagination() {
-  const cards = document.querySelectorAll('article.card');
-  const cardsPerPage = 15;
-  const totalPages = Math.ceil(cards.length / cardsPerPage);
-  
-  // Update total pages display
-  document.getElementById('total-pages').textContent = totalPages;
-  
-  // Show first page initially
-  showPage(1);
-}
-
-function showPage(pageNumber) {
-  const cards = document.querySelectorAll('article.card');
-  const cardsPerPage = 15;
-  const totalPages = Math.ceil(cards.length / cardsPerPage);
-  
-  // Validate page number
-  if (pageNumber < 1) pageNumber = 1;
-  if (pageNumber > totalPages) pageNumber = totalPages;
-  
-  // Calculate start and end indices
-  const startIndex = (pageNumber - 1) * cardsPerPage;
-  const endIndex = startIndex + cardsPerPage;
-  
-  // Hide all cards
-  cards.forEach((card, index) => {
-    if (index >= startIndex && index < endIndex) {
-      card.style.display = '';
-    } else {
-      card.style.display = 'none';
-    }
-  });
-  
-  // Update current page display
-  document.getElementById('current-page').textContent = pageNumber;
-  
-  // Update button states
-  const prevBtn = document.querySelector('.prev-btn');
-  const nextBtn = document.querySelector('.next-btn');
-  
-  prevBtn.disabled = pageNumber === 1;
-  nextBtn.disabled = pageNumber === totalPages;
-  
-  // Store current page in session storage
-  sessionStorage.setItem('currentLessonPage', pageNumber);
-}
-
-function changePage(direction) {
-  const currentPage = parseInt(document.getElementById('current-page').textContent);
-  const newPage = currentPage + direction;
-  showPage(newPage);
-  
-  // Scroll to top of lessons section
-  document.querySelector('.lessons-section').scrollIntoView({ 
-    behavior: 'smooth',
-    block: 'start'
-  });
-}
-
-// Restore page from session storage on page load
-document.addEventListener('DOMContentLoaded', function() {
-  const savedPage = sessionStorage.getItem('currentLessonPage');
-  if (savedPage) {
-    showPage(parseInt(savedPage));
-  }
-});
-
-// Update pagination when filters change
-function updatePaginationForVisibleCards() {
-  const visibleCards = Array.from(document.querySelectorAll('article.card')).filter(card => 
-    card.style.display !== 'none'
-  );
-  
-  const cardsPerPage = 15;
-  const totalPages = Math.ceil(visibleCards.length / cardsPerPage);
-  
-  // Update total pages display
-  document.getElementById('total-pages').textContent = totalPages;
-  
-  // If current page is beyond total pages, go to last page
-  const currentPage = parseInt(document.getElementById('current-page').textContent);
-  if (currentPage > totalPages && totalPages > 0) {
-    showPage(totalPages);
-  } else if (totalPages === 0) {
+  // Pagination functionality
+  function initializePagination() {
+    const cards = document.querySelectorAll('article.card');
+    const cardsPerPage = 15;
+    const totalPages = Math.ceil(cards.length / cardsPerPage);
+    
+    // Update total pages display
+    document.getElementById('total-pages').textContent = totalPages;
+    
+    // Show first page initially
     showPage(1);
   }
-}
 
-// Toggle between paginated and show all views
-let paginationEnabled = true;
-
-function togglePagination() {
-  const cards = document.querySelectorAll('article.card');
-  const toggleText = document.getElementById('pagination-toggle-text');
-  const paginationControls = document.querySelector('.pagination');
-  
-  if (paginationEnabled) {
-    // Show all cards
-    cards.forEach(card => {
-      if (card.style.display !== 'none') {
+  function showPage(pageNumber) {
+    const cards = document.querySelectorAll('article.card');
+    const cardsPerPage = 15;
+    const totalPages = Math.ceil(cards.length / cardsPerPage);
+    
+    // Validate page number
+    if (pageNumber < 1) pageNumber = 1;
+    if (pageNumber > totalPages) pageNumber = totalPages;
+    
+    // Calculate start and end indices
+    const startIndex = (pageNumber - 1) * cardsPerPage;
+    const endIndex = startIndex + cardsPerPage;
+    
+    // Hide all cards
+    cards.forEach((card, index) => {
+      if (index >= startIndex && index < endIndex) {
         card.style.display = '';
+      } else {
+        card.style.display = 'none';
       }
     });
-    paginationControls.style.display = 'none';
-    toggleText.textContent = 'Show Pages';
-    paginationEnabled = false;
-  } else {
-    // Enable pagination
-    paginationControls.style.display = 'flex';
-    toggleText.textContent = 'Show All';
-    paginationEnabled = true;
-    showPage(1);
+    
+    // Update current page display
+    document.getElementById('current-page').textContent = pageNumber;
+    
+    // Update button states
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+    
+    prevBtn.disabled = pageNumber === 1;
+    nextBtn.disabled = pageNumber === totalPages;
+    
+    // Store current page in session storage
+    sessionStorage.setItem('currentLessonPage', pageNumber);
   }
-}
+
+  function changePage(direction) {
+    const currentPage = parseInt(document.getElementById('current-page').textContent);
+    const newPage = currentPage + direction;
+    showPage(newPage);
+    
+    // Scroll to top of lessons section
+    document.querySelector('.lessons-section').scrollIntoView({ 
+      behavior: 'smooth',
+      block: 'start'
+    });
+  }
+
+  // Restore page from session storage on page load
+  document.addEventListener('DOMContentLoaded', function() {
+    const savedPage = sessionStorage.getItem('currentLessonPage');
+    if (savedPage) {
+      showPage(parseInt(savedPage));
+    }
+  });
+
+  // Update pagination when filters change
+  function updatePaginationForVisibleCards() {
+    const visibleCards = Array.from(document.querySelectorAll('article.card')).filter(card => 
+      card.style.display !== 'none'
+    );
+    
+    const cardsPerPage = 15;
+    const totalPages = Math.ceil(visibleCards.length / cardsPerPage);
+    
+    // Update total pages display
+    document.getElementById('total-pages').textContent = totalPages;
+    
+    // If current page is beyond total pages, go to last page
+    const currentPage = parseInt(document.getElementById('current-page').textContent);
+    if (currentPage > totalPages && totalPages > 0) {
+      showPage(totalPages);
+    } else if (totalPages === 0) {
+      showPage(1);
+    }
+  }
+
+  // Toggle between paginated and show all views
+  let paginationEnabled = true;
+
+  function togglePagination() {
+    const cards = document.querySelectorAll('article.card');
+    const toggleText = document.getElementById('pagination-toggle-text');
+    const paginationControls = document.querySelector('.pagination');
+    
+    if (paginationEnabled) {
+      // Show all cards
+      cards.forEach(card => {
+        if (card.style.display !== 'none') {
+          card.style.display = '';
+        }
+      });
+      paginationControls.style.display = 'none';
+      toggleText.textContent = 'Show Pages';
+      paginationEnabled = false;
+    } else {
+      // Enable pagination
+      paginationControls.style.display = 'flex';
+      toggleText.textContent = 'Show All';
+      paginationEnabled = true;
+      showPage(1);
+    }
+  }
+
+  // Function to test the free filter
+  function testFreeFilter() {
+    console.log('Testing free filter...');
+    const freeSwitch = document.getElementById('pdf-free-switch');
+    const freeCheckbox = document.getElementById('pdf-filter-free');
+    const freeFiles = new Set(['travel.pdf', 'the-science-of-luck.pdf', 'objects-that-tell-a-story.pdf', 'The-Power-of-Networking(B1-B2).pdf', 'Brand.pdf']);
+
+    function isFree(file) {
+      return freeFiles.has(file);
+    }
+
+    function updateCards() {
+      document.querySelectorAll('article.card:not(.news-promo)').forEach(card => {
+        const downloadBtn = card.querySelector('[data-premium-file]');
+        if (downloadBtn) {
+          const file = downloadBtn.getAttribute('data-premium-file');
+          const isFreeFile = isFree(file);
+          if (isFreeFile) {
+            card.setAttribute('data-free', 'true');
+            console.log(`Card ${card.querySelector('.h3')?.textContent} is FREE`);
+          } else {
+            card.setAttribute('data-free', 'false');
+            console.log(`Card ${card.querySelector('.h3')?.textContent} is NOT FREE`);
+          }
+        }
+      });
+      // Re-render the app to apply new attributes
+      if (typeof window.render === 'function') {
+        window.render();
+      } else {
+        console.log('WARNING: render function not available for re-render.');
+      }
+    }
+
+    // Initial update
+    updateCards();
+
+    // Add event listeners to switch and checkbox to update cards
+    freeSwitch.addEventListener('click', updateCards);
+    freeCheckbox.addEventListener('change', updateCards);
+
+    console.log('Free filter test initiated. Toggle switch or checkbox to see updates.');
+  }
+});
 </script>
 </body>
 </html>
