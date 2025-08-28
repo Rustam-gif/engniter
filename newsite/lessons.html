@@ -637,7 +637,30 @@
     </article>
   </section>
 
-  <!-- Quiz Popup Modal -->
+  <!-- Pagination Controls -->
+  <div class="pagination-container">
+    <div class="pagination">
+      <button class="pagination-btn prev-btn" onclick="changePage(-1)" disabled>
+        ← Previous
+      </button>
+      
+      <div class="page-numbers">
+        <span class="page-info">Page <span id="current-page">1</span> of <span id="total-pages">1</span></span>
+      </div>
+      
+      <button class="pagination-btn next-btn" onclick="changePage(1)">
+        Next →
+      </button>
+    </div>
+    
+    <div class="pagination-options">
+      <button class="pagination-btn secondary" onclick="togglePagination()">
+        <span id="pagination-toggle-text">Show All</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Quiz Modal -->
   <div id="quiz-modal" class="quiz-modal" style="display: none;">
     <div class="quiz-modal-content">
       <div class="quiz-modal-header">
@@ -974,6 +997,123 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
 })();
+
+// Pagination functionality
+function initializePagination() {
+  const cards = document.querySelectorAll('article.card');
+  const cardsPerPage = 15;
+  const totalPages = Math.ceil(cards.length / cardsPerPage);
+  
+  // Update total pages display
+  document.getElementById('total-pages').textContent = totalPages;
+  
+  // Show first page initially
+  showPage(1);
+}
+
+function showPage(pageNumber) {
+  const cards = document.querySelectorAll('article.card');
+  const cardsPerPage = 15;
+  const totalPages = Math.ceil(cards.length / cardsPerPage);
+  
+  // Validate page number
+  if (pageNumber < 1) pageNumber = 1;
+  if (pageNumber > totalPages) pageNumber = totalPages;
+  
+  // Calculate start and end indices
+  const startIndex = (pageNumber - 1) * cardsPerPage;
+  const endIndex = startIndex + cardsPerPage;
+  
+  // Hide all cards
+  cards.forEach((card, index) => {
+    if (index >= startIndex && index < endIndex) {
+      card.style.display = '';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+  
+  // Update current page display
+  document.getElementById('current-page').textContent = pageNumber;
+  
+  // Update button states
+  const prevBtn = document.querySelector('.prev-btn');
+  const nextBtn = document.querySelector('.next-btn');
+  
+  prevBtn.disabled = pageNumber === 1;
+  nextBtn.disabled = pageNumber === totalPages;
+  
+  // Store current page in session storage
+  sessionStorage.setItem('currentLessonPage', pageNumber);
+}
+
+function changePage(direction) {
+  const currentPage = parseInt(document.getElementById('current-page').textContent);
+  const newPage = currentPage + direction;
+  showPage(newPage);
+  
+  // Scroll to top of lessons section
+  document.querySelector('.lessons-section').scrollIntoView({ 
+    behavior: 'smooth',
+    block: 'start'
+  });
+}
+
+// Restore page from session storage on page load
+document.addEventListener('DOMContentLoaded', function() {
+  const savedPage = sessionStorage.getItem('currentLessonPage');
+  if (savedPage) {
+    showPage(parseInt(savedPage));
+  }
+});
+
+// Update pagination when filters change
+function updatePaginationForVisibleCards() {
+  const visibleCards = Array.from(document.querySelectorAll('article.card')).filter(card => 
+    card.style.display !== 'none'
+  );
+  
+  const cardsPerPage = 15;
+  const totalPages = Math.ceil(visibleCards.length / cardsPerPage);
+  
+  // Update total pages display
+  document.getElementById('total-pages').textContent = totalPages;
+  
+  // If current page is beyond total pages, go to last page
+  const currentPage = parseInt(document.getElementById('current-page').textContent);
+  if (currentPage > totalPages && totalPages > 0) {
+    showPage(totalPages);
+  } else if (totalPages === 0) {
+    showPage(1);
+  }
+}
+
+// Toggle between paginated and show all views
+let paginationEnabled = true;
+
+function togglePagination() {
+  const cards = document.querySelectorAll('article.card');
+  const toggleText = document.getElementById('pagination-toggle-text');
+  const paginationControls = document.querySelector('.pagination');
+  
+  if (paginationEnabled) {
+    // Show all cards
+    cards.forEach(card => {
+      if (card.style.display !== 'none') {
+        card.style.display = '';
+      }
+    });
+    paginationControls.style.display = 'none';
+    toggleText.textContent = 'Show Pages';
+    paginationEnabled = false;
+  } else {
+    // Enable pagination
+    paginationControls.style.display = 'flex';
+    toggleText.textContent = 'Show All';
+    paginationEnabled = true;
+    showPage(1);
+  }
+}
 </script>
 </body>
 </html>

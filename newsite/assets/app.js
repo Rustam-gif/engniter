@@ -144,6 +144,16 @@
       const freeOk = (!onlyFree || card.dataset.free === 'true');
       card.style.display = (topicOk && levelOk && freeOk) ? '' : 'none';
     });
+    
+    // Reset pagination to page 1 after filtering
+    setTimeout(() => {
+      if (typeof showPage === 'function') {
+        showPage(1);
+      }
+      if (typeof updatePaginationForVisibleCards === 'function') {
+        updatePaginationForVisibleCards();
+      }
+    }, 100);
   }
 
   topicSelect && topicSelect.addEventListener('change', render);
