@@ -692,19 +692,45 @@
 // Global variable to store the original visible count for pagination
 let globalOriginalVisibleCount = 0;
 
+// Global variable to track current filters
+window.currentFilters = [];
+
 function showPage(pageNumber) {
   // Get all lesson cards (excluding news promo)
   const allCards = document.querySelectorAll('article.card:not(.news-promo)');
   const totalAvailableCards = allCards.length;
   
-  // Get currently visible cards (after filters are applied)
-  const visibleCards = Array.from(allCards).filter(card => 
-    card.style.display !== 'none'
-  );
+  // Get currently visible cards (after filters are applied) - create a STABLE array
+  // This array should contain ALL cards that should be visible, not just currently displayed ones
+  const allVisibleCards = Array.from(allCards).filter(card => {
+    // Check if the card should be visible based on filters (not display state)
+    const topic = card.getAttribute('data-topic');
+    const level = card.getAttribute('data-level');
+    const isFree = card.getAttribute('data-free') === 'true';
+    
+    // If no filters are active, all cards are visible
+    if (!window.currentFilters || window.currentFilters.length === 0) {
+      return true;
+    }
+    
+    // Check if card matches current filters
+    return window.currentFilters.every(filter => {
+      if (filter.type === 'topic' && filter.value !== 'all') {
+        return topic === filter.value;
+      }
+      if (filter.type === 'level' && filter.value !== 'ALL') {
+        return level === filter.value;
+      }
+      if (filter.type === 'free') {
+        return isFree === filter.value;
+      }
+      return true;
+    });
+  });
   
   // IMPORTANT: Use the global count if available, otherwise set it
   if (globalOriginalVisibleCount === 0) {
-    globalOriginalVisibleCount = visibleCards.length;
+    globalOriginalVisibleCount = allVisibleCards.length;
   }
   
   const cardsPerPage = 15;
@@ -716,7 +742,7 @@ function showPage(pageNumber) {
     totalPages: totalPages,
     requestedPage: pageNumber,
     hasActiveFilters: globalOriginalVisibleCount !== totalAvailableCards,
-    visibleCardsLength: visibleCards.length
+    allVisibleCardsLength: allVisibleCards.length
   });
   
   // Validate page number
@@ -725,7 +751,7 @@ function showPage(pageNumber) {
   
   // If only one page or no pages, show all visible cards and disable pagination
   if (totalPages <= 1) {
-    visibleCards.forEach(card => card.style.display = '');
+    allVisibleCards.forEach(card => card.style.display = '');
     document.getElementById('current-page').textContent = '1';
     document.getElementById('total-pages').textContent = '1';
     
@@ -742,22 +768,22 @@ function showPage(pageNumber) {
   const endIndex = Math.min(startIndex + cardsPerPage, globalOriginalVisibleCount);
   
   console.log(`Showing page ${pageNumber}: cards ${startIndex + 1} to ${endIndex} of ${globalOriginalVisibleCount}`);
-  console.log(`visibleCards array has ${visibleCards.length} cards`);
+  console.log(`allVisibleCards array has ${allVisibleCards.length} cards`);
   
-  // IMPORTANT: First, make sure ALL visible cards are hidden
-  visibleCards.forEach(card => {
+  // IMPORTANT: First, make sure ALL cards are hidden
+  allVisibleCards.forEach(card => {
     card.style.display = 'none';
   });
   
   // Then show only the cards for the current page
   let cardsShown = 0;
   for (let i = startIndex; i < endIndex; i++) {
-    if (visibleCards[i]) {
-      visibleCards[i].style.display = '';
+    if (allVisibleCards[i]) {
+      allVisibleCards[i].style.display = '';
       cardsShown++;
-      console.log(`Showing card ${i + 1}:`, visibleCards[i].querySelector('.h3')?.textContent);
+      console.log(`Showing card ${i + 1}:`, allVisibleCards[i].querySelector('.h3')?.textContent);
     } else {
-      console.log(`Card ${i + 1} not found in visibleCards array`);
+      console.log(`Card ${i + 1} not found in allVisibleCards array`);
     }
   }
   
@@ -814,13 +840,35 @@ function updatePaginationForVisibleCards() {
   const allCards = document.querySelectorAll('article.card:not(.news-promo)');
   const totalAvailableCards = allCards.length;
   
-  // Get currently visible cards (after filters are applied)
-  const visibleCards = Array.from(allCards).filter(card => 
-    card.style.display !== 'none'
-  );
+  // Get currently visible cards (after filters are applied) - create a STABLE array
+  const allVisibleCards = Array.from(allCards).filter(card => {
+    // Check if the card should be visible based on filters (not display state)
+    const topic = card.getAttribute('data-topic');
+    const level = card.getAttribute('data-level');
+    const isFree = card.getAttribute('data-free') === 'true';
+    
+    // If no filters are active, all cards are visible
+    if (!window.currentFilters || window.currentFilters.length === 0) {
+      return true;
+    }
+    
+    // Check if card matches current filters
+    return window.currentFilters.every(filter => {
+      if (filter.type === 'topic' && filter.value !== 'all') {
+        return topic === filter.value;
+      }
+      if (filter.type === 'level' && filter.value !== 'ALL') {
+        return level === filter.value;
+      }
+      if (filter.type === 'free') {
+        return isFree === filter.value;
+      }
+      return true;
+    });
+  });
   
   // IMPORTANT: Reset the global count when filters change
-  globalOriginalVisibleCount = visibleCards.length;
+  globalOriginalVisibleCount = allVisibleCards.length;
   
   const cardsPerPage = 15;
   const totalPages = Math.ceil(globalOriginalVisibleCount / cardsPerPage);
@@ -829,7 +877,8 @@ function updatePaginationForVisibleCards() {
     totalAvailableCards: totalAvailableCards,
     globalOriginalVisibleCount: globalOriginalVisibleCount,
     totalPages: totalPages,
-    hasActiveFilters: globalOriginalVisibleCount !== totalAvailableCards
+    hasActiveFilters: globalOriginalVisibleCount !== totalAvailableCards,
+    allVisibleCardsLength: allVisibleCards.length
   });
   
   // Update total pages display

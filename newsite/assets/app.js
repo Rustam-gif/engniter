@@ -167,6 +167,24 @@
     console.log('Selected levels:', Array.from(selectedLevels));
     console.log('Free only:', onlyFree);
     
+    // Update global filter tracking for pagination system
+    window.currentFilters = [];
+    if (activeTopic !== 'all') {
+      window.currentFilters.push({ type: 'topic', value: activeTopic });
+    }
+    if (!selectedLevels.has('ALL')) {
+      selectedLevels.forEach(level => {
+        if (level !== 'ALL') {
+          window.currentFilters.push({ type: 'level', value: level });
+        }
+      });
+    }
+    if (onlyFree) {
+      window.currentFilters.push({ type: 'free', value: true });
+    }
+    
+    console.log('Current filters for pagination:', window.currentFilters);
+    
     // Update pagination after filtering
     setTimeout(() => {
       console.log('=== RENDER: UPDATING PAGINATION ===');
