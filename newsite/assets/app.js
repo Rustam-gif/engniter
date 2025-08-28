@@ -147,11 +147,33 @@
     
     // Reset pagination to page 1 after filtering
     setTimeout(() => {
-      if (typeof showPage === 'function') {
-        showPage(1);
+      // Check if pagination functions exist and call them
+      if (typeof window.showPage === 'function') {
+        window.showPage(1);
       }
-      if (typeof updatePaginationForVisibleCards === 'function') {
-        updatePaginationForVisibleCards();
+      if (typeof window.updatePaginationForVisibleCards === 'function') {
+        window.updatePaginationForVisibleCards();
+      }
+      
+      // Also try to update pagination display directly
+      const totalPagesElement = document.getElementById('total-pages');
+      const currentPageElement = document.getElementById('current-page');
+      if (totalPagesElement && currentPageElement) {
+        const visibleCards = Array.from(document.querySelectorAll('article.card')).filter(card => 
+          card.style.display !== 'none'
+        );
+        const cardsPerPage = 15;
+        const totalPages = Math.ceil(visibleCards.length / cardsPerPage);
+        
+        totalPagesElement.textContent = totalPages;
+        currentPageElement.textContent = '1';
+        
+        // Update button states
+        const prevBtn = document.querySelector('.prev-btn');
+        const nextBtn = document.querySelector('.next-btn');
+        
+        if (prevBtn) prevBtn.disabled = true; // Always disabled on page 1
+        if (nextBtn) nextBtn.disabled = totalPages <= 1;
       }
     }, 100);
   }

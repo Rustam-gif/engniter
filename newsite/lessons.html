@@ -983,16 +983,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Pagination functionality
 function initializePagination() {
+  console.log('initializePagination called');
   updatePaginationForVisibleCards();
   showPage(1);
 }
 
 function showPage(pageNumber) {
+  console.log('showPage called with:', pageNumber);
   const visibleCards = Array.from(document.querySelectorAll('article.card')).filter(card => 
     card.style.display !== 'none'
   );
   const cardsPerPage = 15;
   const totalPages = Math.ceil(visibleCards.length / cardsPerPage);
+  
+  console.log('Visible cards:', visibleCards.length, 'Total pages:', totalPages);
   
   // Validate page number
   if (pageNumber < 1) pageNumber = 1;
@@ -1031,27 +1035,10 @@ function showPage(pageNumber) {
   if (prevBtn) prevBtn.disabled = pageNumber === 1;
   if (nextBtn) nextBtn.disabled = pageNumber === totalPages;
   
+  console.log('Page updated. Prev disabled:', pageNumber === 1, 'Next disabled:', pageNumber === totalPages);
+  
   // Store current page in session storage
   sessionStorage.setItem('currentLessonPage', pageNumber);
-}
-
-function changePage(direction) {
-  const currentPage = parseInt(document.getElementById('current-page').textContent);
-  const totalPages = parseInt(document.getElementById('total-pages').textContent);
-  const newPage = currentPage + direction;
-  
-  if (newPage >= 1 && newPage <= totalPages) {
-    showPage(newPage);
-    
-    // Scroll to top of lessons section
-    const lessonsSection = document.querySelector('.lessons-section');
-    if (lessonsSection) {
-      lessonsSection.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start'
-      });
-    }
-  }
 }
 
 // Update pagination when filters change
@@ -1076,6 +1063,39 @@ function updatePaginationForVisibleCards() {
     showPage(1);
   }
 }
+
+// Make functions globally available
+window.showPage = showPage;
+window.updatePaginationForVisibleCards = updatePaginationForVisibleCards;
+window.initializePagination = initializePagination;
+
+function changePage(direction) {
+  console.log('changePage called with direction:', direction);
+  
+  const currentPage = parseInt(document.getElementById('current-page').textContent);
+  const totalPages = parseInt(document.getElementById('total-pages').textContent);
+  const newPage = currentPage + direction;
+  
+  console.log('Current page:', currentPage, 'Total pages:', totalPages, 'New page:', newPage);
+  
+  if (newPage >= 1 && newPage <= totalPages) {
+    console.log('Changing to page:', newPage);
+    showPage(newPage);
+    
+    // Scroll to top of lessons section
+    const lessonsSection = document.querySelector('.lessons-section');
+    if (lessonsSection) {
+      lessonsSection.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  } else {
+    console.log('Invalid page number:', newPage);
+  }
+}
+
+window.changePage = changePage;
 
 // Toggle between paginated and show all views
 let paginationEnabled = true;
@@ -1108,12 +1128,19 @@ function togglePagination() {
 document.addEventListener('DOMContentLoaded', function() {
   // Wait a bit for all content to load
   setTimeout(() => {
+    console.log('Initializing pagination...');
     const savedPage = sessionStorage.getItem('currentLessonPage');
     if (savedPage) {
       showPage(parseInt(savedPage));
     } else {
       initializePagination();
     }
+    
+    // Ensure pagination is properly set up after filters
+    setTimeout(() => {
+      updatePaginationForVisibleCards();
+      console.log('Pagination updated after filters');
+    }, 200);
   }, 100);
 });
 </script>
