@@ -1,4 +1,4 @@
-const fs = require('fs').promises;
+const fs = require('fs');
 const path = require('path');
 
 // Allowlist of files that are free for everyone (store lowercase for comparison)
@@ -40,25 +40,52 @@ exports.handler = async (event, context) => {
     }
 
     const filePath = path.resolve(__dirname, '../../private-files', requested);
-    let data;
-    try {
-      data = await fs.readFile(filePath);
-    } catch (e) {
+    
+    // Check if file exists
+    if (!fs.existsSync(filePath)) {
       return { statusCode: 404, body: 'File not found' };
     }
 
-    return {
-      statusCode: 200,
-      headers: {
-        'Content-Type': 'application/pdf',
-        'Content-Disposition': `attachment; filename="${requested}"`,
-        'Cache-Control': 'no-store',
-        'Access-Control-Allow-Origin': '*'
-      },
-      isBase64Encoded: true,
-      body: Buffer.from(data).toString('base64')
-    };
+    // Get file stats for content length
+    const stats = fs.statSync(filePath);
+    const fileSize = stats.size;
+
+    // For large files (>10MB), use streaming approach
+    if (fileSize > 10 * 1024 * 1024) {
+      // Create read stream for large files
+      const stream = fs.createReadStream(filePath);
+      
+      return {
+        statusCode: 200,
+        headers: {
+          'Content-Type': 'application/pdf',
+          'Content-Disposition': `attachment; filename="${requested}"`,
+          'Content-Length': fileSize.toString(),
+          'Cache-Control': 'no-store',
+          'Access-Control-Allow-Origin': '*'
+        },
+        body: stream,
+        isBase64Encoded: false
+      };
+    } else {
+      // For smaller files, use the original approach
+      const data = fs.readFileSync(filePath);
+      
+      return {
+        statusCode: 200,
+        headers: {
+          'Content-Type': 'application/pdf',
+          'Content-Disposition': `attachment; filename="${requested}"`,
+          'Content-Length': fileSize.toString(),
+          'Cache-Control': 'no-store',
+          'Access-Control-Allow-Origin': '*'
+        },
+        isBase64Encoded: true,
+        body: data.toString('base64')
+      };
+    }
   } catch (err) {
+    console.error('Download error:', err);
     return { statusCode: 500, headers: { 'Access-Control-Allow-Origin': '*' }, body: 'Server error' };
   }
 };
