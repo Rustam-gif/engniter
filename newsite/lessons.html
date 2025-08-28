@@ -701,15 +701,17 @@ function showPage(pageNumber) {
   
   const cardsPerPage = 15;
   
-  // Calculate total pages based on visible cards (filtered results)
-  const totalPages = Math.ceil(visibleCards.length / cardsPerPage);
+  // IMPORTANT: Calculate total pages from the ORIGINAL visible cards count
+  // before any pagination hiding occurs
+  const originalVisibleCount = visibleCards.length;
+  const totalPages = Math.ceil(originalVisibleCount / cardsPerPage);
   
   console.log('Pagination debug:', {
     totalAvailableCards: totalAvailableCards,
-    visibleCards: visibleCards.length,
+    originalVisibleCount: originalVisibleCount,
     totalPages: totalPages,
     requestedPage: pageNumber,
-    hasActiveFilters: visibleCards.length !== totalAvailableCards
+    hasActiveFilters: originalVisibleCount !== totalAvailableCards
   });
   
   // Validate page number
@@ -732,9 +734,9 @@ function showPage(pageNumber) {
   
   // Calculate which cards to show for this page
   const startIndex = (pageNumber - 1) * cardsPerPage;
-  const endIndex = Math.min(startIndex + cardsPerPage, visibleCards.length);
+  const endIndex = Math.min(startIndex + cardsPerPage, originalVisibleCount);
   
-  console.log(`Showing page ${pageNumber}: cards ${startIndex + 1} to ${endIndex} of ${visibleCards.length}`);
+  console.log(`Showing page ${pageNumber}: cards ${startIndex + 1} to ${endIndex} of ${originalVisibleCount}`);
   
   // Hide ALL visible cards first
   visibleCards.forEach(card => {
@@ -795,14 +797,16 @@ function updatePaginationForVisibleCards() {
   
   const cardsPerPage = 15;
   
-  // Calculate total pages based on visible cards (filtered results)
-  const totalPages = Math.ceil(visibleCards.length / cardsPerPage);
+  // IMPORTANT: Calculate total pages from the ORIGINAL visible cards count
+  // before any pagination hiding occurs
+  const originalVisibleCount = visibleCards.length;
+  const totalPages = Math.ceil(originalVisibleCount / cardsPerPage);
   
   console.log('Filter update pagination:', {
     totalAvailableCards: totalAvailableCards,
-    visibleCards: visibleCards.length,
+    originalVisibleCount: originalVisibleCount,
     totalPages: totalPages,
-    hasActiveFilters: visibleCards.length !== totalAvailableCards
+    hasActiveFilters: originalVisibleCount !== totalAvailableCards
   });
   
   // Update total pages display
