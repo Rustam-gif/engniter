@@ -5,4 +5,9 @@
 [functions]
   included_files = ["private-files/**"]
 
+[[redirects]]
+  from = "/api/secure-download"
+  to = "/.netlify/functions/secure-download"
+  status = 200
+
 
