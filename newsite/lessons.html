@@ -694,14 +694,13 @@ function showPage(pageNumber) {
   const allCards = document.querySelectorAll('article.card:not(.news-promo)');
   const totalAvailableCards = allCards.length;
   
-  // Get currently visible cards (after filters are applied) - create a COPY
+  // Get currently visible cards (after filters are applied)
   const visibleCards = Array.from(allCards).filter(card => 
     card.style.display !== 'none'
   );
   
-  // IMPORTANT: Create a separate array for pagination that won't be modified
-  const paginationCards = [...visibleCards];
-  const originalVisibleCount = paginationCards.length;
+  // IMPORTANT: Store the count BEFORE any modifications
+  const originalVisibleCount = visibleCards.length;
   
   const cardsPerPage = 15;
   const totalPages = Math.ceil(originalVisibleCount / cardsPerPage);
@@ -743,10 +742,10 @@ function showPage(pageNumber) {
     card.style.display = 'none';
   });
   
-  // Show only the cards for the current page from the pagination cards array
+  // Show only the cards for the current page from the visible cards array
   for (let i = startIndex; i < endIndex; i++) {
-    if (paginationCards[i]) {
-      paginationCards[i].style.display = '';
+    if (visibleCards[i]) {
+      visibleCards[i].style.display = '';
     }
   }
   
@@ -790,14 +789,13 @@ function updatePaginationForVisibleCards() {
   const allCards = document.querySelectorAll('article.card:not(.news-promo)');
   const totalAvailableCards = allCards.length;
   
-  // Get currently visible cards (after filters are applied) - create a COPY
+  // Get currently visible cards (after filters are applied)
   const visibleCards = Array.from(allCards).filter(card => 
     card.style.display !== 'none'
   );
   
-  // IMPORTANT: Create a separate array for pagination that won't be modified
-  const paginationCards = [...visibleCards];
-  const originalVisibleCount = paginationCards.length;
+  // IMPORTANT: Store the count BEFORE any modifications
+  const originalVisibleCount = visibleCards.length;
   
   const cardsPerPage = 15;
   const totalPages = Math.ceil(originalVisibleCount / cardsPerPage);
