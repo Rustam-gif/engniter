@@ -629,12 +629,20 @@ function initializePagination() {
 }
 
 function showPage(pageNumber) {
-  const allCards = document.querySelectorAll('article.card');
+  // Only count actual lesson cards, exclude news promo and other non-lesson cards
+  const allCards = document.querySelectorAll('article.card:not(.news-promo)');
   const visibleCards = Array.from(allCards).filter(card => 
     card.style.display !== 'none'
   );
   const cardsPerPage = 15;
   const totalPages = Math.ceil(visibleCards.length / cardsPerPage);
+  
+  console.log('Pagination debug:', {
+    totalCards: allCards.length,
+    visibleCards: visibleCards.length,
+    totalPages: totalPages,
+    requestedPage: pageNumber
+  });
   
   // Validate page number
   if (pageNumber < 1) pageNumber = 1;
@@ -657,6 +665,8 @@ function showPage(pageNumber) {
   // Calculate which cards to show for this page
   const startIndex = (pageNumber - 1) * cardsPerPage;
   const endIndex = Math.min(startIndex + cardsPerPage, visibleCards.length);
+  
+  console.log(`Showing page ${pageNumber}: cards ${startIndex + 1} to ${endIndex} of ${visibleCards.length}`);
   
   // Hide ALL visible cards first
   visibleCards.forEach(card => {
@@ -706,13 +716,20 @@ function changePage(direction) {
 
 // Update pagination when filters change
 function updatePaginationForVisibleCards() {
-  const allCards = document.querySelectorAll('article.card');
+  // Only count actual lesson cards, exclude news promo and other non-lesson cards
+  const allCards = document.querySelectorAll('article.card:not(.news-promo)');
   const visibleCards = Array.from(allCards).filter(card => 
     card.style.display !== 'none'
   );
   
   const cardsPerPage = 15;
   const totalPages = Math.ceil(visibleCards.length / cardsPerPage);
+  
+  console.log('Filter update pagination:', {
+    totalCards: allCards.length,
+    visibleCards: visibleCards.length,
+    totalPages: totalPages
+  });
   
   // Update total pages display
   document.getElementById('total-pages').textContent = totalPages;
@@ -739,7 +756,8 @@ function updatePaginationForVisibleCards() {
 let paginationEnabled = true;
 
 function togglePagination() {
-  const cards = document.querySelectorAll('article.card');
+  // Only toggle actual lesson cards, exclude news promo and other non-lesson cards
+  const cards = document.querySelectorAll('article.card:not(.news-promo)');
   const toggleText = document.getElementById('pagination-toggle-text');
   const paginationControls = document.querySelector('.pagination');
   
