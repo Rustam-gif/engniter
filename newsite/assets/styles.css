@@ -897,7 +897,7 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
 }
 
 /* Topic chips and toggle */
-.chipbar{display:grid;grid-template-columns:repeat(4,minmax(140px,1fr));gap:10px;position:relative;z-index:1}
+.chipbar{display:grid;grid-template-columns:repeat(4,minmax(140px,1fr));gap:8px;position:relative;z-index:1}
 .chipbtn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;border:1px solid var(--line);background:var(--card);cursor:pointer;font-weight:700;color:var(--muted);justify-content:center;user-select:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;position:relative;z-index:999;pointer-events:auto !important}
 .chipbtn.active{background:#0f874b;color:#fff;border-color:#0f874b}
 .chipbtn svg{width:18px;height:18px;opacity:.95;stroke:currentColor;fill:none;stroke-width:2}
@@ -3367,3 +3367,9 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
     margin-bottom: 24px;
   }
 }
+
+.level-chips{overflow-x:auto;flex-wrap:nowrap;-webkit-overflow-scrolling:touch;padding-bottom:4px;gap:4px}
+
+.chipbar{display:flex;flex-wrap:nowrap;overflow-x:auto;gap:8px;-webkit-overflow-scrolling:touch;padding-bottom:4px}
+
+.toggle{display:inline-flex;align-items:center;gap:8px}
