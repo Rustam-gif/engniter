@@ -1,4 +1,4 @@
-const fs = require('fs');
+const fs = require('fs').promises;
 const path = require('path');
 
 // Allowlist of files that are free for everyone (store lowercase for comparison)
@@ -40,29 +40,25 @@ exports.handler = async (event, context) => {
     }
 
     const filePath = path.resolve(__dirname, '../../private-files', requested);
-    
-    // Check if file exists
-    if (!fs.existsSync(filePath)) {
+    let data;
+    try {
+      data = await fs.readFile(filePath);
+    } catch (e) {
       return { statusCode: 404, body: 'File not found' };
     }
 
-    // Read file as buffer (more reliable than streaming for Netlify)
-    const data = fs.readFileSync(filePath);
-    
     return {
       statusCode: 200,
       headers: {
         'Content-Type': 'application/pdf',
         'Content-Disposition': `attachment; filename="${requested}"`,
-        'Content-Length': data.length.toString(),
         'Cache-Control': 'no-store',
         'Access-Control-Allow-Origin': '*'
       },
       isBase64Encoded: true,
-      body: data.toString('base64')
+      body: Buffer.from(data).toString('base64')
     };
   } catch (err) {
-    console.error('Download error:', err);
     return { statusCode: 500, headers: { 'Access-Control-Allow-Origin': '*' }, body: 'Server error' };
   }
 };

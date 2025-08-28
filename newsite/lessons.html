@@ -55,6 +55,15 @@
 </header>
 
 <main id="content" class="container">
+  <section class="hero">
+    <div>
+      <span class="badge">ESL Lesson Library</span>
+      <h1>Ready-to-Use ESL Lesson Plans & Worksheets</h1>
+      <p>Download high-quality PDFs with readings, activities, and discussion tasks. Perfect for online and classroom teaching.</p>
+    </div>
+    <div class="art"><img src="assets/logo.png" alt="Engniter mascot"></div>
+  </section>
+
   <section class="grid gap-24">
     <article class="card filters-card" style="grid-column: 1 / -1">
       <div class="filters-bar">
@@ -107,6 +116,14 @@
   </section>
 
   <section class="grid gap-24" id="pdf-library">
+    <article class="card" style="grid-column: 1 / -1">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+        <h2 class="h3" style="margin-top:0">Ready-to-Use ESL Lesson Packs</h2>
+        <span class="pdf-tag" aria-label="All files are PDFs"></span>
+      </div>
+      <p class="muted">Download complete lesson plans with worksheets, readings, and activities. Perfect for tomorrow's class!</p>
+    </article>
+
     <!-- News Lessons Promotion -->
     <article class="card news-promo" style="grid-column: 1 / -1; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
       <div style="display: flex; align-items: center; gap: 2rem;">
@@ -119,7 +136,7 @@
       </div>
     </article>
 
-    <article class="card" data-topic="business" data-level="B2">
+    <article class="card">
       <img src="pdf_pictures/accidental-discoveries-that-changed-the-world.png" alt="Accidental Discoveries That Changed the World thumbnail">
       <h3 class="h3">Accidental Discoveries That Changed the World</h3>
       <div class="meta-row">
@@ -134,7 +151,7 @@
       </div>
     </article>
 
-    <article class="card" data-topic="law" data-level="B2">
+    <article class="card">
       <img src="pdf_pictures/bizarre-laws-around-the-world.png" alt="Bizarre Laws Around the World thumbnail">
       <h3 class="h3">Bizarre Laws Around the World</h3>
       <div class="meta-row">
@@ -149,7 +166,7 @@
       </div>
     </article>
 
-    <article class="card" data-topic="health" data-level="C1">
+    <article class="card">
       <img src="pdf_pictures/caffeine-crash.png" alt="Caffeine Crash thumbnail">
       <h3 class="h3">Caffeine Crash</h3>
       <div class="meta-row">
@@ -164,7 +181,7 @@
       </div>
     </article>
 
-    <article class="card" data-topic="culture" data-level="B2">
+    <article class="card">
       <img src="pdf_pictures/conspiracy-theories-people-actually-believed.png" alt="Conspiracy Theories People Actually Believed thumbnail">
       <h3 class="h3">Conspiracy Theories People Actually Believed</h3>
       <div class="meta-row">
@@ -229,10 +246,10 @@
       <h3 class="h3">Future Jobs That Don't Exist Yet</h3>
       <div class="meta-row">
         <span class="pill level">Level: B2</span>
-        <span class="pill topic">Technology</span>
+        <span class="pill topic">Business</span>
         <span class="pill grammar">Grammar: Future forms</span>
       </div>
-      <p class="desc">Speculating about future careers with future tense practice.</p>
+      <p class="desc">Speculative reading on emerging careers with future grammar practice.</p>
       <div class="actions two">
         <button class="btn premium" data-premium-file="future-jobs-that-dont-exist-yet.pdf">Download PDF</button>
         <button class="btn quiz-btn" onclick="startQuizFromLesson('future-jobs-that-dont-exist-yet')">Start Quiz</button>
@@ -243,14 +260,29 @@
       <img src="pdf_pictures/health-and-fitness.png" alt="Health and Fitness thumbnail">
       <h3 class="h3">Health and Fitness</h3>
       <div class="meta-row">
-        <span class="pill level">Level: A2</span>
+        <span class="pill level">Level: B1</span>
         <span class="pill topic">Health</span>
-        <span class="pill grammar">Grammar: Present Simple</span>
+        <span class="pill grammar">Grammar: Modals of advice</span>
       </div>
-      <p class="desc">Vocabulary and reading about healthy living with present simple practice.</p>
+      <p class="desc">Practical tips on exercise and habits with language for giving advice.</p>
       <div class="actions two">
         <button class="btn premium" data-premium-file="health-and-fitness.pdf">Download PDF</button>
         <button class="btn quiz-btn" onclick="startQuizFromLesson('health-and-fitness')">Start Quiz</button>
+      </div>
+    </article>
+
+    <article class="card">
+      <img src="pdf_pictures/health-and-fitness.png" alt="At the Doctors thumbnail">
+      <h3 class="h3">At the Doctors</h3>
+      <div class="meta-row">
+        <span class="pill level">Level: A2-B1</span>
+        <span class="pill topic">Health</span>
+        <span class="pill grammar">Grammar: Present Simple & Medical vocabulary</span>
+      </div>
+      <p class="desc">Essential medical vocabulary and phrases for doctor visits. Practice describing symptoms and understanding medical advice.</p>
+      <div class="actions two">
+        <button class="btn premium" data-premium-file="at-the-doctors.pdf">Download PDF</button>
+        <button class="btn quiz-btn" onclick="startQuizFromLesson('at-the-doctors')">Start Quiz</button>
       </div>
     </article>
 
@@ -260,9 +292,9 @@
       <div class="meta-row">
         <span class="pill level">Level: C1</span>
         <span class="pill topic">History</span>
-        <span class="pill grammar">Grammar: Complex sentences</span>
+        <span class="pill grammar">Grammar: Speculation modals</span>
       </div>
-      <p class="desc">Advanced reading on ancient civilizations with complex sentence structures.</p>
+      <p class="desc">Investigate ancient mysteries and practice speculation and deduction language.</p>
       <div class="actions two">
         <button class="btn premium" data-premium-file="lost-civilizations-forgotten-technologies.pdf">Download PDF</button>
         <button class="btn quiz-btn" onclick="startQuizFromLesson('lost-civilizations-forgotten-technologies')">Start Quiz</button>
@@ -273,7 +305,7 @@
       <img src="pdf_pictures/objects-that-tell-a-story.png" alt="Objects That Tell a Story thumbnail">
       <h3 class="h3">Objects That Tell a Story</h3>
       <div class="meta-row">
-        <span class="pill level">Level: A2</span>
+        <span class="pill level">Level: B1</span>
         <span class="pill topic">Culture</span>
         <span class="pill grammar">Grammar: Descriptive language</span>
       </div>
@@ -281,6 +313,36 @@
       <div class="actions two">
         <button class="btn premium" data-premium-file="objects-that-tell-a-story.pdf">Download PDF</button>
         <button class="btn quiz-btn" onclick="startQuizFromLesson('objects-that-tell-a-story')">Start Quiz</button>
+      </div>
+    </article>
+
+    <article class="card">
+      <img src="pdf_pictures/technology.png" alt="Technology thumbnail">
+      <h3 class="h3">Technology</h3>
+      <div class="meta-row">
+        <span class="pill level">Level: B2</span>
+        <span class="pill topic">Technology</span>
+        <span class="pill grammar">Grammar: Relative clauses</span>
+      </div>
+      <p class="desc">Modern tech trends with vocabulary and reading; practice defining clauses.</p>
+      <div class="actions two">
+        <button class="btn premium" data-premium-file="technology.pdf">Download PDF</button>
+        <button class="btn quiz-btn" onclick="startQuizFromLesson('technology')">Start Quiz</button>
+      </div>
+    </article>
+
+    <article class="card">
+      <img src="pdf_pictures/the-psychology-of-fear.png" alt="The Psychology of Fear thumbnail">
+      <h3 class="h3">The Psychology of Fear</h3>
+      <div class="meta-row">
+        <span class="pill level">Level: C1</span>
+        <span class="pill topic">Psychology</span>
+        <span class="pill grammar">Grammar: Abstract nouns</span>
+      </div>
+      <p class="desc">Explore why we feel fear; reading with vocabulary and speaking activities.</p>
+      <div class="actions two">
+        <button class="btn premium" data-premium-file="the-psychology-of-fear.pdf">Download PDF</button>
+        <button class="btn quiz-btn" onclick="startQuizFromLesson('the-psychology-of-fear')">Start Quiz</button>
       </div>
     </article>
 
@@ -305,9 +367,9 @@
       <div class="meta-row">
         <span class="pill level">Level: B1</span>
         <span class="pill topic">Science</span>
-        <span class="pill grammar">Grammar: Can/can't</span>
+        <span class="pill grammar">Grammar: Can / can't</span>
       </div>
-      <p class="desc">Explore human limitations with can/can't grammar practice.</p>
+      <p class="desc">Fun science of human limits with modal verbs and vocabulary tasks.</p>
       <div class="actions two">
         <button class="btn premium" data-premium-file="things-humans-can-not-do.pdf">Download PDF</button>
         <button class="btn quiz-btn" onclick="startQuizFromLesson('things-humans-can-not-do')">Start Quiz</button>
@@ -333,11 +395,11 @@
       <img src="pdf_pictures/urban-legends-in-different-countries.png" alt="Urban Legends in Different Countries thumbnail">
       <h3 class="h3">Urban Legends in Different Countries</h3>
       <div class="meta-row">
-        <span class="pill level">Level: B1</span>
-        <span class="pill topic">Culture</span>
-        <span class="pill grammar">Grammar: Present Perfect</span>
+        <span class="pill level">Level: B2</span>
+        <span class="pill topic">Legends</span>
+        <span class="pill grammar">Grammar: Narrative tenses</span>
       </div>
-      <p class="desc">Spooky stories from around the world with present perfect practice.</p>
+      <p class="desc">Folklore from around the world with storytelling tasks and vocabulary.</p>
       <div class="actions two">
         <button class="btn premium" data-premium-file="urban-legends-in-different-countries.pdf">Download PDF</button>
         <button class="btn quiz-btn" onclick="startQuizFromLesson('urban-legends-in-different-countries')">Start Quiz</button>
@@ -350,9 +412,9 @@
       <div class="meta-row">
         <span class="pill level">Level: C1</span>
         <span class="pill topic">History</span>
-        <span class="pill grammar">Grammar: Third conditional</span>
+        <span class="pill grammar">Grammar: Conditionals</span>
       </div>
-      <p class="desc">Speculative history with third conditional grammar practice.</p>
+      <p class="desc">Speculate on alternate timelines using conditional structures.</p>
       <div class="actions two">
         <button class="btn premium" data-premium-file="what-if-alternate-history.pdf">Download PDF</button>
         <button class="btn quiz-btn" onclick="startQuizFromLesson('what-if-alternate-history')">Start Quiz</button>
@@ -363,11 +425,11 @@
       <img src="pdf_pictures/when-animals-outsmart-humans.png" alt="When Animals Outsmart Humans thumbnail">
       <h3 class="h3">When Animals Outsmart Humans</h3>
       <div class="meta-row">
-        <span class="pill level">Level: B1</span>
+        <span class="pill level">Level: B2</span>
         <span class="pill topic">Nature</span>
-        <span class="pill grammar">Grammar: Comparative forms</span>
+        <span class="pill grammar">Grammar: Comparatives</span>
       </div>
-      <p class="desc">Amazing animal intelligence stories with comparative grammar practice.</p>
+      <p class="desc">Surprising animal intelligence stories; vocabulary and comparative forms.</p>
       <div class="actions two">
         <button class="btn premium" data-premium-file="when-animals-outsmart-humans.pdf">Download PDF</button>
         <button class="btn quiz-btn" onclick="startQuizFromLesson('when-animals-outsmart-humans')">Start Quiz</button>
@@ -382,22 +444,21 @@
         <span class="pill topic">Nature</span>
         <span class="pill grammar">Grammar: Passive voice</span>
       </div>
-      <p class="desc">Nature's odd exceptions with reading tasks and passive practice.</p>
+      <p class="desc">Nature’s odd exceptions with reading tasks and passive practice.</p>
       <div class="actions two">
         <button class="btn premium" data-premium-file="when-nature-breaks-the-rules.pdf">Download PDF</button>
         <button class="btn quiz-btn" onclick="startQuizFromLesson('when-nature-breaks-the-rules')">Start Quiz</button>
       </div>
     </article>
 
-    <!-- Business Lessons -->
+    <!-- New Business/Work PDF lessons -->
     <article class="card">
       <img src="pdf_pictures/Brand.png" alt="Brand thumbnail">
       <h3 class="h3">Brand</h3>
       <div class="meta-row">
-        <span class="pill level">Level: B1-B2</span>
+        <span class="pill level">Level: B1–B2</span>
         <span class="pill topic">Business</span>
       </div>
-      <p class="desc">Understanding brand identity and marketing concepts.</p>
       <div class="actions two">
         <button class="btn premium" data-premium-file="Brand.pdf">Download PDF</button>
         <button class="btn quiz-btn" onclick="startQuizFromLesson('Brand')">Start Quiz</button>
@@ -408,10 +469,9 @@
       <img src="pdf_pictures/Cultural-Misunderstandings-in-Business(B1-B2).png" alt="Cultural Misunderstandings in Business thumbnail">
       <h3 class="h3">Cultural Misunderstandings in Business</h3>
       <div class="meta-row">
-        <span class="pill level">Level: B1-B2</span>
+        <span class="pill level">Level: B1–B2</span>
         <span class="pill topic">Business</span>
       </div>
-      <p class="desc">Cross-cultural communication challenges in business settings.</p>
       <div class="actions two">
         <button class="btn premium" data-premium-file="Cultural-Misunderstandings-in-Business(B1-B2).pdf">Download PDF</button>
         <button class="btn quiz-btn" onclick="startQuizFromLesson('Cultural-Misunderstandings-in-Business(B1-B2)')">Start Quiz</button>
@@ -422,10 +482,9 @@
       <img src="pdf_pictures/Decision-Making-Under-Stress(B1-B2).png" alt="Decision Making Under Stress thumbnail">
       <h3 class="h3">Decision Making Under Stress</h3>
       <div class="meta-row">
-        <span class="pill level">Level: B1-B2</span>
+        <span class="pill level">Level: B1–B2</span>
         <span class="pill topic">Business</span>
       </div>
-      <p class="desc">How to make better decisions in high-pressure situations.</p>
       <div class="actions two">
         <button class="btn premium" data-premium-file="Decision-Making-Under-Stress(B1-B2).pdf">Download PDF</button>
         <button class="btn quiz-btn" onclick="startQuizFromLesson('Decision-Making-Under-Stress(B1-B2)')">Start Quiz</button>
@@ -436,10 +495,9 @@
       <img src="pdf_pictures/Failure-Stories-in-Business(B1-B2).png" alt="Failure Stories in Business thumbnail">
       <h3 class="h3">Failure Stories in Business</h3>
       <div class="meta-row">
-        <span class="pill level">Level: B1-B2</span>
+        <span class="pill level">Level: B1–B2</span>
         <span class="pill topic">Business</span>
       </div>
-      <p class="desc">Learning from business failures and setbacks.</p>
       <div class="actions two">
         <button class="btn premium" data-premium-file="Failure-Stories-in-Business(B1-B2).pdf">Download PDF</button>
         <button class="btn quiz-btn" onclick="startQuizFromLesson('Failure-Stories-in-Business(B1-B2)')">Start Quiz</button>
@@ -450,10 +508,9 @@
       <img src="pdf_pictures/Side-Hustles(B1-B2).png" alt="Side Hustles thumbnail">
       <h3 class="h3">Side Hustles</h3>
       <div class="meta-row">
-        <span class="pill level">Level: B1-B2</span>
+        <span class="pill level">Level: B1–B2</span>
         <span class="pill topic">Business</span>
       </div>
-      <p class="desc">Exploring side business opportunities and entrepreneurship.</p>
       <div class="actions two">
         <button class="btn premium" data-premium-file="Side-Hustles(B1-B2).pdf">Download PDF</button>
         <button class="btn quiz-btn" onclick="startQuizFromLesson('Side-Hustles(B1-B2)')">Start Quiz</button>
@@ -464,10 +521,9 @@
       <img src="pdf_pictures/The-Gig-Economy(B1-B2).png" alt="The Gig Economy thumbnail">
       <h3 class="h3">The Gig Economy</h3>
       <div class="meta-row">
-        <span class="pill level">Level: B1-B2</span>
+        <span class="pill level">Level: B1–B2</span>
         <span class="pill topic">Business</span>
       </div>
-      <p class="desc">Understanding modern flexible work arrangements.</p>
       <div class="actions two">
         <button class="btn premium" data-premium-file="The-Gig-Economy(B1-B2).pdf">Download PDF</button>
         <button class="btn quiz-btn" onclick="startQuizFromLesson('The-Gig-Economy(B1-B2)')">Start Quiz</button>
@@ -478,10 +534,9 @@
       <img src="pdf_pictures/The-Hidden-Cost-of-Meetings(B1-B2).png" alt="The Hidden Cost of Meetings thumbnail">
       <h3 class="h3">The Hidden Cost of Meetings</h3>
       <div class="meta-row">
-        <span class="pill level">Level: B1-B2</span>
+        <span class="pill level">Level: B1–B2</span>
         <span class="pill topic">Business</span>
       </div>
-      <p class="desc">Analyzing the true cost of unproductive meetings.</p>
       <div class="actions two">
         <button class="btn premium" data-premium-file="The-Hidden-Cost-of-Meetings(B1-B2).pdf">Download PDF</button>
         <button class="btn quiz-btn" onclick="startQuizFromLesson('The-Hidden-Cost-of-Meetings(B1-B2)')">Start Quiz</button>
@@ -492,10 +547,9 @@
       <img src="pdf_pictures/The-Language-of-Startups(B1-B2).png" alt="The Language of Startups thumbnail">
       <h3 class="h3">The Language of Startups</h3>
       <div class="meta-row">
-        <span class="pill level">Level: B1-B2</span>
+        <span class="pill level">Level: B1–B2</span>
         <span class="pill topic">Business</span>
       </div>
-      <p class="desc">Startup terminology and entrepreneurial language.</p>
       <div class="actions two">
         <button class="btn premium" data-premium-file="The-Language-of-Startups(B1-B2).pdf">Download PDF</button>
         <button class="btn quiz-btn" onclick="startQuizFromLesson('The-Language-of-Startups(B1-B2)')">Start Quiz</button>
@@ -503,13 +557,12 @@
     </article>
 
     <article class="card">
-      <img src="pdf_pictures/The-Neuroscience-and-Psychology-of-Brand-Attachment(B1-B2).png" alt="The Neuroscience and Psychology of Brand Attachment thumbnail">
-      <h3 class="h3">The Neuroscience and Psychology of Brand Attachment</h3>
+      <img src="pdf_pictures/The-Neuroscience-and-Psychology-of-Brand-Attachment(B1-B2).png" alt="Brand Attachment thumbnail">
+      <h3 class="h3">Neuroscience & Psychology of Brand Attachment</h3>
       <div class="meta-row">
-        <span class="pill level">Level: B1-B2</span>
+        <span class="pill level">Level: B1–B2</span>
         <span class="pill topic">Business</span>
       </div>
-      <p class="desc">Understanding how consumers form emotional connections with brands.</p>
       <div class="actions two">
         <button class="btn premium" data-premium-file="The-Neuroscience-and-Psychology-of-Brand-Attachment(B1-B2).pdf">Download PDF</button>
         <button class="btn quiz-btn" onclick="startQuizFromLesson('The-Neuroscience-and-Psychology-of-Brand-Attachment(B1-B2)')">Start Quiz</button>
@@ -517,13 +570,12 @@
     </article>
 
     <article class="card">
-      <img src="pdf_pictures/The-Power-of-Networking(B1-B2).png" alt="The Power of Networking thumbnail">
+      <img src="pdf_pictures/The-Power-of-Networking(B1-B2).png" alt="Power of Networking thumbnail">
       <h3 class="h3">The Power of Networking</h3>
       <div class="meta-row">
-        <span class="pill level">Level: B1-B2</span>
+        <span class="pill level">Level: B1–B2</span>
         <span class="pill topic">Business</span>
       </div>
-      <p class="desc">Building professional relationships and networking strategies.</p>
       <div class="actions two">
         <button class="btn premium" data-premium-file="The-Power-of-Networking(B1-B2).pdf">Download PDF</button>
         <button class="btn quiz-btn" onclick="startQuizFromLesson('The-Power-of-Networking(B1-B2)')">Start Quiz</button>
@@ -531,13 +583,12 @@
     </article>
 
     <article class="card">
-      <img src="pdf_pictures/Time-Management-Myths-at-Work(B1-B2).png" alt="Time Management Myths at Work thumbnail">
+      <img src="pdf_pictures/Time-Management-Myths-at-Work(B1-B2).png" alt="Time Management Myths thumbnail">
       <h3 class="h3">Time Management Myths at Work</h3>
       <div class="meta-row">
-        <span class="pill level">Level: B1-B2</span>
+        <span class="pill level">Level: B1–B2</span>
         <span class="pill topic">Business</span>
       </div>
-      <p class="desc">Debunking common time management misconceptions.</p>
       <div class="actions two">
         <button class="btn premium" data-premium-file="Time-Management-Myths-at-Work(B1-B2).pdf">Download PDF</button>
         <button class="btn quiz-btn" onclick="startQuizFromLesson('Time-Management-Myths-at-Work(B1-B2)')">Start Quiz</button>
@@ -545,32 +596,44 @@
     </article>
 
     <article class="card">
-      <img src="pdf_pictures/Work-Life-Balance-as-a-Business-Strategy(B1-B2).png" alt="Work-Life Balance as a Business Strategy thumbnail">
-      <h3 class="h3">Work-Life Balance as a Business Strategy</h3>
+      <img src="pdf_pictures/Work-Life-Balance-as-a-Business-Strategy(B1-B2).png" alt="Work–Life Balance thumbnail">
+      <h3 class="h3">Work–Life Balance as a Business Strategy</h3>
       <div class="meta-row">
-        <span class="pill level">Level: B1-B2</span>
+        <span class="pill level">Level: B1–B2</span>
         <span class="pill topic">Business</span>
       </div>
-      <p class="desc">How work-life balance improves business performance.</p>
       <div class="actions two">
         <button class="btn premium" data-premium-file="Work-Life-Balance-as-a-Business-Strategy(B1-B2).pdf">Download PDF</button>
         <button class="btn quiz-btn" onclick="startQuizFromLesson('Work-Life-Balance-as-a-Business-Strategy(B1-B2)')">Start Quiz</button>
       </div>
     </article>
+  </section>
+
+  <section class="grid gap-24">
+    <article class="card">
+      <h2 class="h3" style="margin-top:0">Specialized Topics</h2>
+      <p>Explore lessons tailored to specific interests and needs:</p>
+      <ul class="feature-list">
+        <li>Business English and corporate communication</li>
+        <li>Travel and tourism vocabulary</li>
+        <li>Academic English for students</li>
+        <li>Medical and healthcare terminology</li>
+        <li>Technology and IT vocabulary</li>
+        <li>Creative writing and storytelling</li>
+      </ul>
+    </article>
 
     <article class="card">
-      <img src="pdf_pictures/at-the-doctors.png" alt="At the Doctors thumbnail">
-      <h3 class="h3">At the Doctors</h3>
-      <div class="meta-row">
-        <span class="pill level">Level: A2</span>
-        <span class="pill topic">Health</span>
-        <span class="pill grammar">Grammar: Present Simple</span>
-      </div>
-      <p class="desc">Medical vocabulary and doctor visit conversations.</p>
-      <div class="actions two">
-        <button class="btn premium" data-premium-file="at-the-doctors.pdf">Download PDF</button>
-        <button class="btn quiz-btn" onclick="startQuizFromLesson('at-the-doctors')">Start Quiz</button>
-      </div>
+      <h2 class="h3" style="margin-top:0">Interactive Features</h2>
+      <p>Our lessons include engaging elements to enhance your learning:</p>
+      <ul class="feature-list">
+        <li>Real-time feedback and corrections</li>
+        <li>Audio recordings by native speakers</li>
+        <li>Interactive exercises and quizzes</li>
+        <li>Progress tracking and analytics</li>
+        <li>Mobile-responsive design</li>
+        <li>Offline lesson downloads</li>
+      </ul>
     </article>
   </section>
 
@@ -622,245 +685,8 @@
 </footer>
 
 <script>
-// Pagination functionality
-function initializePagination() {
-  updatePaginationForVisibleCards();
-  showPage(1);
-}
-
-function showPage(pageNumber) {
-  // Only count actual lesson cards, exclude news promo and other non-lesson cards
-  const allCards = document.querySelectorAll('article.card:not(.news-promo)');
-  const visibleCards = Array.from(allCards).filter(card => 
-    card.style.display !== 'none'
-  );
-  const cardsPerPage = 15;
-  const totalPages = Math.ceil(visibleCards.length / cardsPerPage);
-  
-  console.log('Pagination debug:', {
-    totalCards: allCards.length,
-    visibleCards: visibleCards.length,
-    totalPages: totalPages,
-    requestedPage: pageNumber
-  });
-  
-  // Validate page number
-  if (pageNumber < 1) pageNumber = 1;
-  if (pageNumber > totalPages) pageNumber = totalPages;
-  
-  // If only one page or no pages, show all cards and disable pagination
-  if (totalPages <= 1) {
-    visibleCards.forEach(card => card.style.display = '');
-    document.getElementById('current-page').textContent = '1';
-    document.getElementById('total-pages').textContent = '1';
-    
-    // Disable navigation buttons
-    const prevBtn = document.querySelector('.prev-btn');
-    const nextBtn = document.querySelector('.next-btn');
-    if (prevBtn) prevBtn.disabled = true;
-    if (nextBtn) nextBtn.disabled = true;
-    return;
-  }
-  
-  // Calculate which cards to show for this page
-  const startIndex = (pageNumber - 1) * cardsPerPage;
-  const endIndex = Math.min(startIndex + cardsPerPage, visibleCards.length);
-  
-  console.log(`Showing page ${pageNumber}: cards ${startIndex + 1} to ${endIndex} of ${visibleCards.length}`);
-  
-  // Hide ALL visible cards first
-  visibleCards.forEach(card => {
-    card.style.display = 'none';
-  });
-  
-  // Show only the cards for the current page
-  for (let i = startIndex; i < endIndex; i++) {
-    if (visibleCards[i]) {
-      visibleCards[i].style.display = '';
-    }
-  }
-  
-  // Update page display
-  document.getElementById('current-page').textContent = pageNumber;
-  document.getElementById('total-pages').textContent = totalPages;
-  
-  // Update button states
-  const prevBtn = document.querySelector('.prev-btn');
-  const nextBtn = document.querySelector('.next-btn');
-  
-  if (prevBtn) prevBtn.disabled = (pageNumber <= 1);
-  if (nextBtn) nextBtn.disabled = (pageNumber >= totalPages);
-  
-  // Store current page
-  sessionStorage.setItem('currentLessonPage', pageNumber);
-}
-
-function changePage(direction) {
-  const currentPage = parseInt(document.getElementById('current-page').textContent);
-  const totalPages = parseInt(document.getElementById('total-pages').textContent);
-  const newPage = currentPage + direction;
-  
-  if (newPage >= 1 && newPage <= totalPages) {
-    showPage(newPage);
-    
-    // Scroll to top
-    const mainContent = document.querySelector('main');
-    if (mainContent) {
-      mainContent.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start'
-      });
-    }
-  }
-}
-
-// Update pagination when filters change
-function updatePaginationForVisibleCards() {
-  // Only count actual lesson cards, exclude news promo and other non-lesson cards
-  const allCards = document.querySelectorAll('article.card:not(.news-promo)');
-  const visibleCards = Array.from(allCards).filter(card => 
-    card.style.display !== 'none'
-  );
-  
-  const cardsPerPage = 15;
-  const totalPages = Math.ceil(visibleCards.length / cardsPerPage);
-  
-  console.log('Filter update pagination:', {
-    totalCards: allCards.length,
-    visibleCards: visibleCards.length,
-    totalPages: totalPages
-  });
-  
-  // Update total pages display
-  document.getElementById('total-pages').textContent = totalPages;
-  
-  // Determine what to do based on current state
-  const currentPage = parseInt(document.getElementById('current-page').textContent);
-  
-  if (totalPages <= 1) {
-    // Single page or no pages
-    showPage(1);
-  } else if (currentPage > totalPages) {
-    // Current page is beyond total pages, go to last page
-    showPage(totalPages);
-  } else if (currentPage < 1) {
-    // Invalid current page, go to first page
-    showPage(1);
-  } else {
-    // Refresh current page to ensure proper display
-    showPage(currentPage);
-  }
-}
-
-// Toggle between paginated and show all views
-let paginationEnabled = true;
-
-function togglePagination() {
-  // Only toggle actual lesson cards, exclude news promo and other non-lesson cards
-  const cards = document.querySelectorAll('article.card:not(.news-promo)');
-  const toggleText = document.getElementById('pagination-toggle-text');
-  const paginationControls = document.querySelector('.pagination');
-  
-  if (paginationEnabled) {
-    // Show all cards
-    cards.forEach(card => {
-      if (card.style.display !== 'none') {
-        card.style.display = '';
-      }
-    });
-    paginationControls.style.display = 'none';
-    toggleText.textContent = 'Show Pages';
-    paginationEnabled = false;
-  } else {
-    // Enable pagination
-    paginationControls.style.display = 'flex';
-    toggleText.textContent = 'Show All';
-    paginationEnabled = true;
-    showPage(1);
-  }
-}
-
-// Function to start quiz from lesson card
-function startQuizFromLesson(lessonSlug) {
-  // Show quiz modal
-  const quizModal = document.getElementById('quiz-modal');
-  const quizRoot = document.getElementById('quiz-root');
-  
-  if (quizModal && quizRoot) {
-    // Show modal
-    quizModal.style.display = 'block';
-    document.body.style.overflow = 'hidden'; // Prevent background scrolling
-    
-    // Clear existing quiz content
-    quizRoot.innerHTML = '<div class="quiz-loading"><p>Loading quiz...</p><div class="loading-spinner"></div></div>';
-    
-    // Load and display the specific quiz directly
-    setTimeout(() => {
-      if (window.allQuizData && window.createQuiz) {
-        // Find the quiz data for this lesson
-        let quizKey = lessonSlug;
-        
-        if (!window.allQuizData[quizKey]) {
-          // If exact match fails, try to find a similar key
-          quizKey = Object.keys(window.allQuizData).find(key => 
-            key.toLowerCase() === lessonSlug.toLowerCase() ||
-            key.toLowerCase().replace(/[()]/g, '').replace(/\s+/g, '-') === lessonSlug.toLowerCase().replace(/[()]/g, '').replace(/\s+/g, '-')
-          );
-        }
-        
-        if (quizKey && window.allQuizData[quizKey]) {
-          // Create and display the specific quiz
-          window.createQuiz(quizKey, window.allQuizData[quizKey]);
-        } else {
-          // Fallback if quiz not found
-          quizRoot.innerHTML = '<div class="quiz-error"><p>Quiz not found for this lesson. Please try another lesson.</p></div>';
-        }
-      } else {
-        // Fallback if quiz system not loaded
-        quizRoot.innerHTML = '<div class="quiz-error"><p>Quiz system not available. Please refresh the page.</p></div>';
-      }
-    }, 300);
-  }
-}
-
-// Function to close quiz modal
-function closeQuizModal() {
-  const quizModal = document.getElementById('quiz-modal');
-  if (quizModal) {
-    quizModal.style.display = 'none';
-    document.body.style.overflow = 'auto'; // Restore scrolling
-  }
-}
-
-// Close modal when clicking outside
-document.addEventListener('DOMContentLoaded', function() {
-  const quizModal = document.getElementById('quiz-modal');
-  if (quizModal) {
-    quizModal.addEventListener('click', function(e) {
-      if (e.target === quizModal) {
-        closeQuizModal();
-      }
-    });
-  }
-});
-
-// Restore page from session storage on page load
-document.addEventListener('DOMContentLoaded', function() {
-  const savedPage = sessionStorage.getItem('currentLessonPage');
-  if (savedPage) {
-    showPage(parseInt(savedPage));
-  }
-});
-
-// Initialize pagination when page loads
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function(){
   Auth.init();
-  
-  // Initialize pagination after a short delay to ensure filters are ready
-  setTimeout(() => {
-    initializePagination();
-  }, 200);
-  
   // Late-load filter logic after DOM and pills are present
   const s = document.createElement('script');
   s.src = 'assets/app.js';
@@ -902,10 +728,10 @@ document.addEventListener('DOMContentLoaded', function() {
       btn.classList.add('premium');
     }
     function setDownload(btn){
-      btn.textContent = 'Download PDF';
-      btn.classList.remove('premium');
-      btn.classList.add('download');
-    }
+  btn.textContent = 'Download PDF';
+  btn.classList.remove('premium');
+  btn.classList.add('download');
+}
 
     async function handleClick(e){
       const btn = e.currentTarget;
@@ -955,56 +781,339 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     refresh();
   })();
+});
 
-  // Auto-add missing data attributes to lesson cards
-  (function(){
-    console.log('Adding missing data attributes to lesson cards...');
+// Function to start quiz from lesson card
+function startQuizFromLesson(lessonSlug) {
+  // Show quiz modal
+  const quizModal = document.getElementById('quiz-modal');
+  const quizRoot = document.getElementById('quiz-root');
+  
+  if (quizModal && quizRoot) {
+    // Show modal
+    quizModal.style.display = 'block';
+    document.body.style.overflow = 'hidden'; // Prevent background scrolling
     
-    const lessonCards = document.querySelectorAll('article.card:not(.news-promo)');
-    lessonCards.forEach(card => {
-      // Skip if already has attributes
-      if (card.hasAttribute('data-topic') && card.hasAttribute('data-level')) {
-        return;
-      }
+    // Clear existing quiz content
+    quizRoot.innerHTML = '<div class="quiz-loading"><p>Loading quiz...</p><div class="loading-spinner"></div></div>';
+    
+    // Load and display the specific quiz directly
+    setTimeout(() => {
+      console.log('Starting quiz loading process...');
+      console.log('Lesson slug:', lessonSlug);
+      console.log('allQuizData available:', !!window.allQuizData);
+      console.log('createQuiz available:', !!window.createQuiz);
       
-      // Extract topic from pill
-      const topicPill = card.querySelector('.pill.topic');
-      if (topicPill) {
-        const topicText = topicPill.textContent.replace('Topic: ', '').toLowerCase();
-        card.setAttribute('data-topic', topicText);
-        console.log('Added data-topic:', topicText, 'to card:', card.querySelector('.h3')?.textContent);
-      }
-      
-      // Extract level from pill
-      const levelPill = card.querySelector('.pill.level');
-      if (levelPill) {
-        const levelText = levelPill.textContent.replace('Level: ', '');
-        card.setAttribute('data-level', levelText);
-        console.log('Added data-level:', levelText, 'to card:', card.querySelector('.h3')?.textContent);
-      }
-      
-      // Mark as free if it's in the free files list
-      const downloadBtn = card.querySelector('[data-premium-file]');
-      if (downloadBtn) {
-        const fileName = downloadBtn.getAttribute('data-premium-file');
-        const isFree = ['travel.pdf', 'the-science-of-luck.pdf', 'objects-that-tell-a-story.pdf', 'The-Power-of-Networking(B1-B2).pdf', 'Brand.pdf'].includes(fileName);
-        if (isFree) {
-          card.setAttribute('data-free', 'true');
+      if (window.allQuizData && window.createQuiz) {
+        // Find the quiz data for this lesson - use exact matching first, then fallback
+        let quizKey = lessonSlug; // Try exact match first
+        
+        if (!window.allQuizData[quizKey]) {
+          // If exact match fails, try to find a similar key
+          quizKey = Object.keys(window.allQuizData).find(key => 
+            key.toLowerCase() === lessonSlug.toLowerCase() ||
+            key.toLowerCase().replace(/[()]/g, '').replace(/\s+/g, '-') === lessonSlug.toLowerCase().replace(/[()]/g, '').replace(/\s+/g, '-')
+          );
         }
+        
+        console.log('Found quiz key:', quizKey);
+        console.log('Quiz data:', quizKey ? window.allQuizData[quizKey] : 'NOT FOUND');
+        console.log('Quiz exercises count:', quizKey ? window.allQuizData[quizKey].exercises.length : 'N/A');
+        
+        if (quizKey && window.allQuizData[quizKey]) {
+          // Create and display the specific quiz
+          console.log('Creating quiz with key:', quizKey);
+          console.log('Quiz title:', window.allQuizData[quizKey].title);
+          console.log('Quiz exercises:', window.allQuizData[quizKey].exercises);
+          window.createQuiz(quizKey, window.allQuizData[quizKey]);
+        } else {
+          // Fallback if quiz not found
+          console.log('Quiz not found, showing error message');
+          quizRoot.innerHTML = '<div class="quiz-error"><p>Quiz not found for this lesson. Please try another lesson.</p></div>';
+        }
+      } else {
+        // Fallback if quiz system not loaded
+        console.log('Quiz system not available, showing error message');
+        quizRoot.innerHTML = '<div class="quiz-error"><p>Quiz system not available. Please refresh the page.</p></div>';
+      }
+    }, 300);
+  }
+}
+
+// Function to close quiz modal
+function closeQuizModal() {
+  const quizModal = document.getElementById('quiz-modal');
+  if (quizModal) {
+    quizModal.style.display = 'none';
+    document.body.style.overflow = 'auto'; // Restore scrolling
+  }
+}
+
+// Close modal when clicking outside
+document.addEventListener('DOMContentLoaded', function() {
+  const quizModal = document.getElementById('quiz-modal');
+  if (quizModal) {
+    quizModal.addEventListener('click', function(e) {
+      if (e.target === quizModal) {
+        closeQuizModal();
       }
     });
-    
-    console.log('Finished adding data attributes to', lessonCards.length, 'lesson cards');
-    
-    // Now reinitialize pagination with the proper attributes
-    setTimeout(() => {
-      if (typeof window.initializePagination === 'function') {
-        console.log('Reinitializing pagination after adding data attributes...');
-        window.initializePagination();
-      }
-    }, 100);
-  })();
+  }
 });
+
+// Load React and Master Quiz System
+(function() {
+  // Clear any existing quiz content and force fresh start
+  const quizRoot = document.getElementById('quiz-root');
+  if (quizRoot) {
+    quizRoot.innerHTML = '<div class="quiz-loading"><p>Loading comprehensive quiz system...</p><div class="loading-spinner"></div></div>';
+    console.log('Quiz root cleared and ready for new content');
+  }
+  
+  // Clear any existing global variables to prevent conflicts
+  if (window.Quiz) {
+    delete window.Quiz;
+    console.log('Cleared old Quiz component');
+  }
+  
+  // Add a simple test to verify script loading
+  console.log('Starting quiz system initialization...');
+  console.log('Current time:', new Date().toISOString());
+  
+
+
+
+
+  
+
+
+
+  
+  // Load all quiz data first
+  const allQuizzesScript = document.createElement('script');
+  allQuizzesScript.src = 'assets/all-quizzes.js?v=' + Date.now(); // Force fresh load
+  
+  // Load master quiz component (vanilla JavaScript version)
+  const masterQuizScript = document.createElement('script');
+  masterQuizScript.src = 'assets/master-quiz-vanilla.js?v=' + Date.now(); // Force fresh load
+  
+  // Load quiz data and component directly (no React needed)
+  allQuizzesScript.onload = function() {
+    console.log('All quizzes data loaded successfully');
+    
+    // Then load master quiz component
+    masterQuizScript.onload = function() {
+      console.log('Master quiz component loaded successfully');
+      
+      // Make createQuiz function globally available
+      if (window.createQuiz) {
+        console.log('✅ createQuiz function is available globally');
+      } else {
+        console.error('❌ createQuiz function not found');
+      }
+      
+      // Initialize master quiz with a short delay to ensure everything is ready
+      setTimeout(function() {
+        const quizRoot = document.getElementById('quiz-root');
+        console.log('=== QUIZ SYSTEM STATUS CHECK ===');
+        console.log('Quiz root element:', quizRoot);
+        console.log('All quiz data available:', !!window.allQuizData);
+        console.log('All quiz data keys:', window.allQuizData ? Object.keys(window.allQuizData) : 'NOT LOADED');
+        console.log('createMasterQuizSelector available:', !!window.createMasterQuizSelector);
+        console.log('createQuiz available:', !!window.createQuiz);
+        console.log('================================');
+        
+        if (quizRoot && window.allQuizData && window.createMasterQuizSelector) {
+          try {
+            console.log('Attempting to initialize master quiz selector...');
+            window.createMasterQuizSelector();
+            console.log('✅ Master quiz selector initialized successfully');
+          } catch (error) {
+            console.error('❌ Error initializing master quiz:', error);
+            showFallbackQuiz();
+          }
+        } else {
+          console.error('❌ Required components not found:', {
+            quizRoot: !!quizRoot,
+            allQuizData: !!window.allQuizData,
+            createMasterQuizSelector: !!window.createMasterQuizSelector
+          });
+          showFallbackQuiz();
+        }
+      }, 1000); // Short delay to ensure everything is loaded
+      
+      // Add timeout to show fallback if quiz doesn't load
+      setTimeout(function() {
+        if (!document.querySelector('.master-quiz-selector') && !document.querySelector('.quiz-container .question')) {
+          console.log('Quiz timeout reached, showing fallback');
+          showFallbackQuiz();
+        }
+      }, 15000); // 15 second timeout - give more time for quiz to load
+    };
+    document.body.appendChild(masterQuizScript);
+  };
+  
+  document.body.appendChild(allQuizzesScript);
+  
+  allQuizzesScript.onerror = function() {
+    console.error('Failed to load All Quizzes script');
+    loadFallbackQuiz();
+  };
+  
+  masterQuizScript.onerror = function() {
+    console.error('Failed to load Master Quiz script');
+    loadFallbackQuiz();
+  };
+  
+  // Fallback quiz if quiz system fails to load
+  function showFallbackQuiz() {
+    const quizRoot = document.getElementById('quiz-root');
+    if (quizRoot) {
+      quizRoot.innerHTML = `
+        <div class="quiz-container">
+          <div class="quiz-header">
+            <h2>Quiz System Ready</h2>
+            <div class="progress">Click Start Quiz on any lesson to begin</div>
+          </div>
+        </div>
+      `;
+    }
+  }
+  
+      function loadFallbackQuiz() {
+      console.log('Loading fallback quiz system...');
+      
+      // Show a simple message that the quiz system is ready
+      const quizRoot = document.getElementById('quiz-root');
+      if (quizRoot) {
+        quizRoot.innerHTML = `
+          <div class="quiz-container">
+            <div class="quiz-header">
+              <h2>Quiz System Ready</h2>
+              <div class="progress">Click Start Quiz on any lesson to begin</div>
+            </div>
+          </div>
+        `;
+      }
+    }
+})();
+
+// Pagination functionality
+function initializePagination() {
+  const cards = document.querySelectorAll('article.card');
+  const cardsPerPage = 15;
+  const totalPages = Math.ceil(cards.length / cardsPerPage);
+  
+  // Update total pages display
+  document.getElementById('total-pages').textContent = totalPages;
+  
+  // Show first page initially
+  showPage(1);
+}
+
+function showPage(pageNumber) {
+  const cards = document.querySelectorAll('article.card');
+  const cardsPerPage = 15;
+  const totalPages = Math.ceil(cards.length / cardsPerPage);
+  
+  // Validate page number
+  if (pageNumber < 1) pageNumber = 1;
+  if (pageNumber > totalPages) pageNumber = totalPages;
+  
+  // Calculate start and end indices
+  const startIndex = (pageNumber - 1) * cardsPerPage;
+  const endIndex = startIndex + cardsPerPage;
+  
+  // Hide all cards
+  cards.forEach((card, index) => {
+    if (index >= startIndex && index < endIndex) {
+      card.style.display = '';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+  
+  // Update current page display
+  document.getElementById('current-page').textContent = pageNumber;
+  
+  // Update button states
+  const prevBtn = document.querySelector('.prev-btn');
+  const nextBtn = document.querySelector('.next-btn');
+  
+  prevBtn.disabled = pageNumber === 1;
+  nextBtn.disabled = pageNumber === totalPages;
+  
+  // Store current page in session storage
+  sessionStorage.setItem('currentLessonPage', pageNumber);
+}
+
+function changePage(direction) {
+  const currentPage = parseInt(document.getElementById('current-page').textContent);
+  const newPage = currentPage + direction;
+  showPage(newPage);
+  
+  // Scroll to top of lessons section
+  document.querySelector('.lessons-section').scrollIntoView({ 
+    behavior: 'smooth',
+    block: 'start'
+  });
+}
+
+// Restore page from session storage on page load
+document.addEventListener('DOMContentLoaded', function() {
+  const savedPage = sessionStorage.getItem('currentLessonPage');
+  if (savedPage) {
+    showPage(parseInt(savedPage));
+  }
+});
+
+// Update pagination when filters change
+function updatePaginationForVisibleCards() {
+  const visibleCards = Array.from(document.querySelectorAll('article.card')).filter(card => 
+    card.style.display !== 'none'
+  );
+  
+  const cardsPerPage = 15;
+  const totalPages = Math.ceil(visibleCards.length / cardsPerPage);
+  
+  // Update total pages display
+  document.getElementById('total-pages').textContent = totalPages;
+  
+  // If current page is beyond total pages, go to last page
+  const currentPage = parseInt(document.getElementById('current-page').textContent);
+  if (currentPage > totalPages && totalPages > 0) {
+    showPage(totalPages);
+  } else if (totalPages === 0) {
+    showPage(1);
+  }
+}
+
+// Toggle between paginated and show all views
+let paginationEnabled = true;
+
+function togglePagination() {
+  const cards = document.querySelectorAll('article.card');
+  const toggleText = document.getElementById('pagination-toggle-text');
+  const paginationControls = document.querySelector('.pagination');
+  
+  if (paginationEnabled) {
+    // Show all cards
+    cards.forEach(card => {
+      if (card.style.display !== 'none') {
+        card.style.display = '';
+      }
+    });
+    paginationControls.style.display = 'none';
+    toggleText.textContent = 'Show Pages';
+    paginationEnabled = false;
+  } else {
+    // Enable pagination
+    paginationControls.style.display = 'flex';
+    toggleText.textContent = 'Show All';
+    paginationEnabled = true;
+    showPage(1);
+  }
+}
 </script>
 </body>
 </html>
