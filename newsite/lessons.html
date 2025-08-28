@@ -862,125 +862,6 @@ function togglePagination() {
   }
 }
 
-// Make functions globally available immediately
-window.showPage = showPage;
-window.updatePaginationForVisibleCards = updatePaginationForVisibleCards;
-window.initializePagination = initializePagination;
-window.changePage = changePage;
-window.togglePagination = togglePagination;
-
-// Add a simple test to verify pagination is working
-console.log('=== PAGINATION FUNCTIONS EXPOSED ===');
-console.log('showPage available:', typeof window.showPage === 'function');
-console.log('changePage available:', typeof window.changePage === 'function');
-console.log('updatePaginationForVisibleCards available:', typeof window.updatePaginationForVisibleCards === 'function');
-console.log('=====================================');
-
-document.addEventListener('DOMContentLoaded', function(){
-  Auth.init();
-  
-  // Initialize pagination after a short delay to ensure filters are ready
-  setTimeout(() => {
-    console.log('Initializing pagination...');
-    initializePagination();
-  }, 200);
-  
-  // Late-load filter logic after DOM and pills are present
-  const s = document.createElement('script');
-  s.src = 'assets/app.js';
-  document.body.appendChild(s);
-
-  // Remove all Preview buttons and make single-column action rows
-  (function(){
-    var previews = document.querySelectorAll('#pdf-library .actions.two a[href*="pdfs/"]');
-    previews.forEach(function(a){ a.remove(); });
-    var rows = document.querySelectorAll('#pdf-library .actions.two');
-    rows.forEach(function(r){ r.style.gridTemplateColumns = '1fr'; });
-  })();
-
-  // Access control for all PDF Download buttons using data-premium-file
-  (function(){
-    const PRICING_URL = 'pricing.html';
-    const FN_URL = '/.netlify/functions/secure-download';
-    const FREE_FILES = new Set([
-      'travel.pdf',
-      'the-science-of-luck.pdf',
-      'objects-that-tell-a-story.pdf',
-      'The-Power-of-Networking(B1-B2).pdf',
-      'Brand.pdf'
-    ]);
-
-    function currentUser(){
-      return window.netlifyIdentity && typeof window.netlifyIdentity.currentUser === 'function'
-        ? window.netlifyIdentity.currentUser() : null;
-    }
-    function isPaid(user){
-      if (!user) return false;
-      const roles = (user.app_metadata && user.app_metadata.roles) || [];
-      return roles.includes('paid');
-    }
-    function isFreeFile(file){ return FREE_FILES.has(file); }
-    function setPremium(btn){
-      btn.textContent = 'Download PDF';
-      btn.classList.remove('download');
-      btn.classList.add('premium');
-    }
-    function setDownload(btn){
-  btn.textContent = 'Download PDF';
-  btn.classList.remove('premium');
-  btn.classList.add('download');
-}
-
-    async function handleClick(e){
-      const btn = e.currentTarget;
-      const file = btn.getAttribute('data-premium-file');
-      if (!file) return;
-
-      const user = currentUser();
-
-      // Require login for all downloads (including free ones)
-      if (!user){
-        if (window.netlifyIdentity) window.netlifyIdentity.open('login');
-        return;
-      }
-      // If not paid and not free, gate to pricing
-      if (!isFreeFile(file) && !isPaid(user)){
-        window.location.href = PRICING_URL;
-        return;
-      }
-
-      try{
-        const token = await user.jwt();
-        const res = await fetch(FN_URL + '?file=' + encodeURIComponent(file), { headers: { Authorization: 'Bearer ' + token } });
-        if (!res.ok){ alert('Download failed: ' + res.status); return; }
-        const blob = await res.blob();
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url; a.download = file; document.body.appendChild(a); a.click(); a.remove();
-        URL.revokeObjectURL(url);
-      }catch(err){ alert('Download failed'); }
-    }
-
-    function refresh(){
-      const user = currentUser();
-      const paid = isPaid(user);
-      document.querySelectorAll('[data-premium-file]').forEach(btn => {
-        if (!btn._bound){ btn.addEventListener('click', handleClick); btn._bound = true; }
-        const file = btn.getAttribute('data-premium-file');
-        if (isFreeFile(file) || paid) setDownload(btn); else setPremium(btn);
-      });
-    }
-
-    if (window.netlifyIdentity){
-      window.netlifyIdentity.on('init', refresh);
-      window.netlifyIdentity.on('login', function(){ refresh(); window.netlifyIdentity.close(); });
-      window.netlifyIdentity.on('logout', refresh);
-      window.netlifyIdentity.init();
-    }
-    refresh();
-  })();
-});
-
 // Function to start quiz from lesson card
 function startQuizFromLesson(lessonSlug) {
   // Show quiz modal
@@ -1196,35 +1077,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 })();
 
-// Force refresh pagination state
-function forceRefreshPagination() {
-  console.log('=== FORCE REFRESHING PAGINATION ===');
-  
-  // Recalculate visible cards
-  const allCards = document.querySelectorAll('article.card');
-  const visibleCards = Array.from(allCards).filter(card => 
-    card.style.display !== 'none'
-  );
-  
-  console.log('Total cards found:', allCards.length);
-  console.log('Visible cards after filter:', visibleCards.length);
-  
-  // Update pagination
-  if (typeof window.updatePaginationForVisibleCards === 'function') {
-    window.updatePaginationForVisibleCards();
-  }
-  
-  // Force show page 1
-  if (typeof window.showPage === 'function') {
-    window.showPage(1);
-  }
-  
-  console.log('Pagination refreshed');
-}
-
-// Make force refresh function globally available
-window.forceRefreshPagination = forceRefreshPagination;
-
 // Restore page from session storage on page load
 document.addEventListener('DOMContentLoaded', function() {
   // Wait a bit for all content to load
@@ -1292,9 +1144,6 @@ function debugButtonStyling() {
   console.log('===============================');
 }
 
-// Make debug function globally available
-window.debugButtonStyling = debugButtonStyling;
-
 // Debug function to check pagination state
 function debugPaginationState() {
   console.log('=== PAGINATION STATE DEBUG ===');
@@ -1332,9 +1181,6 @@ function debugPaginationState() {
   
   console.log('=============================');
 }
-
-// Make debug function globally available
-window.debugPaginationState = debugPaginationState;
 
 // Test pagination system
 function testPagination() {
@@ -1375,5 +1221,202 @@ function testPagination() {
   console.log('===============================');
 }
 
-// Make test function globally available
+// Force refresh pagination state
+function forceRefreshPagination() {
+  console.log('=== FORCE REFRESHING PAGINATION ===');
+  
+  // Recalculate visible cards
+  const allCards = document.querySelectorAll('article.card');
+  const visibleCards = Array.from(allCards).filter(card => 
+    card.style.display !== 'none'
+  );
+  
+  console.log('Total cards found:', allCards.length);
+  console.log('Visible cards after filter:', visibleCards.length);
+  
+  // Update pagination
+  if (typeof window.updatePaginationForVisibleCards === 'function') {
+    window.updatePaginationForVisibleCards();
+  }
+  
+  // Force show page 1
+  if (typeof window.showPage === 'function') {
+    window.showPage(1);
+  }
+  
+  console.log('Pagination refreshed');
+}
+
+// Make functions globally available immediately
+window.showPage = showPage;
+window.updatePaginationForVisibleCards = updatePaginationForVisibleCards;
+window.initializePagination = initializePagination;
+window.changePage = changePage;
+window.togglePagination = togglePagination;
+window.debugButtonStyling = debugButtonStyling;
+window.debugPaginationState = debugPaginationState;
 window.testPagination = testPagination;
+window.forceRefreshPagination = forceRefreshPagination;
+
+// Add a simple test to verify pagination is working
+console.log('=== PAGINATION FUNCTIONS EXPOSED ===');
+console.log('showPage available:', typeof window.showPage === 'function');
+console.log('changePage available:', typeof window.changePage === 'function');
+console.log('updatePaginationForVisibleCards available:', typeof window.updatePaginationForVisibleCards === 'function');
+console.log('testPagination available:', typeof window.testPagination === 'function');
+console.log('=====================================');
+
+// Simple manual test function
+function manualPaginationTest() {
+  console.log('=== MANUAL PAGINATION TEST ===');
+  
+  // Check if functions are available
+  console.log('Functions available:');
+  console.log('  showPage:', typeof showPage === 'function');
+  console.log('  changePage:', typeof changePage === 'function');
+  console.log('  updatePaginationForVisibleCards:', typeof updatePaginationForVisibleCards === 'function');
+  
+  // Check current pagination state
+  const allCards = document.querySelectorAll('article.card');
+  const visibleCards = Array.from(allCards).filter(card => 
+    card.style.display !== 'none'
+  );
+  
+  console.log('Current state:');
+  console.log('  Total cards:', allCards.length);
+  console.log('  Visible cards:', visibleCards.length);
+  console.log('  Cards per page:', 15);
+  console.log('  Total pages should be:', Math.ceil(visibleCards.length / 15));
+  
+  // Check pagination display
+  const currentPage = document.getElementById('current-page')?.textContent;
+  const totalPages = document.getElementById('total-pages')?.textContent;
+  console.log('Pagination display:');
+  console.log('  Current page:', currentPage);
+  console.log('  Total pages:', totalPages);
+  
+  // Check button states
+  const prevBtn = document.querySelector('.prev-btn');
+  const nextBtn = document.querySelector('.next-btn');
+  console.log('Button states:');
+  console.log('  Previous disabled:', prevBtn?.disabled);
+  console.log('  Next disabled:', nextBtn?.disabled);
+  
+  // Try to force update pagination
+  console.log('Attempting to force update pagination...');
+  if (typeof updatePaginationForVisibleCards === 'function') {
+    updatePaginationForVisibleCards();
+  } else {
+    console.log('ERROR: updatePaginationForVisibleCards not available!');
+  }
+  
+  console.log('=== TEST COMPLETE ===');
+}
+
+// Make manual test function globally available
+window.manualPaginationTest = manualPaginationTest;
+
+document.addEventListener('DOMContentLoaded', function(){
+  Auth.init();
+  
+  // Initialize pagination after a short delay to ensure filters are ready
+  setTimeout(() => {
+    console.log('Initializing pagination...');
+    initializePagination();
+  }, 200);
+  
+  // Late-load filter logic after DOM and pills are present
+  const s = document.createElement('script');
+  s.src = 'assets/app.js';
+  document.body.appendChild(s);
+
+  // Remove all Preview buttons and make single-column action rows
+  (function(){
+    var previews = document.querySelectorAll('#pdf-library .actions.two a[href*="pdfs/"]');
+    previews.forEach(function(a){ a.remove(); });
+    var rows = document.querySelectorAll('#pdf-library .actions.two');
+    rows.forEach(function(r){ r.style.gridTemplateColumns = '1fr'; });
+  })();
+
+  // Access control for all PDF Download buttons using data-premium-file
+  (function(){
+    const PRICING_URL = 'pricing.html';
+    const FN_URL = '/.netlify/functions/secure-download';
+    const FREE_FILES = new Set([
+      'travel.pdf',
+      'the-science-of-luck.pdf',
+      'objects-that-tell-a-story.pdf',
+      'The-Power-of-Networking(B1-B2).pdf',
+      'Brand.pdf'
+    ]);
+
+    function currentUser(){
+      return window.netlifyIdentity && typeof window.netlifyIdentity.currentUser === 'function'
+        ? window.netlifyIdentity.currentUser() : null;
+    }
+    function isPaid(user){
+      if (!user) return false;
+      const roles = (user.app_metadata && user.app_metadata.roles) || [];
+      return roles.includes('paid');
+    }
+    function isFreeFile(file){ return FREE_FILES.has(file); }
+    function setPremium(btn){
+      btn.textContent = 'Download PDF';
+      btn.classList.remove('download');
+      btn.classList.add('premium');
+    }
+    function setDownload(btn){
+      btn.textContent = 'Download PDF';
+      btn.classList.remove('premium');
+      btn.classList.add('download');
+    }
+
+    async function handleClick(e){
+      const btn = e.currentTarget;
+      const file = btn.getAttribute('data-premium-file');
+      if (!file) return;
+
+      const user = currentUser();
+
+      // Require login for all downloads (including free ones)
+      if (!user){
+        if (window.netlifyIdentity) window.netlifyIdentity.open('login');
+        return;
+      }
+      // If not paid and not free, gate to pricing
+      if (!isFreeFile(file) && !isPaid(user)){
+        window.location.href = PRICING_URL;
+        return;
+      }
+
+      try{
+        const token = await user.jwt();
+        const res = await fetch(FN_URL + '?file=' + encodeURIComponent(file), { headers: { Authorization: 'Bearer ' + token } });
+        if (!res.ok){ alert('Download failed: ' + res.status); return; }
+        const blob = await res.blob();
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url; a.download = file; document.body.appendChild(a); a.click(); a.remove();
+        URL.revokeObjectURL(url);
+      }catch(err){ alert('Download failed'); }
+    }
+
+    function refresh(){
+      const user = currentUser();
+      const paid = isPaid(user);
+      document.querySelectorAll('[data-premium-file]').forEach(btn => {
+        if (!btn._bound){ btn.addEventListener('click', handleClick); btn._bound = true; }
+        const file = btn.getAttribute('data-premium-file');
+        if (isFreeFile(file) || paid) setDownload(btn); else setPremium(btn);
+      });
+    }
+
+    if (window.netlifyIdentity){
+      window.netlifyIdentity.on('init', refresh);
+      window.netlifyIdentity.on('login', function(){ refresh(); window.netlifyIdentity.close(); });
+      window.netlifyIdentity.on('logout', refresh);
+      window.netlifyIdentity.init();
+    }
+    refresh();
+  })();
+});
