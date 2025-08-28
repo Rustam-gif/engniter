@@ -1201,3 +1201,34 @@ function debugShowAllCards() {
 
 // Make debug function globally available
 window.debugShowAllCards = debugShowAllCards;
+
+// Debug function to check button styling
+function debugButtonStyling() {
+  console.log('=== DEBUG: BUTTON STYLING CHECK ===');
+  const allButtons = document.querySelectorAll('.card .actions .btn');
+  
+  allButtons.forEach((btn, index) => {
+    const text = btn.textContent.trim();
+    const classes = btn.className;
+    const computedStyle = window.getComputedStyle(btn);
+    const backgroundColor = computedStyle.backgroundColor;
+    const color = computedStyle.color;
+    
+    console.log(`Button ${index + 1}: "${text}"`);
+    console.log(`  Classes: ${classes}`);
+    console.log(`  Background: ${backgroundColor}`);
+    console.log(`  Text Color: ${color}`);
+    console.log(`  Has premium class: ${btn.classList.contains('premium')}`);
+    console.log(`  Has quiz-btn class: ${btn.classList.contains('quiz-btn')}`);
+    console.log('---');
+  });
+  
+  // Check CSS variables
+  console.log('CSS Variables:');
+  console.log('  --engniter-accent:', getComputedStyle(document.documentElement).getPropertyValue('--engniter-accent'));
+  console.log('  --engniter-primary:', getComputedStyle(document.documentElement).getPropertyValue('--engniter-primary'));
+  console.log('===============================');
+}
+
+// Make debug function globally available
+window.debugButtonStyling = debugButtonStyling;

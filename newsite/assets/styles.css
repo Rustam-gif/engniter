@@ -858,29 +858,29 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
   .chipbtn{flex:0 0 auto}
 }
 
-/* Card Button Colors */
-.card .btn.premium {
-  background: var(--engniter-accent);
-  color: var(--engniter-white);
-  box-shadow: 0 4px 16px rgba(59, 167, 160, 0.3);
+/* Card Button Colors - More Specific */
+.card .actions .btn.premium {
+  background: var(--engniter-accent) !important;
+  color: var(--engniter-white) !important;
+  box-shadow: 0 4px 16px rgba(59, 167, 160, 0.3) !important;
 }
 
-.card .btn.premium:hover {
-  background: #2F8A84;
+.card .actions .btn.premium:hover {
+  background: #2F8A84 !important;
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(59, 167, 160, 0.4);
+  box-shadow: 0 8px 24px rgba(59, 167, 160, 0.4) !important;
 }
 
-.card .btn.quiz-btn {
-  background: var(--engniter-primary);
-  color: var(--engniter-white);
-  box-shadow: 0 4px 16px rgba(255, 107, 53, 0.3);
+.card .actions .btn.quiz-btn {
+  background: var(--engniter-primary) !important;
+  color: var(--engniter-white) !important;
+  box-shadow: 0 4px 16px rgba(255, 107, 53, 0.3) !important;
 }
 
-.card .btn.quiz-btn:hover {
-  background: #E55A2B;
+.card .actions .btn.quiz-btn:hover {
+  background: #E55A2B !important;
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(255, 107, 53, 0.4);
+  box-shadow: 0 8px 24px rgba(255, 107, 53, 0.4) !important;
 }
 
 /* Pagination Styles */
