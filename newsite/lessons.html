@@ -1189,51 +1189,51 @@ document.addEventListener('DOMContentLoaded', function(){
       showPage(1);
     }
   }
-
-  // Function to test the free filter
-  function testFreeFilter() {
-    console.log('Testing free filter...');
-    const freeSwitch = document.getElementById('pdf-free-switch');
-    const freeCheckbox = document.getElementById('pdf-filter-free');
-    const freeFiles = new Set(['travel.pdf', 'the-science-of-luck.pdf', 'objects-that-tell-a-story.pdf', 'The-Power-of-Networking(B1-B2).pdf', 'Brand.pdf']);
-
-    function isFree(file) {
-      return freeFiles.has(file);
-    }
-
-    function updateCards() {
-      document.querySelectorAll('article.card:not(.news-promo)').forEach(card => {
-        const downloadBtn = card.querySelector('[data-premium-file]');
-        if (downloadBtn) {
-          const file = downloadBtn.getAttribute('data-premium-file');
-          const isFreeFile = isFree(file);
-          if (isFreeFile) {
-            card.setAttribute('data-free', 'true');
-            console.log(`Card ${card.querySelector('.h3')?.textContent} is FREE`);
-          } else {
-            card.setAttribute('data-free', 'false');
-            console.log(`Card ${card.querySelector('.h3')?.textContent} is NOT FREE`);
-          }
-        }
-      });
-      // Re-render the app to apply new attributes
-      if (typeof window.render === 'function') {
-        window.render();
-      } else {
-        console.log('WARNING: render function not available for re-render.');
-      }
-    }
-
-    // Initial update
-    updateCards();
-
-    // Add event listeners to switch and checkbox to update cards
-    freeSwitch.addEventListener('click', updateCards);
-    freeCheckbox.addEventListener('change', updateCards);
-
-    console.log('Free filter test initiated. Toggle switch or checkbox to see updates.');
-  }
 });
+
+// Function to test the free filter (moved to global scope)
+function testFreeFilter() {
+  console.log('Testing free filter...');
+  const freeSwitch = document.getElementById('pdf-free-switch');
+  const freeCheckbox = document.getElementById('pdf-filter-free');
+  const freeFiles = new Set(['travel.pdf', 'the-science-of-luck.pdf', 'objects-that-tell-a-story.pdf', 'The-Power-of-Networking(B1-B2).pdf', 'Brand.pdf']);
+
+  function isFree(file) {
+    return freeFiles.has(file);
+  }
+
+  function updateCards() {
+    document.querySelectorAll('article.card:not(.news-promo)').forEach(card => {
+      const downloadBtn = card.querySelector('[data-premium-file]');
+      if (downloadBtn) {
+        const file = downloadBtn.getAttribute('data-premium-file');
+        const isFreeFile = isFree(file);
+        if (isFreeFile) {
+          card.setAttribute('data-free', 'true');
+          console.log(`Card ${card.querySelector('.h3')?.textContent} is FREE`);
+        } else {
+          card.setAttribute('data-free', 'false');
+          console.log(`Card ${card.querySelector('.h3')?.textContent} is NOT FREE`);
+        }
+      }
+    });
+    // Re-render the app to apply new attributes
+    if (typeof window.render === 'function') {
+      window.render();
+    } else {
+      console.log('WARNING: render function not available for re-render.');
+    }
+  }
+
+  // Initial update
+  updateCards();
+
+  // Add event listeners to switch and checkbox to update cards
+  freeSwitch.addEventListener('click', updateCards);
+  freeCheckbox.addEventListener('change', updateCards);
+
+  console.log('Free filter test initiated. Toggle switch or checkbox to see updates.');
+}
 </script>
 </body>
 </html>
