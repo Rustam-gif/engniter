@@ -427,7 +427,7 @@
         <span class="pill topic">Nature</span>
         <span class="pill grammar">Grammar: Passive voice</span>
       </div>
-      <p class="desc">Nature’s odd exceptions with reading tasks and passive practice.</p>
+      <p class="desc">Nature's odd exceptions with reading tasks and passive practice.</p>
       <div class="actions two">
         <button class="btn premium" data-premium-file="when-nature-breaks-the-rules.pdf">Download PDF</button>
         <button class="btn quiz-btn" onclick="startQuizFromLesson('when-nature-breaks-the-rules')">Start Quiz</button>
@@ -671,19 +671,19 @@
 </footer>
 
 <script>
-// Pagination functionality - Completely rewritten for reliability
-function initializePagination() {
+// Immediately expose pagination functions globally to fix ReferenceError issues
+window.initializePagination = function() {
   console.log('=== INITIALIZING PAGINATION ===');
   
   // Wait a bit for filters to be ready
   setTimeout(() => {
     console.log('Filters should be ready now, initializing pagination...');
-    updatePaginationForVisibleCards();
-    showPage(1);
+    window.updatePaginationForVisibleCards();
+    window.showPage(1);
   }, 500);
-}
+};
 
-function showPage(pageNumber) {
+window.showPage = function(pageNumber) {
   console.log('=== SHOW PAGE CALLED ===');
   console.log('Requested page:', pageNumber);
   
@@ -704,7 +704,7 @@ function showPage(pageNumber) {
   
   // Validate page number
   if (pageNumber < 1) pageNumber = 1;
-  if (pageNumber > totalPages) pageNumber = totalPages;
+  if (pageNumber > totalPages) pageNumber = pageNumber;
   
   // If only one page or no pages, show all cards and disable pagination
   if (totalPages <= 1) {
@@ -763,9 +763,9 @@ function showPage(pageNumber) {
   sessionStorage.setItem('currentLessonPage', pageNumber);
   
   console.log('=== PAGE SHOWN SUCCESSFULLY ===');
-}
+};
 
-function changePage(direction) {
+window.changePage = function(direction) {
   console.log('=== CHANGE PAGE CALLED ===');
   console.log('Direction:', direction);
   
@@ -780,7 +780,7 @@ function changePage(direction) {
   
   if (newPage >= 1 && newPage <= totalPages) {
     console.log('Valid page, navigating to:', newPage);
-    showPage(newPage);
+    window.showPage(newPage);
     
     // Scroll to top
     const mainContent = document.querySelector('main');
@@ -793,10 +793,9 @@ function changePage(direction) {
   } else {
     console.log('Invalid page number:', newPage);
   }
-}
+};
 
-// Update pagination when filters change
-function updatePaginationForVisibleCards() {
+window.updatePaginationForVisibleCards = function() {
   console.log('=== UPDATING PAGINATION FOR FILTERS ===');
   
   const allCards = document.querySelectorAll('article.card');
@@ -820,30 +819,27 @@ function updatePaginationForVisibleCards() {
   
   if (totalPages <= 1) {
     // Single page or no pages
-    showPage(1);
+    window.showPage(1);
   } else if (currentPage > totalPages) {
     // Current page is beyond total pages, go to last page
-    showPage(totalPages);
+    window.showPage(totalPages);
   } else if (currentPage < 1) {
     // Invalid current page, go to first page
-    showPage(1);
+    window.showPage(1);
   } else {
     // Refresh current page to ensure proper display
-    showPage(currentPage);
+    window.showPage(currentPage);
   }
   
   console.log('=== PAGINATION UPDATED ===');
-}
+};
 
-// Toggle between paginated and show all views
-let paginationEnabled = true;
-
-function togglePagination() {
+window.togglePagination = function() {
   const cards = document.querySelectorAll('article.card');
   const toggleText = document.getElementById('pagination-toggle-text');
   const paginationControls = document.querySelector('.pagination');
   
-  if (paginationEnabled) {
+  if (window.paginationEnabled) {
     // Show all cards
     cards.forEach(card => {
       if (card.style.display !== 'none') {
@@ -852,15 +848,68 @@ function togglePagination() {
     });
     paginationControls.style.display = 'none';
     toggleText.textContent = 'Show Pages';
-    paginationEnabled = false;
+    window.paginationEnabled = false;
   } else {
     // Enable pagination
     paginationControls.style.display = 'flex';
     toggleText.textContent = 'Show All';
-    paginationEnabled = true;
-    showPage(1);
+    window.paginationEnabled = true;
+    window.showPage(1);
   }
-}
+};
+
+window.testPagination = function() {
+  console.log('=== TESTING PAGINATION SYSTEM ===');
+  
+  // Check current state
+  const allCards = document.querySelectorAll('article.card');
+  const visibleCards = Array.from(allCards).filter(card => 
+    card.style.display !== 'none'
+  );
+  const cardsPerPage = 15;
+  const totalPages = Math.ceil(visibleCards.length / cardsPerPage);
+  const currentPage = parseInt(document.getElementById('current-page')?.textContent || '1');
+  
+  console.log('Current state:');
+  console.log('  Total cards:', allCards.length);
+  console.log('  Visible cards:', visibleCards.length);
+  console.log('  Cards per page:', cardsPerPage);
+  console.log('  Total pages:', totalPages);
+  console.log('  Current page:', currentPage);
+  
+  // Test page navigation
+  if (totalPages > 1) {
+    console.log('Testing page navigation...');
+    
+    // Test next page
+    if (currentPage < totalPages) {
+      console.log('Testing Next button...');
+      window.changePage(1);
+    } else {
+      console.log('Already on last page, testing Previous button...');
+      window.changePage(-1);
+    }
+  } else {
+    console.log('Only one page, no navigation needed');
+  }
+  
+  console.log('===============================');
+};
+
+// Initialize pagination enabled flag
+window.paginationEnabled = true;
+
+// Log that all functions are now available
+console.log('=== ALL PAGINATION FUNCTIONS EXPOSED GLOBALLY ===');
+console.log('initializePagination:', typeof window.initializePagination === 'function');
+console.log('showPage:', typeof window.showPage === 'function');
+console.log('changePage:', typeof window.changePage === 'function');
+console.log('updatePaginationForVisibleCards:', typeof window.updatePaginationForVisibleCards === 'function');
+console.log('togglePagination:', typeof window.togglePagination === 'function');
+console.log('testPagination:', typeof window.testPagination === 'function');
+console.log('================================================');
+
+
 
 // Function to start quiz from lesson card
 function startQuizFromLesson(lessonSlug) {
