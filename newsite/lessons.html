@@ -715,7 +715,8 @@ function showPage(pageNumber) {
     globalOriginalVisibleCount: globalOriginalVisibleCount,
     totalPages: totalPages,
     requestedPage: pageNumber,
-    hasActiveFilters: globalOriginalVisibleCount !== totalAvailableCards
+    hasActiveFilters: globalOriginalVisibleCount !== totalAvailableCards,
+    visibleCardsLength: visibleCards.length
   });
   
   // Validate page number
@@ -741,18 +742,26 @@ function showPage(pageNumber) {
   const endIndex = Math.min(startIndex + cardsPerPage, globalOriginalVisibleCount);
   
   console.log(`Showing page ${pageNumber}: cards ${startIndex + 1} to ${endIndex} of ${globalOriginalVisibleCount}`);
+  console.log(`visibleCards array has ${visibleCards.length} cards`);
   
-  // Hide ALL visible cards first
+  // IMPORTANT: First, make sure ALL visible cards are hidden
   visibleCards.forEach(card => {
     card.style.display = 'none';
   });
   
-  // Show only the cards for the current page from the visible cards array
+  // Then show only the cards for the current page
+  let cardsShown = 0;
   for (let i = startIndex; i < endIndex; i++) {
     if (visibleCards[i]) {
       visibleCards[i].style.display = '';
+      cardsShown++;
+      console.log(`Showing card ${i + 1}:`, visibleCards[i].querySelector('.h3')?.textContent);
+    } else {
+      console.log(`Card ${i + 1} not found in visibleCards array`);
     }
   }
+  
+  console.log(`Total cards shown: ${cardsShown}`);
   
   // Update page display
   document.getElementById('current-page').textContent = pageNumber;
@@ -767,6 +776,12 @@ function showPage(pageNumber) {
   
   // Store current page
   sessionStorage.setItem('currentLessonPage', pageNumber);
+  
+  // Debug: Log how many cards are actually visible after pagination
+  const visibleAfterPagination = Array.from(allCards).filter(card => 
+    card.style.display !== 'none'
+  );
+  console.log(`After pagination: ${visibleAfterPagination.length} cards are visible`);
 }
 
 function changePage(direction) {
@@ -774,7 +789,10 @@ function changePage(direction) {
   const totalPages = parseInt(document.getElementById('total-pages').textContent);
   const newPage = currentPage + direction;
   
+  console.log(`changePage called: direction=${direction}, currentPage=${currentPage}, totalPages=${totalPages}, newPage=${newPage}`);
+  
   if (newPage >= 1 && newPage <= totalPages) {
+    console.log(`Calling showPage(${newPage})...`);
     showPage(newPage);
     
     // Scroll to top
@@ -785,6 +803,8 @@ function changePage(direction) {
         block: 'start'
       });
     }
+  } else {
+    console.log(`Invalid page number: ${newPage} (must be between 1 and ${totalPages})`);
   }
 }
 
