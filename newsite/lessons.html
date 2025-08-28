@@ -640,6 +640,9 @@
       <button class="pagination-btn secondary" onclick="togglePagination()">
         <span id="pagination-toggle-text">Show All</span>
       </button>
+      <button class="pagination-btn secondary" onclick="testPagination()" style="margin-left: 10px;">
+        Test Pagination
+      </button>
     </div>
   </div>
 
@@ -668,68 +671,80 @@
 </footer>
 
 <script>
-// Pagination functionality - Define these functions immediately
+// Pagination functionality - Completely rewritten for reliability
 function initializePagination() {
-  console.log('initializePagination called');
-  updatePaginationForVisibleCards();
-  showPage(1);
+  console.log('=== INITIALIZING PAGINATION ===');
+  
+  // Wait a bit for filters to be ready
+  setTimeout(() => {
+    console.log('Filters should be ready now, initializing pagination...');
+    updatePaginationForVisibleCards();
+    showPage(1);
+  }, 500);
 }
 
 function showPage(pageNumber) {
-  console.log('showPage called with:', pageNumber);
+  console.log('=== SHOW PAGE CALLED ===');
+  console.log('Requested page:', pageNumber);
+  
+  // Get all cards and filter visible ones
   const allCards = document.querySelectorAll('article.card');
   const visibleCards = Array.from(allCards).filter(card => 
     card.style.display !== 'none'
   );
+  
   const cardsPerPage = 15;
   const totalPages = Math.ceil(visibleCards.length / cardsPerPage);
   
-  console.log('=== PAGINATION DEBUG ===');
-  console.log('Total cards found:', allCards.length);
-  console.log('Visible cards:', visibleCards.length);
-  console.log('Cards per page:', cardsPerPage);
-  console.log('Total pages calculated:', totalPages);
-  console.log('Current page requested:', pageNumber);
-  console.log('========================');
+  console.log('Pagination state:');
+  console.log('  Total cards found:', allCards.length);
+  console.log('  Visible cards:', visibleCards.length);
+  console.log('  Cards per page:', cardsPerPage);
+  console.log('  Total pages calculated:', totalPages);
   
   // Validate page number
   if (pageNumber < 1) pageNumber = 1;
   if (pageNumber > totalPages) pageNumber = totalPages;
   
-  // If no pages or only one page, show all visible cards
+  // If only one page or no pages, show all cards and disable pagination
   if (totalPages <= 1) {
+    console.log('Single page detected, showing all cards');
     visibleCards.forEach(card => card.style.display = '');
+    
+    // Update display
     document.getElementById('current-page').textContent = '1';
     document.getElementById('total-pages').textContent = '1';
     
-    // Disable both buttons when no pagination needed
+    // Disable navigation buttons
     const prevBtn = document.querySelector('.prev-btn');
     const nextBtn = document.querySelector('.next-btn');
     if (prevBtn) prevBtn.disabled = true;
     if (nextBtn) nextBtn.disabled = true;
+    
+    console.log('Single page mode - buttons disabled');
     return;
   }
   
-  // Calculate start and end indices for the current page
+  // Calculate which cards to show for this page
   const startIndex = (pageNumber - 1) * cardsPerPage;
   const endIndex = Math.min(startIndex + cardsPerPage, visibleCards.length);
   
   console.log(`Page ${pageNumber}: Showing cards ${startIndex + 1} to ${endIndex} of ${visibleCards.length}`);
   
-  // First, hide ALL visible cards
+  // Hide ALL visible cards first
   visibleCards.forEach(card => {
     card.style.display = 'none';
   });
   
-  // Then, show only the cards for the current page
+  // Show only the cards for the current page
   for (let i = startIndex; i < endIndex; i++) {
     if (visibleCards[i]) {
       visibleCards[i].style.display = '';
-      console.log(`Showing card ${i + 1}: "${visibleCards[i].querySelector('.h3')?.textContent}"`);
+      console.log(`  Showing card ${i + 1}: "${visibleCards[i].querySelector('.h3')?.textContent}"`);
     }
   }
   
-  // Update current page display
+  // Update page display
   document.getElementById('current-page').textContent = pageNumber;
   document.getElementById('total-pages').textContent = totalPages;
   
@@ -740,27 +755,34 @@ function showPage(pageNumber) {
   if (prevBtn) prevBtn.disabled = (pageNumber <= 1);
   if (nextBtn) nextBtn.disabled = (pageNumber >= totalPages);
   
-  console.log('Page updated. Prev disabled:', pageNumber <= 1, 'Next disabled:', pageNumber >= totalPages);
-  console.log('Button states - Prev:', prevBtn?.disabled, 'Next:', nextBtn?.disabled);
+  console.log('Button states updated:');
+  console.log('  Previous disabled:', prevBtn?.disabled);
+  console.log('  Next disabled:', nextBtn?.disabled);
   
-  // Store current page in session storage
+  // Store current page
   sessionStorage.setItem('currentLessonPage', pageNumber);
+  
+  console.log('=== PAGE SHOWN SUCCESSFULLY ===');
 }
 
 function changePage(direction) {
-  console.log('changePage called with direction:', direction);
+  console.log('=== CHANGE PAGE CALLED ===');
+  console.log('Direction:', direction);
   
   const currentPage = parseInt(document.getElementById('current-page').textContent);
   const totalPages = parseInt(document.getElementById('total-pages').textContent);
   const newPage = currentPage + direction;
   
-  console.log('Current page:', currentPage, 'Total pages:', totalPages, 'New page:', newPage);
+  console.log('Navigation:');
+  console.log('  Current page:', currentPage);
+  console.log('  Total pages:', totalPages);
+  console.log('  New page:', newPage);
   
   if (newPage >= 1 && newPage <= totalPages) {
-    console.log('Changing to page:', newPage);
+    console.log('Valid page, navigating to:', newPage);
     showPage(newPage);
     
-    // Scroll to top of main content
+    // Scroll to top
     const mainContent = document.querySelector('main');
     if (mainContent) {
       mainContent.scrollIntoView({ 
@@ -775,6 +797,8 @@ function changePage(direction) {
 
 // Update pagination when filters change
 function updatePaginationForVisibleCards() {
+  console.log('=== UPDATING PAGINATION FOR FILTERS ===');
+  
   const allCards = document.querySelectorAll('article.card');
   const visibleCards = Array.from(allCards).filter(card => 
     card.style.display !== 'none'
@@ -783,28 +807,32 @@ function updatePaginationForVisibleCards() {
   const cardsPerPage = 15;
   const totalPages = Math.ceil(visibleCards.length / cardsPerPage);
   
-  console.log('=== FILTER UPDATE DEBUG ===');
-  console.log('Total cards found:', allCards.length);
-  console.log('Visible cards after filter:', visibleCards.length);
-  console.log('Total pages calculated:', totalPages);
-  console.log('==========================');
+  console.log('Filter update:');
+  console.log('  Total cards:', allCards.length);
+  console.log('  Visible cards:', visibleCards.length);
+  console.log('  Total pages:', totalPages);
   
   // Update total pages display
   document.getElementById('total-pages').textContent = totalPages;
   
-  // If current page is beyond total pages, go to last page or page 1
+  // Determine what to do based on current state
   const currentPage = parseInt(document.getElementById('current-page').textContent);
-  if (currentPage > totalPages && totalPages > 0) {
-    showPage(totalPages);
-  } else if (totalPages <= 1) {
-    // If only one page or no pages, show all cards and disable pagination
+  
+  if (totalPages <= 1) {
+    // Single page or no pages
     showPage(1);
+  } else if (currentPage > totalPages) {
+    // Current page is beyond total pages, go to last page
+    showPage(totalPages);
   } else if (currentPage < 1) {
+    // Invalid current page, go to first page
     showPage(1);
   } else {
     // Refresh current page to ensure proper display
     showPage(currentPage);
   }
+  
+  console.log('=== PAGINATION UPDATED ===');
 }
 
 // Toggle between paginated and show all views
@@ -840,6 +868,13 @@ window.updatePaginationForVisibleCards = updatePaginationForVisibleCards;
 window.initializePagination = initializePagination;
 window.changePage = changePage;
 window.togglePagination = togglePagination;
+
+// Add a simple test to verify pagination is working
+console.log('=== PAGINATION FUNCTIONS EXPOSED ===');
+console.log('showPage available:', typeof window.showPage === 'function');
+console.log('changePage available:', typeof window.changePage === 'function');
+console.log('updatePaginationForVisibleCards available:', typeof window.updatePaginationForVisibleCards === 'function');
+console.log('=====================================');
 
 document.addEventListener('DOMContentLoaded', function(){
   Auth.init();

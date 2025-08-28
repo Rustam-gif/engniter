@@ -145,39 +145,40 @@
       card.style.display = (topicOk && levelOk && freeOk) ? '' : 'none';
     });
     
-    // Reset pagination to page 1 after filtering
+    console.log('=== RENDER: FILTERS APPLIED ===');
+    console.log('Active topic:', activeTopic);
+    console.log('Selected levels:', Array.from(selectedLevels));
+    console.log('Free only:', onlyFree);
+    
+    // Update pagination after filtering
     setTimeout(() => {
       console.log('=== RENDER: UPDATING PAGINATION ===');
       
-      // Check if pagination functions exist and call them
-      if (typeof window.showPage === 'function') {
-        console.log('Calling window.showPage(1)');
-        window.showPage(1);
-      } else {
-        console.log('window.showPage not available yet');
-      }
-      
+      // Call pagination update function
       if (typeof window.updatePaginationForVisibleCards === 'function') {
-        console.log('Calling window.updatePaginationForVisibleCards()');
+        console.log('Calling updatePaginationForVisibleCards...');
         window.updatePaginationForVisibleCards();
       } else {
-        console.log('window.updatePaginationForVisibleCards not available yet');
-      }
-      
-      // Fallback: Update pagination display directly if functions aren't available
-      const totalPagesElement = document.getElementById('total-pages');
-      const currentPageElement = document.getElementById('current-page');
-      if (totalPagesElement && currentPageElement) {
+        console.log('WARNING: updatePaginationForVisibleCards not available!');
+        
+        // Fallback: Update pagination manually
         const visibleCards = Array.from(document.querySelectorAll('article.card')).filter(card => 
           card.style.display !== 'none'
         );
         const cardsPerPage = 15;
         const totalPages = Math.ceil(visibleCards.length / cardsPerPage);
         
-        console.log('Fallback update - Visible cards:', visibleCards.length, 'Total pages:', totalPages);
+        console.log('Fallback pagination update:');
+        console.log('  Visible cards:', visibleCards.length);
+        console.log('  Total pages:', totalPages);
         
-        totalPagesElement.textContent = totalPages;
-        currentPageElement.textContent = '1';
+        // Update display
+        const totalPagesElement = document.getElementById('total-pages');
+        const currentPageElement = document.getElementById('current-page');
+        if (totalPagesElement && currentPageElement) {
+          totalPagesElement.textContent = totalPages;
+          currentPageElement.textContent = '1';
+        }
         
         // Update button states
         const prevBtn = document.querySelector('.prev-btn');
