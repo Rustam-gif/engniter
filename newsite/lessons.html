@@ -694,16 +694,16 @@ function showPage(pageNumber) {
   const allCards = document.querySelectorAll('article.card:not(.news-promo)');
   const totalAvailableCards = allCards.length;
   
-  // Get currently visible cards (after filters are applied)
+  // Get currently visible cards (after filters are applied) - create a COPY
   const visibleCards = Array.from(allCards).filter(card => 
     card.style.display !== 'none'
   );
   
-  const cardsPerPage = 15;
+  // IMPORTANT: Create a separate array for pagination that won't be modified
+  const paginationCards = [...visibleCards];
+  const originalVisibleCount = paginationCards.length;
   
-  // IMPORTANT: Calculate total pages from the ORIGINAL visible cards count
-  // before any pagination hiding occurs
-  const originalVisibleCount = visibleCards.length;
+  const cardsPerPage = 15;
   const totalPages = Math.ceil(originalVisibleCount / cardsPerPage);
   
   console.log('Pagination debug:', {
@@ -743,10 +743,10 @@ function showPage(pageNumber) {
     card.style.display = 'none';
   });
   
-  // Show only the cards for the current page from the visible cards
+  // Show only the cards for the current page from the pagination cards array
   for (let i = startIndex; i < endIndex; i++) {
-    if (visibleCards[i]) {
-      visibleCards[i].style.display = '';
+    if (paginationCards[i]) {
+      paginationCards[i].style.display = '';
     }
   }
   
@@ -790,16 +790,16 @@ function updatePaginationForVisibleCards() {
   const allCards = document.querySelectorAll('article.card:not(.news-promo)');
   const totalAvailableCards = allCards.length;
   
-  // Get currently visible cards (after filters are applied)
+  // Get currently visible cards (after filters are applied) - create a COPY
   const visibleCards = Array.from(allCards).filter(card => 
     card.style.display !== 'none'
   );
   
-  const cardsPerPage = 15;
+  // IMPORTANT: Create a separate array for pagination that won't be modified
+  const paginationCards = [...visibleCards];
+  const originalVisibleCount = paginationCards.length;
   
-  // IMPORTANT: Calculate total pages from the ORIGINAL visible cards count
-  // before any pagination hiding occurs
-  const originalVisibleCount = visibleCards.length;
+  const cardsPerPage = 15;
   const totalPages = Math.ceil(originalVisibleCount / cardsPerPage);
   
   console.log('Filter update pagination:', {
