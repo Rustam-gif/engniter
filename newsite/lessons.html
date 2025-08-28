@@ -1000,48 +1000,53 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Pagination functionality
 function initializePagination() {
-  const cards = document.querySelectorAll('article.card');
-  const cardsPerPage = 15;
-  const totalPages = Math.ceil(cards.length / cardsPerPage);
-  
-  // Update total pages display
-  document.getElementById('total-pages').textContent = totalPages;
-  
-  // Show first page initially
+  updatePaginationForVisibleCards();
   showPage(1);
 }
 
 function showPage(pageNumber) {
-  const cards = document.querySelectorAll('article.card');
+  const visibleCards = Array.from(document.querySelectorAll('article.card')).filter(card => 
+    card.style.display !== 'none'
+  );
   const cardsPerPage = 15;
-  const totalPages = Math.ceil(cards.length / cardsPerPage);
+  const totalPages = Math.ceil(visibleCards.length / cardsPerPage);
   
   // Validate page number
   if (pageNumber < 1) pageNumber = 1;
   if (pageNumber > totalPages) pageNumber = totalPages;
   
+  // If no pages, show all cards
+  if (totalPages === 0) {
+    visibleCards.forEach(card => card.style.display = '');
+    document.getElementById('current-page').textContent = '1';
+    document.getElementById('total-pages').textContent = '1';
+    return;
+  }
+  
   // Calculate start and end indices
   const startIndex = (pageNumber - 1) * cardsPerPage;
   const endIndex = startIndex + cardsPerPage;
   
-  // Hide all cards
-  cards.forEach((card, index) => {
+  // Hide all visible cards first
+  visibleCards.forEach(card => card.style.display = 'none');
+  
+  // Show cards for current page
+  visibleCards.forEach((card, index) => {
     if (index >= startIndex && index < endIndex) {
       card.style.display = '';
-    } else {
-      card.style.display = 'none';
     }
   });
   
   // Update current page display
   document.getElementById('current-page').textContent = pageNumber;
+  document.getElementById('total-pages').textContent = totalPages;
   
   // Update button states
   const prevBtn = document.querySelector('.prev-btn');
   const nextBtn = document.querySelector('.next-btn');
   
-  prevBtn.disabled = pageNumber === 1;
-  nextBtn.disabled = pageNumber === totalPages;
+  if (prevBtn) prevBtn.disabled = pageNumber === 1;
+  if (nextBtn) nextBtn.disabled = pageNumber === totalPages;
   
   // Store current page in session storage
   sessionStorage.setItem('currentLessonPage', pageNumber);
@@ -1049,23 +1054,22 @@ function showPage(pageNumber) {
 
 function changePage(direction) {
   const currentPage = parseInt(document.getElementById('current-page').textContent);
+  const totalPages = parseInt(document.getElementById('total-pages').textContent);
   const newPage = currentPage + direction;
-  showPage(newPage);
   
-  // Scroll to top of lessons section
-  document.querySelector('.lessons-section').scrollIntoView({ 
-    behavior: 'smooth',
-    block: 'start'
-  });
-}
-
-// Restore page from session storage on page load
-document.addEventListener('DOMContentLoaded', function() {
-  const savedPage = sessionStorage.getItem('currentLessonPage');
-  if (savedPage) {
-    showPage(parseInt(savedPage));
+  if (newPage >= 1 && newPage <= totalPages) {
+    showPage(newPage);
+    
+    // Scroll to top of lessons section
+    const lessonsSection = document.querySelector('.lessons-section');
+    if (lessonsSection) {
+      lessonsSection.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
   }
-});
+}
 
 // Update pagination when filters change
 function updatePaginationForVisibleCards() {
@@ -1079,11 +1083,13 @@ function updatePaginationForVisibleCards() {
   // Update total pages display
   document.getElementById('total-pages').textContent = totalPages;
   
-  // If current page is beyond total pages, go to last page
+  // If current page is beyond total pages, go to last page or page 1
   const currentPage = parseInt(document.getElementById('current-page').textContent);
   if (currentPage > totalPages && totalPages > 0) {
     showPage(totalPages);
   } else if (totalPages === 0) {
+    showPage(1);
+  } else if (currentPage < 1) {
     showPage(1);
   }
 }
@@ -1114,6 +1120,19 @@ function togglePagination() {
     showPage(1);
   }
 }
+
+// Restore page from session storage on page load
+document.addEventListener('DOMContentLoaded', function() {
+  // Wait a bit for all content to load
+  setTimeout(() => {
+    const savedPage = sessionStorage.getItem('currentLessonPage');
+    if (savedPage) {
+      showPage(parseInt(savedPage));
+    } else {
+      initializePagination();
+    }
+  }, 100);
+});
 </script>
 </body>
 </html>
