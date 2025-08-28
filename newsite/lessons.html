@@ -1124,11 +1124,14 @@ document.addEventListener('DOMContentLoaded', function(){
     const newPage = currentPage + direction;
     showPage(newPage);
     
-    // Scroll to top of lessons section
-    document.querySelector('.lessons-section').scrollIntoView({ 
-      behavior: 'smooth',
-      block: 'start'
-    });
+    // Scroll to top of main content
+    const mainContent = document.querySelector('main');
+    if (mainContent) {
+      mainContent.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
   }
 
   // Restore page from session storage on page load
