@@ -912,7 +912,7 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
 .pdf-tag::before{content:"PDF"}
 
 /* Spacing tighten */
-.filters-card{padding:16px 24px;margin-bottom:16px}
+.filters-card{padding:16px 24px;margin-bottom:8px}
 .filters-card .group{padding-top:12px;margin-top:8px;border-top:1px solid var(--line);position:relative;z-index:1}
 .filters-card .group:first-child{padding-top:0;margin-top:0;border-top:none}
 .filters-card .group-title{font-weight:900;color:var(--muted);font-size:16px;margin-bottom:8px}
