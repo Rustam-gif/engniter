@@ -701,9 +701,8 @@ function showPage(pageNumber) {
   
   const cardsPerPage = 15;
   
-  // When filters are active, calculate totalPages based on visible cards
-  // When no filters, use total available cards
-  const totalPages = Math.ceil(visibleCards.length / cardsPerPage);
+  // ALWAYS calculate totalPages from total available cards to prevent circular logic
+  const totalPages = Math.ceil(totalAvailableCards / cardsPerPage);
   
   console.log('Pagination debug:', {
     totalAvailableCards: totalAvailableCards,
@@ -733,19 +732,19 @@ function showPage(pageNumber) {
   
   // Calculate which cards to show for this page
   const startIndex = (pageNumber - 1) * cardsPerPage;
-  const endIndex = Math.min(startIndex + cardsPerPage, visibleCards.length);
+  const endIndex = Math.min(startIndex + cardsPerPage, totalAvailableCards);
   
-  console.log(`Showing page ${pageNumber}: cards ${startIndex + 1} to ${endIndex} of ${visibleCards.length}`);
+  console.log(`Showing page ${pageNumber}: cards ${startIndex + 1} to ${endIndex} of ${totalAvailableCards}`);
   
-  // Hide ALL visible cards first
-  visibleCards.forEach(card => {
+  // Hide ALL cards first
+  allCards.forEach(card => {
     card.style.display = 'none';
   });
   
   // Show only the cards for the current page
   for (let i = startIndex; i < endIndex; i++) {
-    if (visibleCards[i]) {
-      visibleCards[i].style.display = '';
+    if (allCards[i]) {
+      allCards[i].style.display = '';
     }
   }
   
@@ -796,9 +795,8 @@ function updatePaginationForVisibleCards() {
   
   const cardsPerPage = 15;
   
-  // When filters are active, calculate totalPages based on visible cards
-  // When no filters, use total available cards
-  const totalPages = Math.ceil(visibleCards.length / cardsPerPage);
+  // ALWAYS calculate totalPages from total available cards to prevent circular logic
+  const totalPages = Math.ceil(totalAvailableCards / cardsPerPage);
   
   console.log('Filter update pagination:', {
     totalAvailableCards: totalAvailableCards,
