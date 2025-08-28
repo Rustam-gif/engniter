@@ -96,14 +96,14 @@ nav .pay-now-nav:hover{filter:brightness(.97);text-decoration:none}
   border-bottom: 1px solid var(--engniter-divider);
 }
 
-/* Simplified Pills - Navy Only */
+/* Simplified Pills - Navy Only (20% smaller) */
 .card .pill {
-  font-size: 11px;
+  font-size: 9px;
   font-weight: 600;
-  padding: 6px 12px;
-  border-radius: 20px;
+  padding: 5px 10px;
+  border-radius: 16px;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.4px;
   background: var(--engniter-text);
   color: var(--engniter-white);
   border: none;
@@ -3345,9 +3345,9 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
   }
   
   .card .pill {
-    font-size: 9px;
-    padding: 4px 8px;
-    border-radius: 16px;
+    font-size: 7px;
+    padding: 3px 6px;
+    border-radius: 12px;
   }
   
   .card .actions.two {
