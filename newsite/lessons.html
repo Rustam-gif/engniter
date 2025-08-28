@@ -689,6 +689,9 @@
 
 <script>
 // Global pagination functions
+// Global variable to store the original visible count for pagination
+let globalOriginalVisibleCount = 0;
+
 function showPage(pageNumber) {
   // Get all lesson cards (excluding news promo)
   const allCards = document.querySelectorAll('article.card:not(.news-promo)');
@@ -699,18 +702,20 @@ function showPage(pageNumber) {
     card.style.display !== 'none'
   );
   
-  // IMPORTANT: Store the count BEFORE any modifications
-  const originalVisibleCount = visibleCards.length;
+  // IMPORTANT: Use the global count if available, otherwise set it
+  if (globalOriginalVisibleCount === 0) {
+    globalOriginalVisibleCount = visibleCards.length;
+  }
   
   const cardsPerPage = 15;
-  const totalPages = Math.ceil(originalVisibleCount / cardsPerPage);
+  const totalPages = Math.ceil(globalOriginalVisibleCount / cardsPerPage);
   
   console.log('Pagination debug:', {
     totalAvailableCards: totalAvailableCards,
-    originalVisibleCount: originalVisibleCount,
+    globalOriginalVisibleCount: globalOriginalVisibleCount,
     totalPages: totalPages,
     requestedPage: pageNumber,
-    hasActiveFilters: originalVisibleCount !== totalAvailableCards
+    hasActiveFilters: globalOriginalVisibleCount !== totalAvailableCards
   });
   
   // Validate page number
@@ -733,9 +738,9 @@ function showPage(pageNumber) {
   
   // Calculate which cards to show for this page
   const startIndex = (pageNumber - 1) * cardsPerPage;
-  const endIndex = Math.min(startIndex + cardsPerPage, originalVisibleCount);
+  const endIndex = Math.min(startIndex + cardsPerPage, globalOriginalVisibleCount);
   
-  console.log(`Showing page ${pageNumber}: cards ${startIndex + 1} to ${endIndex} of ${originalVisibleCount}`);
+  console.log(`Showing page ${pageNumber}: cards ${startIndex + 1} to ${endIndex} of ${globalOriginalVisibleCount}`);
   
   // Hide ALL visible cards first
   visibleCards.forEach(card => {
@@ -794,17 +799,17 @@ function updatePaginationForVisibleCards() {
     card.style.display !== 'none'
   );
   
-  // IMPORTANT: Store the count BEFORE any modifications
-  const originalVisibleCount = visibleCards.length;
+  // IMPORTANT: Reset the global count when filters change
+  globalOriginalVisibleCount = visibleCards.length;
   
   const cardsPerPage = 15;
-  const totalPages = Math.ceil(originalVisibleCount / cardsPerPage);
+  const totalPages = Math.ceil(globalOriginalVisibleCount / cardsPerPage);
   
   console.log('Filter update pagination:', {
     totalAvailableCards: totalAvailableCards,
-    originalVisibleCount: originalVisibleCount,
+    globalOriginalVisibleCount: globalOriginalVisibleCount,
     totalPages: totalPages,
-    hasActiveFilters: originalVisibleCount !== totalAvailableCards
+    hasActiveFilters: globalOriginalVisibleCount !== totalAvailableCards
   });
   
   // Update total pages display
