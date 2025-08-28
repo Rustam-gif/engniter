@@ -44,21 +44,123 @@ nav .pay-now-nav:hover{filter:brightness(.97);text-decoration:none}
 .grid{display:grid;gap:16px;grid-template-columns:repeat(3,1fr)}
 .gap-24{gap:24px}
 
-.card{background:var(--engniter-white);border:1px solid rgba(31, 45, 61, 0.08);padding:28px;border-radius:16px;box-shadow:0 4px 20px var(--engniter-shadow);transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);position:relative;overflow:hidden}
-.card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(31, 45, 61, 0.12);border-color:var(--engniter-primary)}
-.card .h3{font-size:22px;font-weight:800;color:var(--engniter-dark);margin:0 0 20px 0;line-height:1.3;font-family:'Inter', 'Segoe UI', system-ui, sans-serif;letter-spacing:-0.01em}
-.card .desc{font-size:16px;line-height:1.6;color:var(--engniter-text);margin:24px 0;font-family:'Inter', 'Segoe UI', system-ui, sans-serif;font-weight:400}
-.card .meta-row{margin:20px 0;display:flex;flex-wrap:wrap;gap:10px}
+/* Refined Lesson Card Styles - Engniter Brand */
+.card {
+  background: var(--engniter-white);
+  border: 1px solid rgba(31, 45, 61, 0.08);
+  padding: 28px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px var(--engniter-shadow);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 400px;
+}
 
-.card .pill{font-size:10px;font-weight:700;padding:5px 10px;border-radius:16px;text-transform:uppercase;letter-spacing:0.6px;background:var(--engniter-dark);color:var(--engniter-white);border:none;display:inline-block;transition:all 0.2s ease;font-family:'Inter', 'Segoe UI', system-ui, sans-serif}
-.card .pill:hover{transform:translateY(-1px);box-shadow:0 3px 8px rgba(31, 45, 61, 0.15)}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(31, 45, 61, 0.12);
+  border-color: var(--engniter-primary);
+}
 
-.card img{width:100%;height:140px;object-fit:cover;border-radius:12px;margin-bottom:24px;transition:transform 0.3s ease;filter:brightness(0.95) contrast(1.05)}
-.card:hover img{transform:scale(1.02);filter:brightness(1) contrast(1.1)}
+.card .h3 {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--engniter-dark);
+  margin: 0 0 20px 0;
+  line-height: 1.3;
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  letter-spacing: -0.01em;
+}
 
-.card .actions{margin-top:28px;gap:14px}
-.card .actions.two{display:flex;flex-direction:row;gap:14px}
-.card .actions .btn{flex:1;padding:16px 20px;font-size:14px;font-weight:700;border-radius:12px;border:none;cursor:pointer;transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);font-family:'Inter', 'Segoe UI', system-ui, sans-serif;text-transform:uppercase;letter-spacing:0.5px;position:relative;overflow:hidden;min-height:52px;display:flex;align-items:center;justify-content:center}
+.card .desc {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--engniter-text);
+  margin: 24px 0;
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  font-weight: 400;
+  flex: 1;
+}
+
+.card .meta-row {
+  margin: 20px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Refined Pills - Smaller and Consistent */
+.card .pill {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 5px 10px;
+  border-radius: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  background: var(--engniter-dark);
+  color: var(--engniter-white);
+  border: none;
+  display: inline-block;
+  transition: all 0.2s ease;
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+}
+
+.card .pill:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(31, 45, 61, 0.15);
+}
+
+/* Card Image Styling - Harmonized */
+.card img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 24px;
+  transition: transform 0.3s ease;
+  filter: brightness(0.95) contrast(1.05);
+}
+
+.card:hover img {
+  transform: scale(1.02);
+  filter: brightness(1) contrast(1.1);
+}
+
+/* Fixed Button Layout */
+.card .actions {
+  margin-top: auto;
+  gap: 14px;
+  padding-top: 20px;
+}
+
+.card .actions.two {
+  display: flex;
+  flex-direction: row;
+  gap: 14px;
+}
+
+.card .actions .btn {
+  flex: 1;
+  padding: 16px 20px;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 .h3{font-size:18px;margin:4px 0}
 
@@ -3077,6 +3179,7 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
   
   .card {
     padding: 24px;
+    min-height: 380px;
   }
   
   .card .h3 {
@@ -3098,6 +3201,10 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
     font-size: 9px;
     padding: 4px 8px;
   }
+  
+  .card .actions {
+    padding-top: 18px;
+  }
 }
 
 @media (max-width: 600px) {
@@ -3109,6 +3216,7 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
   .card {
     padding: 20px;
     border-radius: 14px;
+    min-height: 360px;
   }
   
   .card .h3 {
@@ -3144,8 +3252,25 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
     min-height: 48px;
   }
   
+  .card .actions {
+    padding-top: 16px;
+  }
+  
   .card img {
     height: 120px;
     margin-bottom: 20px;
   }
+}
+
+/* Secondary Button - Download PDF */
+.card .btn.premium {
+  background: #5A9B94;
+  color: var(--engniter-white);
+  box-shadow: 0 4px 12px rgba(90, 155, 148, 0.25);
+}
+
+.card .btn.premium:hover {
+  background: #4A8A83;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(90, 155, 148, 0.35);
 }
