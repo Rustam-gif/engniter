@@ -6,10 +6,11 @@
   --engniter-secondary: #3BA7A0;    /* Teal for secondary CTAs */
   --engniter-accent: #3BA7A0;       /* Teal/greenish blue */
   --engniter-bg: #FFF7F2;           /* Soft beige */
-  --engniter-text: #2C3E50;         /* Dark grey for body text */
-  --engniter-text-light: #5A6C7D;   /* Lighter navy for descriptions */
+  --engniter-text: #1F2D3D;         /* Dark navy for main text */
+  --engniter-text-light: #5A6C7D;   /* Lighter navy for body text */
   --engniter-white: #FFFFFF;        /* Pure white */
   --engniter-shadow: rgba(31, 45, 61, 0.06); /* Subtle navy shadow */
+  --engniter-divider: rgba(31, 45, 61, 0.08); /* Subtle divider */
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -44,63 +45,66 @@ nav .pay-now-nav:hover{filter:brightness(.97);text-decoration:none}
 .grid{display:grid;gap:16px;grid-template-columns:repeat(3,1fr)}
 .gap-24{gap:24px}
 
-/* Refined Lesson Card Styles - Engniter Brand */
+/* Refined Lesson Card Styles - Minimal & Clean */
 .card {
   background: var(--engniter-white);
-  border: 1px solid rgba(31, 45, 61, 0.08);
-  padding: 28px;
+  border: 1px solid var(--engniter-divider);
+  padding: 32px;
   border-radius: 16px;
-  box-shadow: 0 4px 20px var(--engniter-shadow);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 12px rgba(31, 45, 61, 0.04);
+  transition: all 0.2s ease;
   position: relative;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  min-height: 400px;
+  min-height: 420px;
 }
 
 .card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(31, 45, 61, 0.12);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(31, 45, 61, 0.08);
   border-color: var(--engniter-primary);
 }
 
 .card .h3 {
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 800;
-  color: var(--engniter-dark);
-  margin: 0 0 20px 0;
+  color: var(--engniter-text);
+  margin: 0 0 24px 0;
   line-height: 1.3;
   font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
   letter-spacing: -0.01em;
 }
 
 .card .desc {
-  font-size: 16px;
+  font-size: 17px;
   line-height: 1.6;
-  color: var(--engniter-text);
-  margin: 24px 0;
+  color: var(--engniter-text-light);
+  margin: 28px 0;
   font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
   font-weight: 400;
   flex: 1;
 }
 
 .card .meta-row {
-  margin: 20px 0;
+  margin: 24px 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 12px;
+  padding: 20px 0;
+  border-top: 1px solid var(--engniter-divider);
+  border-bottom: 1px solid var(--engniter-divider);
 }
 
-/* Refined Pills - Smaller and Consistent */
+/* Simplified Pills - Navy Only */
 .card .pill {
-  font-size: 10px;
-  font-weight: 700;
-  padding: 5px 10px;
-  border-radius: 16px;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 20px;
   text-transform: uppercase;
-  letter-spacing: 0.6px;
-  background: var(--engniter-dark);
+  letter-spacing: 0.5px;
+  background: var(--engniter-text);
   color: var(--engniter-white);
   border: none;
   display: inline-block;
@@ -109,54 +113,53 @@ nav .pay-now-nav:hover{filter:brightness(.97);text-decoration:none}
 }
 
 .card .pill:hover {
+  background: #2C3E50;
   transform: translateY(-1px);
-  box-shadow: 0 3px 8px rgba(31, 45, 61, 0.15);
 }
 
-/* Card Image Styling - Harmonized */
+/* Card Image Styling - Simplified & Cohesive */
 .card img {
   width: 100%;
-  height: 140px;
+  height: 150px;
   object-fit: cover;
   border-radius: 12px;
-  margin-bottom: 24px;
-  transition: transform 0.3s ease;
-  filter: brightness(0.95) contrast(1.05);
+  margin-bottom: 28px;
+  transition: transform 0.2s ease;
+  filter: brightness(0.9) contrast(1.1) saturate(0.9);
 }
 
 .card:hover img {
-  transform: scale(1.02);
-  filter: brightness(1) contrast(1.1);
+  transform: scale(1.01);
+  filter: brightness(0.95) contrast(1.05) saturate(1);
 }
 
-/* Fixed Button Layout */
+/* Minimal Button Layout */
 .card .actions {
   margin-top: auto;
-  gap: 14px;
-  padding-top: 20px;
+  gap: 16px;
+  padding-top: 24px;
 }
 
 .card .actions.two {
   display: flex;
   flex-direction: row;
-  gap: 14px;
+  gap: 16px;
 }
 
 .card .actions .btn {
   flex: 1;
-  padding: 16px 20px;
+  padding: 18px 24px;
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 600;
   border-radius: 12px;
   border: none;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.2s ease;
   font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   position: relative;
-  overflow: hidden;
-  min-height: 52px;
+  min-height: 56px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -3262,15 +3265,109 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
   }
 }
 
-/* Secondary Button - Download PDF */
+/* Secondary Button - Download PDF (Teal) */
 .card .btn.premium {
-  background: #5A9B94;
+  background: var(--engniter-secondary);
   color: var(--engniter-white);
-  box-shadow: 0 4px 12px rgba(90, 155, 148, 0.25);
+  box-shadow: none;
 }
 
 .card .btn.premium:hover {
-  background: #4A8A83;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(90, 155, 148, 0.35);
+  background: #2F8A84;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(59, 167, 160, 0.2);
+}
+
+/* Responsive Design - Minimal & Clean */
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  
+  .card {
+    padding: 28px;
+    min-height: 400px;
+  }
+  
+  .card .h3 {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+  
+  .card .desc {
+    font-size: 16px;
+    margin: 24px 0;
+  }
+  
+  .card .meta-row {
+    margin: 20px 0;
+    gap: 10px;
+    padding: 18px 0;
+  }
+  
+  .card .pill {
+    font-size: 10px;
+    padding: 5px 10px;
+  }
+  
+  .card .actions {
+    padding-top: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .card {
+    padding: 24px;
+    border-radius: 14px;
+    min-height: 380px;
+  }
+  
+  .card .h3 {
+    font-size: 20px;
+    margin-bottom: 18px;
+  }
+  
+  .card .desc {
+    font-size: 15px;
+    margin: 20px 0;
+  }
+  
+  .card .meta-row {
+    margin: 18px 0;
+    gap: 8px;
+    padding: 16px 0;
+  }
+  
+  .card .pill {
+    font-size: 9px;
+    padding: 4px 8px;
+    border-radius: 16px;
+  }
+  
+  .card .actions.two {
+    flex-direction: row;
+    gap: 14px;
+  }
+  
+  .card .actions .btn {
+    padding: 16px 20px;
+    font-size: 13px;
+    flex: 1;
+    min-height: 52px;
+  }
+  
+  .card .actions {
+    padding-top: 18px;
+  }
+  
+  .card img {
+    height: 130px;
+    margin-bottom: 24px;
+  }
 }
