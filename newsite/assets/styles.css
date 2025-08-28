@@ -882,3 +882,110 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(255, 107, 53, 0.4);
 }
+
+/* Pagination Styles */
+.pagination-container {
+  background: var(--engniter-white);
+  border: 1px solid var(--engniter-divider);
+  border-radius: 12px;
+  padding: 16px;
+  margin: 16px 0;
+  box-shadow: 0 2px 8px rgba(31, 45, 61, 0.04);
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.pagination-btn {
+  background: var(--engniter-primary);
+  color: var(--engniter-white);
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(255, 107, 53, 0.2);
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pagination-btn:hover:not(:disabled) {
+  background: #E55A2B;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+}
+
+.pagination-btn:disabled {
+  background: #E5E7EB;
+  color: #9CA3AF;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.pagination-btn.secondary {
+  background: var(--engniter-accent);
+  color: var(--engniter-white);
+  box-shadow: 0 2px 8px rgba(59, 167, 160, 0.2);
+}
+
+.pagination-btn.secondary:hover {
+  background: #2F8A84;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(59, 167, 160, 0.3);
+}
+
+.pagination-options {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.page-numbers {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.page-info {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--engniter-text-light);
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+}
+
+.page-info span {
+  color: var(--engniter-primary);
+  font-weight: 800;
+}
+
+/* Responsive pagination */
+@media (max-width: 600px) {
+  .pagination {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .pagination-btn {
+    width: 100%;
+    max-width: 200px;
+  }
+  
+  .page-info {
+    font-size: 14px;
+  }
+  
+  .pagination-container {
+    margin-left: -8px;
+    margin-right: -8px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}

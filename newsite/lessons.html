@@ -694,6 +694,12 @@ function showPage(pageNumber) {
     visibleCards.forEach(card => card.style.display = '');
     document.getElementById('current-page').textContent = '1';
     document.getElementById('total-pages').textContent = '1';
+    
+    // Disable both buttons when no pagination needed
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+    if (prevBtn) prevBtn.disabled = true;
+    if (nextBtn) nextBtn.disabled = true;
     return;
   }
   
@@ -720,9 +726,9 @@ function showPage(pageNumber) {
   const nextBtn = document.querySelector('.next-btn');
   
   if (prevBtn) prevBtn.disabled = pageNumber === 1;
-  if (nextBtn) nextBtn.disabled = pageNumber === totalPages;
+  if (nextBtn) nextBtn.disabled = pageNumber >= totalPages;
   
-  console.log('Page updated. Prev disabled:', pageNumber === 1, 'Next disabled:', pageNumber === totalPages);
+  console.log('Page updated. Prev disabled:', pageNumber === 1, 'Next disabled:', pageNumber >= totalPages);
   
   // Store current page in session storage
   sessionStorage.setItem('currentLessonPage', pageNumber);
