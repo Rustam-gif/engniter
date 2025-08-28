@@ -701,8 +701,15 @@ function showPage(pageNumber) {
   
   const cardsPerPage = 15;
   
-  // ALWAYS calculate totalPages from total available cards to prevent circular logic
-  const totalPages = Math.ceil(totalAvailableCards / cardsPerPage);
+  // Calculate totalPages based on whether filters are active
+  let totalPages;
+  if (visibleCards.length === totalAvailableCards) {
+    // No filters active - use total available cards
+    totalPages = Math.ceil(totalAvailableCards / cardsPerPage);
+  } else {
+    // Filters active - use visible cards count
+    totalPages = Math.ceil(visibleCards.length / cardsPerPage);
+  }
   
   console.log('Pagination debug:', {
     totalAvailableCards: totalAvailableCards,
@@ -732,19 +739,19 @@ function showPage(pageNumber) {
   
   // Calculate which cards to show for this page
   const startIndex = (pageNumber - 1) * cardsPerPage;
-  const endIndex = Math.min(startIndex + cardsPerPage, totalAvailableCards);
+  const endIndex = Math.min(startIndex + cardsPerPage, visibleCards.length);
   
-  console.log(`Showing page ${pageNumber}: cards ${startIndex + 1} to ${endIndex} of ${totalAvailableCards}`);
+  console.log(`Showing page ${pageNumber}: cards ${startIndex + 1} to ${endIndex} of ${visibleCards.length}`);
   
-  // Hide ALL cards first
-  allCards.forEach(card => {
+  // Hide ALL visible cards first
+  visibleCards.forEach(card => {
     card.style.display = 'none';
   });
   
-  // Show only the cards for the current page
+  // Show only the cards for the current page from the visible cards
   for (let i = startIndex; i < endIndex; i++) {
-    if (allCards[i]) {
-      allCards[i].style.display = '';
+    if (visibleCards[i]) {
+      visibleCards[i].style.display = '';
     }
   }
   
@@ -795,8 +802,15 @@ function updatePaginationForVisibleCards() {
   
   const cardsPerPage = 15;
   
-  // ALWAYS calculate totalPages from total available cards to prevent circular logic
-  const totalPages = Math.ceil(totalAvailableCards / cardsPerPage);
+  // Calculate totalPages based on whether filters are active
+  let totalPages;
+  if (visibleCards.length === totalAvailableCards) {
+    // No filters active - use total available cards
+    totalPages = Math.ceil(totalAvailableCards / cardsPerPage);
+  } else {
+    // Filters active - use visible cards count
+    totalPages = Math.ceil(visibleCards.length / cardsPerPage);
+  }
   
   console.log('Filter update pagination:', {
     totalAvailableCards: totalAvailableCards,
