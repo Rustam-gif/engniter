@@ -781,6 +781,56 @@ document.addEventListener('DOMContentLoaded', function(){
     }
     refresh();
   })();
+
+  // Auto-add missing data attributes to lesson cards
+  (function(){
+    console.log('Adding missing data attributes to lesson cards...');
+    
+    const lessonCards = document.querySelectorAll('article.card:not(.news-promo)');
+    lessonCards.forEach(card => {
+      // Skip if already has attributes
+      if (card.hasAttribute('data-topic') && card.hasAttribute('data-level')) {
+        return;
+      }
+      
+      // Extract topic from pill
+      const topicPill = card.querySelector('.pill.topic');
+      if (topicPill) {
+        const topicText = topicPill.textContent.replace('Topic: ', '').toLowerCase();
+        card.setAttribute('data-topic', topicText);
+        console.log('Added data-topic:', topicText, 'to card:', card.querySelector('.h3')?.textContent);
+      }
+      
+      // Extract level from pill
+      const levelPill = card.querySelector('.pill.level');
+      if (levelPill) {
+        const levelText = levelPill.textContent.replace('Level: ', '');
+        card.setAttribute('data-level', levelText);
+        console.log('Added data-level:', levelText, 'to card:', card.querySelector('.h3')?.textContent);
+      }
+      
+      // Mark as free if it's in the free files list
+      const downloadBtn = card.querySelector('[data-premium-file]');
+      if (downloadBtn) {
+        const fileName = downloadBtn.getAttribute('data-premium-file');
+        const isFree = ['travel.pdf', 'the-science-of-luck.pdf', 'objects-that-tell-a-story.pdf', 'The-Power-of-Networking(B1-B2).pdf', 'Brand.pdf'].includes(fileName);
+        if (isFree) {
+          card.setAttribute('data-free', 'true');
+          console.log('Marked as free:', fileName);
+        }
+      }
+    });
+    
+    console.log('Finished adding data attributes to', lessonCards.length, 'lesson cards');
+    
+    // Now reinitialize pagination with the proper attributes
+    setTimeout(() => {
+      if (typeof window.initializePagination === 'function') {
+        console.log('Reinitializing pagination after adding data attributes...');
+        window.initializePagination();
+      }
+    }, 100);
+  })();
 });
 
 // Function to start quiz from lesson card
