@@ -913,12 +913,12 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
 .pdf-tag::before{content:"PDF"}
 
 /* Spacing tighten */
-.filters-card{padding:16px 24px;margin-bottom:8px}
-.filters-card .group{padding-top:12px;margin-top:8px;border-top:1px solid var(--line);position:relative;z-index:1}
+.filters-card{padding:12px 20px;margin-bottom:8px}
+.filters-card .group{padding-top:8px;margin-top:6px;border-top:1px solid var(--line);position:relative;z-index:1}
 .filters-card .group:first-child{padding-top:0;margin-top:0;border-top:none}
-.filters-card .group-title{font-weight:900;color:var(--muted);font-size:16px;margin-bottom:8px}
-.filters-card .group-title + *{margin-top:8px}
-.filters-bar{display:flex;justify-content:flex-start;align-items:flex-start;margin:8px 0 12px;row-gap:14px;gap:24px;position:relative;z-index:1}
+.filters-card .group-title{font-weight:900;color:var(--muted);font-size:15px;margin-bottom:6px}
+.filters-card .group-title + *{margin-top:6px}
+.filters-bar{display:flex;justify-content:flex-start;align-items:flex-start;margin:4px 0 8px;row-gap:10px;gap:20px;position:relative;z-index:1}
 
 .actions.two{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:none}
 .actions.two .btn{width:100%;justify-content:center}
