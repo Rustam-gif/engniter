@@ -146,7 +146,7 @@
       </div>
       <p class="desc">Famous inventions created by mistake — vocab, reading, discussion.</p>
       <div class="actions two">
-        <button class="btn premium" data-premium-file="accidental-discoveries-that-changed-the-world.pdf">Download PDF</button>
+        <button class="btn premium" data-premium-file="accidental-discoveries-that-changed-the-world.pdf">Download</button>
         <button class="btn quiz-btn" onclick="startQuizFromLesson('accidental-discoveries-that-changed-the-world')">Start Quiz</button>
       </div>
     </article>
@@ -1032,15 +1032,15 @@ document.addEventListener('DOMContentLoaded', function(){
     }
     function isFreeFile(file){ return FREE_FILES.has(file); }
     function setPremium(btn){
-      btn.textContent = 'Unlock PDF';
+      btn.textContent = 'Unlock';
       btn.classList.remove('download');
       btn.classList.add('premium');
     }
     function setDownload(btn){
-  btn.textContent = 'Download PDF';
-  btn.classList.remove('premium');
-  btn.classList.add('download');
-}
+        btn.textContent = 'Download';
+        btn.classList.remove('premium');
+        btn.classList.add('download');
+      }
 
     async function handleClick(e){
       const btn = e.currentTarget;

@@ -3025,3 +3025,30 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
     padding-right: 16px;
   }
 }
+
+/* Fixed position buttons for lesson cards */
+.card .actions {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--engniter-white);
+  padding: 20px 24px;
+  border-top: 1px solid var(--engniter-shadow);
+  border-radius: 0 0 20px 20px;
+}
+
+.card {
+  padding-bottom: 100px; /* Add space for fixed buttons */
+}
+
+/* Ensure buttons in fixed position look good */
+.card .actions .btn {
+  box-shadow: 0 4px 12px rgba(31, 45, 61, 0.1);
+  transition: all 0.3s ease;
+}
+
+.card .actions .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(31, 45, 61, 0.15);
+}
