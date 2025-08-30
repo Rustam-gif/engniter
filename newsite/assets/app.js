@@ -287,3 +287,29 @@
   // Initial render
   render();
 })();
+
+  // Add event listeners for topic chips
+  const topicChips = document.querySelectorAll('#pdf-topic-chips .chipbtn');
+  topicChips.forEach(chip => {
+    chip.addEventListener('click', function() {
+      // Remove active class from all chips
+      topicChips.forEach(c => c.classList.remove('active'));
+      // Add active class to clicked chip
+      this.classList.add('active');
+      
+      // Update the active topic
+      const selectedTopic = this.getAttribute('data-topic');
+      if (topicSelect) {
+        topicSelect.value = selectedTopic;
+      }
+      
+      // Re-render with new topic
+      render();
+    });
+  });
+  
+  // Set initial active state for "All" topic
+  const allTopicChip = document.querySelector('#pdf-topic-chips .chipbtn[data-topic="all"]');
+  if (allTopicChip) {
+    allTopicChip.classList.add('active');
+  }

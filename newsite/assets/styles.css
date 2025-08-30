@@ -868,38 +868,34 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 10px 14px;
-  border-radius: 999px;
+  padding: 8px 16px;
+  border-radius: 20px;
   border: 1px solid var(--line);
-  background: var(--card);
+  background: var(--bg);
+  color: var(--text);
+  font-weight: 600;
+  font-size: 14px;
   cursor: pointer;
-  font-weight: 700;
-  color: var(--muted);
-  justify-content: center;
-  user-select: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  position: relative;
-  z-index: 999;
-  pointer-events: auto !important;
+  transition: all 0.2s ease;
   white-space: nowrap;
   flex-shrink: 0;
 }
 
-.chipbtn.active{
-  background: #0f874b;
-  color: #fff;
-  border-color: #0f874b;
+.chipbtn:hover {
+  border-color: var(--primary);
+  background: var(--primary-bg);
 }
 
-.chipbtn svg{
-  width: 18px;
-  height: 18px;
-  opacity: 0.95;
-  stroke: currentColor;
-  fill: none;
-  stroke-width: 2;
+.chipbtn.active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+.chipbtn svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
 }
 
 .toggle{display:inline-flex;align-items:center;gap:10px}
