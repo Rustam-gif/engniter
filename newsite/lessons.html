@@ -672,6 +672,84 @@ let globalOriginalVisibleCount = 0;
 // Global variable to track current filters
 window.currentFilters = [];
 
+// Global function to start quiz from lesson card
+function startQuizFromLesson(lessonSlug) {
+  alert('🎯 Quiz function called for: ' + lessonSlug); // Simple test alert
+  console.log('🎯 startQuizFromLesson called with:', lessonSlug);
+  
+  // Show quiz modal
+  const quizModal = document.getElementById('quiz-modal');
+  const quizRoot = document.getElementById('quiz-root');
+  
+  console.log('🔍 Quiz modal found:', !!quizModal);
+  console.log('🔍 Quiz root found:', !!quizRoot);
+  
+  if (quizModal && quizRoot) {
+    // Show modal
+    quizModal.style.display = 'block';
+    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    console.log('✅ Modal displayed and scrolling disabled');
+    
+    // Clear existing quiz content
+    quizRoot.innerHTML = '<div class="quiz-loading"><p>Loading quiz...</p><div class="loading-spinner"></div></div>';
+    console.log('✅ Quiz root cleared and loading message shown');
+    
+    // Load and display the specific quiz directly
+    setTimeout(() => {
+      console.log('⏰ Starting quiz loading process...');
+      console.log('📚 Lesson slug:', lessonSlug);
+      console.log('📊 allQuizData available:', !!window.allQuizData);
+      console.log('🎮 createQuiz available:', !!window.createQuiz);
+      
+      if (window.allQuizData && window.createQuiz) {
+        // Find the quiz data for this lesson - use exact matching first, then fallback
+        let quizKey = lessonSlug; // Try exact match first
+        
+        if (!window.allQuizData[quizKey]) {
+          // If exact match fails, try to find a similar key
+          quizKey = Object.keys(window.allQuizData).find(key => 
+            key.toLowerCase() === lessonSlug.toLowerCase() ||
+            key.toLowerCase().replace(/[()]/g, '').replace(/\s+/g, '-') === lessonSlug.toLowerCase().replace(/[()]/g, '').replace(/\s+/g, '-')
+          );
+        }
+        
+        console.log('🔑 Found quiz key:', quizKey);
+        console.log('📋 Quiz data:', quizKey ? window.allQuizData[quizKey] : 'NOT FOUND');
+        console.log('📝 Quiz exercises count:', quizKey ? window.allQuizData[quizKey].exercises.length : 'N/A');
+        
+        if (quizKey && window.allQuizData[quizKey]) {
+          // Create and display the specific quiz
+          console.log('🎯 Creating quiz with key:', quizKey);
+          console.log('📖 Quiz title:', window.allQuizData[quizKey].title);
+          console.log('📚 Quiz exercises:', window.allQuizData[quizKey].exercises);
+          window.createQuiz(quizKey, window.allQuizData[quizKey]);
+        } else {
+          // Fallback if quiz not found
+          console.log('❌ Quiz not found, showing error message');
+          quizRoot.innerHTML = '<div class="quiz-error"><p>Quiz not found for this lesson. Please try another lesson.</p></div>';
+        }
+      } else {
+        // Fallback if quiz system not loaded
+        console.log('❌ Quiz system not available, showing error message');
+        quizRoot.innerHTML = '<div class="quiz-error"><p>Quiz system not available. Please refresh the page.</p></div>';
+      }
+    }, 300);
+  } else {
+    console.error('❌ Quiz modal or root not found!');
+    console.error('Quiz modal:', quizModal);
+    console.error('Quiz root:', quizRoot);
+  }
+}
+
+// Global function to close quiz modal
+function closeQuizModal() {
+  const quizModal = document.getElementById('quiz-modal');
+  if (quizModal) {
+    quizModal.style.display = 'none';
+    document.body.style.overflow = 'auto'; // Restore scrolling
+  }
+}
+
 function showPage(pageNumber) {
   // Get all lesson cards (excluding news promo)
   const allCards = document.querySelectorAll('article.card:not(.news-promo)');
@@ -1075,83 +1153,6 @@ document.addEventListener('DOMContentLoaded', function(){
   })();
 
   // Function to start quiz from lesson card
-  function startQuizFromLesson(lessonSlug) {
-    alert('🎯 Quiz function called for: ' + lessonSlug); // Simple test alert
-    console.log('🎯 startQuizFromLesson called with:', lessonSlug);
-    
-    // Show quiz modal
-    const quizModal = document.getElementById('quiz-modal');
-    const quizRoot = document.getElementById('quiz-root');
-    
-    console.log('🔍 Quiz modal found:', !!quizModal);
-    console.log('🔍 Quiz root found:', !!quizRoot);
-    
-    if (quizModal && quizRoot) {
-      // Show modal
-      quizModal.style.display = 'block';
-      document.body.style.overflow = 'hidden'; // Prevent background scrolling
-      console.log('✅ Modal displayed and scrolling disabled');
-      
-      // Clear existing quiz content
-      quizRoot.innerHTML = '<div class="quiz-loading"><p>Loading quiz...</p><div class="loading-spinner"></div></div>';
-      console.log('✅ Quiz root cleared and loading message shown');
-      
-      // Load and display the specific quiz directly
-      setTimeout(() => {
-        console.log('⏰ Starting quiz loading process...');
-        console.log('📚 Lesson slug:', lessonSlug);
-        console.log('📊 allQuizData available:', !!window.allQuizData);
-        console.log('🎮 createQuiz available:', !!window.createQuiz);
-        
-        if (window.allQuizData && window.createQuiz) {
-          // Find the quiz data for this lesson - use exact matching first, then fallback
-          let quizKey = lessonSlug; // Try exact match first
-          
-          if (!window.allQuizData[quizKey]) {
-            // If exact match fails, try to find a similar key
-            quizKey = Object.keys(window.allQuizData).find(key => 
-              key.toLowerCase() === lessonSlug.toLowerCase() ||
-              key.toLowerCase().replace(/[()]/g, '').replace(/\s+/g, '-') === lessonSlug.toLowerCase().replace(/[()]/g, '').replace(/\s+/g, '-')
-            );
-          }
-          
-          console.log('🔑 Found quiz key:', quizKey);
-          console.log('📋 Quiz data:', quizKey ? window.allQuizData[quizKey] : 'NOT FOUND');
-          console.log('📝 Quiz exercises count:', quizKey ? window.allQuizData[quizKey].exercises.length : 'N/A');
-          
-          if (quizKey && window.allQuizData[quizKey]) {
-            // Create and display the specific quiz
-            console.log('🎯 Creating quiz with key:', quizKey);
-            console.log('📖 Quiz title:', window.allQuizData[quizKey].title);
-            console.log('📚 Quiz exercises:', window.allQuizData[quizKey].exercises);
-            window.createQuiz(quizKey, window.allQuizData[quizKey]);
-          } else {
-            // Fallback if quiz not found
-            console.log('❌ Quiz not found, showing error message');
-            quizRoot.innerHTML = '<div class="quiz-error"><p>Quiz not found for this lesson. Please try another lesson.</p></div>';
-          }
-        } else {
-          // Fallback if quiz system not loaded
-          console.log('❌ Quiz system not available, showing error message');
-          quizRoot.innerHTML = '<div class="quiz-error"><p>Quiz system not available. Please refresh the page.</p></div>';
-        }
-      }, 300);
-    } else {
-      console.error('❌ Quiz modal or root not found!');
-      console.error('Quiz modal:', quizModal);
-      console.error('Quiz root:', quizRoot);
-    }
-  }
-
-  // Function to close quiz modal
-  function closeQuizModal() {
-    const quizModal = document.getElementById('quiz-modal');
-    if (quizModal) {
-      quizModal.style.display = 'none';
-      document.body.style.overflow = 'auto'; // Restore scrolling
-    }
-  }
-
   // Close modal when clicking outside
   document.addEventListener('DOMContentLoaded', function() {
     const quizModal = document.getElementById('quiz-modal');
