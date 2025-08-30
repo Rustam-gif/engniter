@@ -1,29 +1,15 @@
 :root{
-  --engniter-primary: #3BA7A1;        /* Primary teal */
-  --engniter-secondary: #F59E0B;      /* Secondary orange */
-  --engniter-accent: #8B5CF6;         /* Accent purple */
-  --engniter-success: #10B981;        /* Success green */
-  --engniter-warning: #F59E0B;        /* Warning orange */
-  --engniter-error: #EF4444;          /* Error red */
-  --engniter-white: #FFFFFF;          /* Pure white */
-  --engniter-black: #1F2937;          /* Dark text */
-  --engniter-gray: #6B7280;           /* Medium gray */
-  --engniter-light-gray: #F3F4F6;     /* Light gray */
-  --engniter-border: #E5E7EB;         /* Border gray */
+  --bg:#fbf7f1;--ink:#142a2f;--muted:#2b4b51;--accent:#f06736;
+  --card:#fffdf9;--line:rgba(20,42,47,.08);
+  --ink-soft: color-mix(in oklab, var(--ink) 70%, white 30%);
+  --engniter-primary: #FF6B35;      /* Warm orange */
+  --engniter-secondary: #1F2D3D;    /* Deep navy */
+  --engniter-accent: #3BA7A0;       /* Teal/greenish blue */
+  --engniter-bg: #FFF7F2;           /* Soft beige */
+  --engniter-text: #1F2D3D;         /* Navy text */
+  --engniter-text-light: #5A6C7D;   /* Lighter navy for descriptions */
+  --engniter-white: #FFFFFF;        /* Pure white */
   --engniter-shadow: rgba(31, 45, 61, 0.08); /* Navy shadow */
-  --engniter-text-light: #6B7280;     /* Light text */
-  --engniter-text-dark: #1F2937;      /* Dark text */
-  --engniter-bg: #FFFFFF;             /* Background */
-  --engniter-card: #FFFFFF;           /* Card background */
-  --engniter-line: #E5E7EB;           /* Line color */
-  --engniter-muted: #6B7280;          /* Muted text */
-  --engniter-ink: #1F2937;            /* Main text */
-  --accent: #3BA7A1;                  /* Accent color */
-  --bg: #FFFFFF;                      /* Background */
-  --card: #FFFFFF;                    /* Card background */
-  --line: #E5E7EB;                    /* Line color */
-  --muted: #6B7280;                   /* Muted text */
-  --ink: #1F2937;                     /* Main text */
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -51,7 +37,6 @@ nav .pay-now-nav:hover{filter:brightness(.97);text-decoration:none}
 .hero{display:grid;grid-template-columns:1.2fr 1fr;align-items:center;gap:24px;padding:36px 0}
 .hero h1{font-size:48px;line-height:1.05;margin:.2em 0}
 .hero p{font-size:18px;opacity:.9}
-
 .hero .art{text-align:center}
 
 .badge{background:#ffe5d8;color:#8a3a1f;padding:2px 10px;border-radius:999px;font-weight:700;font-size:12px}
@@ -621,6 +606,8 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
   border: 2px solid var(--line);
   border-radius: 12px;
   padding: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .quiz-card:hover {
@@ -3064,17 +3051,4 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
 .card .actions .btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(31, 45, 61, 0.15);
-}
-
-/* Filter toggle */
-.free-toggle {
-  background: var(--card);
-  border: 1px solid var(--line);
-  color: var(--muted);
-}
-
-.free-toggle.active {
-  background: var(--accent);
-  color: white;
-  border-color: var(--accent);
 }
