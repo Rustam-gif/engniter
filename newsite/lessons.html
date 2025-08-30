@@ -777,7 +777,7 @@ function closeQuizModal() {
 
 function showPage(pageNumber) {
   // Get all lesson cards (excluding news promo)
-  const allCards = document.querySelectorAll('article.card:not(.news-promo)');
+  const allCards = document.querySelectorAll('article.card:not(.news-promo):not([data-is-promo="true"])');
   const totalAvailableCards = allCards.length;
   
   // Get currently visible cards (after filters are applied) - create a STABLE array
@@ -917,7 +917,7 @@ function changePage(direction) {
 // Update pagination when filters change
 function updatePaginationForVisibleCards() {
   // Get all lesson cards (excluding news promo)
-  const allCards = document.querySelectorAll('article.card:not(.news-promo)');
+  const allCards = document.querySelectorAll('article.card:not(.news-promo):not([data-is-promo="true"])');
   const totalAvailableCards = allCards.length;
   
   // Get currently visible cards (after filters are applied) - create a STABLE array
@@ -987,7 +987,7 @@ let paginationEnabled = true;
 
 function togglePagination() {
   // Only toggle actual lesson cards, exclude news promo and other non-lesson cards
-  const cards = document.querySelectorAll('article.card:not(.news-promo)');
+  const cards = document.querySelectorAll('article.card:not(.news-promo):not([data-is-promo="true"])');
   const toggleText = document.getElementById('pagination-toggle-text');
   const paginationControls = document.querySelector('.pagination');
   
@@ -1029,7 +1029,7 @@ document.addEventListener('DOMContentLoaded', function(){
       console.log('=== AUTO-ATTRIBUTE SCRIPT STARTING ===');
       console.log('Current time:', new Date().toISOString());
       
-      const lessonCards = document.querySelectorAll('article.card:not(.news-promo)');
+      const lessonCards = document.querySelectorAll('article.card:not(.news-promo):not([data-is-promo="true"])');
       console.log('Found lesson cards:', lessonCards.length);
       
       lessonCards.forEach((card, index) => {
