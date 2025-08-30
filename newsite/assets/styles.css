@@ -105,10 +105,7 @@ nav .pay-now-nav:hover{filter:brightness(.97);text-decoration:none}
   color: #92400e;
 }
 
-.card .pill.grammar {
-  background: #dbeafe;
-  color: #1e40af;
-}
+
 
 .btn{display:inline-grid;grid-auto-flow:column;align-items:center;gap:8px;
   background:var(--accent);color:#fff;padding:10px 13px;border-radius:10px;font-weight:700;
