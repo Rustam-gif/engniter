@@ -108,7 +108,7 @@
 
   <section class="grid gap-24" id="pdf-library">
     <!-- News Lessons Promotion -->
-    <article class="card news-promo" style="grid-column: 1 / -1; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;" data-topic="promo" data-level="promo" data-free="false" data-is-promo="true">
+    <article class="card news-promo" style="grid-column: 1 / -1; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;" data-topic="promo" data-level="promo" data-free="false" data-is-promo="true" data-skip-processing="true">
       <div style="display: flex; align-items: center; gap: 2rem;">
         <div style="flex: 1;">
           <h3 class="h3" style="margin-top: 0; color: white;">📰 Current News Lessons</h3>
@@ -777,7 +777,7 @@ function closeQuizModal() {
 
 function showPage(pageNumber) {
   // Get all lesson cards (excluding news promo)
-  const allCards = document.querySelectorAll('article.card:not(.news-promo):not([data-is-promo="true"])');
+  const allCards = document.querySelectorAll('article.card:not(.news-promo):not([data-is-promo="true"]):not([data-skip-processing="true"])');
   const totalAvailableCards = allCards.length;
   
   // Get currently visible cards (after filters are applied) - create a STABLE array
@@ -917,7 +917,7 @@ function changePage(direction) {
 // Update pagination when filters change
 function updatePaginationForVisibleCards() {
   // Get all lesson cards (excluding news promo)
-  const allCards = document.querySelectorAll('article.card:not(.news-promo):not([data-is-promo="true"])');
+  const allCards = document.querySelectorAll('article.card:not(.news-promo):not([data-is-promo="true"]):not([data-skip-processing="true"])');
   const totalAvailableCards = allCards.length;
   
   // Get currently visible cards (after filters are applied) - create a STABLE array
@@ -987,7 +987,7 @@ let paginationEnabled = true;
 
 function togglePagination() {
   // Only toggle actual lesson cards, exclude news promo and other non-lesson cards
-  const cards = document.querySelectorAll('article.card:not(.news-promo):not([data-is-promo="true"])');
+  const cards = document.querySelectorAll('article.card:not(.news-promo):not([data-is-promo="true"]):not([data-skip-processing="true"])');
   const toggleText = document.getElementById('pagination-toggle-text');
   const paginationControls = document.querySelector('.pagination');
   
@@ -1029,7 +1029,7 @@ document.addEventListener('DOMContentLoaded', function(){
       console.log('=== AUTO-ATTRIBUTE SCRIPT STARTING ===');
       console.log('Current time:', new Date().toISOString());
       
-      const lessonCards = document.querySelectorAll('article.card:not(.news-promo):not([data-is-promo="true"])');
+      const lessonCards = document.querySelectorAll('article.card:not(.news-promo):not([data-is-promo="true"]):not([data-skip-processing="true"])');
       console.log('Found lesson cards:', lessonCards.length);
       
       lessonCards.forEach((card, index) => {

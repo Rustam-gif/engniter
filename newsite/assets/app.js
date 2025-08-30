@@ -35,7 +35,7 @@
 // Lightweight button filters for the PDF library
 (function(){
   // Get all lesson cards (excluding news promo and other non-lesson cards)
-  const cards = document.querySelectorAll('article.card:not(.news-promo):not([data-is-promo="true"])');
+  const cards = document.querySelectorAll('article.card:not(.news-promo):not([data-is-promo="true"]):not([data-skip-processing="true"])');
   
   // Get filter elements
   const topicSelect = document.getElementById('pdf-filter-topic');
@@ -64,8 +64,10 @@
   console.log('Total cards found (excluding promo):', cards.length);
   
   cards.forEach((card, index) => {
-    // Double-check: Skip promo cards
-    if (card.classList.contains('news-promo') || card.getAttribute('data-is-promo') === 'true') {
+    // Triple-check: Skip promo cards
+    if (card.classList.contains('news-promo') || 
+        card.getAttribute('data-is-promo') === 'true' || 
+        card.getAttribute('data-skip-processing') === 'true') {
       console.log(`Skipping promo card: ${card.querySelector('.h3')?.textContent}`);
       return;
     }
