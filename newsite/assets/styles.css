@@ -44,20 +44,32 @@ nav .pay-now-nav:hover{filter:brightness(.97);text-decoration:none}
 .grid{display:grid;gap:16px;grid-template-columns:repeat(3,1fr)}
 .gap-24{gap:24px}
 
-.card{background:var(--engniter-white);border:2px solid transparent;padding:24px;border-radius:20px;box-shadow:0 8px 32px var(--engniter-shadow);transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);position:relative;overflow:hidden}
-/* Removed colored top border for cleaner look */
-.card:hover{transform:translateY(-8px);box-shadow:0 16px 48px rgba(31, 45, 61, 0.15);border-color:var(--engniter-primary)}
-.card .h3{font-size:20px;font-weight:800;color:var(--engniter-secondary);margin:0 0 16px 0;line-height:1.3;font-family:'Inter', 'Segoe UI', system-ui, sans-serif;letter-spacing:-0.02em}
-.card .desc{font-size:15px;line-height:1.6;color:var(--engniter-text-light);margin:20px 0;font-family:'Inter', 'Segoe UI', system-ui, sans-serif;font-weight:400}
-.card .meta-row{margin:16px 0;display:flex;flex-wrap:wrap;gap:8px}
+.card{background:var(--engniter-white);border:2px solid transparent;padding:24px;border-radius:20px;box-shadow:0 8px 32px var(--engniter-shadow);transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);position:relative;overflow:hidden;
+  /* Fixed card dimensions */
+  width: 320px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+}
 
-.card .pill{font-size:11px;font-weight:700;padding:6px 12px;border-radius:20px;text-transform:uppercase;letter-spacing:0.5px;background:var(--engniter-secondary);color:var(--engniter-white);border:none;display:inline-block;transition:all 0.2s ease;font-family:'Inter', 'Segoe UI', system-ui, sans-serif}
+.card:hover{transform:translateY(-8px);box-shadow:0 16px 48px rgba(31, 45, 61, 0.15);border-color:var(--engniter-primary)}
+.card .h3{font-size:18px;font-weight:800;color:var(--engniter-secondary);margin:0 0 16px 0;line-height:1.3;font-family:'Inter', 'Segoe UI', system-ui, sans-serif;letter-spacing:-0.02em;
+  /* Ensure title fits */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.card .desc{font-size:15px;line-height:1.6;color:var(--engniter-text-light);margin:20px 0;font-family:'Inter', 'Segoe UI', system-ui, sans-serif;font-weight:400}
+.card .meta-row{margin:16px 0;display:flex;flex-wrap:wrap;gap:8px;flex-shrink:0}
+
+.card .pill{font-size:11px;font-weight:700;padding:6px 12px;border-radius:20px;text-transform:uppercase;letter-spacing:0.5px;background:var(--engniter-secondary);color:var(--engniter-white);border:none;display:inline-block;transition:all 0.2s ease;font-family:'Inter', 'Segoe UI', system-ui, sans-serif;flex-shrink:0}
 .card .pill:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(31, 45, 61, 0.2)}
 
-.card img{width:100%;height:160px;object-fit:cover;border-radius:16px;margin-bottom:20px;transition:transform 0.3s ease}
+.card img{width:100%;height:120px;object-fit:cover;border-radius:12px;margin-bottom:16px;transition:transform 0.3s ease}
 .card:hover img{transform:scale(1.02)}
 
-.card .actions{margin-top:24px;gap:12px}
+.card .actions{margin-top:auto;display:grid;grid-template-columns:1fr 1fr;gap:12px;flex-shrink:0}
 .card .actions.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .card .actions .btn{padding:14px 20px;font-size:14px;font-weight:700;border-radius:12px;border:none;cursor:pointer;transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);font-family:'Inter', 'Segoe UI', system-ui, sans-serif;text-transform:uppercase;letter-spacing:0.5px;position:relative;overflow:hidden}
 
@@ -3066,4 +3078,37 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
 .card .actions .btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(31, 45, 61, 0.15);
+}
+
+/* Free/Paid indicator */
+.free-paid-indicator {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  z-index: 10;
+}
+
+.free-paid-indicator.free {
+  background: #10B981;
+  color: white;
+}
+
+.free-paid-indicator.paid {
+  background: #F59E0B;
+  color: white;
+}
+
+/* Ensure cards grid maintains consistent sizing */
+.lessons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 320px);
+  gap: 24px;
+  justify-content: center;
+  padding: 24px;
 }
