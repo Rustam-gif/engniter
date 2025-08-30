@@ -34,68 +34,56 @@
 
 // Lightweight button filters for the PDF library
 (function(){
-  // Get all lesson cards (excluding news promo and other non-lesson cards)
-  const cards = document.querySelectorAll('article.card:not(.news-promo):not([data-is-promo="true"]):not([data-skip-processing="true"])');
-  
-  // Get filter elements
   const topicSelect = document.getElementById('pdf-filter-topic');
-  const levelChips = document.getElementById('level-chips');
+  const topicChips = document.getElementById('pdf-topic-chips');
   const freeOnly = document.getElementById('pdf-filter-free');
   const freeSwitch = document.getElementById('pdf-free-switch');
+  const levelChips = document.getElementById('level-chips');
   
-  // Level chip management
-  let selectedLevels = new Set(['ALL']);
-  
-  // Get current filter values
-  const activeTopic = topicSelect ? topicSelect.value : 'all';
-  
-  if (levelChips) {
-    levelChips.querySelectorAll('.level-chip.active').forEach(chip => {
-      selectedLevels.add(chip.getAttribute('data-level'));
+  // Check if we're on the right page
+  if (!levelChips) return;
+
+  const cards = Array.from(document.querySelectorAll('article.card'))
+    .filter(card => {
+      const hasH2 = card.querySelector('h2');
+      const hasH3 = card.querySelector('h3');
+      return hasH3 && !hasH2; // We want cards with h3 but not h2
     });
-  }
-  
-  const onlyFree = !!(freeOnly && freeOnly.checked);
-  
-  console.log('=== RENDER FUNCTION DEBUG ===');
-  console.log('freeOnly element:', freeOnly);
-  console.log('freeOnly.checked:', freeOnly?.checked);
-  console.log('onlyFree calculated:', onlyFree);
-  console.log('Total cards found (excluding promo):', cards.length);
-  
-  cards.forEach((card, index) => {
-    // Triple-check: Skip promo cards
-    if (card.classList.contains('news-promo') || 
-        card.getAttribute('data-is-promo') === 'true' || 
-        card.getAttribute('data-skip-processing') === 'true') {
-      console.log(`Skipping promo card: ${card.querySelector('.h3')?.textContent}`);
-      return;
-    }
-    
-    const topicOk = (activeTopic==='all' || card.dataset.topic===activeTopic);
-    const levelOk = selectedLevels.has('ALL') || selectedLevels.has(card.dataset.level);
-    const freeOk = (!onlyFree || card.dataset.free === 'true');
-    
-    console.log(`Card ${index + 1} (${card.querySelector('.h3')?.textContent}):`, {
-      topicOk,
-      levelOk,
-      freeOk,
-      topic: card.dataset.topic,
-      level: card.dataset.level,
-      free: card.dataset.free,
-      onlyFree: onlyFree
-    });
-    
-    card.style.display = (topicOk && levelOk && freeOk) ? '' : 'none';
+
+  const slug = (s)=> (s||'').toLowerCase().trim().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
+  const titleCase = (s)=> (s||'').replace(/\w\S*/g, t=>t.charAt(0).toUpperCase()+t.slice(1).toLowerCase());
+
+  // Free files set (lowercased)
+  const FREE_FILES = new Set([
+    'travel.pdf',
+    'the-science-of-luck.pdf',
+    'objects-that-tell-a-story.pdf',
+    'the-power-of-networking(b1-b2).pdf',
+    'brand.pdf'
+  ]);
+
+  // Annotate and collect options
+  const topicMap = new Map(); // slug -> display label
+  const levelSet = new Set(['ALL']);
+  cards.forEach(card=>{
+    const topicText = card.querySelector('.pill.topic')?.textContent || '';
+    const topicSlug = slug(topicText || 'misc');
+    const topicLabel = topicText || titleCase(topicSlug.replace(/-/g,' '));
+    topicMap.set(topicSlug, topicLabel);
+    card.dataset.topic = topicSlug;
+
+    const levelPill = card.querySelector('.pill.level')?.textContent || '';
+    const match = levelPill.match(/A1|A2|B1|B2|C1|C2/i);
+    const level = match ? match[0].toUpperCase() : 'ALL';
+    card.dataset.level = level;
+    levelSet.add(level);
+
+    // Mark whether this card represents a free file
+    const btn = card.querySelector('[data-premium-file]');
+    const fname = (btn && btn.getAttribute('data-premium-file')) || '';
+    const isFree = FREE_FILES.has((fname||'').toLowerCase());
+    card.dataset.free = isFree ? 'true' : 'false';
   });
-  
-  // Ensure filters section is always visible
-  const filtersCard = document.querySelector('.filters-card');
-  if (filtersCard) {
-    filtersCard.style.display = 'block';
-    filtersCard.style.visibility = 'visible';
-    filtersCard.style.opacity = '1';
-  }
 
   // Populate topic controls
   if (topicSelect){
@@ -103,24 +91,15 @@
     const optAllT = document.createElement('option');
     optAllT.value = 'all'; optAllT.textContent = 'All topics';
     topicSelect.appendChild(optAllT);
-    
-    // Create topic map from existing cards
-    const topicMap = new Map();
-    cards.forEach(card => {
-      const topicPill = card.querySelector('.pill.topic');
-      if (topicPill) {
-        const topicText = topicPill.textContent;
-        const topicSlug = topicText.toLowerCase().replace(/\s+/g, '-');
-        topicMap.set(topicSlug, topicText);
-      }
-    });
-    
     Array.from(topicMap.entries()).sort((a,b)=>a[1].localeCompare(b[1])).forEach(([value,label])=>{
       const opt = document.createElement('option');
       opt.value = value; opt.textContent = label;
       topicSelect.appendChild(opt);
     });
   }
+
+  // Level chip management
+  let selectedLevels = new Set(['ALL']);
 
   function updateLevelChips() {
     const chips = levelChips.querySelectorAll('.level-chip');
@@ -146,8 +125,14 @@
     render();
   }
 
+
+
   function activeTopicValue(){
-    return topicSelect ? topicSelect.value : 'all';
+    if (topicChips){
+      const activeChip = topicChips.querySelector('.chipbtn.active');
+      if (activeChip) return activeChip.getAttribute('data-topic') || 'all';
+    }
+    return topicSelect.value;
   }
 
   function render(){
@@ -160,11 +145,6 @@
     console.log('onlyFree calculated:', onlyFree);
     
     cards.forEach((card, index) => {
-      // Skip promo cards
-      if (card.classList.contains('news-promo') || card.getAttribute('data-is-promo') === 'true') {
-        return;
-      }
-      
       const topicOk = (activeTopic==='all' || card.dataset.topic===activeTopic);
       const levelOk = selectedLevels.has('ALL') || selectedLevels.has(card.dataset.level);
       const freeOk = (!onlyFree || card.dataset.free === 'true');
@@ -217,7 +197,7 @@
         console.log('WARNING: updatePaginationForVisibleCards not available!');
         
         // Fallback: Update pagination manually
-        const visibleCards = Array.from(document.querySelectorAll('article.card:not(.news-promo)')).filter(card => 
+        const visibleCards = Array.from(document.querySelectorAll('article.card')).filter(card => 
           card.style.display !== 'none'
         );
         const cardsPerPage = 15;
@@ -259,57 +239,71 @@
         const level = chip.getAttribute('data-level');
         selectLevel(level);
       });
+
+      // Keyboard navigation
+      chip.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          const level = chip.getAttribute('data-level');
+          selectLevel(level);
+        } else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+          e.preventDefault();
+          const nextChip = chip.nextElementSibling || levelChips.firstElementChild;
+          if (nextChip) nextChip.focus();
+        } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+          e.preventDefault();
+          const prevChip = chip.previousElementSibling || levelChips.lastElementChild;
+          if (prevChip) prevChip.focus();
+        }
+      });
     });
   }
-  
-  // Free filter event listener
-  if (freeOnly) {
-    freeOnly.addEventListener('change', render);
-  }
-  
-  // Free switch functionality
-  if (freeSwitch) {
-    freeSwitch.addEventListener('click', () => {
-      if (freeOnly) {
-        freeOnly.checked = !freeOnly.checked;
-        freeSwitch.classList.toggle('on', freeOnly.checked);
+
+
+
+  // Topic chip event listeners
+  if (topicChips){
+    topicChips.querySelectorAll('.chipbtn').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        // Remove active class from all topic chips
+        topicChips.querySelectorAll('.chipbtn').forEach(b=>b.classList.remove('active'));
+        // Add active class to clicked chip
+        btn.classList.add('active');
         render();
-      }
+      });
     });
-    
-    // Set initial state
-    freeSwitch.classList.toggle('on', !!(freeOnly && freeOnly.checked));
+    // Set "All" as default active topic
+    const first = topicChips.querySelector('[data-topic="all"]'); 
+    if (first) first.classList.add('active');
   }
+
+  freeOnly && freeOnly.addEventListener('change', ()=>{ if (freeSwitch) freeSwitch.classList.toggle('on', freeOnly.checked); render(); });
+  if (freeSwitch){
+    freeSwitch.addEventListener('click', ()=>{ freeOnly.checked = !freeOnly.checked; freeSwitch.classList.toggle('on', freeOnly.checked); render(); });
+    freeSwitch.classList.toggle('on', !!freeOnly.checked);
+  }
+
+  // If URL has ?free=1, pre-enable the free-only filter
+  try{
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('free') === '1' && freeOnly){
+      freeOnly.checked = true;
+    }
+  }catch(e){}
+  
+  // Check if free filter should be enabled from session storage
+  try{
+    if (sessionStorage.getItem('enableFreeFilter') === 'true' && freeOnly){
+      freeOnly.checked = true;
+      sessionStorage.removeItem('enableFreeFilter'); // Clear the flag
+      // Update the switch visual state
+      if (freeSwitch) {
+        freeSwitch.classList.toggle('on', freeOnly.checked);
+      }
+    }
+  }catch(e){}
   
   // Initialize level chips
   updateLevelChips();
-  
-  // Initial render
   render();
 })();
-
-  // Add event listeners for topic chips
-  const topicChips = document.querySelectorAll('#pdf-topic-chips .chipbtn');
-  topicChips.forEach(chip => {
-    chip.addEventListener('click', function() {
-      // Remove active class from all chips
-      topicChips.forEach(c => c.classList.remove('active'));
-      // Add active class to clicked chip
-      this.classList.add('active');
-      
-      // Update the active topic
-      const selectedTopic = this.getAttribute('data-topic');
-      if (topicSelect) {
-        topicSelect.value = selectedTopic;
-      }
-      
-      // Re-render with new topic
-      render();
-    });
-  });
-  
-  // Set initial active state for "All" topic
-  const allTopicChip = document.querySelector('#pdf-topic-chips .chipbtn[data-topic="all"]');
-  if (allTopicChip) {
-    allTopicChip.classList.add('active');
-  }
