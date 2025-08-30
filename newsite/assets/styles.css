@@ -918,6 +918,10 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
   margin-bottom: 8px;
   width: 100%;
   grid-column: 1 / -1;
+  /* Ensure filters are always visible */
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 .filters-card .group{
   padding-top: 14px;

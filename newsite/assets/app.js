@@ -88,6 +88,14 @@
     
     card.style.display = (topicOk && levelOk && freeOk) ? '' : 'none';
   });
+  
+  // Ensure filters section is always visible
+  const filtersCard = document.querySelector('.filters-card');
+  if (filtersCard) {
+    filtersCard.style.display = 'block';
+    filtersCard.style.visibility = 'visible';
+    filtersCard.style.opacity = '1';
+  }
 
   // Populate topic controls
   if (topicSelect){

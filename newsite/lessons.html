@@ -619,7 +619,7 @@
   </section>
 
   <section class="grid gap-24">
-    <article class="card">
+    <article class="card" data-is-promo="true" data-skip-processing="true">
       <h2 class="h3" style="margin-top:0">Specialized Topics</h2>
       <p>Explore lessons tailored to specific interests and needs:</p>
       <ul class="feature-list">
@@ -632,7 +632,7 @@
       </ul>
     </article>
 
-    <article class="card">
+    <article class="card" data-is-promo="true" data-skip-processing="true">
       <h2 class="h3" style="margin-top:0">Interactive Features</h2>
       <p>Our lessons include engaging elements to enhance your learning:</p>
       <ul class="feature-list">
@@ -855,6 +855,14 @@ function showPage(pageNumber) {
     card.style.display = 'none';
   });
   
+  // Ensure filters section is always visible
+  const filtersCard = document.querySelector('.filters-card');
+  if (filtersCard) {
+    filtersCard.style.display = 'block';
+    filtersCard.style.visibility = 'visible';
+    filtersCard.style.opacity = '1';
+  }
+  
   // Then show only the cards for the current page
   let cardsShown = 0;
   for (let i = startIndex; i < endIndex; i++) {
@@ -966,6 +974,14 @@ function updatePaginationForVisibleCards() {
   
   // Determine what to do based on current state
   const currentPage = parseInt(document.getElementById('current-page').textContent);
+  
+  // Ensure filters section is always visible
+  const filtersCard = document.querySelector('.filters-card');
+  if (filtersCard) {
+    filtersCard.style.display = 'block';
+    filtersCard.style.visibility = 'visible';
+    filtersCard.style.opacity = '1';
+  }
   
   if (totalPages <= 1) {
     // Single page or no pages
