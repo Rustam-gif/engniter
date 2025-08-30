@@ -1,7 +1,4 @@
 :root{
-  --bg:#fbf7f1;--ink:#142a2f;--muted:#2b4b51;--accent:#f06736;
-  --card:#fffdf9;--line:rgba(20,42,47,.08);
-  --ink-soft: color-mix(in oklab, var(--ink) 70%, white 30%);
   --engniter-primary: #3BA7A1;        /* Primary teal */
   --engniter-secondary: #F59E0B;      /* Secondary orange */
   --engniter-accent: #8B5CF6;         /* Accent purple */
@@ -21,15 +18,12 @@
   --engniter-line: #E5E7EB;           /* Line color */
   --engniter-muted: #6B7280;          /* Muted text */
   --engniter-ink: #1F2937;            /* Main text */
-  --claude-primary-bg: #faf9f6; /* Main content area - very light warm off-white */
-  --claude-secondary-bg: #f5f4f1; /* Sidebar - slightly darker warm cream */
-  --claude-accent: #d97706; /* Terracotta/muted reddish-orange accent */
-  --claude-accent-hover: #b45309; /* Darker terracotta for hover states */
-  --claude-text: #1f2937; /* Dark grey/near black text */
-  --claude-text-secondary: #6b7280; /* Medium grey for secondary text */
-  --claude-border: #e5e7eb; /* Light grey borders */
-  --claude-input-bg: #ffffff; /* Pure white for input fields */
-  --claude-shadow: rgba(0, 0, 0, 0.05); /* Subtle shadows */
+  --accent: #3BA7A1;                  /* Accent color */
+  --bg: #FFFFFF;                      /* Background */
+  --card: #FFFFFF;                    /* Card background */
+  --line: #E5E7EB;                    /* Line color */
+  --muted: #6B7280;                   /* Muted text */
+  --ink: #1F2937;                     /* Main text */
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -54,22 +48,9 @@ nav .cta{background:var(--accent);color:#fff;padding:8px 14px;border-radius:10px
 nav .pay-now-nav{background:#0ea5e9;color:#fff;padding:8px 14px;border-radius:10px;font-weight:700}
 nav .pay-now-nav:hover{filter:brightness(.97);text-decoration:none}
 
-.hero {
-  background: linear-gradient(135deg, var(--claude-secondary-bg) 0%, var(--claude-primary-bg) 100%);
-  color: var(--claude-text);
-  text-align: center;
-  padding: 80px 0;
-}
-
-.hero h1 {
-  color: var(--claude-text);
-  margin-bottom: 1rem;
-}
-
-.hero p {
-  color: var(--claude-text-secondary);
-  margin-bottom: 2rem;
-}
+.hero{display:grid;grid-template-columns:1.2fr 1fr;align-items:center;gap:24px;padding:36px 0}
+.hero h1{font-size:48px;line-height:1.05;margin:.2em 0}
+.hero p{font-size:18px;opacity:.9}
 
 .hero .art{text-align:center}
 
@@ -1893,7 +1874,7 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
   padding: 24px;
   border: 1px solid var(--line);
   border-radius: 12px;
-  background: var(--claude-input-bg);
+  background: var(--card);
 }
 
 .step-number {
@@ -1933,7 +1914,7 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
   padding: 20px;
   border: 1px solid var(--line);
   border-radius: 12px;
-  background: var(--claude-input-bg);
+  background: var(--card);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 

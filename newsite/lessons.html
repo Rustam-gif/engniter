@@ -1076,24 +1076,31 @@ document.addEventListener('DOMContentLoaded', function(){
 
   // Function to start quiz from lesson card
   function startQuizFromLesson(lessonSlug) {
+    console.log('🎯 startQuizFromLesson called with:', lessonSlug);
+    
     // Show quiz modal
     const quizModal = document.getElementById('quiz-modal');
     const quizRoot = document.getElementById('quiz-root');
+    
+    console.log('🔍 Quiz modal found:', !!quizModal);
+    console.log('🔍 Quiz root found:', !!quizRoot);
     
     if (quizModal && quizRoot) {
       // Show modal
       quizModal.style.display = 'block';
       document.body.style.overflow = 'hidden'; // Prevent background scrolling
+      console.log('✅ Modal displayed and scrolling disabled');
       
       // Clear existing quiz content
       quizRoot.innerHTML = '<div class="quiz-loading"><p>Loading quiz...</p><div class="loading-spinner"></div></div>';
+      console.log('✅ Quiz root cleared and loading message shown');
       
       // Load and display the specific quiz directly
       setTimeout(() => {
-        console.log('Starting quiz loading process...');
-        console.log('Lesson slug:', lessonSlug);
-        console.log('allQuizData available:', !!window.allQuizData);
-        console.log('createQuiz available:', !!window.createQuiz);
+        console.log('⏰ Starting quiz loading process...');
+        console.log('📚 Lesson slug:', lessonSlug);
+        console.log('📊 allQuizData available:', !!window.allQuizData);
+        console.log('🎮 createQuiz available:', !!window.createQuiz);
         
         if (window.allQuizData && window.createQuiz) {
           // Find the quiz data for this lesson - use exact matching first, then fallback
@@ -1107,27 +1114,31 @@ document.addEventListener('DOMContentLoaded', function(){
             );
           }
           
-          console.log('Found quiz key:', quizKey);
-          console.log('Quiz data:', quizKey ? window.allQuizData[quizKey] : 'NOT FOUND');
-          console.log('Quiz exercises count:', quizKey ? window.allQuizData[quizKey].exercises.length : 'N/A');
+          console.log('🔑 Found quiz key:', quizKey);
+          console.log('📋 Quiz data:', quizKey ? window.allQuizData[quizKey] : 'NOT FOUND');
+          console.log('📝 Quiz exercises count:', quizKey ? window.allQuizData[quizKey].exercises.length : 'N/A');
           
           if (quizKey && window.allQuizData[quizKey]) {
             // Create and display the specific quiz
-            console.log('Creating quiz with key:', quizKey);
-            console.log('Quiz title:', window.allQuizData[quizKey].title);
-            console.log('Quiz exercises:', window.allQuizData[quizKey].exercises);
+            console.log('🎯 Creating quiz with key:', quizKey);
+            console.log('📖 Quiz title:', window.allQuizData[quizKey].title);
+            console.log('📚 Quiz exercises:', window.allQuizData[quizKey].exercises);
             window.createQuiz(quizKey, window.allQuizData[quizKey]);
           } else {
             // Fallback if quiz not found
-            console.log('Quiz not found, showing error message');
+            console.log('❌ Quiz not found, showing error message');
             quizRoot.innerHTML = '<div class="quiz-error"><p>Quiz not found for this lesson. Please try another lesson.</p></div>';
           }
         } else {
           // Fallback if quiz system not loaded
-          console.log('Quiz system not available, showing error message');
+          console.log('❌ Quiz system not available, showing error message');
           quizRoot.innerHTML = '<div class="quiz-error"><p>Quiz system not available. Please refresh the page.</p></div>';
         }
       }, 300);
+    } else {
+      console.error('❌ Quiz modal or root not found!');
+      console.error('Quiz modal:', quizModal);
+      console.error('Quiz root:', quizRoot);
     }
   }
 
