@@ -48,7 +48,7 @@ nav .pay-now-nav:hover{filter:brightness(.97);text-decoration:none}
 /* Removed colored top border for cleaner look */
 .card:hover{transform:translateY(-8px);box-shadow:0 16px 48px rgba(31, 45, 61, 0.15);border-color:var(--engniter-primary)}
 .card .h3{font-size:20px;font-weight:800;color:var(--engniter-secondary);margin:0 0 16px 0;line-height:1.3;font-family:'Inter', 'Segoe UI', system-ui, sans-serif;letter-spacing:-0.02em}
-.card .desc{font-size:15px;line-height:1.6;color:var(--engniter-text-light);margin:20px 0;font-family:'Inter', 'Segoe UI', system-ui, sans-serif;font-weight:400}
+
 .card .meta-row{margin:16px 0;display:flex;flex-wrap:wrap;gap:8px}
 
 .card .pill{font-size:11px;font-weight:700;padding:6px 12px;border-radius:20px;text-transform:uppercase;letter-spacing:0.5px;background:var(--engniter-secondary);color:var(--engniter-white);border:none;display:inline-block;transition:all 0.2s ease;font-family:'Inter', 'Segoe UI', system-ui, sans-serif}
@@ -63,12 +63,7 @@ nav .pay-now-nav:hover{filter:brightness(.97);text-decoration:none}
 
 .h3{font-size:18px;margin:4px 0}
 
-/* Make lesson card text more compact */
-.card .desc {
-  font-size: 14px;
-  line-height: 1.4;
-  margin: 8px 0;
-}
+
 
 .card .meta-row {
   margin: 6px 0;
@@ -157,11 +152,6 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
   .card .h3 {
     font-size: 16px;
     margin: 3px 0;
-  }
-  
-  .card .desc {
-    font-size: 13px;
-    margin: 6px 0;
   }
   
   .card .pill {
