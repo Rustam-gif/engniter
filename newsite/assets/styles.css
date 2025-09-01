@@ -655,7 +655,7 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
 }
 
 .start-quiz-btn {
-  background: var(--accent);
+  background: #e1936e;
   color: white;
   padding: 8px 16px;
   font-size: 14px;
