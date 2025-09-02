@@ -3436,6 +3436,47 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
     background: color-mix(in oklab, var(--bg) 95%, black 5%);
     border-bottom-color: var(--line);
   }
+  
+  /* Fix logos in dark mode */
+  .brand img {
+    background: #ffffff;
+    mix-blend-mode: normal;
+    filter: invert(0);
+  }
+  
+  .nav-brand .logo {
+    background: #ffffff;
+    mix-blend-mode: normal;
+    filter: invert(0);
+  }
+  
+  .footer-logo {
+    background: #ffffff;
+    mix-blend-mode: normal;
+    filter: invert(0);
+  }
+}
+
+/* Dark Mode Support for All Devices */
+@media (prefers-color-scheme: dark) {
+  /* Fix logos in dark mode on all devices */
+  .brand img {
+    background: #ffffff;
+    mix-blend-mode: normal;
+    filter: invert(0);
+  }
+  
+  .nav-brand .logo {
+    background: #ffffff;
+    mix-blend-mode: normal;
+    filter: invert(0);
+  }
+  
+  .footer-logo {
+    background: #ffffff;
+    mix-blend-mode: normal;
+    filter: invert(0);
+  }
 }
 
 /* Print Styles for Mobile */
