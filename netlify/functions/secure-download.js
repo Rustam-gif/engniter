@@ -7,7 +7,8 @@ const FREE_FILES = new Set([
   'the-science-of-luck.pdf',
   'objects-that-tell-a-story.pdf',
   'the-power-of-networking(b1-b2).pdf',
-  'brand.pdf'
+  'brand.pdf',
+  'introduction-to-devops-practices.pdf'
 ]);
 
 exports.handler = async (event, context) => {
