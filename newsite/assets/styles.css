@@ -3494,6 +3494,11 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
     mix-blend-mode: normal;
     filter: invert(0);
   }
+  
+  /* Fix quiz question text in dark mode */
+  .question {
+    color: #ffffff;
+  }
 }
 
 /* Dark Mode Support for All Devices */
@@ -3521,6 +3526,11 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
     background: #ffffff;
     mix-blend-mode: normal;
     filter: invert(0);
+  }
+  
+  /* Fix quiz question text in dark mode */
+  .question {
+    color: #ffffff;
   }
 }
 
