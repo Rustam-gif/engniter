@@ -38,6 +38,7 @@ nav .pay-now-nav:hover{filter:brightness(.97);text-decoration:none}
 .hero h1{font-size:48px;line-height:1.05;margin:.2em 0}
 .hero p{font-size:18px;opacity:.9}
 .hero .art{text-align:center}
+.hero .art img{background:#f5f5f5;mix-blend-mode:multiply;padding:8px;border-radius:12px}
 
 .badge{background:#ffe5d8;color:#8a3a1f;padding:2px 10px;border-radius:999px;font-weight:700;font-size:12px}
 
@@ -3455,6 +3456,12 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
     mix-blend-mode: normal;
     filter: invert(0);
   }
+  
+  .hero .art img {
+    background: #ffffff;
+    mix-blend-mode: normal;
+    filter: invert(0);
+  }
 }
 
 /* Dark Mode Support for All Devices */
@@ -3473,6 +3480,12 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
   }
   
   .footer-logo {
+    background: #ffffff;
+    mix-blend-mode: normal;
+    filter: invert(0);
+  }
+  
+  .hero .art img {
     background: #ffffff;
     mix-blend-mode: normal;
     filter: invert(0);
