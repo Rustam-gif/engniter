@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Power of Networking — B1-B2 Lesson</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="vector-annotator.css">
+  <style>
+    :root{--ink:#2D1B0E;--text:#3E2723;--muted:#5D4037;--bg:#FFFFFF;--card:#FFFFFF;--rule:#E0E0E0;--brand:#8D4E00;--brand-2:#5D4037;--accent:#A1887F;--soft:#F5F5F5;--shadow:0 6px 20px rgba(0,0,0,.06);--w: 1104px;}
+    *{box-sizing:border-box} html,body{height:100%} body{font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; color:var(--text); background:linear-gradient(180deg, #F5F5F5 0%, #FFFFFF 150%); margin:0; line-height:1.65; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;}
+    .wrap{max-width:var(--w); margin:0 auto; padding:28px 22px} .card{background:var(--card); border:1px solid var(--rule); border-radius:14px; box-shadow:var(--shadow)}
+    header.hero{position:relative; overflow:hidden} .hero .inner{padding:26px 26px 22px 26px; display:flex; gap:16px; align-items:center; justify-content:space-between}
+    .logo-container{flex-shrink:0; margin-right:16px} .website-logo{max-width:60px; height:auto; border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,0.1); opacity:0.7}
+    .hero-content{flex:1; min-width:0} .hero-image{flex-shrink:0} .hero-image img{box-shadow:0 4px 12px rgba(0,0,0,0.1); transition:transform 0.2s ease; border-radius:8px} .hero-image img:hover{transform:scale(1.02)}
+    .brand-tag{display:inline-flex; align-items:center; gap:8px; background:linear-gradient(90deg, var(--brand), var(--brand-2)); color:#fff; border-radius:999px; padding:6px 12px; font:700 12px/1 Manrope, sans-serif; opacity:0.8;}
+    .hero h1{font:700 30px/1.2 Manrope, sans-serif; margin:8px 0 0; color:var(--ink)} .hero p.sub{margin:6px 0 0; color:#5D4037; font-weight:500}
+    .rulebar{height:3px; margin:16px 0 12px; background:linear-gradient(90deg, var(--brand), var(--brand-2))}
+    nav.toc{display:flex; flex-wrap:wrap; gap:8px; margin:8px 0 20px} nav.toc a{text-decoration:none; color:#2D1B0E; border:1px solid var(--rule); background:var(--card); padding:8px 12px; border-radius:10px; font-weight:600; font-size:14px; transition:all 0.2s ease} nav.toc a:hover{background:var(--soft); border-color:var(--brand); color:var(--brand)}
+    .section{margin:24px 0} .section-header{display:flex; align-items:center; gap:12px; font:800 18px/1.2 Manrope, sans-serif; padding:12px 16px; border-left:5px solid var(--brand); background:linear-gradient(90deg, rgba(141,78,0,.08), rgba(161,136,127,.06)); border-radius:12px; color:#2D1B0E; margin-bottom:16px;} .section-header .icon{font-size:18px} .section-body{margin-top:8px} .pane{padding:20px; border:1px solid var(--rule); border-radius:12px; background:var(--card); box-shadow:var(--shadow)}
+    .list-emoji{list-style:none; padding:0; margin:0} .list-emoji li{position:relative; padding-left:26px; margin:12px 0; line-height:1.6} .list-emoji li::before{content:"•"; position:absolute; left:8px; top:0; font-weight:900; color:var(--brand)}
+    .reading-title{font:800 20px/1.2 Manrope, sans-serif; margin:0 0 16px; color:#2D1B0E; text-align:center} .reading{padding:24px} .quote{position:relative; margin:0 0 18px; padding:18px 20px 18px 56px; border-left:4px solid var(--brand-2); background:rgba(93,64,55,.06); border-radius:10px; font-style:italic; font-size:16px; line-height:1.5} .quote::before{content:"❝"; position:absolute; left:18px; top:6px; font-size:24px; color:var(--brand-2)} .columns{column-count:2; column-gap:28px; column-rule:1px solid var(--rule); text-align:justify} .columns p{break-inside:avoid; margin:0 0 16px; line-height:1.6} .columns p strong{color:#2D1B0E} .key{font-weight:700; color:#2D1B0E; background:rgba(141,78,0,.10); padding:.05em .35em; border-radius:4px}
+    .exercise{margin:16px 0; padding:20px; border:1px solid var(--rule); border-radius:12px; background:var(--card); box-shadow:var(--shadow)} .exercise h4{font:800 14.4px/1 Manrope, sans-serif; margin:0 0 12px; color:#2D1B0E} .fill .blank{border-bottom:2px solid var(--brand-2); min-width:70px; display:inline-block; height:1.1em} table{width:100%; border-collapse:collapse; margin:12px 0; border-radius:8px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.1)} th,td{border:1px solid var(--rule); padding:12px; text-align:left} th{background:rgba(141,78,0,.08); font-weight:700; color:#2D1B0E}
+    .keys details{border:1px solid var(--rule); border-radius:12px; padding:12px 16px; background:var(--card); margin:8px 0} .keys summary{cursor:pointer; font-weight:800; color:var(--brand); padding:4px 0} .keys summary:hover{color:var(--brand-2)} .toolbar{display:flex; gap:10px; justify-content:flex-end; margin-bottom:12px} .btn{border:1px solid var(--rule); background:var(--card); padding:10px 16px; border-radius:10px; cursor:pointer; font-weight:700; color:var(--brand); transition:all 0.2s ease} .btn:hover{background:var(--soft); border-color:var(--brand)}
+    @media print {.toolbar{display:none !important}} .section, .pane, .exercise, .reading, .keys, .match-grid, .reading .columns{break-inside: avoid; page-break-inside: avoid} h2,h3{break-after:avoid-page; page-break-after:avoid} .page-break{break-before:page; page-break-before:always}
+    @media print{body{background:#fff; color:#000; font-size:12.5px; line-height:1.5; print-color-adjust:exact; -webkit-print-color-adjust:exact} .wrap{padding:0; max-width:100%; margin:0} .card{box-shadow:none !important} .pane{box-shadow:none !important} .exercise{box-shadow:none !important} nav.toc{display:none} .rulebar{height:2px} .section-header{background:#F5F5F5; border-left-color:#8D4E00} .columns{column-gap:18px} .exercise, .pane{padding:12px} .section{margin:0 8px} .hero .inner{padding:20px 12px} .website-logo{max-width:50px !important; box-shadow:none !important; opacity:0.7 !important} .hero-image img{max-width:150px !important; box-shadow:none !important} .quote{background:#F5F5F5} a{color:inherit; text-decoration:none} p{orphans:3; widows:3} .keys details{display:block !important} .keys summary{display:none !important} .keys details > *{display:block !important} .keys details p{display:block !important} .keys .pane details{display:block !important} .keys .pane details summary{display:none !important} .keys .pane details p{display:block !important}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="hero card">
+      <div class="inner">
+        <div class="logo-container"><img src="pictures/logo.png" alt="Website Logo" class="website-logo"></div>
+        <div class="hero-content">
+          <span class="brand-tag">ENGNITER • B1-B2 • ESL</span>
+          <h1>The Power of Networking</h1>
+          <p class="sub">Building professional relationships and career opportunities</p>
+        </div>
+        <div class="hero-image"><img src="../pdf_pictures/brand.png" alt="Networking" style="max-width: 200px; height: auto;"></div>
+      </div>
+    </header>
+    <div class="rulebar"></div>
+    <nav class="toc" aria-label="On this page">
+      <a href="#warmup">Warm‑up</a><a href="#vocab">Vocabulary</a><a href="#reading">Reading</a><a href="#comp">Comprehension</a><a href="#grammar">Grammar</a><a href="#keys">Answer Keys</a>
+    </nav>
+    <section class="section" id="warmup">
+      <h2 class="section-header"><span class="icon">💭</span>A. Warm‑up Questions</h2>
+      <div class="section-body">
+        <div class="pane">
+          <ul class="list-emoji">
+            <li>How important is networking for your career?</li>
+            <li>What networking events have you attended?</li>
+            <li>How do you usually meet new professional contacts?</li>
+            <li>What makes a good networking conversation?</li>
+            <li>Have you ever gotten a job through networking?</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section class="section" id="vocab">
+      <h2 class="section-header"><span class="icon">📚</span>B. Vocabulary Preview</h2>
+      <div class="section-body">
+        <div class="pane">
+          <p><strong>Match the words with their definitions:</strong></p>
+          <table>
+            <tr><td><strong>1. networking</strong></td><td>a. building professional relationships</td></tr>
+            <tr><td><strong>2. contact</strong></td><td>b. a person you know professionally</td></tr>
+            <tr><td><strong>3. opportunity</strong></td><td>c. a chance for advancement or success</td></tr>
+            <tr><td><strong>4. relationship</strong></td><td>d. the way people feel about each other</td></tr>
+            <tr><td><strong>5. connection</strong></td><td>e. a link between people or things</td></tr>
+          </table>
+        </div>
+      </div>
+    </section>
+    <section class="section" id="reading">
+      <h2 class="section-header"><span class="icon">📖</span>Reading</h2>
+      <div class="section-body">
+        <div class="pane reading">
+          <h3 class="reading-title">Building Professional Networks</h3>
+          <div class="quote">"Your network is your net worth." - Porter Gale</div>
+          <div class="columns">
+            <p><strong>1.</strong> <span class="key">Networking</span> is one of the most powerful tools for career advancement. It involves building and maintaining professional <span class="key">relationships</span> that can lead to new opportunities, partnerships, and career growth. Unlike traditional job searching, networking focuses on building genuine connections rather than just asking for favors.</p>
+            <p><strong>2.</strong> Effective networking requires a strategic approach. Start by identifying your goals and the types of people who can help you achieve them. Attend industry events, join professional associations, and participate in online communities related to your field. Remember that networking is about giving as much as receiving.</p>
+            <p><strong>3.</strong> Building strong professional <span class="key">connections</span> takes time and effort. Follow up with new contacts, share valuable information, and offer help when possible. The best networkers are those who focus on building mutually beneficial relationships rather than just collecting business cards.</p>
+            <p><strong>4.</strong> Digital networking has become increasingly important in today's connected world. LinkedIn, professional forums, and industry-specific platforms offer opportunities to connect with people globally. However, face-to-face interactions still provide the strongest foundation for meaningful professional relationships.</p>
+            <p><strong>5.</strong> The benefits of networking extend beyond job opportunities. A strong professional network can provide mentorship, industry insights, collaboration opportunities, and support during career transitions. Investing in your network is one of the best long-term career strategies you can pursue.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section" id="comp">
+      <h2 class="section-header"><span class="icon">🧠</span>Comprehension</h2>
+      <div class="section-body">
+        <div class="pane">
+          <ul class="list-emoji">
+            <li>What is the difference between networking and traditional job searching?</li>
+            <li>What strategies can help with effective networking?</li>
+            <li>How can you build strong professional connections?</li>
+            <li>What role does digital networking play today?</li>
+            <li>What are the long-term benefits of networking?</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section class="section" id="grammar">
+      <h2 class="section-header"><span class="icon">✍️</span>Grammar Review — Professional Communication</h2>
+      <div class="section-body">
+        <div class="pane fill">
+          <p>1. I <span class="blank"></span> (meet) many interesting people at networking events.</p>
+          <p>2. She <span class="blank"></span> (build) her professional network over the years.</p>
+          <p>3. Networking <span class="blank"></span> (help) people find new opportunities.</p>
+          <p>4. We <span class="blank"></span> (attend) the conference next month.</p>
+          <p>5. They <span class="blank"></span> (connect) with industry leaders online.</p>
+        </div>
+      </div>
+    </section>
+    <section class="section keys" id="keys">
+      <div class="toolbar"><button class="btn" onclick="window.print()">Print / Save as PDF</button></div>
+      <h2 class="section-header"><span class="icon">🔐</span>Answer Keys</h2>
+      <div class="section-body">
+        <div class="pane">
+          <details><summary>Vocabulary Preview</summary><p>1-a, 2-b, 3-c, 4-d, 5-e</p></details>
+          <details><summary>Grammar Review</summary><p>1. meet, 2. has built, 3. helps, 4. will attend, 5. connect</p></details>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script src="vector-annotator.js"></script>
+  <div id="va-root-toolbar">
+    <button class="va-btn" data-tool="pen" title="Freehand vector pen">✏</button>
+    <button class="va-btn" data-tool="text" title="Click + type (vector)">T</button>
+    <div class="va-sep"></div>
+    <div class="va-control-group"><label>Color <input type="color" value="#057A8A"></label></div>
+    <div class="va-control-group"><label>Width <input type="range" min="1" max="20" value="3"></label></div>
+    <div class="va-control-group"><label>Font <input type="number" min="8" max="96" step="1" value="24"></label></div>
+    <div class="va-sep"></div>
+    <button class="va-btn" id="va-undo" title="Ctrl/Cmd+Z">↶</button>
+    <button class="va-btn" id="va-clear" title="Clear all">×</button>
+    <button class="va-btn va-active" id="va-passthru" title="Toggle click-through" data-tool="passthru">👆</button>
+    <div class="va-sep"></div>
+    <div class="va-control-group"><label>Download <button class="va-btn" id="va-save" title="Print / Save as PDF">⬇</button></label></div>
+  </div>
+  <div id="va-root-overlay" style="position: fixed; inset: 0; pointer-events: auto; z-index: 999998;">
+    <svg id="va-svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display: block; width: 100%; height: 100%; touch-action: none; user-select: none;">
+      <defs><style>.stroke{fill:none;stroke-linecap:round;stroke-linejoin:round}</style></defs>
+      <g id="va-content"></g><g id="va-ui"></g>
+    </svg>
+  </div>
+</body>
+</html>
