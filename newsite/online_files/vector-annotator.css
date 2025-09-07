@@ -1,0 +1,306 @@
+/* VectorAnnotator CSS - Reusable Drawing and Annotation Tool Styles */
+
+.va-caret { 
+  animation: va-blink 1s step-end infinite; 
+}
+
+@keyframes va-blink { 
+  0%,49%{opacity:1} 
+  50%,100%{opacity:0} 
+}
+
+.va-selected {
+  /* No styling changes to selected elements - keep them exactly as they are */
+}
+
+.va-selected text {
+  /* Text remains unchanged when selected */
+}
+
+.va-selected path,
+.va-selected circle {
+  /* Drawings remain exactly as they are when selected */
+}
+
+#va-root-toolbar {
+  position: fixed;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px 8px;
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  z-index: 999999;
+  user-select: none;
+  width: 60px;
+  overflow: visible;
+  transition: all 0.3s ease;
+  align-items: center;
+}
+
+.va-btn:hover {
+  transform: scaleY(1.05) scaleX(1.1);
+  border-radius: 8px;
+  background: var(--soft);
+}
+
+.va-control-group:hover {
+  transform: scaleY(1.075) scaleX(1.15);
+  border-radius: 12px;
+  background: var(--soft);
+  padding: 6px 4px;
+}
+
+.va-sep:hover {
+  transform: scaleY(1.25) scaleX(1.1);
+  height: 2px;
+  background: var(--brand);
+  border-radius: 2px;
+}
+
+.va-btn {
+  appearance: none;
+  border: 1px solid var(--rule);
+  background: var(--card);
+  color: var(--text);
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 16px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  position: relative;
+}
+
+.va-btn:hover {
+  background: var(--soft);
+  border-color: var(--brand);
+  color: var(--brand);
+}
+
+.va-btn.va-active {
+  background: #D2B48C;
+  color: #fff;
+  border-color: #D2B48C;
+  box-shadow: 0 2px 8px rgba(210, 180, 140, 0.3);
+}
+
+.va-sep {
+  width: 100%;
+  height: 1px;
+  background: var(--rule);
+  margin: 2px 0;
+  transition: all 0.3s ease;
+}
+
+.va-control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 2px 0;
+  overflow: visible;
+  transition: all 0.3s ease;
+}
+
+.va-control-group label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  color: var(--muted);
+  font-size: 9px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.va-control-group input[type="color"] {
+  width: 24px;
+  height: 20px;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  background: transparent;
+  cursor: pointer;
+  align-self: center;
+  transition: all 0.2s ease;
+}
+
+.va-control-group input[type="range"] {
+  width: 120%;
+  margin: 0;
+  height: 3px;
+  background: var(--rule);
+  border-radius: 2px;
+  outline: none;
+  -webkit-appearance: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.va-control-group:hover input[type="range"] {
+  height: 5px;
+  background: var(--accent);
+  transform: scale(1.6);
+}
+
+.va-control-group input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 9px;
+  height: 9px;
+  background: var(--brand);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.va-control-group:hover input[type="range"]::-webkit-slider-thumb {
+  width: 7px;
+  height: 7px;
+  background: var(--brand-2);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.va-control-group input[type="number"] {
+  width: 32px;
+  padding: 4px 2px;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  background: var(--card);
+  color: #000;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  align-self: center;
+  transition: all 0.2s ease;
+  -moz-appearance: textfield;
+}
+
+.va-control-group input[type="number"]::-webkit-outer-spin-button,
+.va-control-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.va-control-group input[type="number"]:hover {
+  transform: scale(1.0075);
+}
+
+.va-drag {
+  cursor: grab;
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px dashed var(--accent);
+  color: var(--muted);
+  font-size: 10px;
+  text-align: center;
+  margin-top: 4px;
+  width: 32px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.va-drag:active {
+  cursor: grabbing;
+}
+
+/* Enable text selection when pass-through is active */
+#va-root-overlay {
+  background: transparent !important;
+}
+
+#va-svg {
+  background: transparent !important;
+}
+
+#va-root-overlay[style*="pointer-events: none"] {
+  user-select: text;
+}
+
+#va-root-overlay[style*="pointer-events: none"] * {
+  user-select: text;
+}
+
+/* Hide toolbar and annotations when printing */
+@media print {
+  #va-root-toolbar {
+    display: none !important;
+  }
+  
+  #va-root-overlay {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100vh !important;
+    z-index: 1 !important;
+    background: transparent !important;
+    page-break-inside: avoid !important;
+    page-break-after: avoid !important;
+  }
+  
+  #va-svg {
+    background: transparent !important;
+    page-break-inside: avoid !important;
+  }
+}
+
+/* Custom cursor for text tool */
+.text-tool-active {
+  cursor: none !important;
+}
+
+.text-cursor {
+  position: fixed;
+  width: 2px;
+  height: 20px;
+  background-color: #000;
+  pointer-events: none;
+  z-index: 999999;
+}
+
+.pen-tool-active {
+  cursor: none !important;
+}
+
+.pen-cursor {
+  position: fixed;
+  font-size: 14px;
+  pointer-events: none;
+  z-index: 999999;
+  transform: translate(-7px, -7px);
+  left: 0px;
+  top: 0px;
+  color: #000;
+}
+
+.va-selected-frame {
+  fill: none;
+  stroke: #1e3a8a;
+  stroke-width: 2;
+  stroke-dasharray: 5,5;
+  pointer-events: none;
+}
+
+.va-delete-btn {
+  cursor: pointer;
+  fill: #8B0000;
+  transition: fill 0.2s ease;
+}
+
+.va-delete-btn:hover {
+  fill: #A52A2A;
+}
