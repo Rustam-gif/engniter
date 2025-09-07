@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Why People Gossip — B1 Lesson (PDF‑Optimized)</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- VectorAnnotator CSS -->
+  <link rel="stylesheet" href="vector-annotator.css">
+
+  <style>
+    :root{
+      /* Theme - Brownish Palette */
+      --ink:#2D1B0E;
+      --text:#3E2723;
+      --muted:#5D4037;
+      --bg:#FFFFFF;
+      --card:#FFFFFF;
+      --rule:#E0E0E0;
+      --brand:#8D4E00;         /* brown */
+      --brand-2:#5D4037;       /* darker brown */
+      --accent:#A1887F;        /* light brown */
+      --soft:#F5F5F5;
+      --shadow:0 6px 20px rgba(0,0,0,.06);
+      --w: 1104px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background:linear-gradient(180deg, #F5F5F5 0%, #FFFFFF 150%);
+      margin:0;
+      line-height:1.65;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+    }
+
+    .wrap{max-width:var(--w); margin:0 auto; padding:28px 22px}
+    .card{background:var(--card); border:1px solid var(--rule); border-radius:14px; box-shadow:var(--shadow)}
+
+    header.hero{position:relative; overflow:hidden}
+    .hero .inner{padding:26px 26px 22px 26px; display:flex; gap:16px; align-items:center; justify-content:space-between}
+    .logo-container{flex-shrink:0; margin-right:16px}
+    .website-logo{max-width:60px; height:auto; border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,0.1); opacity:0.7}
+    .hero-content{flex:1; min-width:0}
+    .hero-image{flex-shrink:0}
+    .hero-image img{box-shadow:0 4px 12px rgba(0,0,0,0.1); transition:transform 0.2s ease; border-radius:8px}
+    .hero-image img:hover{transform:scale(1.02)}
+    .brand-tag{
+      display:inline-flex; align-items:center; gap:8px;
+      background:linear-gradient(90deg, var(--brand), var(--brand-2));
+      color:#fff; border-radius:999px; padding:6px 12px; font:700 12px/1 Manrope, sans-serif;
+      opacity:0.8;
+    }
+    .hero h1{font:700 30px/1.2 Manrope, sans-serif; margin:8px 0 0; color:var(--ink)}
+    .hero p.sub{margin:6px 0 0; color:#5D4037; font-weight:500}
+
+    .rulebar{height:3px; margin:16px 0 12px; background:linear-gradient(90deg, var(--brand), var(--brand-2))}
+
+    nav.toc{display:flex; flex-wrap:wrap; gap:8px; margin:8px 0 20px}
+    nav.toc a{
+      text-decoration:none; color:#2D1B0E; border:1px solid var(--rule);
+      background:var(--card); padding:8px 12px; border-radius:10px; font-weight:600; font-size:14px;
+      transition:all 0.2s ease;
+    }
+    nav.toc a:hover{background:var(--soft); border-color:var(--brand); color:var(--brand)}
+
+    /* Section */
+    .section{margin:24px 0}
+    .section-header{
+      display:flex; align-items:center; gap:12px;
+      font:800 18px/1.2 Manrope, sans-serif;
+      padding:12px 16px;
+      border-left:5px solid var(--brand);
+      background:linear-gradient(90deg, rgba(141,78,0,.08), rgba(161,136,127,.06));
+      border-radius:12px;
+      color:#2D1B0E;
+      margin-bottom:16px;
+    }
+    .section-header .icon{font-size:18px}
+    .section-body{margin-top:8px}
+    .pane{padding:20px; border:1px solid var(--rule); border-radius:12px; background:var(--card); box-shadow:var(--shadow)}
+
+    /* Lists */
+    .list-emoji{list-style:none; padding:0; margin:0}
+    .list-emoji li{position:relative; padding-left:26px; margin:12px 0; line-height:1.6}
+    .list-emoji li::before{content:"•"; position:absolute; left:8px; top:0; font-weight:900; color:var(--brand)}
+
+    /* Vocab matching (print-friendly) */
+    .match-grid{display:block}
+    .terms{padding:0; margin:0; list-style:none}
+    .terms li{
+      margin:10px 0; 
+      display:flex; 
+      align-items:baseline;
+      gap:8px;
+      min-height:28px;
+      padding:8px 0;
+    }
+    .blank{
+      display:inline-block;
+      width:1.5em;
+      border-bottom:2px solid #666;
+      margin-right:0.1em;
+      vertical-align:baseline;
+      white-space:nowrap;
+    }
+    .vocab-word{
+      font-weight:700; 
+      color:#2D1B0E;
+      min-width:250px;
+      flex-shrink:0;
+    }
+    .vocab-def{
+      color:#5D4037;
+      flex:1;
+      line-height:1.4;
+    }
+
+    /* Reading */
+    .reading-title{font:800 20px/1.2 Manrope, sans-serif; margin:0 0 16px; color:#2D1B0E; text-align:center}
+    .reading{padding:24px}
+    .quote{position:relative; margin:0 0 18px; padding:18px 20px 18px 56px; border-left:4px solid var(--brand-2); background:rgba(93,64,55,.06); border-radius:10px; font-style:italic; font-size:16px; line-height:1.5}
+    .quote::before{content:"❝"; position:absolute; left:18px; top:6px; font-size:24px; color:var(--brand-2)}
+    .columns{column-count:2; column-gap:28px; column-rule:1px solid var(--rule); text-align:justify}
+    .columns p{break-inside:avoid; margin:0 0 16px; line-height:1.6}
+    .columns p strong{color:#2D1B0E}
+    .key{font-weight:700; color:#2D1B0E; background:rgba(141,78,0,.10); padding:.05em .35em; border-radius:4px}
+
+    /* Exercises */
+    .exercise{margin:16px 0; padding:20px; border:1px solid var(--rule); border-radius:12px; background:var(--card); box-shadow:var(--shadow)}
+    .exercise h4{font:800 14.4px/1 Manrope, sans-serif; margin:0 0 12px; color:#2D1B0E}
+    .fill .blank{border-bottom:2px solid var(--brand-2); min-width:70px; display:inline-block; height:1.1em}
+    table{width:100%; border-collapse:collapse; margin:12px 0; border-radius:8px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.1)}
+    th,td{border:1px solid var(--rule); padding:12px; text-align:left}
+    th{background:rgba(141,78,0,.08); font-weight:700; color:#2D1B0E}
+
+    /* Match Task Styles - Grid Layout */
+    .full-width-grid{
+      display:grid; grid-template-columns:repeat(3, 1fr); grid-template-rows:repeat(2, 1fr);
+      gap:8mm; padding:6mm; margin-bottom:20px;
+      width:100%; max-width:100%;
+    }
+    .image-tile{
+      position:relative; width:65mm; height:auto; min-height:42mm; max-height:48mm;
+      border-radius:8px; overflow:hidden; border:1px solid #E6E0DC;
+      box-shadow:0 2px 8px rgba(0,0,0,0.06);
+      background:transparent; padding:3mm; display:flex; align-items:center; justify-content:center;
+      cursor:pointer; transition:all 0.3s ease;
+    }
+    .image-tile:hover{
+      transform:translateY(-4px) scale(1.02); 
+      box-shadow:0 12px 30px rgba(0,0,0,0.2);
+    }
+    .image-tile img{
+      width:100%; height:100%; max-width:100%; max-height:100%;
+      object-fit:contain; object-position:center;
+      transition:transform 0.3s ease;
+    }
+    .image-tile:hover img{
+      transform:scale(1.05);
+    }
+    .image-badge{
+      position:absolute; top:6mm; left:6mm; z-index:2;
+      width:32px; height:32px; border-radius:50%;
+      background:var(--accent); color:white;
+      display:flex; align-items:center; justify-content:center;
+      font:700 16px/1 Manrope, sans-serif;
+    }
+    .task-content{
+      display:flex; gap:24px; margin-top:20px;
+    }
+    .instructions-section{
+      flex:1; min-width:0;
+    }
+    .headlines-section{
+      flex:1; min-width:0;
+    }
+    .answer-blanks{
+      margin:12px 0; font-family:monospace; font-size:16px;
+    }
+    .answer-blanks span{margin-right:16px; color:var(--brand-2)}
+    .headline-item{
+      padding:8px 0; border-bottom:1px solid var(--rule);
+      font-size:13px; line-height:1.4;
+    }
+    .headline-item:last-child{border-bottom:none}
+    .teacher-key{
+      margin-top:20px; padding:8px 12px; background:var(--soft);
+      border-radius:6px; font-size:9px; color:var(--muted);
+      text-align:center;
+    }
+
+    /* Ethics Slider */
+    .ethics-container{
+      height:75mm; width:100%; max-width:100%;
+      background:linear-gradient(135deg, #FFF8F0 0%, #F5F0E8 100%);
+      border:2px solid #8D4E00; border-radius:16px;
+      padding:10mm 8mm; box-shadow:0 8px 24px rgba(141,78,0,0.15);
+      display:flex; flex-direction:column; justify-content:space-between;
+      position:relative; overflow:hidden;
+    }
+    .ethics-container::before{
+      content:''; position:absolute; top:0; left:0; right:0; height:4px;
+      background:linear-gradient(90deg, #8D4E00, #A67C52, #8D4E00);
+    }
+    .ethics-subtitle{
+      font:italic 14pt/1.2 'Playfair Display', serif; color:#8D4E00;
+      margin:0 0 6mm 0; text-align:center; font-weight:700;
+      background:rgba(141,78,0,0.08); padding:5mm 8mm; border-radius:10px;
+      border:2px solid rgba(141,78,0,0.3); letter-spacing:0.5px;
+      text-shadow:0 1px 2px rgba(141,78,0,0.1);
+    }
+    .ethics-rows{
+      flex:1; display:flex; flex-direction:column; justify-content:space-around;
+    }
+    .ethics-row{
+      height:12mm; display:flex; align-items:center; justify-content:space-between;
+      margin:0; padding:2mm 0; background:rgba(255,255,255,0.6);
+      border-radius:6px; border:1px solid rgba(141,78,0,0.1);
+    }
+    .ethics-text{
+      width:70%; font:13pt/1.3 'Crimson Text', serif; color:#2D1B0E;
+      margin:0; padding:0 3mm; font-weight:400; letter-spacing:0.3px;
+    }
+    .rating-dots{
+      width:30%; display:flex; justify-content:flex-end; align-items:center;
+      gap:2.5mm; margin:0; padding:0 3mm;
+    }
+    .dot{
+      width:3.5mm; height:3.5mm; border-radius:50%;
+      border:1.5px solid #8D4E00; background:rgba(141,78,0,0.1);
+      display:inline-block; transition:all 0.2s ease;
+    }
+    .dot:hover{
+      background:rgba(141,78,0,0.3); transform:scale(1.1);
+    }
+    .ethics-footer{
+      font:11pt/1.2 'Crimson Text', serif; color:#8D4E00;
+      margin:4mm 0 0 0; text-align:center; font-weight:500;
+      background:rgba(141,78,0,0.05); padding:4mm 8mm; border-radius:8px;
+      border:1px solid rgba(141,78,0,0.15); letter-spacing:0.2px;
+      font-style:italic;
+    }
+
+    /* Answer keys */
+    .keys details{border:1px solid var(--rule); border-radius:12px; padding:12px 16px; background:var(--card); margin:8px 0}
+    .keys summary{cursor:pointer; font-weight:800; color:var(--brand); padding:4px 0}
+    .keys summary:hover{color:var(--brand-2)}
+    .toolbar{display:flex; gap:10px; justify-content:flex-end; margin-bottom:12px}
+    .btn{border:1px solid var(--rule); background:var(--card); padding:10px 16px; border-radius:10px; cursor:pointer; font-weight:700; color:var(--brand); transition:all 0.2s ease}
+    .btn:hover{background:var(--soft); border-color:var(--brand)}
+    
+    /* Hide print button in PDF */
+    @media print {
+      .toolbar{display:none !important}
+    }
+
+    /* Page-break control for PDF */
+    .section, .pane, .exercise, .reading, .keys, .match-grid, .reading .columns{
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+    h2,h3{break-after:avoid-page; page-break-after:avoid}
+    .page-break{break-before:page; page-break-before:always}
+
+    /* Improve PDF rendering */
+    @media print{
+      body{background:#fff; color:#000; font-size:12.5px; line-height:1.5; print-color-adjust:exact; -webkit-print-color-adjust:exact}
+      .wrap{padding:0; max-width:100%; margin:0}
+      .card{box-shadow:none !important}
+      .pane{box-shadow:none !important}
+      .exercise{box-shadow:none !important}
+      nav.toc{display:none}
+      .rulebar{height:2px}
+      .section-header{background:#F5F5F5; border-left-color:#8D4E00}
+      .columns{column-gap:18px}
+      .exercise, .pane{padding:12px}
+      .section{margin:0 8px}
+      .hero .inner{padding:20px 12px}
+      .website-logo{max-width:50px !important; box-shadow:none !important; opacity:0.7 !important}
+      .hero-image img{max-width:150px !important; box-shadow:none !important}
+      .image-container img{max-width:81.9% !important; box-shadow:none !important; border-radius:4px !important}
+      #warmup .pane img{max-width:200px !important; box-shadow:none !important; border-radius:4px !important}
+      .reading .columns img{max-width:60% !important; box-shadow:none !important; border-radius:4px !important}
+      .full-width-grid{gap:8mm !important; padding:6mm !important}
+      .image-tile{width:50mm !important; height:auto !important; min-height:32mm !important; max-height:36mm !important; box-shadow:none !important; border:1px solid #E6E0DC !important; background:transparent !important; padding:3mm !important}
+      .image-tile img{width:100% !important; height:100% !important; max-width:100% !important; max-height:100% !important; object-fit:contain !important}
+      .image-badge{width:28px !important; height:28px !important; font-size:14px !important; top:6mm !important; left:6mm !important}
+      .task-content{display:flex !important; gap:16px !important}
+      .answer-blanks{font-size:12px !important}
+      .answer-blanks span{font-size:12px !important}
+      .headline-item{font-size:12.5px !important}
+      .exercise h4{font-size:10.08px !important} /* 30% smaller than 14.4px for PDF only */
+      #va-root-toolbar{display:none !important} /* Hide VectorAnnotator toolbar in PDF */
+      #va-root-overlay{display:none !important} /* Hide all annotations in PDF */
+      #va-svg{display:none !important} /* Hide all annotations in PDF */
+      .teacher-key{display:none !important}
+      .ethics-container{height:75mm !important; padding:10mm 8mm !important; box-shadow:none !important; background:linear-gradient(135deg, #FFF8F0 0%, #F5F0E8 100%) !important; border:2px solid #8D4E00 !important; border-radius:16px !important}
+      .ethics-subtitle{font:italic 14pt/1.2 'Playfair Display', serif !important; margin:0 0 6mm 0 !important; font-weight:700 !important; color:#8D4E00 !important; background:rgba(141,78,0,0.08) !important; padding:5mm 8mm !important; border-radius:10px !important; border:2px solid rgba(141,78,0,0.3) !important; letter-spacing:0.5px !important; text-shadow:0 1px 2px rgba(141,78,0,0.1) !important}
+      .ethics-row{height:12mm !important; font-size:12pt !important; background:rgba(255,255,255,0.6) !important; border-radius:6px !important; border:1px solid rgba(141,78,0,0.1) !important; padding:2mm 0 !important}
+      .ethics-text{font:13pt/1.3 'Crimson Text', serif !important; width:70% !important; font-weight:400 !important; color:#2D1B0E !important; padding:0 3mm !important; letter-spacing:0.3px !important}
+      .rating-dots{gap:2.5mm !important; padding:0 3mm !important}
+      .dot{width:3.5mm !important; height:3.5mm !important; border:1.5px solid #8D4E00 !important; background:rgba(141,78,0,0.1) !important}
+      .ethics-footer{font:11pt/1.2 'Crimson Text', serif !important; color:#8D4E00 !important; margin:4mm 0 0 0 !important; font-weight:500 !important; background:rgba(141,78,0,0.05) !important; padding:4mm 8mm !important; border-radius:8px !important; border:1px solid rgba(141,78,0,0.15) !important; letter-spacing:0.2px !important; font-style:italic !important}
+      .quote{background:#F5F5F5}
+      a{color:inherit; text-decoration:none}
+      /* Force reasonable orphans/widows */
+      p{orphans:3; widows:3}
+      
+      /* Show answer keys expanded in PDF */
+      .keys details{display:block !important}
+      .keys summary{display:none !important}
+      .keys details > *{display:block !important}
+      .keys details p{display:block !important}
+      .keys .pane details{display:block !important}
+      .keys .pane details summary{display:none !important}
+      .keys .pane details p{display:block !important}
+      
+      /* Fix vocabulary layout for PDF */
+      .terms li{
+        display:flex !important;
+        align-items:baseline !important;
+        gap:6px !important;
+        margin:6px 0 !important;
+        min-height:20px !important;
+      }
+      .blank{
+        width:1.5em !important;
+        border-bottom:2px solid #666 !important;
+        margin-right:0.1em !important;
+        vertical-align:baseline !important;
+        white-space:nowrap !important;
+      }
+      .vocab-word{
+        min-width:200px !important;
+        flex-shrink:0 !important;
+        margin-right:30px !important;
+        font-weight:700 !important;
+      }
+      .vocab-def{
+        flex:1 !important;
+        font-size:11px !important;
+        line-height:1.2 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="hero card">
+      <div class="inner">
+        <div class="logo-container">
+          <img src="pictures/logo.png" alt="Website Logo" class="website-logo">
+        </div>
+        <div class="hero-content">
+          <span class="brand-tag">ENGNITER • B1 • ESL</span>
+    <h1>Why People Gossip</h1>
+    <p class="sub">The Social Power of Shared Information</p>
+        </div>
+        <div class="hero-image">
+          <img src="pictures/gossip/hero.png" alt="Why People Gossip" style="max-width: 200px; height: auto;">
+        </div>
+      </div>
+    </header>
+
+    <div class="rulebar"></div>
+
+    <nav class="toc" aria-label="On this page">
+      <a href="#warmup">Warm‑up</a>
+      <a href="#vocab">Vocabulary</a>
+      <a href="#reading">Reading</a>
+      <a href="#comp">Comprehension</a>
+      <a href="#rev">Vocabulary Review</a>
+      <a href="#grammar">Grammar</a>
+      <a href="#task-a">Task A</a>
+      <a href="#ex">Exercises</a>
+      <a href="#keys">Answer Keys</a>
+    </nav>
+
+    <!-- Warm‑up -->
+    <section class="section" id="warmup">
+      <h2 class="section-header"><span class="icon">💭</span>A. Warm‑up Questions</h2>
+      <div class="section-body">
+        <div class="pane" style="display: flex; gap: 20px; align-items: flex-start;">
+          <div style="flex: 1;">
+            <ul class="list-emoji">
+              <li>Do you think spreading rumors about others harms relationships?</li>
+              <li>How often do you share personal information about friends?</li>
+              <li>Can gossip help people bond and feel closer to each other?</li>
+              <li>Is it always harmful to talk about someone behind their back?</li>
+              <li>What motivates people to share secrets they've been told?</li>
+            </ul>
+          </div>
+          <div style="flex-shrink: 0; text-align: center;">
+            <img src="pictures/gossip/questions.png" alt="Social Communication Discussion" style="max-width: 200px; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Vocabulary -->
+    <section class="section" id="vocab">
+      <h2 class="section-header"><span class="icon">📚</span>B. Vocabulary Preview</h2>
+      <div class="section-body">
+        <div class="pane">
+          <div class="match-grid">
+            <ol class="terms">
+              <li>
+                <span class="blank"></span>&nbsp;
+                <span class="vocab-word">1. rumors</span>
+                <span class="vocab-def">a. what people think about someone's character and behavior</span>
+              </li>
+              <li>
+                <span class="blank"></span>&nbsp;
+                <span class="vocab-word">2. harmful</span>
+                <span class="vocab-def">b. hidden information that shouldn't be shared with others</span>
+              </li>
+              <li>
+                <span class="blank"></span>&nbsp;
+                <span class="vocab-word">3. bond</span>
+                <span class="vocab-def">c. left out or not included in a group or activity</span>
+              </li>
+              <li>
+                <span class="blank"></span>&nbsp;
+                <span class="vocab-word">4. motivates</span>
+                <span class="vocab-def">d. creates strong emotional connections between people</span>
+              </li>
+              <li>
+                <span class="blank"></span>&nbsp;
+                <span class="vocab-word">5. secrets</span>
+                <span class="vocab-def">e. unproven stories passed from person to person</span>
+              </li>
+              <li>
+                <span class="blank"></span>&nbsp;
+                <span class="vocab-word">6. spreading</span>
+                <span class="vocab-def">f. encourages or drives someone to take action</span>
+              </li>
+              <li>
+                <span class="blank"></span>&nbsp;
+                <span class="vocab-word">7. reputation</span>
+                <span class="vocab-def">g. sharing information quickly with many people</span>
+              </li>
+              <li>
+                <span class="blank"></span>&nbsp;
+                <span class="vocab-word">8. excluded</span>
+                <span class="vocab-def">h. unity and support between group members</span>
+              </li>
+              <li>
+                <span class="blank"></span>&nbsp;
+                <span class="vocab-word">9. betrayal</span>
+                <span class="vocab-def">i. breaking trust by revealing private information</span>
+              </li>
+              <li>
+                <span class="blank"></span>&nbsp;
+                <span class="vocab-word">10. solidarity</span>
+                <span class="vocab-def">j. causing damage or negative effects to someone</span>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reading -->
+    <section class="section" id="reading">
+      <h2 class="section-header"><span class="icon">📖</span>Reading</h2>
+      <div class="section-body">
+        <div class="pane reading">
+          <h3 class="reading-title">The Hidden Social Function of Gossip</h3>
+          <div class="quote">"Gossip is the art of saying nothing in a way that leaves practically nothing unsaid." - Walter Winchell</div>
+          <div class="columns">
+            <p><strong>1.</strong> Most people view gossip negatively, but research reveals it serves important social purposes. When we share information about others, we're actually strengthening community <span class="key">bonds</span> and establishing group rules without realizing it.</p>
+            <p><strong>2.</strong> Gossip helps us learn social norms by discussing who behaves appropriately and who doesn't. When someone breaks social rules, talking about their actions teaches everyone what's acceptable behavior. This creates unofficial guidelines that keep communities functioning smoothly.</p>
+            
+            <div style="text-align: center; margin: 20px 0;">
+              <img src="pictures/gossip/text.png" alt="Social Communication Visualization" style="max-width: 60%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+            </div>
+            
+            <p><strong>3.</strong> Sharing personal stories also builds trust between people. When friends exchange <span class="key">secrets</span> or observations about others, they create deeper connections and show they trust each other with sensitive information. This bonding process helps form strong social networks.</p>
+            <p><strong>4.</strong> However, gossip can become <span class="key">harmful</span> when it spreads false <span class="key">rumors</span> or damages someone's <span class="key">reputation</span> unfairly. Some people use gossip to <span class="key">exclude</span> others from groups or gain social power by controlling information flow. What <span class="key">motivates</span> people to gossip determines whether it helps or hurts relationships.</p>
+            <p><strong>5.</strong> Studies show that most gossip isn't actually mean-spirited. About 80% of conversations about others involve neutral or positive information. People often share good news, express concern for friends, or simply process social situations together. The key difference lies in intention and accuracy. Constructive gossip shares truthful information with genuine concern, while destructive gossip spreads lies or reveals private matters inappropriately. When people feel <span class="key">betrayed</span> by broken confidences, it damages trust and <span class="key">solidarity</span> within groups. Understanding this distinction helps us navigate social conversations more responsibly.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comprehension -->
+    <section class="section" id="comp">
+      <h2 class="section-header"><span class="icon">🧠</span>Comprehension</h2>
+      <div class="section-body">
+        <div class="pane">
+          <ul class="list-emoji">
+            <li>What positive social purposes does gossip serve according to research?</li>
+            <li>How does sharing information about others help build trust?</li>
+            <li>When does gossip become harmful to individuals and communities?</li>
+            <li>What percentage of gossip involves neutral or positive information?</li>
+            <li>What's the key difference between constructive and destructive gossip?</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Vocab Review -->
+    <section class="section" id="rev">
+      <h2 class="section-header"><span class="icon">📝</span>Vocabulary Review</h2>
+      <div class="section-body">
+        <div class="pane fill">
+          <p>1. False <span class="blank"></span> can quickly damage someone's career and relationships.</p>
+          <p>2. Sharing personal stories helps people <span class="blank"></span> and become closer friends.</p>
+          <p>3. Her <span class="blank"></span> was ruined after someone shared her private information.</p>
+          <p>4. What <span class="blank"></span> people to share information they promised to keep secret?</p>
+          <p>5. Some groups use gossip to keep certain members <span class="blank"></span> from activities.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Grammar -->
+    <section class="section" id="grammar">
+      <h2 class="section-header"><span class="icon">✍️</span>Grammar Review — Present Simple vs Present Continuous</h2>
+      <div class="section-body">
+        <div class="pane fill">
+          <p>1. People usually <span class="blank"></span> (gossip) about things that interest them.</p>
+          <p>2. She <span class="blank"></span> (spread) rumors about her colleague right now.</p>
+          <p>3. Trust <span class="blank"></span> (develop) when friends share personal information.</p>
+          <p>4. Why <span class="blank"></span> you <span class="blank"></span> (discuss) his private life with others?</p>
+          <p>5. Gossip <span class="blank"></span> (serve) important social functions in communities.</p>
+          
+          <p><strong>Transform these sentences from active to passive voice:</strong></p>
+          <p>6. People spread rumors quickly in small communities.<br>
+             Rumors <span class="blank"></span> <span class="blank"></span> quickly in small communities.</p>
+          <p>7. She shares secrets with her closest friends only.<br>
+             Secrets <span class="blank"></span> <span class="blank"></span> with her closest friends only.</p>
+          <p>8. Gossip often damages people's reputations unfairly.<br>
+             People's reputations <span class="blank"></span> often <span class="blank"></span> unfairly by gossip.</p>
+          
+        </div>
+      </div>
+    </section>
+
+    <!-- Ethics Slider -->
+    <section class="section" id="ethics">
+      <h2 class="section-header"><span class="icon">⚖</span>Ethics Slider (not graded)</h2>
+      <div class="section-body">
+        <div class="ethics-container">
+          <p class="ethics-subtitle">Rate 1–5 (1 = never OK • 5 = fully OK).</p>
+          <div class="ethics-rows">
+            <div class="ethics-row">
+              <span class="ethics-text">Sharing a friend's personal problems to get advice from others.</span>
+              <div class="rating-dots">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+            <div class="ethics-row">
+              <span class="ethics-text">Telling others about someone's promotion before they announce it.</span>
+              <div class="rating-dots">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+            <div class="ethics-row">
+              <span class="ethics-text">Spreading rumors about a colleague to help them get excluded from a project.</span>
+              <div class="rating-dots">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+          </div>
+          <p class="ethics-footer">Tip: Consider consent, privacy, and control when rating.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Task A - Match the Headlines -->
+    <section class="section" id="task-a">
+      <h2 class="section-header"><span class="icon">🎯</span>Task A — Match the Headlines</h2>
+      <div class="section-body">
+        <div class="exercise">
+          <!-- Full-Width Image Grid (Top Half) -->
+          <div class="full-width-grid">
+            <div class="image-tile" onclick="openImagePopup('pictures/gossip/TaskA/a---building-trust-through-shared-secrets--two-fri.png', 'Building Trust Through Shared Secrets')">
+              <div class="image-badge">1</div>
+              <img src="pictures/gossip/TaskA/a---building-trust-through-shared-secrets--two-fri.png" alt="Building Trust Through Shared Secrets">
+            </div>
+            <div class="image-tile" onclick="openImagePopup('pictures/gossip/TaskA/b---the-social-glue-of-information-exchange--group.png', 'The Social Glue of Information Exchange')">
+              <div class="image-badge">2</div>
+              <img src="pictures/gossip/TaskA/b---the-social-glue-of-information-exchange--group.png" alt="The Social Glue of Information Exchange">
+            </div>
+            <div class="image-tile" onclick="openImagePopup('pictures/gossip/TaskA/c---when-gossip-crosses-the-line--illustration-of-.png', 'When Gossip Crosses the Line')">
+              <div class="image-badge">3</div>
+              <img src="pictures/gossip/TaskA/c---when-gossip-crosses-the-line--illustration-of-.png" alt="When Gossip Crosses the Line">
+            </div>
+            <div class="image-tile" onclick="openImagePopup('pictures/gossip/TaskA/d---the-power-of-reputation-management--person-sta.png', 'The Power of Reputation Management')">
+              <div class="image-badge">4</div>
+              <img src="pictures/gossip/TaskA/d---the-power-of-reputation-management--person-sta.png" alt="The Power of Reputation Management">
+            </div>
+            <div class="image-tile" onclick="openImagePopup('pictures/gossip/TaskA/e---creating-bonds-through-shared-stories--small-g.png', 'Creating Bonds Through Shared Stories')">
+              <div class="image-badge">5</div>
+              <img src="pictures/gossip/TaskA/e---creating-bonds-through-shared-stories--small-g.png" alt="Creating Bonds Through Shared Stories">
+            </div>
+            <div class="image-tile" onclick="openImagePopup('pictures/gossip/TaskA/f---the-dark-side-of-information-spreading--rumors.png', 'The Dark Side of Information Spreading')">
+              <div class="image-badge">6</div>
+              <img src="pictures/gossip/TaskA/f---the-dark-side-of-information-spreading--rumors.png" alt="The Dark Side of Information Spreading">
+            </div>
+          </div>
+          
+          <!-- Instructions and Headlines (Bottom Half) -->
+          <div class="task-content">
+            <div class="instructions-section">
+              <p><strong>Instructions:</strong> Match each picture (1–6) with a headline (A–F). Write your answers:</p>
+              <div class="answer-blanks">
+                <span>1 __</span> <span>2 __</span> <span>3 __</span> <span>4 __</span> <span>5 __</span> <span>6 __</span>
+              </div>
+            </div>
+            
+            <div class="headlines-section">
+              <div class="headline-item"><strong>A.</strong> "Building Trust Through Shared Secrets"</div>
+              <div class="headline-item"><strong>B.</strong> "The Social Glue of Information Exchange"</div>
+              <div class="headline-item"><strong>C.</strong> "When Gossip Crosses the Line"</div>
+              <div class="headline-item"><strong>D.</strong> "The Power of Reputation Management"</div>
+              <div class="headline-item"><strong>E.</strong> "Creating Bonds Through Shared Stories"</div>
+              <div class="headline-item"><strong>F.</strong> "The Dark Side of Information Spreading"</div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+    <!-- Additional Exercises -->
+    <section class="section" id="ex">
+      <h2 class="section-header"><span class="icon">✅</span>Additional Exercises</h2>
+      <div class="section-body">
+        <div class="exercise">
+          <h4>1. Types of Gossip Analysis</h4>
+          <p>Categorize different forms of information sharing:</p>
+          <table>
+            <thead>
+              <tr><th>Gossip Type</th><th>Purpose</th><th>Example Topics</th><th>Social Impact</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Positive Gossip</strong></td><td>_____________</td><td>_____________</td><td>_____________</td></tr>
+              <tr><td><strong>Neutral Gossip</strong></td><td>_____________</td><td>_____________</td><td>_____________</td></tr>
+              <tr><td><strong>Negative Gossip</strong></td><td>_____________</td><td>_____________</td><td>_____________</td></tr>
+              <tr><td><strong>Malicious Gossip</strong></td><td>_____________</td><td>_____________</td><td>_____________</td></tr>
+            </tbody>
+          </table>
+          <p><strong>Discussion Questions:</strong></p>
+          <p>• Which type is most common in your experience?</p>
+          <p>• How can you recognize harmful gossip patterns?</p>
+        </div>
+
+        <div class="exercise">
+          <h4>2. Gossip Motivation Analysis</h4>
+          <p>Analyze what drives people to share information about others:</p>
+          <p><strong>Positive Motivations:</strong></p>
+          <p>• _________________________________</p>
+          <p>• _________________________________</p>
+          <p>• _________________________________</p>
+          <p><strong>Neutral Motivations:</strong></p>
+          <p>• _________________________________</p>
+          <p>• _________________________________</p>
+          <p>• _________________________________</p>
+          <p><strong>Negative Motivations:</strong></p>
+          <p>• _________________________________</p>
+          <p>• _________________________________</p>
+          <p>• _________________________________</p>
+          <p><strong>Analysis Questions:</strong></p>
+          <p>• What motivates you most when sharing information about others?</p>
+          <p>• How can understanding motivations help prevent harmful gossip?</p>
+        </div>
+
+        <div class="exercise">
+          <h4>3. Social Bond Building Through Gossip</h4>
+          <p>Examine how gossip strengthens or weakens relationships:</p>
+          <p><strong>Relationship Strengthening:</strong></p>
+          <p>1. <strong>Trust building mechanisms:</strong> __________________</p>
+          <p>2. <strong>Shared experience creation:</strong> ____________________</p>
+          <p>3. <strong>Group identity formation:</strong> ___________________</p>
+          <p><strong>Relationship Weakening:</strong></p>
+          <p>1. <strong>Trust breaking behaviors:</strong> ____________________</p>
+          <p>2. <strong>Exclusion tactics:</strong> ____________________</p>
+          <p>3. <strong>Reputation damage effects:</strong> _________________</p>
+          <p><strong>Social Implications:</strong></p>
+          <p>• How does gossip affect group dynamics?</p>
+          <p>• What role does gossip play in social hierarchy?</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Keys -->
+    <section class="section keys" id="keys">
+      <div class="toolbar">
+        <button class="btn" onclick="window.print()">Print / Save as PDF</button>
+      </div>
+      <h2 class="section-header"><span class="icon">🔐</span>Answer Keys (toggle)</h2>
+      <div style="background: #FFF3E0; border: 1px solid #8D4E00; border-radius: 8px; padding: 12px; margin: 16px 0; border-left: 4px solid #8D4E00;">
+        <p style="margin: 0; font-weight: 600; color: #2D1B0E; font-size: 14px;">
+          <strong>📋 Answers will only be visible in the PDF if you untoggle them before saving</strong>
+        </p>
+      </div>
+      <div class="section-body">
+        <div class="pane">
+          <details>
+            <summary>Vocabulary Preview</summary>
+            <p>1-e, 2-j, 3-d, 4-f, 5-b, 6-g, 7-a, 8-c, 9-i, 10-h</p>
+          </details>
+          <details>
+            <summary>Vocabulary Review</summary>
+            <p>1. rumors, 2. bond, 3. reputation, 4. motivates, 5. excluded</p>
+          </details>
+          <details>
+            <summary>Grammar Review</summary>
+            <p>1. gossip, 2. is spreading, 3. develops, 4. are...discussing, 5. serves</p>
+            <p>6. are spread, 7. are shared, 8. are...damaged</p>
+          </details>
+          <details>
+            <summary>Exercise 1 - Types of Gossip</summary>
+            <p><strong>Positive:</strong> Celebrating achievements / Promotions, successes / Strengthens relationships</p>
+            <p><strong>Neutral:</strong> Daily life updates / Activities, schedules / Maintains connections</p>
+            <p><strong>Negative:</strong> Criticism, complaints / Mistakes, problems / Can damage trust</p>
+            <p><strong>Malicious:</strong> Deliberate harm / False accusations / Destroys relationships</p>
+          </details>
+          <details>
+            <summary>Task A - Match the Headlines</summary>
+            <p><strong>Key:</strong> 1–B, 2–E, 3–C, 4–D, 5–A, 6–F</p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+  <!-- VectorAnnotator JavaScript -->
+  <script src="vector-annotator.js"></script>
+  
+  <!-- Image Popup JavaScript -->
+  <script>
+    function openImagePopup(imageSrc, title) {
+      // Create popup overlay
+      const overlay = document.createElement('div');
+      overlay.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 1000000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+      `;
+      
+      // Create popup content
+      const popup = document.createElement('div');
+      popup.style.cssText = `
+        position: relative;
+        max-width: 90vw;
+        max-height: 90vh;
+        background: white;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        cursor: default;
+      `;
+      
+      // Create close button
+      const closeBtn = document.createElement('button');
+      closeBtn.innerHTML = '×';
+      closeBtn.style.cssText = `
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        color: #666;
+        z-index: 1;
+      `;
+      
+      // Create image
+      const img = document.createElement('img');
+      img.src = imageSrc;
+      img.alt = title;
+      img.style.cssText = `
+        max-width: 100%;
+        max-height: 80vh;
+        display: block;
+        border-radius: 8px;
+      `;
+      
+      // Assemble popup
+      popup.appendChild(closeBtn);
+      popup.appendChild(img);
+      overlay.appendChild(popup);
+      document.body.appendChild(overlay);
+      
+      // Close functions
+      function closePopup() {
+        document.body.removeChild(overlay);
+      }
+      
+      closeBtn.onclick = closePopup;
+      overlay.onclick = function(e) {
+        if (e.target === overlay) closePopup();
+      };
+      
+      // Close with Escape key
+      const handleKeyPress = function(e) {
+        if (e.key === 'Escape') {
+          closePopup();
+          document.removeEventListener('keydown', handleKeyPress);
+        }
+      };
+      document.addEventListener('keydown', handleKeyPress);
+    }
+  </script>
+
+  <!-- VectorAnnotator Tool Interface -->
+  <div id="va-root-toolbar">
+    <button class="va-btn" data-tool="pen" title="Freehand vector pen">✏</button>
+    <button class="va-btn" data-tool="text" title="Click + type (vector)">T</button>
+    
+    <div class="va-sep"></div>
+    
+    <div class="va-control-group">
+      <label>Color <input type="color" value="#057A8A"></label>
+    </div>
+    
+    <div class="va-control-group">
+      <label>Width <input type="range" min="1" max="20" value="3"></label>
+    </div>
+    
+    <div class="va-control-group">
+      <label>Font <input type="number" min="8" max="96" step="1" value="24"></label>
+    </div>
+    
+    <div class="va-sep"></div>
+    
+    <button class="va-btn" id="va-undo" title="Ctrl/Cmd+Z">↶</button>
+    <button class="va-btn" id="va-clear" title="Clear all">×</button>
+    <button class="va-btn va-active" id="va-passthru" title="Toggle click-through" data-tool="passthru">👆</button>
+    
+    <div class="va-sep"></div>
+    
+    <div class="va-control-group">
+      <label>Download <button class="va-btn" id="va-save" title="Print / Save as PDF">⬇</button></label>
+    </div>
+  </div>
+
+  <!-- SVG Overlay -->
+  <div id="va-root-overlay" style="position: fixed; inset: 0; pointer-events: auto; z-index: 999998;">
+    <svg id="va-svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display: block; width: 100%; height: 100%; touch-action: none; user-select: none;">
+      <defs>
+        <style>.stroke{fill:none;stroke-linecap:round;stroke-linejoin:round}</style>
+      </defs>
+      <g id="va-content"></g>
+      <g id="va-ui"></g>
+    </svg>
+  </div>
+
+
+
+</body>
+</html>
