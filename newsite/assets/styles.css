@@ -1815,25 +1815,26 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
 }
 
 /* Primary and Secondary Button Styling */
-/* Primary button - Unlock (Download PDF) */
+/* Small button - Premium/Download (PDF) */
 .btn.premium{
   background: linear-gradient(135deg, #D2B48C, #BC9A6A) !important; 
   color: white !important;
   font-weight: 600 !important;
-  font-size: 7.5px !important;
-  padding: 8px 12px !important;
-  border-radius: 6px !important;
-  box-shadow: 0 2px 7px 0 rgba(188, 154, 106, 0.3) !important;
+  font-size: 6px !important;
+  padding: 6px 8px !important;
+  border-radius: 4px !important;
+  box-shadow: 0 1px 4px 0 rgba(188, 154, 106, 0.3) !important;
   border: none !important;
   position: relative !important;
   overflow: hidden !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  width: 40% !important;
 }
 
 .btn.premium:hover{
   background: linear-gradient(135deg, #BC9A6A, #A68B5B) !important;
-  transform: translateY(-1px) !important;
-  box-shadow: 0 3px 10px 0 rgba(188, 154, 106, 0.4) !important;
+  transform: translateY(-0.5px) !important;
+  box-shadow: 0 2px 6px 0 rgba(188, 154, 106, 0.4) !important;
 }
 
 .btn.premium::after{
@@ -1842,46 +1843,47 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
   transform:skewX(-20deg);animation:btn-shine 2.6s infinite;pointer-events:none
 }
 
-/* Secondary button - Unlock Online (View Online) */
+/* Big button - View Online */
 .btn.quiz-btn{
-  background: transparent !important; 
-  color: #8B7355 !important;
-  font-weight: 500 !important;
-  font-size: 7px !important;
-  padding: 7px 10px !important;
-  border-radius: 6px !important;
-  border: 1px solid #D2B48C !important;
+  background: linear-gradient(135deg, #D2B48C, #BC9A6A) !important; 
+  color: white !important;
+  font-weight: 700 !important;
+  font-size: 10px !important;
+  padding: 12px 16px !important;
+  border-radius: 8px !important;
+  box-shadow: 0 3px 8px 0 rgba(188, 154, 106, 0.4) !important;
+  border: none !important;
   position: relative !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  width: 60% !important;
 }
 
 .btn.quiz-btn:hover{
-  background: #F5E6D3 !important;
-  color: #6B5B47 !important;
-  border-color: #BC9A6A !important;
-  transform: translateY(-0.5px) !important;
-  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.1) !important;
+  background: linear-gradient(135deg, #BC9A6A, #A68B5B) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px 0 rgba(188, 154, 106, 0.5) !important;
 }
 
-/* Download button (when user has access) */
+/* Small Download button (when user has access) */
 .btn.download{
   background: linear-gradient(135deg, #D2B48C, #BC9A6A) !important; 
   color: white !important;
   font-weight: 600 !important;
-  font-size: 7.5px !important;
-  padding: 8px 12px !important;
-  border-radius: 6px !important;
-  box-shadow: 0 2px 7px 0 rgba(188, 154, 106, 0.3) !important;
+  font-size: 6px !important;
+  padding: 6px 8px !important;
+  border-radius: 4px !important;
+  box-shadow: 0 1px 4px 0 rgba(188, 154, 106, 0.3) !important;
   border: none !important;
   position: relative !important;
   overflow: hidden !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  width: 40% !important;
 }
 
 .btn.download:hover{
   background: linear-gradient(135deg, #BC9A6A, #A68B5B) !important;
-  transform: translateY(-1px) !important;
-  box-shadow: 0 3px 10px 0 rgba(188, 154, 106, 0.4) !important;
+  transform: translateY(-0.5px) !important;
+  box-shadow: 0 2px 6px 0 rgba(188, 154, 106, 0.4) !important;
 }
 
 .btn.download::after{
@@ -1892,10 +1894,10 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
 
 /* Improved spacing for button containers */
 .card .actions.two{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
   gap: 8px;
   margin-top: 12px;
+  align-items: center;
 }
 
 /* Button icon styling */
@@ -1903,6 +1905,12 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
   margin-right: 4px;
   font-size: 8px;
   display: inline-block;
+}
+
+/* Big button icon styling */
+.btn.quiz-btn .btn-icon {
+  font-size: 12px;
+  margin-right: 6px;
 }
 
 @keyframes btn-shine{0%{left:-30%}100%{left:130%}}
