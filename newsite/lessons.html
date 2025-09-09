@@ -1175,7 +1175,8 @@ document.addEventListener('DOMContentLoaded', function(){
       }catch(err){ alert('Download failed'); }
     }
 
-    function handleHtmlClick(e){
+    async function handleHtmlClick(e){
+      e.preventDefault();
       const btn = e.currentTarget;
       const href = btn.getAttribute('href');
       if (!href) return;
@@ -1194,8 +1195,37 @@ document.addEventListener('DOMContentLoaded', function(){
         return;
       }
 
-      // If user has access, open the HTML file
-      window.location.href = href;
+      // If user has access, fetch the HTML content through the secure function
+      try {
+        const token = await user.jwt();
+        const res = await fetch('/.netlify/functions/secure-html?file=' + encodeURIComponent(fileName), { 
+          headers: { Authorization: 'Bearer ' + token } 
+        });
+        
+        if (!res.ok) {
+          if (res.status === 401) {
+            alert('Please log in to access this lesson');
+            if (window.netlifyIdentity) window.netlifyIdentity.open('login');
+          } else if (res.status === 403) {
+            alert('This lesson requires a premium subscription');
+            window.location.href = PRICING_URL;
+          } else {
+            alert('Failed to load lesson: ' + res.status);
+          }
+          return;
+        }
+        
+        const htmlContent = await res.text();
+        
+        // Open the content in the same tab
+        document.open();
+        document.write(htmlContent);
+        document.close();
+        
+      } catch (err) {
+        console.error('Error loading HTML lesson:', err);
+        alert('Failed to load lesson. Please try again.');
+      }
     }
 
     function refresh(){
