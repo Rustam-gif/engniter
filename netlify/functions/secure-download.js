@@ -30,14 +30,19 @@ exports.handler = async (event, context) => {
     const roles = (user && user.app_metadata && user.app_metadata.roles) || [];
     const isFreeFile = FREE_FILES.has(requested.toLowerCase());
 
-    // Require authentication for all downloads (free or premium)
-    if (!user) {
-      return { statusCode: 401, headers: { 'Access-Control-Allow-Origin': '*' }, body: 'Unauthorized' };
-    }
-
-    // If not paid and not a free file, block
-    if (!roles.includes('paid') && !isFreeFile) {
-      return { statusCode: 403, headers: { 'Access-Control-Allow-Origin': '*' }, body: 'Forbidden (Premium only)' };
+    // Allow free files without authentication
+    if (isFreeFile) {
+      // Free file - no authentication required
+    } else {
+      // Premium file - require authentication
+      if (!user) {
+        return { statusCode: 401, headers: { 'Access-Control-Allow-Origin': '*' }, body: 'Unauthorized' };
+      }
+      
+      // If not paid and not a free file, block
+      if (!roles.includes('paid')) {
+        return { statusCode: 403, headers: { 'Access-Control-Allow-Origin': '*' }, body: 'Forbidden (Premium only)' };
+      }
     }
 
     const filePath = path.resolve(__dirname, '../../private-files', requested);
