@@ -1162,13 +1162,31 @@ document.addEventListener('DOMContentLoaded', function(){
         return;
       }
       
-      // Require login for all downloads (including free ones)
+      // Check if this is a free file
+      const isFree = isFreeFile(file);
+      
+      // For free files, allow download without login
+      if (isFree) {
+        try {
+          const res = await fetch(FN_URL + '?file=' + encodeURIComponent(file));
+          if (!res.ok) { alert('Download failed: ' + res.status); return; }
+          const blob = await res.blob();
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url; a.download = file; document.body.appendChild(a); a.click(); a.remove();
+          URL.revokeObjectURL(url);
+        } catch(err) { alert('Download failed'); }
+        return;
+      }
+      
+      // For premium files, require login
       if (!user){
         if (window.netlifyIdentity) window.netlifyIdentity.open('login');
         return;
       }
+      
       // If not paid and not free, gate to pricing
-      if (!isFreeFile(file) && !isPaid(user)){
+      if (!isPaid(user)){
         window.location.href = PRICING_URL;
         return;
       }
@@ -1193,14 +1211,40 @@ document.addEventListener('DOMContentLoaded', function(){
 
       const user = currentUser();
       const fileName = href.split('/').pop();
+      const isFree = isFreeHtmlFile(fileName);
 
-      // Require login for all HTML views (including free ones)
+      // For free HTML files, allow access without login
+      if (isFree) {
+        try {
+          const res = await fetch('/.netlify/functions/secure-html?file=' + encodeURIComponent(fileName));
+          
+          if (!res.ok) {
+            alert('Failed to load lesson: ' + res.status);
+            return;
+          }
+          
+          const htmlContent = await res.text();
+          
+          // Open the content in the same tab
+          document.open();
+          document.write(htmlContent);
+          document.close();
+          
+        } catch (err) {
+          console.error('Error loading HTML lesson:', err);
+          alert('Failed to load lesson. Please try again.');
+        }
+        return;
+      }
+
+      // For premium HTML files, require login
       if (!user){
         if (window.netlifyIdentity) window.netlifyIdentity.open('login');
         return;
       }
+      
       // If not paid and not free, gate to pricing
-      if (!isFreeHtmlFile(fileName) && !isPaid(user)){
+      if (!isPaid(user)){
         window.location.href = PRICING_URL;
         return;
       }
@@ -1255,11 +1299,14 @@ document.addEventListener('DOMContentLoaded', function(){
         const htmlLink = actionsContainer.querySelector('a[href*="online_files/"]');
         const htmlFile = htmlLink ? htmlLink.getAttribute('href') : '';
         
-        if (paid) {
-          // User is paid - show two buttons
+        // Check if this is a free lesson
+        const isFree = isFreeFile(pdfFile);
+        
+        if (paid || isFree) {
+          // User is paid OR lesson is free - show two buttons
           createPaidButtons(actionsContainer, pdfFile, htmlFile);
         } else {
-          // User is unpaid - show single "Go Premium" button
+          // User is unpaid AND lesson is premium - show single "Go Premium" button
           createUnpaidButton(actionsContainer, pdfFile);
         }
         
