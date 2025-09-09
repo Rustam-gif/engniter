@@ -1839,6 +1839,7 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
 /* Removed shine animation */
 
 /* Big button - View Online */
+.card .actions .btn.quiz-btn,
 .btn.quiz-btn{
   background: #F2E3D0 !important; 
   color: #2F4A56 !important;
@@ -1853,6 +1854,7 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
   width: 500% !important;
 }
 
+.card .actions .btn.quiz-btn:hover,
 .btn.quiz-btn:hover{
   background: #E8D4C0 !important;
   box-shadow: 0 4px 12px 0 rgba(242, 227, 208, 0.5) !important;
