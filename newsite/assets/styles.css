@@ -1828,10 +1828,10 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
   background: #406473 !important;
   color: white !important;
   font-weight: 700 !important;
-  font-size: 16px !important;
-  padding: 16px !important; /* 48px height with 16px padding */
-  border-radius: 12px !important;
-  box-shadow: 0 4px 12px 0 rgba(64, 100, 115, 0.4) !important;
+  font-size: 13.6px !important; /* Decreased by 15% from 16px */
+  padding: 13.6px !important; /* Decreased by 15% from 16px */
+  border-radius: 10.2px !important; /* Decreased by 15% from 12px */
+  box-shadow: 0 3.4px 10.2px 0 rgba(64, 100, 115, 0.4) !important; /* Decreased by 15% */
   border: none !important;
   position: relative !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
@@ -1842,14 +1842,14 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  gap: 8px !important;
-  min-height: 48px !important;
+  gap: 6.8px !important; /* Decreased by 15% from 8px */
+  min-height: 40.8px !important; /* Decreased by 15% from 48px */
 }
 
 .btn.go-premium:hover {
   background: #2F4A56 !important; /* 3% darker */
-  box-shadow: 0 6px 16px 0 rgba(64, 100, 115, 0.5) !important;
-  transform: translateY(-2px) !important; /* Slight elevation */
+  box-shadow: 0 5.1px 13.6px 0 rgba(64, 100, 115, 0.5) !important; /* Decreased by 15% */
+  transform: translateY(-1.7px) !important; /* Slight elevation - decreased by 15% */
 }
 
 .btn.go-premium:focus-visible {
@@ -1873,10 +1873,10 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
   background: #406473 !important;
   color: white !important;
   font-weight: 700 !important;
-  font-size: 16px !important;
-  padding: 16px !important; /* 48px height with 16px padding */
-  border-radius: 12px !important;
-  box-shadow: 0 4px 12px 0 rgba(64, 100, 115, 0.4) !important;
+  font-size: 13.6px !important; /* Decreased by 15% from 16px */
+  padding: 13.6px !important; /* Decreased by 15% from 16px */
+  border-radius: 10.2px !important; /* Decreased by 15% from 12px */
+  box-shadow: 0 3.4px 10.2px 0 rgba(64, 100, 115, 0.4) !important; /* Decreased by 15% */
   border: none !important;
   position: relative !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
@@ -1887,15 +1887,15 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  gap: 8px !important;
-  min-height: 48px !important;
+  gap: 6.8px !important; /* Decreased by 15% from 8px */
+  min-height: 40.8px !important; /* Decreased by 15% from 48px */
   white-space: nowrap !important;
 }
 
 .btn.read-online:hover {
   background: #2F4A56 !important; /* 3% darker */
-  box-shadow: 0 6px 16px 0 rgba(64, 100, 115, 0.5) !important;
-  transform: translateY(-2px) !important; /* Slight elevation */
+  box-shadow: 0 5.1px 13.6px 0 rgba(64, 100, 115, 0.5) !important; /* Decreased by 15% */
+  transform: translateY(-1.7px) !important; /* Slight elevation - decreased by 15% */
 }
 
 .btn.read-online:focus-visible {
@@ -1908,10 +1908,10 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
   background: transparent !important;
   color: #406473 !important;
   font-weight: 600 !important;
-  font-size: 12.8px !important; /* Decreased by 20% from 16px */
-  padding: 16px !important; /* 48px height with 16px padding */
-  border-radius: 12px !important;
-  box-shadow: 0 2px 8px 0 rgba(64, 100, 115, 0.2) !important;
+  font-size: 10.88px !important; /* Decreased by 15% from 12.8px (which was already 20% smaller) */
+  padding: 13.6px !important; /* Decreased by 15% from 16px */
+  border-radius: 10.2px !important; /* Decreased by 15% from 12px */
+  box-shadow: 0 1.7px 6.8px 0 rgba(64, 100, 115, 0.2) !important; /* Decreased by 15% */
   border: 1px solid #406473 !important; /* 1px outline */
   position: relative !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
@@ -1922,16 +1922,16 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  gap: 8px !important;
-  min-height: 48px !important;
+  gap: 6.8px !important; /* Decreased by 15% from 8px */
+  min-height: 40.8px !important; /* Decreased by 15% from 48px */
   white-space: nowrap !important;
 }
 
 .btn.download-pdf:hover {
   background: #406473 !important;
   color: white !important;
-  box-shadow: 0 4px 12px 0 rgba(64, 100, 115, 0.4) !important;
-  transform: translateY(-2px) !important; /* Slight elevation */
+  box-shadow: 0 3.4px 10.2px 0 rgba(64, 100, 115, 0.4) !important; /* Decreased by 15% */
+  transform: translateY(-1.7px) !important; /* Slight elevation - decreased by 15% */
 }
 
 .btn.download-pdf:focus-visible {
