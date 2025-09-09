@@ -1817,13 +1817,13 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
 /* Primary and Secondary Button Styling */
 /* Small button - Premium/Download (PDF) */
 .btn.premium{
-  background: #BF5D24 !important; 
+  background: #406473 !important; 
   color: white !important;
   font-weight: 600 !important;
   font-size: 10px !important;
   padding: 8px 6px !important;
   border-radius: 3px !important;
-  box-shadow: 0 1px 3px 0 rgba(191, 93, 36, 0.3) !important;
+  box-shadow: 0 1px 3px 0 rgba(64, 100, 115, 0.3) !important;
   border: none !important;
   position: relative !important;
   overflow: hidden !important;
@@ -1832,41 +1832,41 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
 }
 
 .btn.premium:hover{
-  background: #A64D1F !important;
-  box-shadow: 0 2px 6px 0 rgba(191, 93, 36, 0.4) !important;
+  background: #2F4A56 !important;
+  box-shadow: 0 2px 6px 0 rgba(64, 100, 115, 0.4) !important;
 }
 
 /* Removed shine animation */
 
 /* Big button - View Online */
 .btn.quiz-btn{
-  background: #406473 !important; 
-  color: white !important;
+  background: #F2E3D0 !important; 
+  color: #2F4A56 !important;
   font-weight: 700 !important;
   font-size: 20px !important;
   padding: 18px 16px !important;
   border-radius: 8px !important;
-  box-shadow: 0 3px 8px 0 rgba(64, 100, 115, 0.4) !important;
+  box-shadow: 0 3px 8px 0 rgba(242, 227, 208, 0.4) !important;
   border: none !important;
   position: relative !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  width: 300% !important;
+  width: 500% !important;
 }
 
 .btn.quiz-btn:hover{
-  background: #2F4A56 !important;
-  box-shadow: 0 4px 12px 0 rgba(64, 100, 115, 0.5) !important;
+  background: #E8D4C0 !important;
+  box-shadow: 0 4px 12px 0 rgba(242, 227, 208, 0.5) !important;
 }
 
 /* Small Download button (when user has access) */
 .btn.download{
-  background: #BF5D24 !important; 
+  background: #406473 !important; 
   color: white !important;
   font-weight: 600 !important;
   font-size: 10px !important;
   padding: 8px 6px !important;
   border-radius: 3px !important;
-  box-shadow: 0 1px 3px 0 rgba(191, 93, 36, 0.3) !important;
+  box-shadow: 0 1px 3px 0 rgba(64, 100, 115, 0.3) !important;
   border: none !important;
   position: relative !important;
   overflow: hidden !important;
@@ -1875,8 +1875,8 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
 }
 
 .btn.download:hover{
-  background: #A64D1F !important;
-  box-shadow: 0 2px 6px 0 rgba(191, 93, 36, 0.4) !important;
+  background: #2F4A56 !important;
+  box-shadow: 0 2px 6px 0 rgba(64, 100, 115, 0.4) !important;
 }
 
 /* Removed shine animation */
