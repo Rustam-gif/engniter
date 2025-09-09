@@ -4,5 +4,8 @@
 # Redirect PDF files to secure download function  
 /newsite/private-files/*.pdf /.netlify/functions/secure-download?file=:splat 200!
 
+# Block direct access to private files
+/newsite/private-files/* 403
+
 # Catch-all for SPA routing
 /* /newsite/index.html 200

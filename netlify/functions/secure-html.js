@@ -54,8 +54,8 @@ exports.handler = async (event, context) => {
       };
     }
 
-    // Read the HTML file from the online_files directory
-    const filePath = path.resolve(__dirname, '../../newsite/online_files', requested);
+    // Read the HTML file from the private-files directory
+    const filePath = path.resolve(__dirname, '../../private-files', requested);
     let data;
     try {
       data = await fs.readFile(filePath, 'utf8');
