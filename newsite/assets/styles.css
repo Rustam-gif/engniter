@@ -1817,13 +1817,13 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
 /* Primary and Secondary Button Styling */
 /* Small button - Premium/Download (PDF) */
 .btn.premium{
-  background: linear-gradient(135deg, #D2B48C, #BC9A6A) !important; 
+  background: #BF5D24 !important; 
   color: white !important;
   font-weight: 600 !important;
   font-size: 6px !important;
-  padding: 6px 8px !important;
+  padding: 12px 8px !important;
   border-radius: 4px !important;
-  box-shadow: 0 1px 4px 0 rgba(188, 154, 106, 0.3) !important;
+  box-shadow: 0 1px 4px 0 rgba(191, 93, 36, 0.3) !important;
   border: none !important;
   position: relative !important;
   overflow: hidden !important;
@@ -1832,9 +1832,9 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
 }
 
 .btn.premium:hover{
-  background: linear-gradient(135deg, #BC9A6A, #A68B5B) !important;
+  background: #A64D1F !important;
   transform: translateY(-0.5px) !important;
-  box-shadow: 0 2px 6px 0 rgba(188, 154, 106, 0.4) !important;
+  box-shadow: 0 2px 6px 0 rgba(191, 93, 36, 0.4) !important;
 }
 
 .btn.premium::after{
@@ -1845,13 +1845,13 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
 
 /* Big button - View Online */
 .btn.quiz-btn{
-  background: linear-gradient(135deg, #D2B48C, #BC9A6A) !important; 
+  background: #BF5D24 !important; 
   color: white !important;
   font-weight: 700 !important;
   font-size: 10px !important;
-  padding: 12px 16px !important;
+  padding: 18px 16px !important;
   border-radius: 8px !important;
-  box-shadow: 0 3px 8px 0 rgba(188, 154, 106, 0.4) !important;
+  box-shadow: 0 3px 8px 0 rgba(191, 93, 36, 0.4) !important;
   border: none !important;
   position: relative !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
@@ -1859,20 +1859,20 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
 }
 
 .btn.quiz-btn:hover{
-  background: linear-gradient(135deg, #BC9A6A, #A68B5B) !important;
+  background: #A64D1F !important;
   transform: translateY(-1px) !important;
-  box-shadow: 0 4px 12px 0 rgba(188, 154, 106, 0.5) !important;
+  box-shadow: 0 4px 12px 0 rgba(191, 93, 36, 0.5) !important;
 }
 
 /* Small Download button (when user has access) */
 .btn.download{
-  background: linear-gradient(135deg, #D2B48C, #BC9A6A) !important; 
+  background: #BF5D24 !important; 
   color: white !important;
   font-weight: 600 !important;
   font-size: 6px !important;
-  padding: 6px 8px !important;
+  padding: 12px 8px !important;
   border-radius: 4px !important;
-  box-shadow: 0 1px 4px 0 rgba(188, 154, 106, 0.3) !important;
+  box-shadow: 0 1px 4px 0 rgba(191, 93, 36, 0.3) !important;
   border: none !important;
   position: relative !important;
   overflow: hidden !important;
@@ -1881,9 +1881,9 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
 }
 
 .btn.download:hover{
-  background: linear-gradient(135deg, #BC9A6A, #A68B5B) !important;
+  background: #A64D1F !important;
   transform: translateY(-0.5px) !important;
-  box-shadow: 0 2px 6px 0 rgba(188, 154, 106, 0.4) !important;
+  box-shadow: 0 2px 6px 0 rgba(191, 93, 36, 0.4) !important;
 }
 
 .btn.download::after{
