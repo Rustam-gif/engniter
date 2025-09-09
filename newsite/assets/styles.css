@@ -1908,7 +1908,7 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
   background: transparent !important;
   color: #406473 !important;
   font-weight: 600 !important;
-  font-size: 16px !important;
+  font-size: 12.8px !important; /* Decreased by 20% from 16px */
   padding: 16px !important; /* 48px height with 16px padding */
   border-radius: 12px !important;
   box-shadow: 0 2px 8px 0 rgba(64, 100, 115, 0.2) !important;
