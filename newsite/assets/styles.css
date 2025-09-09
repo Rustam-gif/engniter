@@ -1815,49 +1815,54 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
 }
 
 /* Primary and Secondary Button Styling */
-/* Small button - Premium/Download (PDF) */
+/* Secondary button - Premium/Download (PDF) */
 .btn.premium{
-  background: #406473 !important; 
-  color: white !important;
+  background: transparent !important; /* Softer outlined style */
+  color: #406473 !important; /* Text color matches primary */
   font-weight: 600 !important;
-  font-size: 10px !important;
-  padding: 8px 6px !important;
-  border-radius: 3px !important;
-  box-shadow: 0 1px 3px 0 rgba(64, 100, 115, 0.3) !important;
-  border: none !important;
+  font-size: 14px !important; /* Smaller than primary */
+  padding: 16px 20px !important; /* Same height as primary */
+  border-radius: 8px !important; /* Same as primary */
+  box-shadow: 0 2px 8px 0 rgba(64, 100, 115, 0.2) !important; /* Softer shadow */
+  border: 2px solid #406473 !important; /* Outlined style */
   position: relative !important;
   overflow: hidden !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  width: 27.5% !important; /* Increased by 10% from 25% */
+  width: 32% !important; /* 30-35% of row width */
+  flex-shrink: 0;
 }
 
 .btn.premium:hover{
-  background: #2F4A56 !important;
-  box-shadow: 0 2px 6px 0 rgba(64, 100, 115, 0.4) !important;
+  background: #406473 !important; /* Fill on hover */
+  color: white !important; /* White text on hover */
+  box-shadow: 0 4px 12px 0 rgba(64, 100, 115, 0.4) !important; /* Stronger shadow on hover */
+  transform: translateY(-1px) !important; /* Subtle lift effect */
 }
 
 /* Removed shine animation */
 
-/* Big button - View Online */
+/* Primary button - View Online */
 .card .actions .btn.quiz-btn,
 .btn.quiz-btn{
-  background: #F2E3D0 !important; 
-  color: #2F4A56 !important;
+  background: #406473 !important; /* Stronger primary color */
+  color: white !important;
   font-weight: 700 !important;
-  font-size: 20px !important;
-  padding: 18px 16px !important;
+  font-size: 18px !important; /* Larger text for primary */
+  padding: 16px 24px !important; /* More padding for primary */
   border-radius: 8px !important;
-  box-shadow: 0 3px 8px 0 rgba(242, 227, 208, 0.4) !important;
+  box-shadow: 0 4px 12px 0 rgba(64, 100, 115, 0.4) !important; /* Stronger shadow */
   border: none !important;
   position: relative !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  width: 1000% !important; /* Exactly twice as long as before (500% * 2) */
+  width: 68% !important; /* 65-70% of row width */
+  flex-shrink: 0;
 }
 
 .card .actions .btn.quiz-btn:hover,
 .btn.quiz-btn:hover{
-  background: #E8D4C0 !important;
-  box-shadow: 0 4px 12px 0 rgba(242, 227, 208, 0.5) !important;
+  background: #2F4A56 !important; /* Darker hover for primary */
+  box-shadow: 0 6px 16px 0 rgba(64, 100, 115, 0.5) !important; /* Stronger hover shadow */
+  transform: translateY(-1px) !important; /* Subtle lift effect */
 }
 
 /* Small Download button (when user has access) */
@@ -1886,10 +1891,12 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
 /* Improved spacing for button containers */
 .card .actions.two{
   display: flex;
-  gap: 8px;
+  gap: 12px;
   margin-top: 12px;
   align-items: center;
-  flex-wrap: wrap;
+  justify-content: center;
+  flex-wrap: nowrap;
+  width: 100%;
 }
 
 /* Button icon styling */
@@ -1899,10 +1906,16 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
   display: inline-block;
 }
 
-/* Big button icon styling */
+/* Primary button icon (View Online) */
 .btn.quiz-btn .btn-icon {
-  font-size: 24px;
-  margin-right: 12px;
+  font-size: 20px; /* Larger icon for primary */
+  margin-right: 10px;
+}
+
+/* Secondary button icon (Premium) */
+.btn.premium .btn-icon {
+  font-size: 16px; /* Smaller icon for secondary */
+  margin-right: 8px;
 }
 
 /* Removed btn-shine animation */
