@@ -1828,7 +1828,7 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
   position: relative !important;
   overflow: hidden !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  width: 25% !important;
+  width: 27.5% !important; /* Increased by 10% from 25% */
 }
 
 .btn.premium:hover{
@@ -1851,7 +1851,7 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
   border: none !important;
   position: relative !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  width: 500% !important;
+  width: 1000% !important; /* Exactly twice as long as before (500% * 2) */
 }
 
 .card .actions .btn.quiz-btn:hover,
