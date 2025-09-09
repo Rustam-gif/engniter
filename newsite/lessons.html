@@ -1124,34 +1124,44 @@ document.addEventListener('DOMContentLoaded', function(){
     }
     function isFreeFile(file){ return FREE_FILES.has(file); }
     function isFreeHtmlFile(file){ return FREE_HTML_FILES.has(file); }
-    function setPremium(btn){
-      btn.innerHTML = '<span class="btn-icon">📥</span>Premium';
-      btn.classList.remove('download');
-      btn.classList.add('premium');
+    // New button system functions
+    function createUnpaidButton(container, pdfFile) {
+      container.innerHTML = `
+        <div class="actions unpaid">
+          <button class="btn go-premium" data-premium-file="${pdfFile}">
+            <span class="btn-icon">🔒</span>Go Premium
+          </button>
+        </div>
+      `;
     }
-    function setDownload(btn){
-        btn.innerHTML = '<span class="btn-icon">📥</span>Download';
-        btn.classList.remove('premium');
-        btn.classList.add('download');
-      }
-    function setPremiumHtml(btn){
-      btn.innerHTML = '<span class="btn-icon">👁️</span>View Online';
-      btn.classList.remove('quiz-btn');
-      btn.classList.add('premium');
-    }
-    function setViewOnline(btn){
-      btn.innerHTML = '<span class="btn-icon">👁️</span>View Online';
-      btn.classList.remove('premium');
-      btn.classList.add('quiz-btn');
+    
+    function createPaidButtons(container, pdfFile, htmlFile) {
+      container.innerHTML = `
+        <div class="actions paid">
+          <a href="${htmlFile}" class="btn read-online">
+            <span class="btn-icon">👁️</span>Read Online
+          </a>
+          <button class="btn download-pdf" data-premium-file="${pdfFile}">
+            <span class="btn-icon">📥</span>Download PDF
+          </button>
+        </div>
+      `;
     }
 
     async function handleClick(e){
+      e.preventDefault();
       const btn = e.currentTarget;
       const file = btn.getAttribute('data-premium-file');
       if (!file) return;
 
       const user = currentUser();
-
+      
+      // If user clicks "Go Premium" button, redirect to pricing
+      if (btn.classList.contains('go-premium')) {
+        window.location.href = PRICING_URL;
+        return;
+      }
+      
       // Require login for all downloads (including free ones)
       if (!user){
         if (window.netlifyIdentity) window.netlifyIdentity.open('login');
@@ -1232,25 +1242,38 @@ document.addEventListener('DOMContentLoaded', function(){
       const user = currentUser();
       const paid = isPaid(user);
       
-      // Handle PDF download buttons
-      document.querySelectorAll('[data-premium-file]').forEach(btn => {
-        if (!btn._bound){ btn.addEventListener('click', handleClick); btn._bound = true; }
-        const file = btn.getAttribute('data-premium-file');
-        if (isFreeFile(file) || paid) setDownload(btn); else setPremium(btn);
-      });
-      
-      // Handle HTML View Online buttons
-      document.querySelectorAll('a[href*="online_files/"]').forEach(btn => {
-        if (!btn._bound){ 
-          btn.addEventListener('click', handleHtmlClick); 
-          btn._bound = true; 
-        }
-        const href = btn.getAttribute('href');
-        const fileName = href.split('/').pop();
-        if (isFreeHtmlFile(fileName) || paid) {
-          setViewOnline(btn);
+      // Update all lesson cards with new button system
+      document.querySelectorAll('.card').forEach(card => {
+        const actionsContainer = card.querySelector('.actions.two');
+        if (!actionsContainer) return;
+        
+        // Get the PDF file name from the existing button
+        const pdfButton = actionsContainer.querySelector('[data-premium-file]');
+        const pdfFile = pdfButton ? pdfButton.getAttribute('data-premium-file') : '';
+        
+        // Get the HTML file name from the existing link
+        const htmlLink = actionsContainer.querySelector('a[href*="online_files/"]');
+        const htmlFile = htmlLink ? htmlLink.getAttribute('href') : '';
+        
+        if (paid) {
+          // User is paid - show two buttons
+          createPaidButtons(actionsContainer, pdfFile, htmlFile);
         } else {
-          setPremiumHtml(btn);
+          // User is unpaid - show single "Go Premium" button
+          createUnpaidButton(actionsContainer, pdfFile);
+        }
+        
+        // Bind event listeners to new buttons
+        const newPdfButton = actionsContainer.querySelector('[data-premium-file]');
+        if (newPdfButton && !newPdfButton._bound) {
+          newPdfButton.addEventListener('click', handleClick);
+          newPdfButton._bound = true;
+        }
+        
+        const newHtmlLink = actionsContainer.querySelector('a[href*="online_files/"]');
+        if (newHtmlLink && !newHtmlLink._bound) {
+          newHtmlLink.addEventListener('click', handleHtmlClick);
+          newHtmlLink._bound = true;
         }
       });
     }
