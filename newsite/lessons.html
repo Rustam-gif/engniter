@@ -1125,22 +1125,22 @@ document.addEventListener('DOMContentLoaded', function(){
     function isFreeFile(file){ return FREE_FILES.has(file); }
     function isFreeHtmlFile(file){ return FREE_HTML_FILES.has(file); }
     function setPremium(btn){
-      btn.textContent = 'Unlock';
+      btn.innerHTML = '<span class="btn-icon">🔒</span>Unlock';
       btn.classList.remove('download');
       btn.classList.add('premium');
     }
     function setDownload(btn){
-        btn.textContent = 'Download';
+        btn.innerHTML = '<span class="btn-icon">📥</span>Download';
         btn.classList.remove('premium');
         btn.classList.add('download');
       }
     function setPremiumHtml(btn){
-      btn.textContent = 'Unlock Online';
+      btn.innerHTML = '<span class="btn-icon">🌐</span>Unlock Online';
       btn.classList.remove('quiz-btn');
       btn.classList.add('premium');
     }
     function setViewOnline(btn){
-      btn.textContent = 'View Online';
+      btn.innerHTML = '<span class="btn-icon">🌐</span>View Online';
       btn.classList.remove('premium');
       btn.classList.add('quiz-btn');
     }

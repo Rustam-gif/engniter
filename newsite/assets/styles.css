@@ -1814,12 +1814,97 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
   margin: 0;
 }
 
-/* Themed premium/download buttons */
-.btn.premium{background:#6B7280 !important; color: white !important}
-.btn.download{background:#3BA7A1 !important; color: white !important}
-.btn.premium::after,.btn.download::after{content:"";position:absolute;top:-50%;left:-30%;width:30%;height:200%;
+/* Primary and Secondary Button Styling */
+/* Primary button - Unlock (Download PDF) */
+.btn.premium{
+  background: linear-gradient(135deg, #3B82F6, #1D4ED8) !important; 
+  color: white !important;
+  font-weight: 700 !important;
+  font-size: 15px !important;
+  padding: 16px 24px !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 14px 0 rgba(59, 130, 246, 0.3) !important;
+  border: none !important;
+  position: relative !important;
+  overflow: hidden !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.btn.premium:hover{
+  background: linear-gradient(135deg, #1D4ED8, #1E40AF) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px 0 rgba(59, 130, 246, 0.4) !important;
+}
+
+.btn.premium::after{
+  content:"";position:absolute;top:-50%;left:-30%;width:30%;height:200%;
   background:linear-gradient(120deg, rgba(255,255,255,.25), rgba(255,255,255,0));
-  transform:skewX(-20deg);animation:btn-shine 2.6s infinite;pointer-events:none}
+  transform:skewX(-20deg);animation:btn-shine 2.6s infinite;pointer-events:none
+}
+
+/* Secondary button - Unlock Online (View Online) */
+.btn.quiz-btn{
+  background: transparent !important; 
+  color: #6B7280 !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  padding: 14px 20px !important;
+  border-radius: 12px !important;
+  border: 2px solid #E5E7EB !important;
+  position: relative !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.btn.quiz-btn:hover{
+  background: #F9FAFB !important;
+  color: #374151 !important;
+  border-color: #D1D5DB !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Download button (when user has access) */
+.btn.download{
+  background: linear-gradient(135deg, #10B981, #059669) !important; 
+  color: white !important;
+  font-weight: 700 !important;
+  font-size: 15px !important;
+  padding: 16px 24px !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 14px 0 rgba(16, 185, 129, 0.3) !important;
+  border: none !important;
+  position: relative !important;
+  overflow: hidden !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.btn.download:hover{
+  background: linear-gradient(135deg, #059669, #047857) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px 0 rgba(16, 185, 129, 0.4) !important;
+}
+
+.btn.download::after{
+  content:"";position:absolute;top:-50%;left:-30%;width:30%;height:200%;
+  background:linear-gradient(120deg, rgba(255,255,255,.25), rgba(255,255,255,0));
+  transform:skewX(-20deg);animation:btn-shine 2.6s infinite;pointer-events:none
+}
+
+/* Improved spacing for button containers */
+.card .actions.two{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+/* Button icon styling */
+.btn-icon {
+  margin-right: 8px;
+  font-size: 16px;
+  display: inline-block;
+}
+
 @keyframes btn-shine{0%{left:-30%}100%{left:130%}}
 
 /* Fallback for older two-column stacks in lessons */
