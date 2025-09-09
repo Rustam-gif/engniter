@@ -497,3 +497,4 @@ lessons.forEach(lesson => {
 });
 
 console.log(`Generated ${lessons.length} HTML lesson templates.`);
+
