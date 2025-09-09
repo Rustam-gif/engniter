@@ -1820,48 +1820,42 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
   background: #BF5D24 !important; 
   color: white !important;
   font-weight: 600 !important;
-  font-size: 6px !important;
-  padding: 12px 8px !important;
-  border-radius: 4px !important;
-  box-shadow: 0 1px 4px 0 rgba(191, 93, 36, 0.3) !important;
+  font-size: 5px !important;
+  padding: 8px 6px !important;
+  border-radius: 3px !important;
+  box-shadow: 0 1px 3px 0 rgba(191, 93, 36, 0.3) !important;
   border: none !important;
   position: relative !important;
   overflow: hidden !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  width: 40% !important;
+  width: 25% !important;
 }
 
 .btn.premium:hover{
   background: #A64D1F !important;
-  transform: translateY(-0.5px) !important;
   box-shadow: 0 2px 6px 0 rgba(191, 93, 36, 0.4) !important;
 }
 
-.btn.premium::after{
-  content:"";position:absolute;top:-50%;left:-30%;width:30%;height:200%;
-  background:linear-gradient(120deg, rgba(255,255,255,.25), rgba(255,255,255,0));
-  transform:skewX(-20deg);animation:btn-shine 2.6s infinite;pointer-events:none
-}
+/* Removed shine animation */
 
 /* Big button - View Online */
 .btn.quiz-btn{
-  background: #BF5D24 !important; 
+  background: #406473 !important; 
   color: white !important;
   font-weight: 700 !important;
   font-size: 10px !important;
   padding: 18px 16px !important;
   border-radius: 8px !important;
-  box-shadow: 0 3px 8px 0 rgba(191, 93, 36, 0.4) !important;
+  box-shadow: 0 3px 8px 0 rgba(64, 100, 115, 0.4) !important;
   border: none !important;
   position: relative !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  width: 60% !important;
+  width: 75% !important;
 }
 
 .btn.quiz-btn:hover{
-  background: #A64D1F !important;
-  transform: translateY(-1px) !important;
-  box-shadow: 0 4px 12px 0 rgba(191, 93, 36, 0.5) !important;
+  background: #2F4A56 !important;
+  box-shadow: 0 4px 12px 0 rgba(64, 100, 115, 0.5) !important;
 }
 
 /* Small Download button (when user has access) */
@@ -1869,28 +1863,23 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
   background: #BF5D24 !important; 
   color: white !important;
   font-weight: 600 !important;
-  font-size: 6px !important;
-  padding: 12px 8px !important;
-  border-radius: 4px !important;
-  box-shadow: 0 1px 4px 0 rgba(191, 93, 36, 0.3) !important;
+  font-size: 5px !important;
+  padding: 8px 6px !important;
+  border-radius: 3px !important;
+  box-shadow: 0 1px 3px 0 rgba(191, 93, 36, 0.3) !important;
   border: none !important;
   position: relative !important;
   overflow: hidden !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  width: 40% !important;
+  width: 25% !important;
 }
 
 .btn.download:hover{
   background: #A64D1F !important;
-  transform: translateY(-0.5px) !important;
   box-shadow: 0 2px 6px 0 rgba(191, 93, 36, 0.4) !important;
 }
 
-.btn.download::after{
-  content:"";position:absolute;top:-50%;left:-30%;width:30%;height:200%;
-  background:linear-gradient(120deg, rgba(255,255,255,.25), rgba(255,255,255,0));
-  transform:skewX(-20deg);animation:btn-shine 2.6s infinite;pointer-events:none
-}
+/* Removed shine animation */
 
 /* Improved spacing for button containers */
 .card .actions.two{
@@ -1913,7 +1902,7 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
   margin-right: 6px;
 }
 
-@keyframes btn-shine{0%{left:-30%}100%{left:130%}}
+/* Removed btn-shine animation */
 
 /* Fallback for older two-column stacks in lessons */
 .stack[style*="grid-template-columns:1fr 1fr"] .btn{width:100%;justify-content:center}
