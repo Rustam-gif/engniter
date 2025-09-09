@@ -1817,13 +1817,13 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
 /* Primary and Secondary Button Styling */
 /* Primary button - Unlock (Download PDF) */
 .btn.premium{
-  background: linear-gradient(135deg, #3B82F6, #1D4ED8) !important; 
+  background: linear-gradient(135deg, #D2B48C, #BC9A6A) !important; 
   color: white !important;
-  font-weight: 700 !important;
-  font-size: 15px !important;
-  padding: 16px 24px !important;
-  border-radius: 12px !important;
-  box-shadow: 0 4px 14px 0 rgba(59, 130, 246, 0.3) !important;
+  font-weight: 600 !important;
+  font-size: 7.5px !important;
+  padding: 8px 12px !important;
+  border-radius: 6px !important;
+  box-shadow: 0 2px 7px 0 rgba(188, 154, 106, 0.3) !important;
   border: none !important;
   position: relative !important;
   overflow: hidden !important;
@@ -1831,9 +1831,9 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
 }
 
 .btn.premium:hover{
-  background: linear-gradient(135deg, #1D4ED8, #1E40AF) !important;
-  transform: translateY(-2px) !important;
-  box-shadow: 0 6px 20px 0 rgba(59, 130, 246, 0.4) !important;
+  background: linear-gradient(135deg, #BC9A6A, #A68B5B) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 3px 10px 0 rgba(188, 154, 106, 0.4) !important;
 }
 
 .btn.premium::after{
@@ -1845,33 +1845,33 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
 /* Secondary button - Unlock Online (View Online) */
 .btn.quiz-btn{
   background: transparent !important; 
-  color: #6B7280 !important;
-  font-weight: 600 !important;
-  font-size: 14px !important;
-  padding: 14px 20px !important;
-  border-radius: 12px !important;
-  border: 2px solid #E5E7EB !important;
+  color: #8B7355 !important;
+  font-weight: 500 !important;
+  font-size: 7px !important;
+  padding: 7px 10px !important;
+  border-radius: 6px !important;
+  border: 1px solid #D2B48C !important;
   position: relative !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
 .btn.quiz-btn:hover{
-  background: #F9FAFB !important;
-  color: #374151 !important;
-  border-color: #D1D5DB !important;
-  transform: translateY(-1px) !important;
-  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.1) !important;
+  background: #F5E6D3 !important;
+  color: #6B5B47 !important;
+  border-color: #BC9A6A !important;
+  transform: translateY(-0.5px) !important;
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.1) !important;
 }
 
 /* Download button (when user has access) */
 .btn.download{
-  background: linear-gradient(135deg, #10B981, #059669) !important; 
+  background: linear-gradient(135deg, #D2B48C, #BC9A6A) !important; 
   color: white !important;
-  font-weight: 700 !important;
-  font-size: 15px !important;
-  padding: 16px 24px !important;
-  border-radius: 12px !important;
-  box-shadow: 0 4px 14px 0 rgba(16, 185, 129, 0.3) !important;
+  font-weight: 600 !important;
+  font-size: 7.5px !important;
+  padding: 8px 12px !important;
+  border-radius: 6px !important;
+  box-shadow: 0 2px 7px 0 rgba(188, 154, 106, 0.3) !important;
   border: none !important;
   position: relative !important;
   overflow: hidden !important;
@@ -1879,9 +1879,9 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
 }
 
 .btn.download:hover{
-  background: linear-gradient(135deg, #059669, #047857) !important;
-  transform: translateY(-2px) !important;
-  box-shadow: 0 6px 20px 0 rgba(16, 185, 129, 0.4) !important;
+  background: linear-gradient(135deg, #BC9A6A, #A68B5B) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 3px 10px 0 rgba(188, 154, 106, 0.4) !important;
 }
 
 .btn.download::after{
@@ -1894,14 +1894,14 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
 .card .actions.two{
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin-top: 24px;
+  gap: 8px;
+  margin-top: 12px;
 }
 
 /* Button icon styling */
 .btn-icon {
-  margin-right: 8px;
-  font-size: 16px;
+  margin-right: 4px;
+  font-size: 8px;
   display: inline-block;
 }
 
