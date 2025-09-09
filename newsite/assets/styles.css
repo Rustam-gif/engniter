@@ -1820,7 +1820,7 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
   background: #BF5D24 !important; 
   color: white !important;
   font-weight: 600 !important;
-  font-size: 5px !important;
+  font-size: 10px !important;
   padding: 8px 6px !important;
   border-radius: 3px !important;
   box-shadow: 0 1px 3px 0 rgba(191, 93, 36, 0.3) !important;
@@ -1843,14 +1843,14 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
   background: #406473 !important; 
   color: white !important;
   font-weight: 700 !important;
-  font-size: 10px !important;
+  font-size: 20px !important;
   padding: 18px 16px !important;
   border-radius: 8px !important;
   box-shadow: 0 3px 8px 0 rgba(64, 100, 115, 0.4) !important;
   border: none !important;
   position: relative !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  width: 75% !important;
+  width: 150% !important;
 }
 
 .btn.quiz-btn:hover{
@@ -1863,7 +1863,7 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
   background: #BF5D24 !important; 
   color: white !important;
   font-weight: 600 !important;
-  font-size: 5px !important;
+  font-size: 10px !important;
   padding: 8px 6px !important;
   border-radius: 3px !important;
   box-shadow: 0 1px 3px 0 rgba(191, 93, 36, 0.3) !important;
@@ -1887,19 +1887,20 @@ th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
   gap: 8px;
   margin-top: 12px;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 /* Button icon styling */
 .btn-icon {
-  margin-right: 4px;
-  font-size: 8px;
+  margin-right: 8px;
+  font-size: 16px;
   display: inline-block;
 }
 
 /* Big button icon styling */
 .btn.quiz-btn .btn-icon {
-  font-size: 12px;
-  margin-right: 6px;
+  font-size: 24px;
+  margin-right: 12px;
 }
 
 /* Removed btn-shine animation */
