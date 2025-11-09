@@ -3,6 +3,7 @@ import { query } from '../db.js';
 import { config } from '../config.js';
 import { adminAuthMiddleware, issueAdminCookie, clearAdminCookie } from '../admin/auth.js';
 import { rateLimit } from '../middleware/rateLimit.js';
+import { readRecent } from '../logReader.js';
 
 export const router = express.Router();
 
@@ -109,25 +110,59 @@ router.get('/admin/events.csv', adminAuthMiddleware, async (req, res) => {
 // JSON APIs for UI
 router.get('/admin/api/visits', adminAuthMiddleware, async (req, res) => {
   const limit = Math.min(parseInt(req.query.limit || '100', 10), 2000);
-  const rows = (await query(
-    `select id, happened_at, visitor_id, host, path, coalesce(referrer,'') as referrer,
-            coalesce(user_agent,'') as user_agent,
-            coalesce(remote_ip_anon::text,'') as remote_ip_anon,
-            coalesce(fbclid,'') as fbclid, coalesce(utm_source,'') as utm_source,
-            coalesce(utm_medium,'') as utm_medium, coalesce(utm_campaign,'') as utm_campaign,
-            is_in_app_browser, is_bot
-     from visits order by id desc limit $1`, [limit]
-  )).rows;
-  res.json({ rows });
+  try {
+    const rows = (await query(
+      `select id, happened_at, visitor_id, host, path, coalesce(referrer,'') as referrer,
+              coalesce(user_agent,'') as user_agent,
+              coalesce(remote_ip_anon::text,'') as remote_ip_anon,
+              coalesce(fbclid,'') as fbclid, coalesce(utm_source,'') as utm_source,
+              coalesce(utm_medium,'') as utm_medium, coalesce(utm_campaign,'') as utm_campaign,
+              is_in_app_browser, is_bot
+       from visits order by id desc limit $1`, [limit]
+    )).rows;
+    return res.json({ rows, source: 'db' });
+  } catch (e) {
+    // Fallback to NDJSON logs
+    const recent = readRecent('visits', limit).map((v, idx) => ({
+      id: -idx,
+      happened_at: v.happened_at || v.timestamp || new Date().toISOString(),
+      visitor_id: v.visitor_id || '',
+      host: v.host || '',
+      path: v.path || '',
+      referrer: v.referrer || '',
+      user_agent: v.user_agent || '',
+      remote_ip_anon: v.remote_ip_anon || '',
+      fbclid: v.fbclid || '',
+      utm_source: v.utm_source || '',
+      utm_medium: v.utm_medium || '',
+      utm_campaign: v.utm_campaign || '',
+      is_in_app_browser: !!v.is_in_app_browser,
+      is_bot: !!v.is_bot,
+    }));
+    return res.json({ rows: recent, source: 'logs' });
+  }
 });
 
 router.get('/admin/api/events', adminAuthMiddleware, async (req, res) => {
   const limit = Math.min(parseInt(req.query.limit || '100', 10), 2000);
-  const rows = (await query(
-    `select id, happened_at, visitor_id, visit_id, type, coalesce(target_url,'') as target_url, coalesce(page_path,'') as page_path
-     from events order by id desc limit $1`, [limit]
-  )).rows;
-  res.json({ rows });
+  try {
+    const rows = (await query(
+      `select id, happened_at, visitor_id, visit_id, type, coalesce(target_url,'') as target_url, coalesce(page_path,'') as page_path
+       from events order by id desc limit $1`, [limit]
+    )).rows;
+    return res.json({ rows, source: 'db' });
+  } catch (e) {
+    const recent = readRecent('events', limit).map((ev, idx) => ({
+      id: -idx,
+      happened_at: ev.happened_at || new Date().toISOString(),
+      visitor_id: ev.visitor_id || '',
+      visit_id: ev.visit_id || null,
+      type: ev.event_type || ev.type || 'custom',
+      target_url: ev.target_url || '',
+      page_path: ev.page_path || '',
+    }));
+    return res.json({ rows: recent, source: 'logs' });
+  }
 });
 
 // Admin dashboard page

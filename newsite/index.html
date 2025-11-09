@@ -103,6 +103,16 @@
       // Update year in footer
       document.getElementById('year').textContent = new Date().getFullYear();
     </script>
+    <script>
+      // Show Admin link on localhost for convenience
+      (function(){
+        var h = location.hostname;
+        if (h === 'localhost' || h === '127.0.0.1'){
+          var nav = document.querySelector('.nav');
+          if (nav){ var a=document.createElement('a'); a.href='/admin'; a.textContent='Admin'; nav.appendChild(a); }
+        }
+      })();
+    </script>
 
     <!-- Promo Modal: App Store + 7‑day trial -->
     <div class="promo-modal" id="promo-modal" role="dialog" aria-modal="true" aria-labelledby="promo-title" hidden>
