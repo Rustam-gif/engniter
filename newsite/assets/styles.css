@@ -1,9 +1,9 @@
 /* Vocadoo — minimal, responsive one‑pager */
 :root{
-  --bg:#080c18;
-  --surface:#0b1222;
-  --text:#e9eefc;
-  --muted:#aeb7d4;
+  --bg:#ffffff;
+  --surface:#f7f9fc;
+  --text:#111827;
+  --muted:#4b5563;
   --brand:#7c5cff;
   --brand-2:#19b1ff;
   --ring:0 0 0 4px color-mix(in oklab, var(--brand) 28%, transparent);
@@ -14,12 +14,7 @@ body{
   margin:0;
   font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,Helvetica,Arial,sans-serif;
   color:var(--text);
-  /* Lighter, more colorful gradient background */
-  background-color:#1b2b53; /* fallback */
-  background:
-    radial-gradient(1200px 600px at 0% -10%, rgba(76,119,255,.25) 22%, transparent 62%),
-    radial-gradient(1200px 600px at 120% -10%, rgba(121,74,255,.22) 22%, transparent 62%),
-    linear-gradient(135deg, #1b2b53 0%, #243a73 45%, #2e498f 100%);
+  background:#ffffff;
 }
 
 /* Layout */
@@ -28,7 +23,7 @@ body{
 
 /* Header */
 .site-header{position:sticky; top:0; z-index:10; backdrop-filter:saturate(140%) blur(8px);}
-.site-header::before{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(10,16,32,.9), rgba(10,16,32,.6)); pointer-events:none}
+.site-header::before{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,255,255,.7)); pointer-events:none}
 .header-inner{display:flex; justify-content:space-between; align-items:center; padding:14px 0; position:relative}
 .brand{display:flex; gap:10px; align-items:center; font-weight:700; letter-spacing:.3px}
 .brand .logo{width:26px; height:26px; border-radius:8px; background:linear-gradient(135deg, var(--brand), var(--brand-2)); display:grid; place-items:center; font-size:0}
@@ -66,7 +61,7 @@ body{
 .center{margin-top:16px; text-align:center}
 
 /* Footer */
-.site-footer{border-top:1px solid rgba(255,255,255,.06); background:var(--surface)}
+.site-footer{border-top:1px solid rgba(0,0,0,.06); background:var(--surface)}
 .footer-inner{display:flex; justify-content:space-between; align-items:center; gap:12px; padding:18px 0; color:var(--muted)}
 .text-link{color:var(--text); text-decoration:none; font-weight:600}
 .text-link:hover{text-decoration:underline}
