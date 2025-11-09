@@ -48,7 +48,10 @@
             </div>
           </div>
           <div class="hero-shot">
-            <img src="assets/images/11.png" alt="Vocadoo app screenshot" loading="eager" />
+            <div id="hero-lottie" class="lottie" aria-label="Vocadoo app animation"></div>
+            <noscript>
+              <img src="assets/images/11.png" alt="Vocadoo app screenshot" loading="eager" />
+            </noscript>
           </div>
         </div>
       </section>
@@ -146,6 +149,38 @@
         skipBtn.addEventListener('click', close);
         modal.addEventListener('click', backdropClick);
         document.addEventListener('keydown', esc);
+      })();
+    </script>
+
+    <!-- Lottie animation for hero (plays once) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
+    <script>
+      (function(){
+        var el = document.getElementById('hero-lottie');
+        if(!el) return;
+        // Respect reduced motion: show static image instead
+        var prefersReduced = false;
+        try { prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch(e){}
+        if(prefersReduced){
+          var img = document.createElement('img');
+          img.src = 'assets/images/11.png';
+          img.alt = 'Vocadoo app screenshot';
+          img.loading = 'eager';
+          img.style.width = '100%';
+          img.style.height = '100%';
+          img.style.objectFit = 'cover';
+          el.appendChild(img);
+          return;
+        }
+        if(window.lottie){
+          window.lottie.loadAnimation({
+            container: el,
+            renderer: 'svg',
+            loop: false,
+            autoplay: true,
+            path: 'assets/images/11.json'
+          });
+        }
       })();
     </script>
   </body>
