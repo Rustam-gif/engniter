@@ -1,9 +1,10 @@
 import express from 'express';
 import { query } from '../db.js';
+import { rateLimit } from '../middleware/rateLimit.js';
 
 export const router = express.Router();
 
-router.post('/event', express.json({ limit: '64kb' }), async (req, res) => {
+router.post('/event', rateLimit({ windowMs: 60_000, max: 60, key: 'event' }), express.json({ limit: '64kb' }), async (req, res) => {
   try {
     const { visitor_id, type, target_url, page_path, attributes } = req.body || {};
     const vid = visitor_id || req.visitorId;
@@ -29,7 +30,7 @@ router.post('/event', express.json({ limit: '64kb' }), async (req, res) => {
 });
 
 // 1x1 gif pixel fallback: GET /event.gif?type=download&visitor_id=...&target_url=...&page_path=...
-router.get('/event.gif', async (req, res) => {
+router.get('/event.gif', rateLimit({ windowMs: 60_000, max: 120, key: 'eventgif' }), async (req, res) => {
   try {
     const { visitor_id, type = 'custom', target_url, page_path } = req.query || {};
     const vid = visitor_id || req.visitorId;
@@ -59,4 +60,3 @@ router.get('/event.gif', async (req, res) => {
     res.send(buf);
   }
 });
-

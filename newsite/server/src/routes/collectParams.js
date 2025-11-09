@@ -1,9 +1,10 @@
 import express from 'express';
 import { query } from '../db.js';
+import { rateLimit } from '../middleware/rateLimit.js';
 
 export const router = express.Router();
 
-router.post('/collect-params', express.json({ limit: '32kb' }), async (req, res) => {
+router.post('/collect-params', rateLimit({ windowMs: 60_000, max: 30, key: 'collect' }), express.json({ limit: '32kb' }), async (req, res) => {
   try {
     const { visitor_id, fbclid, utm_source, utm_medium, utm_campaign } = req.body || {};
     const vid = visitor_id || req.visitorId;
@@ -29,4 +30,3 @@ router.post('/collect-params', express.json({ limit: '32kb' }), async (req, res)
     return res.sendStatus(204); // be silent to clients even on failure
   }
 });
-

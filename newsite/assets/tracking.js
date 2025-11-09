@@ -12,6 +12,8 @@
     var p = new URLSearchParams(window.location.search);
     return p.get(k) || '';
   }
+  function ssGet(k){ try { return sessionStorage.getItem(k) || ''; } catch(e){ return ''; } }
+  function ssSet(k,v){ try { if (v) sessionStorage.setItem(k, v); } catch(e){} }
 
   function beacon(url, payload){
     try {
@@ -36,12 +38,23 @@
   }
 
   function collectParams(){
+    var fbclid = q('fbclid') || ssGet('fbclid');
+    var utm_source = q('utm_source') || ssGet('utm_source');
+    var utm_medium = q('utm_medium') || ssGet('utm_medium');
+    var utm_campaign = q('utm_campaign') || ssGet('utm_campaign');
+
+    // store in session so subsequent pages/post redirects can still attach
+    ssSet('fbclid', q('fbclid'));
+    ssSet('utm_source', q('utm_source'));
+    ssSet('utm_medium', q('utm_medium'));
+    ssSet('utm_campaign', q('utm_campaign'));
+
     var payload = {
       visitor_id: getCookie(COOKIE_NAME) || undefined,
-      fbclid: q('fbclid') || undefined,
-      utm_source: q('utm_source') || undefined,
-      utm_medium: q('utm_medium') || undefined,
-      utm_campaign: q('utm_campaign') || undefined
+      fbclid: fbclid || undefined,
+      utm_source: utm_source || undefined,
+      utm_medium: utm_medium || undefined,
+      utm_campaign: utm_campaign || undefined
     };
     if (payload.fbclid || payload.utm_source || payload.utm_medium || payload.utm_campaign) {
       beacon('/collect-params', payload);
@@ -51,12 +64,21 @@
   function trackDownloadClick(e){
     var a = e.currentTarget;
     var targetUrl = a.getAttribute('href') || APP_LINK;
-    beacon('/event', {
+    var payload = {
       visitor_id: getCookie(COOKIE_NAME) || undefined,
       type: 'download',
       target_url: targetUrl,
       page_path: location.pathname
-    });
+    };
+    if (navigator.sendBeacon) {
+      try { navigator.sendBeacon('/event', new Blob([JSON.stringify(payload)], { type:'application/json' })); } catch(_){}
+      // allow default navigation immediately
+      return;
+    }
+    // Fallback: prevent default, try fetch keepalive or pixel, then navigate shortly
+    try { e.preventDefault(); } catch(_){}
+    beacon('/event', payload);
+    setTimeout(function(){ window.location.href = targetUrl; }, 120);
   }
 
   function bindDownloadButtons(){
@@ -76,4 +98,3 @@
     bindDownloadButtons();
   });
 })();
-

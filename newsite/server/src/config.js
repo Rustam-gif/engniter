@@ -6,5 +6,5 @@ export const config = {
   cookieTtlDays: parseInt(process.env.COOKIE_TTL_DAYS || '365', 10),
   anonymizeIP: (process.env.ANONYMIZE_IP || 'true').toLowerCase() === 'true',
   dbUrl: process.env.DB_URL || 'postgres://app:app@localhost:5432/engniter',
+  adminToken: process.env.ADMIN_TOKEN || '',
 };
-

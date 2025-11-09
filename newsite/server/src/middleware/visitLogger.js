@@ -16,6 +16,11 @@ function isInApp(ua = ''){
 }
 
 function getIP(req){
+  // Prefer Cloudflare / standard proxy headers
+  const cf = (req.headers['cf-connecting-ip'] || req.headers['true-client-ip'] || '').toString();
+  if (cf) return cf;
+  const xr = (req.headers['x-real-ip'] || '').toString();
+  if (xr) return xr;
   const xf = (req.headers['x-forwarded-for'] || '').toString();
   if (xf) {
     const parts = xf.split(',').map(s => s.trim());
@@ -77,11 +82,28 @@ export async function visitLogger(req, res, next){
     const ipAnon = anonymizeIP(ip);
 
     // persist
-    await query(
+    // JSON log line
+    const logLine = {
+      type: 'visit',
+      happened_at: nowUTCISO(),
+      visitor_id: vid,
+      host, path,
+      referrer,
+      query_raw: queryRaw,
+      user_agent: ua,
+      remote_ip: config.anonymizeIP ? undefined : ip,
+      remote_ip_anon: ipAnon,
+      is_in_app_browser: isInApp(ua),
+      is_bot: isBot(ua)
+    };
+    console.log(JSON.stringify(logLine));
+
+    // Insert without blocking request flow
+    Promise.resolve().then(() => query(
       `insert into visits (happened_at, visitor_id, host, path, referrer, query_raw, user_agent, remote_ip, remote_ip_anon, is_in_app_browser, is_bot)
        values (now(), $1::uuid, $2, $3, $4, $5, $6, $7::inet, $8::inet, $9, $10)`,
-      [vid, host, path, referrer, queryRaw, ua, null, ipAnon, isInApp(ua), isBot(ua)]
-    );
+      [vid, host, path, referrer, queryRaw, ua, config.anonymizeIP ? null : ip, ipAnon, isInApp(ua), isBot(ua)]
+    )).catch(err => console.error(`[visitLogger][db] ${nowUTCISO()} ${err.message}`));
 
     // make available downstream
     req.visitorId = vid;

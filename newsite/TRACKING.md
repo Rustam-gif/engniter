@@ -122,4 +122,55 @@ Files of Interest
 - `server/src/routes/event.js` — download events + pixel fallback
 - `server/src/sql/schema.sql` — DB schema
 - `assets/tracking.js` — client beacon sender
+- DSAR deletion example:
+
+```
+-- Delete all data for a visitor_id
+DELETE FROM events  WHERE visitor_id = '00000000-0000-0000-0000-000000000000';
+DELETE FROM visits  WHERE visitor_id = '00000000-0000-0000-0000-000000000000';
+```
+
+Rate Limiting
+-------------
+
+- Server enforces per‑IP limits:
+  - `/collect-params`: 30 requests per minute
+  - `/event`: 60 requests per minute
+  - `/event.gif`: 120 requests per minute
+  - Returns `429 Too Many Requests` with `Retry-After` header
+
+Conversion Rate Samples
+-----------------------
+
+```
+-- Daily conversion = downloads / unique ad visitors
+WITH ad_visitors AS (
+  SELECT date_trunc('day', happened_at) AS day,
+         COUNT(DISTINCT visitor_id) AS ad_uniques
+  FROM visits
+  WHERE (coalesce(fbclid,'') <> '' OR coalesce(utm_source,'') <> '' OR coalesce(utm_campaign,'') <> '')
+  GROUP BY 1
+),
+downloads AS (
+  SELECT date_trunc('day', happened_at) AS day,
+         COUNT(*) AS downloads
+  FROM events
+  WHERE type = 'download'
+  GROUP BY 1
+)
+SELECT d.day, d.downloads, coalesce(a.ad_uniques,0) AS ad_uniques,
+       CASE WHEN coalesce(a.ad_uniques,0) > 0 THEN round(d.downloads::numeric / a.ad_uniques, 4) ELSE 0 END AS conv_rate
+FROM downloads d
+LEFT JOIN ad_visitors a USING (day)
+ORDER BY d.day;
+```
+
+Simple Automation Ideas
+-----------------------
+
+- Create a quick flow test using Node (requires server running on :8080):
+
+```
+node server/test/flow.test.js
+```
 
