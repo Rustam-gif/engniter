@@ -49,6 +49,7 @@ h1,h2,h3{font-family:"Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu
 .sub{color:var(--muted)}
 .hero-shot{display:grid; place-items:center}
 .hero-shot img{width:min(420px, 88%); border-radius:22px; border:1px solid rgba(0,0,0,.08); box-shadow:0 30px 60px rgba(0,0,0,.12)}
+.hero-shot .lottie{width:min(420px, 88%); aspect-ratio:9/16; border-radius:22px; border:1px solid rgba(0,0,0,.08); box-shadow:0 30px 60px rgba(0,0,0,.12); background:#f3f5f9; overflow:hidden}
 
 /* Screenshots scroller */
 .screenshots{padding:36px 0 12px}
