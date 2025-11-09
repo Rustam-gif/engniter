@@ -7,4 +7,7 @@ export const config = {
   anonymizeIP: (process.env.ANONYMIZE_IP || 'true').toLowerCase() === 'true',
   dbUrl: process.env.DB_URL || 'postgres://app:app@localhost:5432/engniter',
   adminToken: process.env.ADMIN_TOKEN || '',
+  adminUser: process.env.ADMIN_USER || 'admin',
+  adminPass: process.env.ADMIN_PASS || 'changeme',
+  adminSecret: process.env.ADMIN_SECRET || 'dev-admin-secret-change-me',
 };

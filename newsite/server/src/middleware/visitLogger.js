@@ -2,6 +2,7 @@ import { parse as parseCookie } from 'cookie';
 import crypto from 'crypto';
 import { config } from '../config.js';
 import { query } from '../db.js';
+import { append as logAppend } from '../logWriter.js';
 
 function nowUTCISO(){ return new Date().toISOString(); }
 
@@ -97,6 +98,7 @@ export async function visitLogger(req, res, next){
       is_bot: isBot(ua)
     };
     console.log(JSON.stringify(logLine));
+    logAppend('visits', logLine);
 
     // Insert without blocking request flow
     Promise.resolve().then(() => query(

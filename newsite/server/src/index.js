@@ -6,6 +6,7 @@ import { getPool } from './db.js';
 import { visitLogger } from './middleware/visitLogger.js';
 import { router as collectParams } from './routes/collectParams.js';
 import { router as eventRouter } from './routes/event.js';
+import { router as adminRouter } from './routes/admin.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -24,6 +25,7 @@ async function main(){
   // Tracking endpoints
   app.use(collectParams);
   app.use(eventRouter);
+  app.use(adminRouter);
 
   // Serve static site from project root
   app.use(express.static(projectRoot));
@@ -34,4 +36,3 @@ async function main(){
 }
 
 main().catch(err => { console.error(err); process.exit(1); });
-

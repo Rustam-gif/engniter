@@ -122,6 +122,33 @@ Files of Interest
 - `server/src/routes/event.js` — download events + pixel fallback
 - `server/src/sql/schema.sql` — DB schema
 - `assets/tracking.js` — client beacon sender
+
+Friendly Files & Exports
+------------------------
+
+- JSONL logs on disk (easy to view or import):
+  - Visits: `server/logs/visits-YYYY-MM-DD.ndjson`
+  - Events: `server/logs/events-YYYY-MM-DD.ndjson`
+  - View last lines: `tail -n 50 server/logs/visits-*.ndjson`
+- CSV exports (downloadable):
+  - Visits: `GET /admin/visits.csv?days=7&limit=10000`
+  - Events: `GET /admin/events.csv?days=30&limit=10000`
+  - Protect with `X-Admin-Token: <token>` header (set `ADMIN_TOKEN`), otherwise allowed only from localhost.
+
+Admin Dashboard (with Login)
+----------------------------
+
+- Login page: `GET /admin/login` (username/password)
+  - Defaults: `ADMIN_USER=admin`, `ADMIN_PASS=changeme` (override in env)
+- Dashboard: `GET /admin` — shows latest visits and download events; auto-refreshes every 10s
+- Logout: `POST /admin/logout`
+- JSON for UI:
+  - `GET /admin/api/visits?limit=200`
+  - `GET /admin/api/events?limit=200`
+
+Auth details
+- Cookie-based auth using HMAC-signed token cookie (`admin_auth`, HttpOnly, Secure, SameSite=Lax, 24h).
+- Optional header token still supported: set `ADMIN_TOKEN` and send `X-Admin-Token` for scripts/exports.
 - DSAR deletion example:
 
 ```
@@ -173,4 +200,3 @@ Simple Automation Ideas
 ```
 node server/test/flow.test.js
 ```
-

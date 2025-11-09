@@ -1,5 +1,6 @@
 import express from 'express';
 import { query } from '../db.js';
+import { append as logAppend } from '../logWriter.js';
 import { rateLimit } from '../middleware/rateLimit.js';
 
 export const router = express.Router();
@@ -22,6 +23,7 @@ router.post('/event', rateLimit({ windowMs: 60_000, max: 60, key: 'event' }), ex
        values ($1::uuid, $2, $3, $4, $5, $6::jsonb)`,
       [vid, visitId, String(type), target_url || null, page_path || null, attributes ? JSON.stringify(attributes) : null]
     );
+    logAppend('events', { type: 'event', happened_at: new Date().toISOString(), visitor_id: vid, visit_id: visitId, event_type: String(type), target_url, page_path, attributes });
     return res.sendStatus(204);
   } catch (err) {
     console.error('[event]', err);
@@ -46,6 +48,7 @@ router.get('/event.gif', rateLimit({ windowMs: 60_000, max: 120, key: 'eventgif'
          values ($1::uuid, $2, $3, $4, $5)`,
         [vid, visitId, String(type), target_url || null, page_path || null]
       );
+      logAppend('events', { type: 'event', happened_at: new Date().toISOString(), visitor_id: vid, visit_id: visitId, event_type: String(type), target_url, page_path });
     }
   } catch (err) {
     console.error('[event.gif]', err);
