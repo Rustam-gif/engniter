@@ -39,6 +39,7 @@ You may override defaults via env vars when deploying:
 - `COOKIE_TTL_DAYS=365`
 - `ANONYMIZE_IP=true`
 - `DB_URL=postgres://USER:PASS@HOST:5432/engniter`
+- `SECURE_COOKIES=true` in production (defaults to false in dev so localhost login works)
 
 How It Works
 ------------

@@ -13,16 +13,18 @@ export function issueAdminCookie(res, username, ttlMinutes = 60 * 24) { // defau
   const sig = hmac(payload);
   const token = Buffer.from(payload).toString('base64url') + '.' + sig;
   const attrs = [
-    'HttpOnly', 'SameSite=Lax', 'Secure', 'Path=/'
+    'HttpOnly', 'SameSite=Lax', 'Path=/'
   ];
   const maxAge = Math.floor(ttlMinutes * 60);
   attrs.push(`Max-Age=${maxAge}`);
+  if (config.secureCookies) attrs.push('Secure');
   if (config.cookieDomain) attrs.push(`Domain=${config.cookieDomain}`);
   res.setHeader('Set-Cookie', `${COOKIE}=${token}; ${attrs.join('; ')}`);
 }
 
 export function clearAdminCookie(res){
-  const attrs = ['HttpOnly', 'SameSite=Lax', 'Secure', 'Path=/', 'Max-Age=0'];
+  const attrs = ['HttpOnly', 'SameSite=Lax', 'Path=/', 'Max-Age=0'];
+  if (config.secureCookies) attrs.push('Secure');
   if (config.cookieDomain) attrs.push(`Domain=${config.cookieDomain}`);
   res.setHeader('Set-Cookie', `${COOKIE}=deleted; ${attrs.join('; ')}`);
 }
@@ -55,4 +57,3 @@ export function adminAuthMiddleware(req, res, next){
   }
   return res.status(401).send('Unauthorized');
 }
-

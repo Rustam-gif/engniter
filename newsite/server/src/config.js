@@ -10,4 +10,5 @@ export const config = {
   adminUser: process.env.ADMIN_USER || 'admin',
   adminPass: process.env.ADMIN_PASS || 'changeme',
   adminSecret: process.env.ADMIN_SECRET || 'dev-admin-secret-change-me',
+  secureCookies: (process.env.SECURE_COOKIES || (process.env.NODE_ENV === 'production' ? 'true' : 'false')).toLowerCase() === 'true',
 };

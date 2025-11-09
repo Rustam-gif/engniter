@@ -56,9 +56,9 @@ function signCookieAttrs(){
     `Path=/`,
     `Max-Age=${maxAge}`,
     `SameSite=Lax`,
-    `HttpOnly`,
-    `Secure`
+    `HttpOnly`
   ];
+  if (config.secureCookies) attrs.push('Secure');
   if (config.cookieDomain) attrs.push(`Domain=${config.cookieDomain}`);
   return attrs.join('; ');
 }
