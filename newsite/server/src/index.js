@@ -13,8 +13,9 @@ const __dirname = path.dirname(__filename);
 const projectRoot = path.resolve(__dirname, '../..');
 
 async function main(){
-  // warm up DB connection
-  try { await getPool().query('select 1'); } catch (e) { console.warn('[db] not ready yet:', e.message); }
+  // Warm up DB connection (non-blocking)
+  try { await getPool().query('select 1'); }
+  catch (e) { console.warn('[db] not ready yet, continuing without it:', e.message); }
 
   const app = express();
   if (config.trustProxy) app.set('trust proxy', true);
