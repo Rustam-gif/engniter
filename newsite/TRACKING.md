@@ -150,6 +150,7 @@ Admin Dashboard (with Login)
 Auth details
 - Cookie-based auth using HMAC-signed token cookie (`admin_auth`, HttpOnly, Secure, SameSite=Lax, 24h).
 - Optional header token still supported: set `ADMIN_TOKEN` and send `X-Admin-Token` for scripts/exports.
+- To disable admin login entirely (not recommended for public internet), set `ADMIN_PUBLIC=true`. The `/admin` UI and CSV endpoints will be accessible without a password.
 - DSAR deletion example:
 
 ```
@@ -201,3 +202,62 @@ Simple Automation Ideas
 ```
 node server/test/flow.test.js
 ```
+
+Deploy Online (Pick One)
+------------------------
+
+Option A — Render (one‑click, uses this repo)
+- Push this repo to GitHub/GitLab.
+- On Render, click “New +” → “Blueprint” → connect repo → select `render.yaml`.
+- Set environment secrets (change the defaults): `ADMIN_USER`, `ADMIN_PASS`, `ADMIN_SECRET`.
+- Render provisions Postgres, builds the server (`rootDir: server`), runs `npm run migrate`, and starts the app.
+- Add the custom domain `engniter.com` to the Render service; update DNS as instructed (A/AAAA/CNAME). TLS is automatic.
+- Ensure environment:
+  - `SECURE_COOKIES=true`, `COOKIE_DOMAIN=.engniter.com`, `TRUST_PROXY=true` (already set in `render.yaml`).
+
+Option B — Docker anywhere (Cloud Run/Fly/VM)
+- Build container: `docker build -t engniter .`
+- Run: `docker run -p 8080:8080 -e NODE_ENV=production -e DB_URL=... -e COOKIE_DOMAIN=.engniter.com -e SECURE_COOKIES=true -e TRUST_PROXY=true -e ADMIN_USER=... -e ADMIN_PASS=... -e ADMIN_SECRET=... engniter`
+- Point your load balancer or domain to the container service and terminate TLS there.
+
+Option C — VPS with Nginx + systemd (Ubuntu)
+- Install Node 20+, Nginx, and Postgres (or use managed Postgres like Neon/Supabase).
+- Create a systemd unit `/etc/systemd/system/engniter.service`:
+```
+[Unit]
+Description=Engniter Tracker
+After=network.target
+
+[Service]
+Environment=NODE_ENV=production
+Environment=PORT=8080
+Environment=DB_URL=postgres://USER:PASS@HOST:5432/engniter
+Environment=COOKIE_DOMAIN=.engniter.com
+Environment=SECURE_COOKIES=true
+Environment=TRUST_PROXY=true
+Environment=ADMIN_USER=admin
+Environment=ADMIN_PASS=change-me-strong
+Environment=ADMIN_SECRET=change-me-long-random
+WorkingDirectory=/srv/engniter
+ExecStart=/usr/bin/node server/src/index.js
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+```
+- Place the repo at `/srv/engniter`, run `cd server && npm install && npm run migrate`.
+- Nginx vhost for `engniter.com` (TLS via certbot) and reverse proxy to `http://127.0.0.1:8080`:
+```
+location / {
+  proxy_pass http://127.0.0.1:8080;
+  proxy_set_header Host $host;
+  proxy_set_header X-Real-IP $remote_addr;
+  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+  proxy_set_header X-Forwarded-Proto $scheme;
+}
+```
+- `systemctl daemon-reload && systemctl enable --now engniter`.
+
+Health & status
+- Health: add `GET /admin/login` and `GET /` checks in your LB/monitor.
+- Admin: `https://engniter.com/admin` (after you log in).

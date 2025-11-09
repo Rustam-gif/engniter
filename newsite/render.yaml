@@ -1,0 +1,35 @@
+databases:
+  - name: engniter-db
+    plan: free
+
+services:
+  - type: web
+    name: engniter
+    env: node
+    plan: free
+    rootDir: server
+    buildCommand: npm install && npm run migrate
+    startCommand: node src/index.js
+    autoDeploy: true
+    envVars:
+      - key: DB_URL
+        fromDatabase:
+          name: engniter-db
+          property: connectionString
+      - key: NODE_ENV
+        value: production
+      - key: TRUST_PROXY
+        value: "true"
+      - key: SECURE_COOKIES
+        value: "true"
+      - key: COOKIE_DOMAIN
+        value: .engniter.com
+      - key: ANONYMIZE_IP
+        value: "true"
+      - key: ADMIN_USER
+        value: change-me
+      - key: ADMIN_PASS
+        value: change-me-strong
+      - key: ADMIN_SECRET
+        value: change-me-long-random
+

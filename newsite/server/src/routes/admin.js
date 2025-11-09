@@ -7,6 +7,10 @@ import { readRecent } from '../logReader.js';
 
 export const router = express.Router();
 
+function gate(){
+  return config.adminPublic ? (req,res,next)=>next() : adminAuthMiddleware;
+}
+
 // Login page (GET)
 router.get('/admin/login', (req, res) => {
   res.set('Content-Type', 'text/html; charset=utf-8');
@@ -44,12 +48,12 @@ router.post('/admin/login', rateLimit({ windowMs: 60_000, max: 20, key: 'admin-l
   res.redirect('/admin');
 });
 
-router.post('/admin/logout', adminAuthMiddleware, (req, res) => {
+router.post('/admin/logout', gate(), (req, res) => {
   clearAdminCookie(res);
   res.redirect('/admin/login');
 });
 
-router.get('/admin/visits.csv', adminAuthMiddleware, async (req, res) => {
+router.get('/admin/visits.csv', gate(), async (req, res) => {
   const days = Math.min(parseInt(req.query.days || '7', 10), 90);
   const limit = Math.min(parseInt(req.query.limit || '10000', 10), 200000);
   const sql = `
@@ -81,7 +85,7 @@ router.get('/admin/visits.csv', adminAuthMiddleware, async (req, res) => {
   res.end();
 });
 
-router.get('/admin/events.csv', adminAuthMiddleware, async (req, res) => {
+router.get('/admin/events.csv', gate(), async (req, res) => {
   const days = Math.min(parseInt(req.query.days || '30', 10), 365);
   const limit = Math.min(parseInt(req.query.limit || '10000', 10), 200000);
   const sql = `
@@ -108,7 +112,7 @@ router.get('/admin/events.csv', adminAuthMiddleware, async (req, res) => {
 });
 
 // JSON APIs for UI
-router.get('/admin/api/visits', adminAuthMiddleware, async (req, res) => {
+router.get('/admin/api/visits', gate(), async (req, res) => {
   const limit = Math.min(parseInt(req.query.limit || '100', 10), 2000);
   try {
     const rows = (await query(
@@ -143,7 +147,7 @@ router.get('/admin/api/visits', adminAuthMiddleware, async (req, res) => {
   }
 });
 
-router.get('/admin/api/events', adminAuthMiddleware, async (req, res) => {
+router.get('/admin/api/events', gate(), async (req, res) => {
   const limit = Math.min(parseInt(req.query.limit || '100', 10), 2000);
   try {
     const rows = (await query(
@@ -166,7 +170,7 @@ router.get('/admin/api/events', adminAuthMiddleware, async (req, res) => {
 });
 
 // Admin dashboard page
-router.get('/admin', adminAuthMiddleware, (req, res) => {
+router.get('/admin', gate(), (req, res) => {
   res.set('Content-Type', 'text/html; charset=utf-8');
   res.end(`<!doctype html>
   <meta name="viewport" content="width=device-width, initial-scale=1">
